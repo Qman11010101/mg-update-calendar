@@ -1,0 +1,20 @@
+[project]
+name = "mg-update-calendar"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "キューマン・エノビクト", email = "30486982+Qman11010101@users.noreply.github.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "beautifulsoup4>=4.15.0",
+    "markdownify>=1.2.3",
+    "requests>=2.34.2",
+]
+
+[project.scripts]
+mg-update-calendar = "mg_update_calendar:main"
+
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"
