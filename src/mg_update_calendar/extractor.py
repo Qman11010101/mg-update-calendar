@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+from dataclasses import replace
 from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
 import hashlib
 import json
@@ -12,26 +13,27 @@ from typing import Any
 from dotenv import load_dotenv
 from pydantic import ValidationError
 
-from mg_update_calendar.models import Article, Extraction, Game, GAME_ENTRY_TYPES, ENTRY_LABELS, extraction_schema
+from mg_update_calendar.models import (
+    Article, Entry, Cancellation, Extraction,
+    Game, GAME_ENTRY_TYPES, ENTRY_LABELS, SONG_TYPES, display_title, extraction_schema,
+)
 from mg_update_calendar.llm import JSONGenerator, LLMClient, LLMConfig, LLMError, LLMRequest
 from mg_update_calendar.prompts import PROMPT_VERSION, SYSTEM_PROMPT
-from mg_update_calendar.event_identity import event_id
 from mg_update_calendar.services import SERVICE_MAINTENANCE, calendar_dates, maintenance_for
 
-MAX_OUTPUT_TOKENS = 8192
+MAX_OUTPUT_TOKENS = 32768
 CONCURRENCY = 5
-SONG_REQUIRED_TYPES = frozenset({
-    "song_add", "song_unlock", "ultima_add", "worlds_end_add", "remaster_add",
-    "dx_chart_add", "standard_chart_add", "utage_add", "lunatic_add",
-})
+MAX_EXTRACTION_ATTEMPTS = 3
 
 
 class ExtractionError(Exception):
-    pass
+    def __init__(self, code: str, details: list[dict[str, Any]] | None = None):
+        super().__init__(code)
+        self.details = details or []
 
 
 def build_request(article: Article, max_output_tokens: int) -> LLMRequest:
-    services = (article.game, "card_maker") if article.game != "chunithm_intl" else (article.game,)
+    services = (article.game, "card_maker")
     service_context = "\n対象サービスの通常メンテナンス（国内版・日本時間）:\n" + "\n".join(
         f"{service}: {SERVICE_MAINTENANCE[service].start}〜{SERVICE_MAINTENANCE[service].end}"
         if service in SERVICE_MAINTENANCE else f"{service}: 未確認。日付補正不可" for service in services
@@ -53,14 +55,27 @@ def parse_response(output: str, game: Game) -> Extraction:
         if any(entry.type not in allowed for entry in extraction.entries) or any(
             cancellation.target_type not in allowed for cancellation in extraction.cancellations
         ):
-            raise ExtractionError("invalid_game_entry_type")
+            raise ExtractionError("invalid_game_entry_type", [
+                {"loc": ["entries", index, "type"], "type": "invalid_game_entry_type"}
+                for index, entry in enumerate(extraction.entries) if entry.type not in allowed
+            ] + [
+                {"loc": ["cancellations", index, "target_type"], "type": "invalid_game_entry_type"}
+                for index, cancellation in enumerate(extraction.cancellations) if cancellation.target_type not in allowed
+            ])
         extraction.entries = [
             entry for entry in extraction.entries
-            if entry.type not in SONG_REQUIRED_TYPES or any(song.strip() for song in entry.songs)
+            if entry.type not in SONG_TYPES or any(song.strip() for song in entry.songs)
         ]
         return extraction
     except ValidationError as exc:
-        raise ExtractionError("invalid_structured_output") from exc
+        details = []
+        for error in exc.errors(include_input=False, include_context=False, include_url=False):
+            # 未知のキー自体にも任意の文字列が入るため、保存する位置をスキーマのフィールドに限定する。
+            loc = [part if isinstance(part, int) or part in {
+                "entries", "cancellations", "review_notes", *Entry.model_fields, *Cancellation.model_fields
+            } else "unknown_field" for part in error["loc"]]
+            details.append({"loc": loc, "type": error["type"]})
+        raise ExtractionError("invalid_structured_output", details) from exc
 
 
 def review_reasons(article: Article, extraction: Extraction) -> list[str]:
@@ -70,16 +85,12 @@ def review_reasons(article: Article, extraction: Extraction) -> list[str]:
         reasons.append("本文がありません。タイトルのみの抽出です。")
     if article.date is None:
         reasons.append("記事の公開日が不明です。年の補完根拠を確認してください。")
-    if article.game == "chunithm_intl":
-        reasons.append("海外版のタイムゾーンおよび画像内の情報は未確認です。")
     for index, entry in enumerate(extraction.entries, 1):
         prefix = f"エントリ{index}: "
         for field in ("date_text", "evidence"):
             quote = getattr(entry, field)
             if not quote or not any(quote in source for source in sources):
                 reasons.append(prefix + f"{field}の原文根拠を確認できません。")
-        if entry.event_name is not None and event_id(entry, article) is None:
-            reasons.append(prefix + "所属イベントの原文根拠・対象サービス・開催期間・確信度を確認できません。自動グループ化しません。")
         if entry.start is None:
             reasons.append(prefix + "開始日が不明です。")
         if entry.start and entry.end and entry.start > entry.end:
@@ -102,6 +113,8 @@ def review_reasons(article: Article, extraction: Extraction) -> list[str]:
             dates = calendar_dates(entry, article.game)
             if entry.end_time <= maintenance.start and dates["calendar_end"] == entry.end.isoformat():
                 reasons.append(prefix + "前日補正すると終了日が開始日より前になります。")
+        if entry.type in SONG_TYPES and (entry.end is not None or entry.end_time is not None):
+            reasons.append(prefix + "楽曲・譜面追加に終了日があります。イベントやちほーの期間の流用でないか確認してください。")
         if entry.type == "other":
             reasons.append(prefix + "種類がotherです。")
         if entry.confidence < 0.8:
@@ -124,14 +137,36 @@ def extract_article(client: JSONGenerator, article: Article, max_output_tokens: 
         "source": {"game": source["game"], "url": source["url"], "date": source["date"], "title": source["title"]},
         "content_hash": hashlib.sha256(json.dumps(source, ensure_ascii=False, sort_keys=True).encode()).hexdigest(),
         "entries": [], "cancellations": [], "review_reasons": [], "error": None,
+        "validation_errors": [], "attempts": 0, "prompt_version": PROMPT_VERSION,
     }
     try:
-        response = client.generate_json(build_request(article, max_output_tokens))
-        extraction = parse_response(response, article.game)
+        request = build_request(article, max_output_tokens)
+        for attempt in range(MAX_EXTRACTION_ATTEMPTS):
+            result["attempts"] = attempt + 1
+            response = client.generate_json(request)
+            try:
+                extraction = parse_response(response, article.game)
+                break
+            except ExtractionError as exc:
+                result["validation_errors"].append({"attempt": attempt + 1, "errors": exc.details})
+                if attempt + 1 == MAX_EXTRACTION_ATTEMPTS:
+                    raise
+                request = replace(request, input=json.dumps({
+                    "article": source,
+                    "validation_errors": exc.details,
+                }, ensure_ascii=False), instructions=build_request(article, max_output_tokens).instructions +
+                    "\n前回の出力が検証に失敗しました。validation_errorsはプログラムの検証結果です。"
+                    "指摘された項目を修正し、記事から全体を再抽出してください。"
+                    "必須フィールドは省略せず、不明な値はスキーマで許可されたnullまたは空配列を使用してください。"
+                    "不正な日付や種類を推測で置き換えず、記事に基づいて判断してください。")
+
         reasons = review_reasons(article, extraction)
         result.update(status="needs_review" if reasons else "extracted",
-                      entries=[entry.model_dump(mode="json") | calendar_dates(entry, article.game) | {"event_id": event_id(entry, article)} for entry in extraction.entries],
-                      cancellations=extraction.model_dump(mode="json")["cancellations"], review_reasons=reasons)
+                      entries=[{"title": display_title(entry)} | entry.model_dump(mode="json") | calendar_dates(entry, article.game)
+                               for entry in extraction.entries],
+                      cancellations=[{"title": display_title(item)} | item.model_dump(mode="json")
+                                     for item in extraction.cancellations],
+                      review_reasons=reasons)
     except (ExtractionError, LLMError) as exc:
         result.update(status="failed", error=str(exc))
     return result
@@ -174,8 +209,9 @@ def main(argv: list[str] | None = None) -> int:
     except (OSError, ValueError) as exc:
         print(f"error: 入力JSONを読み込めません ({type(exc).__name__})", file=sys.stderr)
         return 2
-    document = {"schema_version": 4, "prompt_version": PROMPT_VERSION,
-                "provider": config.provider, "model": config.model, "mode": "extraction", "articles": []}
+    document = {"schema_version": 6, "prompt_version": PROMPT_VERSION,
+                "provider": config.provider, "model": config.model, "mode": "extraction",
+                "articles": []}
     try:
         if articles:
             try:
@@ -209,7 +245,10 @@ def main(argv: list[str] | None = None) -> int:
                                 completed[index] = result
                                 document["articles"] = [completed[i] for i in sorted(completed)]
                                 write_json(output, document)
-                                print(f"[{article.game}] {article.url}: {result['status']}", file=sys.stderr)
+                                status = result["status"]
+                                if status == "failed":
+                                    status += f" ({result['error']})"
+                                print(f"[{article.game}] {article.url}: {status}", file=sys.stderr)
                             for _ in done:
                                 submit_next()
                     finally:

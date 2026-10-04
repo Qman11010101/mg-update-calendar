@@ -22,8 +22,7 @@ SERVICE_MAINTENANCE = {
 
 
 def maintenance_for(entry: Entry, game: Game) -> Maintenance | None:
-    # 海外版には国内版や国内カードメイカーの時刻を流用しない。
-    if game == "chunithm_intl" or entry.service not in (game, "card_maker"):
+    if entry.service not in (game, "card_maker"):
         return None
     return SERVICE_MAINTENANCE.get(entry.service)
 

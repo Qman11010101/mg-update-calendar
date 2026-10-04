@@ -29,11 +29,12 @@
               <option value="">すべての種類</option>
             </select></label><label>キーワード<input id="search" type="search" placeholder="イベント・曲名を検索"></label></div>
       </div>
-      <section class="now" aria-labelledby="now-title">
-        <div class="section-head">
-          <h3 id="now-title">いま開催中</h3>
+      <section class="now" aria-label="開催状況">
+        <div class="section-head now-tabs" role="tablist" aria-label="開催状況">
+          <button id="tab-current" class="now-tab" type="button" role="tab" aria-selected="true" aria-controls="now-list" data-view="current">いま開催中<span class="tab-count"></span></button>
+          <button id="tab-upcoming" class="now-tab" type="button" role="tab" aria-selected="false" aria-controls="now-list" data-view="upcoming" tabindex="-1">今後開催<span class="tab-count"></span></button>
         </div>
-        <div id="now-list"></div>
+        <div id="now-list" role="tabpanel" aria-labelledby="tab-current"></div>
         <button id="now-more" class="more-button" hidden></button>
       </section>
       <div class="toolbar">

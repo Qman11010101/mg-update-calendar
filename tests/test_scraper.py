@@ -10,7 +10,7 @@ from unittest.mock import patch
 from mg_update_calendar import main
 
 
-GAMES = ['chunithm', 'maimai', 'ongeki', 'chunithm_intl']
+GAMES = ['chunithm', 'maimai', 'ongeki']
 
 
 class ScraperCLITests(unittest.TestCase):

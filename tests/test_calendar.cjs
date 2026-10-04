@@ -90,22 +90,31 @@ assert.equal(context.filteredEntries().length, 1);
 console.log(`Duplicate merging, source links, search and exclusion cases: passed (${extracted.length - combined.length} duplicates in published data)`);
 
 
-const eventItem = (event_id, changes = {}, source = sourceA) => context.calendarEntry(
-  { ...base, service: "maimai", event_id, ...changes }, source);
-const separated = context.periodGroups([
-  eventItem("evt_kaguya"), eventItem("evt_kaguya", { type: "area_add", title: "超かぐや姫！ちほー" }, sourceB),
-  eventItem("evt_hiroshi", { title: "野原ひろし コラボイベント" }),
-  eventItem("evt_hiroshi", { type: "area_add", title: "野原ひろし ちほー" }),
-]);
-assert.equal(separated.length, 2);
-assert.deepEqual(Array.from(separated, (group) => group.entries.length), [2, 2]);
-assert.equal(context.periodGroups([a, b]).length, 2);
-assert.equal(context.periodGroups([eventItem(null), eventItem(""), eventItem(" ")]).length, 3);
-for (const changes of [{ service: "card_maker" }, { start: "2026-09-18" }, { end: "2026-11-20" }]) {
-  assert.equal(context.periodGroups([eventItem("evt_a"), eventItem("evt_a", changes)]).length, 2);
-}
-assert.equal(context.periodGroups([eventItem("evt_a"), eventItem("evt_a", {}, { ...sourceA, game: "ongeki" })]).length, 2);
-assert.equal(context.mergeDuplicates([eventItem("evt_a"), eventItem("evt_b")]).length, 2);
-context.showGroup(separated[0]);
-assert.ok(content.children.some((child) => child.textContent === "このイベントの関連項目"));
-console.log("Explicit event grouping, legacy isolation and source preservation: passed");
+const eventItem = (changes = {}) => context.calendarEntry({ ...base, service: "maimai", ...changes }, sourceA);
+const event = eventItem({ event_id: "evt_family", event_parent_id: "evt_family", title: "Event" });
+const bonus = eventItem({ event_parent_id: "evt_family", type: "login_bonus", end: "2026-09-30", title: "Bonus" });
+const song = eventItem({ event_parent_id: "evt_family", type: "song_add", end: null, title: "Song", songs: ["A"] });
+const challenge = eventItem({ event_id: "evt_family", event_parent_id: "evt_family", type: "technical_challenge", title: "Challenge" });
+const family = [event, bonus, song, challenge];
+const current = context.currentEntries(family, "2026-10-04");
+assert.deepEqual(Array.from(current), [event, challenge]);
+assert.equal(context.currentEntries([bonus], "2026-10-04").length, 0);
+assert.equal(context.currentEntries([song], "2026-10-04").length, 0);
+assert.equal(context.currentEntries(family, "2026-12-01").length, 0);
+assert.equal(context.currentEntries([bonus], "2026-09-30").length, 1);
+assert.equal(context.currentEntries([eventItem({ start: null })], "2026-10-04").length, 0);
+assert.equal(context.mergeDuplicates([eventItem({ event_id: "old_a" }), eventItem({ event_id: "old_b" })]).length, 1);
+context.showDetail(bonus);
+assert.ok(!content.children.some((child) => child.textContent?.startsWith("親イベント：")));
+assert.equal(content.children.find((child) => child.tag === "h2").textContent, "Bonus");
+console.log("Independent entries, own periods, and legacy relationship metadata ignored: passed");
+
+const later = { ...a, start: "2026-10-10", end: "2026-10-20" };
+const ongoingFamily = { start: "2026-10-01" };
+const futureFamily = { start: "2026-10-08" };
+const lateSong = { ...a, type: "song_add", start: "2026-10-12", end: null, family: ongoingFamily };
+const futureMember = { ...a, start: "2026-10-08", family: futureFamily };
+const futureSibling = { ...a, start: "2026-10-09", family: futureFamily };
+const upcoming = context.upcomingEntries([a, later, lateSong, futureMember, futureSibling], "2026-10-05");
+assert.deepEqual([...upcoming], [later, lateSong, futureFamily]);
+console.log("Upcoming list keeps late members of ongoing families and collapses future families: passed");

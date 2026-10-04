@@ -101,6 +101,8 @@ class DeepSeekProvider:
                       {"role": "user", "content": request.input}],
             response_format={"type": "json_object"},
             max_tokens=request.max_output_tokens,
+            # deepseek-flashは思考モードが既定で、思考トークンがmax_tokensを使い切ってしまう。
+            extra_body={"thinking": {"type": "disabled"}},
         )
         if not response.choices:
             raise LLMError("missing_output")

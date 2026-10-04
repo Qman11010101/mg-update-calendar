@@ -4,7 +4,6 @@ const games = {
   chunithm: { name: "CHUNITHM", short: "CHU" },
   maimai: { name: "maimai", short: "mai" },
   ongeki: { name: "オンゲキ", short: "ONG" },
-  chunithm_intl: { name: "CHUNITHM International", short: "INT" },
 };
 const types = {
   song_add: "楽曲追加", song_unlock: "楽曲の一般開放・解禁緩和", version_launch: "バージョン稼働",
@@ -16,7 +15,14 @@ const types = {
   dx_chart_add: "でらっくす譜面追加", standard_chart_add: "スタンダード譜面追加", utage_add: "宴譜面追加",
   chapter_add: "チャプター追加", ranking: "ランキング", technical_challenge: "テクニカルチャレンジ",
   gacha: "ガチャ", login_bonus: "ログインボーナス", lunatic_add: "LUNATIC譜面追加",
+  avatar_costume: "アバターコスチューム",
 };
+// 同じ対象名で期間が重なると、1つの親イベントにまとめる種類。稼働などの恒久的な告知は含めない。
+const familyTypes = new Set(["event", "quest", "map_add", "area_add", "chapter_add", "ranking",
+  "technical_challenge", "login_bonus", "mission", "gacha", "friend_battle"]);
+// 楽曲・譜面追加はイベント終了後も残るため、親の期間を決めずに関連楽曲として親に加える。
+const songTypes = new Set(["song_add", "song_unlock", "ultima_add", "worlds_end_add", "remaster_add",
+  "dx_chart_add", "standard_chart_add", "utage_add", "lunatic_add"]);
 const weekdayNames = ["日", "月", "火", "水", "木", "金", "土"];
 const $ = (id) => document.getElementById(id);
 const today = new Intl.DateTimeFormat("sv-SE", { timeZone: "Asia/Tokyo" }).format(new Date());
@@ -25,6 +31,7 @@ let selected = today;
 let entries = [];
 let dated = [];
 let nowExpanded = false;
+let nowView = "current";
 const nowLimit = 8;
 const selectedGames = new Set(Object.keys(games));
 let holidays = new Set();
@@ -74,23 +81,74 @@ function byGameAndTitle(a, b) {
   const order = Object.keys(games);
   return order.indexOf(a.source.game) - order.indexOf(b.source.game) || a.title.localeCompare(b.title, "ja");
 }
-function periodGroups(list) {
-  const groups = new Map();
-  for (const [index, entry] of list.entries()) {
-    const key = typeof entry.event_id === "string" && entry.event_id.trim()
-      ? JSON.stringify([entry.source.game, entry.service ?? null, entry.event_id, entry.start, endDate(entry)])
-      : `single:${index}`;
-    if (!groups.has(key)) groups.set(key, { game: entry.source.game, start: entry.start, end: endDate(entry), entries: [] });
-    groups.get(key).entries.push(entry);
-  }
-  const rank = (entry) => entry.type === "event" ? 0 : ["version_launch", "map_add", "area_add", "chapter_add"].includes(entry.type) ? 1 : 2;
-  return [...groups.values()].map((group) => {
-    group.entries.sort((a, b) => rank(a) - rank(b) || a.title.localeCompare(b.title, "ja"));
-    return group;
-  });
+function currentEntries(list, referenceDate = today) {
+  return list.filter((entry) => entry.start && isRange(entry) &&
+    entry.start <= referenceDate && endDate(entry) >= referenceDate);
 }
-function groupLabel(group) {
-  return `${group.entries[0].title}${group.entries.length > 1 ? ` ほか${group.entries.length - 1}件` : ""}`;
+// 今後の一覧では、まだ始まっていない親イベントは親1件に、開催中の親に後から加わる告知は単独で並べる。
+function upcomingEntries(list, referenceDate = today) {
+  const upcoming = list.filter((entry) => entry.start && entry.start > referenceDate)
+    .map((entry) => entry.family && entry.family.start > referenceDate ? entry.family : entry);
+  return [...new Set(upcoming)];
+}
+function subjectKey(subject) {
+  return (subject || "").normalize("NFKC").replace(/[\s「」『』【】]/g, "") || null;
+}
+// マップ・ちほー・チャプターの対象名は「作品Aちほー」のように種類の語が付くため、語を除いて同じ作品のイベントとまとめる。
+const contentWords = { map_add: "マップ", area_add: "ちほー", chapter_add: "チャプター" };
+function familyKey(entry) {
+  const key = subjectKey(entry.subject);
+  // 楽曲の対象名は所属先と同じ表記なので、所属先がマップ・ちほー・チャプターでも同じ語を除く。
+  const words = songTypes.has(entry.type) ? Object.values(contentWords) : [contentWords[entry.type]];
+  const word = key && words.find((item) => item && key.endsWith(item) && key.length > item.length);
+  return word ? key.slice(0, -word.length) : key;
+}
+function isSong(entry) { return songTypes.has(entry.type); }
+function groupFamilies(list) {
+  const buckets = new Map();
+  for (const entry of list) {
+    const key = familyKey(entry);
+    if (!key || !(familyTypes.has(entry.type) || isSong(entry)) || !entry.start) continue;
+    const bucket = JSON.stringify([entry.source.game, entry.service ?? null, key]);
+    if (!buckets.has(bucket)) buckets.set(bucket, []);
+    buckets.get(bucket).push(entry);
+  }
+  const families = [];
+  for (const members of buckets.values()) {
+    members.sort((a, b) => a.start.localeCompare(b.start) || isSong(a) - isSong(b) || endDate(b).localeCompare(endDate(a)));
+    // 同じ名前の復刻などを別の親にするため、期間が連続して重なる告知と、その期間中に始まる楽曲だけをまとめる。
+    let cluster = [];
+    const clusterEnd = () => cluster.filter((entry) => !isSong(entry)).map(endDate).sort().at(-1);
+    const flush = () => {
+      const contents = cluster.filter((entry) => !isSong(entry));
+      if (new Set(cluster.map((entry) => entry.type)).size >= 2 && contents.some(isRange)) {
+        const event = contents.find((entry) => entry.type === "event");
+        const subject = contents[0].subject.trim().replaceAll("『", "「").replaceAll("』", "」");
+        const family = {
+          title: event ? event.title : contents.length === 1 ? contents[0].title : `「${subject.replace(/^「([^「」]*)」$/, "$1")}」`,
+          source: contents[0].source, service: contents[0].service, members: cluster, songs: [],
+          start: contents[0].start, end: clusterEnd(), open_ended: false,
+        };
+        cluster.forEach((entry) => { entry.family = family; });
+        families.push(family);
+      }
+      cluster = [];
+    };
+    for (const entry of members) {
+      const end = clusterEnd();
+      // 期間のある告知より前に始まる楽曲は、その告知に属さないものとして切り離す。
+      if (cluster.length && (!end || entry.start > end)) flush();
+      cluster.push(entry);
+    }
+    flush();
+  }
+  return families;
+}
+function itemTypes(item) { return item.members ? item.members.map((member) => member.type) : [item.type]; }
+function openItem(item) { return item.members ? showFamily(item) : showDetail(item); }
+// 開催中の一覧では、親イベントにまとまる告知を親1件に置き換える。
+function withFamilies(list) {
+  return [...new Set(list.map((entry) => entry.family || entry))];
 }
 function typeTags(entryTypes) {
   const tags = element("span", "type-tags");
@@ -101,18 +159,18 @@ function typeTags(entryTypes) {
   }
   return tags;
 }
-function listItem(entry, note) {
+function listItem(entry, note, onClick = () => openItem(entry)) {
   const button = element("button", `item ${entry.source.game}`);
   button.type = "button";
   button.append(element("span", "item-game", games[entry.source.game].short));
   const body = element("span", "item-body");
   body.append(element("span", "item-title", entry.title));
-  const meta = typeTags([entry.type]);
+  const meta = typeTags(itemTypes(entry));
   if (note) meta.append(element("span", "item-meta", note));
   body.append(meta);
   button.append(body);
   button.title = `${games[entry.source.game].name}｜${entry.title}\n${period(entry)}`;
-  button.addEventListener("click", () => showDetail(entry));
+  button.addEventListener("click", onClick);
   return button;
 }
 function showDetail(entry) {
@@ -122,11 +180,16 @@ function showDetail(entry) {
   const heading = element("h2", "", entry.title);
   heading.id = "detail-title";
   content.append(heading, typeTags([entry.type]), element("p", "detail-meta", period(entry)));
+  if (entry.family) {
+    const parent = element("button", "family-link", `${isSong(entry) ? "関連イベント" : "親イベント"}：${entry.family.title}`);
+    parent.type = "button";
+    parent.addEventListener("click", () => showFamily(entry.family));
+    content.append(parent);
+  }
   if (entry.start !== entry.official_start || entry.end !== entry.official_end) {
     const day = entry.start_is_deadline ? entry.start : entry.end;
     if (day) content.append(element("p", "detail-meta", `最終利用日：${day.replaceAll("-", "/")}（上記日時で終了）`));
   }
-  if (entry.source.game === "chunithm_intl") content.append(element("p", "detail-meta", "海外版の日時は告知の表記です。タイムゾーンは未確認です。"));
   if (entry.songs.length) {
     content.append(element("h3", "", "対象楽曲"));
     const list = element("ul");
@@ -149,58 +212,76 @@ function showDetail(entry) {
     if (!source.children.length) source.textContent = origin.source.title;
     content.append(source, element("p", "detail-meta", `記事公開日：${origin.source.date || "不明"}`));
   }
-  $("detail").showModal();
+  if (!$("detail").open) $("detail").showModal();
 }
-function showGroup(group) {
-  if (group.entries.length === 1) return showDetail(group.entries[0]);
+function showFamily(family) {
   const content = $("detail-content");
   content.replaceChildren();
-  content.append(element("span", `badge ${group.game}`, games[group.game].name));
-  const heading = element("h2", "", groupLabel(group));
+  content.append(element("span", `badge ${family.source.game}`, games[family.source.game].name));
+  const heading = element("h2", "", family.title);
   heading.id = "detail-title";
-  content.append(heading, element("p", "detail-meta", `${group.start.replaceAll("-", "/")} 〜 ${group.end.replaceAll("-", "/")}`));
-  content.append(element("h3", "", "このイベントの関連項目"));
-  const list = element("div", "group-list");
-  list.append(...group.entries.map((entry) => listItem(entry)));
+  content.append(heading, typeTags(itemTypes(family)), element("p", "detail-meta", period(family)));
+  const contents = family.members.filter((member) => !isSong(member));
+  const songs = family.members.filter(isSong);
+  content.append(element("h3", "", `含まれる告知（${contents.length}件）`));
+  const list = element("div", "family-members");
+  contents.forEach((member) => list.append(listItem(member, period(member), () => showDetail(member))));
   content.append(list);
-  $("detail").showModal();
+  if (songs.length) {
+    content.append(element("h3", "", `関連楽曲（${songs.length}件）`));
+    const songList = element("div", "family-members");
+    songs.forEach((member) => songList.append(listItem(member, `${period(member)}・${member.songs.join("、")}`, () => showDetail(member))));
+    content.append(songList);
+  }
+  if (!$("detail").open) $("detail").showModal();
 }
 function renderNow(all) {
-  const active = all.filter((entry) => entry.start && isRange(entry) && entry.start <= today && endDate(entry) >= today);
   const order = Object.keys(games);
-  const groups = periodGroups(active).sort((a, b) => a.end.localeCompare(b.end) || order.indexOf(a.game) - order.indexOf(b.game));
+  const byGame = (a, b) => order.indexOf(a.source.game) - order.indexOf(b.source.game);
+  const current = currentEntries(withFamilies(currentEntries(all))).sort((a, b) => endDate(a).localeCompare(endDate(b)) || byGame(a, b));
+  const upcoming = upcomingEntries(all).sort((a, b) => a.start.localeCompare(b.start) || byGame(a, b));
+  const shown = nowView === "current" ? current : upcoming;
+  for (const [id, view, count] of [["tab-current", "current", current.length], ["tab-upcoming", "upcoming", upcoming.length]]) {
+    const tab = $(id);
+    tab.setAttribute("aria-selected", String(nowView === view));
+    tab.tabIndex = nowView === view ? 0 : -1;
+    tab.querySelector(".tab-count").textContent = count;
+  }
   const list = $("now-list");
+  list.setAttribute("aria-labelledby", nowView === "current" ? "tab-current" : "tab-upcoming");
   list.replaceChildren();
-  if (!groups.length) list.append(element("p", "day-empty", "現在開催中の項目はありません。"));
-  groups.forEach((group, index) => {
-    const left = daysBetween(today, group.end);
-    const total = daysBetween(group.start, group.end) + 1;
-    const card = element("button", `now-card ${group.game}${left <= 3 ? " soon" : ""}`);
+  if (!shown.length) list.append(element("p", "day-empty", nowView === "current" ? "現在開催中の項目はありません。" : "今後開催予定の項目はありません。"));
+  shown.forEach((entry, index) => {
+    const upcomingView = nowView === "upcoming";
+    const left = upcomingView ? daysBetween(today, entry.start) : daysBetween(today, endDate(entry));
+    const card = element("button", `now-card ${entry.source.game}${!upcomingView && left <= 3 ? " soon" : ""}`);
     card.type = "button";
     card.hidden = !nowExpanded && index >= nowLimit;
-    card.title = `${games[group.game].name}｜${group.entries.map((entry) => entry.title).join("\n")}`;
-    card.addEventListener("click", () => showGroup(group));
-    const [main] = group.entries;
+    card.title = `${games[entry.source.game].name}｜${entry.title}`;
+    card.addEventListener("click", () => openItem(entry));
     const body = element("span", "now-body");
-    body.append(element("span", "now-title", main.title));
-    const tags = typeTags(group.entries.map((entry) => entry.type));
-    if (group.entries.length > 1) tags.append(element("span", "item-meta", `計${group.entries.length}件`));
+    body.append(element("span", "now-title", entry.title));
+    const tags = typeTags(itemTypes(entry));
     body.append(tags);
     // 残り日数は本文から切り離した右列にまとめ、経過ゲージはカード幅いっぱいの最下段に置く。
     const status = element("span", "now-status");
-    status.append(element("span", "now-left", left === 0 ? "今日まで" : `残り${left}日`));
-    const progress = element("span", "now-progress");
-    const bar = element("span");
-    bar.style.width = `${Math.round((daysBetween(group.start, today) + 1) / total * 100)}%`;
-    progress.append(bar);
-    progress.setAttribute("aria-hidden", "true");
-    status.append(element("span", "now-period", `${shortDate(group.start)} – ${shortDate(group.end)}`));
-    card.append(element("span", "item-game", games[group.game].short), body, status, progress);
+    status.append(element("span", "now-left", upcomingView ? (left === 1 ? "明日から" : `${left}日後`) : left === 0 ? "今日まで" : `残り${left}日`));
+    status.append(element("span", "now-period", isRange(entry) ? `${shortDate(entry.start)} – ${shortDate(endDate(entry))}` : shortDate(entry.start)));
+    card.append(element("span", "item-game", games[entry.source.game].short), body, status);
+    if (!upcomingView) {
+      const total = daysBetween(entry.start, endDate(entry)) + 1;
+      const progress = element("span", "now-progress");
+      const bar = element("span");
+      bar.style.width = `${Math.round((daysBetween(entry.start, today) + 1) / total * 100)}%`;
+      progress.append(bar);
+      progress.setAttribute("aria-hidden", "true");
+      card.append(progress);
+    }
     list.append(card);
   });
   const more = $("now-more");
-  more.hidden = groups.length <= nowLimit;
-  more.textContent = nowExpanded ? "折りたたむ" : `残り${groups.length - nowLimit}件を表示`;
+  more.hidden = shown.length <= nowLimit;
+  more.textContent = nowExpanded ? "折りたたむ" : `残り${shown.length - nowLimit}件を表示`;
   more.setAttribute("aria-expanded", String(nowExpanded));
 }
 function renderDay() {
@@ -303,13 +384,11 @@ function renderTimeline(ranges, first, last) {
     head.style.gridColumn = String(day + 2);
     head.append(element("b", "", String(day + 1)), element("span", "", weekdayNames[weekday]));
     timeline.append(head);
-    if (weekday === 0 || weekday === 6 || holidays.has(key)) {
-      const shade = element("div", "tl-weekend");
-      shade.style.gridColumn = String(day + 2);
-      shades.push(shade);
-    }
+    // 日ごとの縦罫線。土日祝はこの列に網掛けも重ねる。
+    const shade = element("div", `tl-col${weekday === 0 || weekday === 6 || holidays.has(key) ? " tl-weekend" : ""}`);
+    shade.style.gridColumn = String(day + 2);
+    shades.push(shade);
   }
-  timeline.append(...shades);
   let row = 2;
   for (const game of Object.keys(games)) {
     const list = ranges.filter((entry) => entry.source.game === game)
@@ -320,35 +399,74 @@ function renderTimeline(ranges, first, last) {
     header.style.gridRow = String(row++);
     header.setAttribute("aria-expanded", "true");
     header.append(element("span", "tl-caret", "▾"), element("span", "tl-group-name", games[game].name), element("span", "group-count", `${list.length}件`));
-    timeline.append(header);
+    const groupLine = element("div", "tl-line tl-group-line");
+    groupLine.style.gridRow = header.style.gridRow;
+    timeline.append(groupLine, header);
     const groupNodes = [];
-    for (const entry of list) {
-      const label = listItem(entry);
+    const addRow = (entry, child) => {
+      const family = entry.members ? { expanded: false, nodes: [] } : null;
+      const label = family ? listItem(entry, undefined, () => {
+        family.expanded = !family.expanded;
+        label.setAttribute("aria-expanded", String(family.expanded));
+        family.nodes.forEach((node) => { node.familyHidden = !family.expanded; node.hidden = node.familyHidden; });
+      }) : listItem(entry);
+      // 行を1段に収めるため、種類はタグではなく行の背景色で示す。
+      const typeName = family ? "親イベント" : types[entry.type] || entry.type;
       label.classList.add("tl-label");
+      if (family) {
+        label.classList.add("tl-family");
+        label.setAttribute("aria-expanded", "false");
+        label.prepend(element("span", "tl-caret", "▾"));
+      } else label.dataset.type = entry.type;
+      if (child) label.classList.add("tl-child");
+      label.title += `
+${typeName}`;
+      label.querySelector(".type-tags").replaceWith(element("span", "sr-only", typeName));
       label.style.gridRow = String(row);
       const line = element("div", "tl-line");
+      if (!family) line.dataset.type = entry.type;
       line.style.gridRow = String(row);
       const from = Math.max(0, daysBetween(first, entry.start));
       const to = Math.min(days - 1, daysBetween(first, endDate(entry)));
       // バーは行ラベルと同じ操作の補助なので、キーボード操作と読み上げはラベル側に任せる。
-      const bar = element("button", `tl-bar ${game}${entry.start < first ? " continues-before" : ""}${endDate(entry) > last ? " continues-after" : ""}`);
+      const bar = element("button", `tl-bar ${game}${family ? " family" : ""}${entry.start < first ? " continues-before" : ""}${endDate(entry) > last ? " continues-after" : ""}`);
       bar.type = "button";
       bar.tabIndex = -1;
       bar.setAttribute("aria-hidden", "true");
       bar.style.gridRow = String(row++);
       bar.style.gridColumn = `${from + 2} / ${to + 3}`;
       bar.append(element("span", "", `${shortDate(entry.start)} – ${shortDate(endDate(entry))}`));
-      bar.addEventListener("click", () => showDetail(entry));
+      bar.addEventListener("click", () => openItem(entry));
       groupNodes.push(line, label, bar);
+      return family;
+    };
+    const shown = new Set();
+    for (const entry of list) {
+      if (!entry.family) {
+        addRow(entry, false);
+        continue;
+      }
+      if (shown.has(entry.family)) continue;
+      shown.add(entry.family);
+      const family = addRow(entry.family, false);
+      // 子の告知は親の行の下に畳んでおき、親の行を押したときだけ見せる。
+      for (const member of list.filter((item) => item.family === entry.family)) {
+        const start = groupNodes.length;
+        addRow(member, true);
+        family.nodes.push(...groupNodes.slice(start));
+      }
+      family.nodes.forEach((node) => { node.familyHidden = true; node.hidden = true; });
     }
     timeline.append(...groupNodes);
     header.addEventListener("click", () => {
       const expanded = header.getAttribute("aria-expanded") !== "true";
       header.setAttribute("aria-expanded", String(expanded));
-      groupNodes.forEach((node) => { node.hidden = !expanded; });
+      groupNodes.forEach((node) => { node.hidden = !expanded || node.familyHidden === true; });
     });
   }
+  // 罫線と網掛けは行の背景色より手前、バーより奥に描く。
   shades.forEach((shade) => { shade.style.gridRow = `2 / ${row}`; });
+  timeline.append(...shades);
   if (today >= first && today <= last) {
     const marker = element("div", "tl-today");
     marker.style.gridColumn = String(daysBetween(first, today) + 2);
@@ -363,6 +481,8 @@ function render() {
   const first = `${month}-01`;
   const last = dateKey(new Date(Date.UTC(year, monthNumber, 0)));
   const all = filteredEntries();
+  entries.forEach((entry) => { delete entry.family; });
+  groupFamilies(all);
   dated = all.filter((entry) => entry.start);
   const starts = dated.filter((entry) => entry.start >= first && entry.start <= last);
   const ranges = dated.filter((entry) => isRange(entry) && entry.start <= last && endDate(entry) >= first);
@@ -372,6 +492,7 @@ function render() {
   renderMonth(first, last);
   renderDay();
   renderTimeline(ranges, first, last);
+  pinTimelineHead();
   const undated = all.filter((entry) => !entry.start);
   $("undated-count").textContent = `${undated.length}件`;
   $("undated-list").replaceChildren(...undated.map((entry) => listItem(entry)));
@@ -407,7 +528,7 @@ function mergeDuplicates(list) {
       }]
     };
     // 日時や対象曲の違いは、同名の別告知や日程変更の可能性があるため残す。
-    const key = JSON.stringify([entry.source.game, entry.service ?? null, entry.event_id ?? null, entry.type, entry.title,
+    const key = JSON.stringify([entry.source.game, entry.service ?? null, entry.type, entry.title,
     entry.official_start, entry.start_time ?? null, entry.official_end ?? null, entry.end_time ?? null,
     entry.start, entry.end ?? null, entry.open_ended, entry.start_is_deadline ?? false,
     [...new Set(entry.songs || [])].sort()]);
@@ -422,6 +543,20 @@ function mergeDuplicates(list) {
   }
   return merged;
 }
+// 同じ曲の追加が、イベント記事（所属先あり）と楽曲追加の記事（所属先なし）の両方に載ることがある。
+// 同じ日・同じ種類なら所属先のある項目に曲を寄せ、所属先のない項目からはその曲を除く。曲が残らなければ出典だけ移して消す。
+function mergeSongOverlaps(list) {
+  const key = (entry) => JSON.stringify([entry.source.game, entry.service ?? null, entry.type, entry.start]);
+  const linked = list.filter((entry) => isSong(entry) && entry.start && subjectKey(entry.subject));
+  return list.flatMap((entry) => {
+    if (!isSong(entry) || !entry.start || subjectKey(entry.subject)) return [entry];
+    const targets = linked.filter((item) => key(item) === key(entry) && item.songs.some((song) => entry.songs.includes(song)));
+    if (!targets.length) return [entry];
+    targets.forEach((target) => target.origins.push(...entry.origins));
+    const songs = entry.songs.filter((song) => !targets.some((target) => target.songs.includes(song)));
+    return songs.length ? [{ ...entry, songs }] : [];
+  });
+}
 async function load() {
   $("loading").hidden = false;
   $("error").hidden = true;
@@ -429,10 +564,10 @@ async function load() {
     const response = await fetch("./entries.json");
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
-    if (![2, 3, 4].includes(data.schema_version) || data.mode !== "extraction" || !Array.isArray(data.articles)) throw new Error("Unsupported data");
+    if (![2, 3, 4, 5, 6].includes(data.schema_version) || data.mode !== "extraction" || !Array.isArray(data.articles)) throw new Error("Unsupported data");
     const extracted = data.articles.filter((article) => article.status !== "failed" && games[article.source.game])
       .flatMap((article) => article.entries.map((entry) => calendarEntry(entry, article.source)));
-    entries = mergeDuplicates(extracted);
+    entries = mergeSongOverlaps(mergeDuplicates(extracted));
     $("type").replaceChildren(new Option("すべての種類", ""));
     [...new Set(entries.map((entry) => entry.type))].sort().forEach((type) => $("type").add(new Option(types[type] || type, type)));
     render();
@@ -480,5 +615,31 @@ $("type").addEventListener("change", render);
 $("search").addEventListener("input", render);
 $("retry").addEventListener("click", load);
 $("now-more").addEventListener("click", () => { nowExpanded = !nowExpanded; renderNow(filteredEntries()); });
+function selectNowView(view) {
+  nowView = view;
+  nowExpanded = false;
+  render();
+}
+for (const tab of document.querySelectorAll(".now-tab")) {
+  tab.addEventListener("click", () => selectNowView(tab.dataset.view));
+  tab.addEventListener("keydown", (event) => {
+    if (!["ArrowLeft", "ArrowRight"].includes(event.key)) return;
+    event.preventDefault();
+    selectNowView(nowView === "current" ? "upcoming" : "current");
+    $(nowView === "current" ? "tab-current" : "tab-upcoming").focus();
+  });
+}
+// 開催期間タイムラインは縦スクロールをページに任せているため、見出し行の追従はここで行う。
+function pinTimelineHead() {
+  const timeline = $("timeline");
+  if (timeline.hidden) return;
+  const head = timeline.querySelector(".tl-corner");
+  if (!head) return;
+  const top = timeline.getBoundingClientRect().top;
+  const shift = Math.max(0, Math.min(-top, timeline.offsetHeight - head.offsetHeight));
+  timeline.style.setProperty("--head-shift", `${shift}px`);
+}
+addEventListener("scroll", pinTimelineHead, { passive: true });
+addEventListener("resize", pinTimelineHead);
 loadHolidays();
 load();

@@ -12,7 +12,7 @@ from openai import OpenAI
 
 from mg_update_calendar.extractor import main
 from mg_update_calendar.llm import LLMClient, LLMConfig, LLMError, LLMRequest
-from test_extractor import ARTICLE, entry
+from test_extractor import ARTICLE, entry, wire_extraction
 
 
 REQUEST = LLMRequest("Extract data", "Article text", {"type": "object"}, "result", 8192)
@@ -71,6 +71,7 @@ class LLMTests(unittest.TestCase):
         self.assertEqual(body["model"], "deepseek-flash")
         self.assertEqual(body["response_format"], {"type": "json_object"})
         self.assertEqual(body["max_tokens"], 8192)
+        self.assertEqual(body["thinking"], {"type": "disabled"})
         self.assertIn(json.dumps(REQUEST.schema), body["messages"][0]["content"])
         self.assertEqual(body["messages"][1]["content"], REQUEST.input)
         self.assertNotIn("deepseek-test", json.dumps(body))
@@ -92,10 +93,10 @@ class LLMTests(unittest.TestCase):
 
     def test_cli_deepseek_shared_validation_and_failure_continuation(self):
         payloads = iter([
-            completion(json.dumps({"entries": [entry()], "cancellations": [], "review_notes": []})),
-            completion(json.dumps({"entries": [entry(start="2026-02-30")], "cancellations": [], "review_notes": []})),
-            completion("invalid json"),
-            completion(json.dumps({"entries": [], "cancellations": [], "review_notes": []})),
+            completion(json.dumps(wire_extraction({"entries": [entry()], "cancellations": [], "review_notes": []}))),
+            *[completion(json.dumps(wire_extraction({"entries": [entry(start="2026-02-30")], "cancellations": [], "review_notes": []}))) for _ in range(3)],
+            *[completion("invalid json") for _ in range(3)],
+            completion(json.dumps(wire_extraction({"entries": [], "cancellations": [], "review_notes": []}))),
         ])
         sdk = OpenAI(api_key="deepseek-test", base_url="https://api.deepseek.com", max_retries=0,
                      http_client=httpx2.Client(transport=httpx2.MockTransport(

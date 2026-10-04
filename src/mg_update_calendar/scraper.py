@@ -1,4 +1,4 @@
-"""セガ音ゲーおしらせサイト (CHUNITHM / maimai / オンゲキ / 海外版CHUNITHM) のスクレイピングスクリプト.
+"""セガ音ゲーおしらせサイト (CHUNITHM / maimai / オンゲキ) のスクレイピングスクリプト.
 
 記事発表日・タイトル・画像URL・本文 (プレーン + Markdown) をJSON化する.
 
@@ -36,7 +36,7 @@ HEADERS = {
     "Accept-Language": "ja-JP,ja;q=0.9",
 }
 
-# "2026.09.15 (火)" (CHUNITHM/maimai) / "2026.9.15 Tue / GAME" (オンゲキ) / "2026.9.16Wed" (海外版CHUNITHM) に対応
+# "2026.09.15 (火)" (CHUNITHM/maimai) / "2026.9.15 Tue / GAME" (オンゲキ) に対応
 DATE_RE = re.compile(r"(\d{4})\.(\d{1,2})\.(\d{1,2})")
 
 
@@ -44,7 +44,7 @@ DATE_RE = re.compile(r"(\d{4})\.(\d{1,2})\.(\d{1,2})")
 class SiteConfig:
     """ゲームごとのサイト差分。セレクタ以外のパース logic は共通。"""
 
-    game: str  # 出力JSONの game フィールド ("chunithm" | "maimai" | "ongeki" | "chunithm_intl")
+    game: str  # 出力JSONの game フィールド ("chunithm" | "maimai" | "ongeki")
     label: str  # 表示名
     base_url: str
     page_url_template: str
@@ -104,19 +104,6 @@ SITES: dict[str, SiteConfig] = {
         detail_title_selector=".p-news__articleTitle",
         detail_body_selector=".p-news__articleBodyInner",
         category_in_date=True,
-    ),
-    "chunithm_intl": SiteConfig(
-        game="chunithm_intl",
-        label="CHUNITHM International",
-        base_url="https://info-chunithm.sega.com/",
-        page_url_template="https://info-chunithm.sega.com/page/{page}/",
-        card_selector="li.news--list__item a.news--list__post[href]",
-        list_date_selector=".news--date",
-        list_title_selector=".news--title",
-        list_thumb_selector=".news--thumbnail img",
-        detail_date_selector=".news--post__date",
-        detail_title_selector=".news--post__ttl",
-        detail_body_selector=".news--post__details--wrap",
     ),
 }
 
@@ -392,7 +379,7 @@ def scrape(
         fetch_detail: Trueなら各記事ページも取得して正確な日付/画像を得る。
         interval: リクエスト間隔(秒)。要件によりデフォルト1.0秒。
         verbose: 進捗をstderrに出す。
-        game: 対象ゲーム ("chunithm" | "maimai" | "ongeki" | "chunithm_intl")。
+        game: 対象ゲーム ("chunithm" | "maimai" | "ongeki")。
         fetcher: 共有Fetcher。複数ゲーム連続取得時に渡すとゲームまたぎの間隔も保つ。
     """
     site = SITES[game]
@@ -466,13 +453,13 @@ def scrape(
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
-        description="セガ音ゲーおしらせ (CHUNITHM/maimai/オンゲキ/海外版CHUNITHM) をスクレイピングしてJSON化する"
+        description="セガ音ゲーおしらせ (CHUNITHM/maimai/オンゲキ) をスクレイピングしてJSON化する"
     )
     parser.add_argument(
         "--game",
-        choices=["chunithm", "maimai", "ongeki", "chunithm_intl", "all"],
+        choices=["chunithm", "maimai", "ongeki", "all"],
         default="all",
-        help="対象ゲーム。allで4ゲームまとめて取得 (default: all)",
+        help="対象ゲーム。allで3ゲームまとめて取得 (default: all)",
     )
     parser.add_argument("--max-pages", type=int, default=1, help="ゲームごとの一覧ページ数 (default: 1)")
     args = parser.parse_args(argv)
