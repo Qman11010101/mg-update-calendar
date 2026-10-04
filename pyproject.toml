@@ -9,11 +9,15 @@ requires-python = ">=3.12"
 dependencies = [
     "beautifulsoup4>=4.15.0",
     "markdownify>=1.2.3",
+    "openai>=2.8.1",
+    "pydantic>=2.12.0",
+    "python-dotenv>=1.2.4",
     "requests>=2.34.2",
 ]
 
 [project.scripts]
 mg-update-calendar = "mg_update_calendar:main"
+mg-extract-entries = "mg_update_calendar.extractor:main"
 
 [build-system]
 requires = ["uv_build>=0.12.5,<0.13.0"]
