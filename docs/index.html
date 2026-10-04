@@ -1,42 +1,79 @@
 <!doctype html>
 <html lang="ja">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#ffffff">
-  <title>音ゲー更新カレンダー</title>
+  <meta name="theme-color" content="#1c2b44">
+  <title>音ゲーアップデートカレンダー</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@500..800&family=Noto+Sans+JP:wght@400..800&display=swap">
   <link rel="stylesheet" href="./style.css">
   <script src="./calendar.js" defer></script>
 </head>
+
 <body>
-  <header class="site-header"><div class="header-inner"><a class="brand" href="./">音ゲー更新カレンダー</a><p class="header-note">CHUNITHM・maimai・オンゲキ・CHUNITHM International の公式お知らせから作った非公式カレンダーです</p></div></header>
+  <header class="site-header">
+    <div class="header-inner"><a class="brand" href="./">音ゲーアップデートカレンダー</a>
+    </div>
+  </header>
   <main>
-    <section class="workspace" aria-label="更新カレンダー">
-      <div class="filters"><fieldset id="games"><legend>ゲーム</legend></fieldset><div class="filter-inputs"><label>種類<select id="type"><option value="">すべての種類</option></select></label><label>キーワード<input id="search" type="search" placeholder="イベント・曲名を検索"></label></div></div>
+    <section class="workspace" aria-label="アップデートカレンダー">
+      <div class="filters">
+        <fieldset id="games">
+          <legend>ゲーム</legend>
+        </fieldset>
+        <div class="filter-inputs"><label>種類<select id="type">
+              <option value="">すべての種類</option>
+            </select></label><label>キーワード<input id="search" type="search" placeholder="イベント・曲名を検索"></label></div>
+      </div>
       <section class="now" aria-labelledby="now-title">
-        <div class="section-head"><h3 id="now-title">いま開催中</h3><p id="now-note"></p></div>
+        <div class="section-head">
+          <h3 id="now-title">いま開催中</h3>
+        </div>
         <div id="now-list"></div>
         <button id="now-more" class="more-button" hidden></button>
       </section>
-      <div class="toolbar"><div class="month-navigation"><h2 id="month-title"></h2><button id="prev" aria-label="前の月">‹</button><button id="next" aria-label="次の月">›</button><button id="today">今月</button><label class="month-jump"><span class="sr-only">表示する月</span><input id="month" type="month" aria-label="表示する月"></label></div><p id="count" role="status"></p></div>
+      <div class="toolbar">
+        <div class="month-navigation">
+          <h2 id="month-title"></h2><button id="prev" aria-label="前の月">‹</button><button id="next"
+            aria-label="次の月">›</button><button id="today">今月</button><label class="month-jump"><span
+              class="sr-only">表示する月</span><input id="month" type="month" aria-label="表示する月"></label>
+        </div>
+      </div>
       <p id="loading" role="status">カレンダーを読み込んでいます…</p>
-      <div id="error" role="alert" hidden><p>データを読み込めませんでした。通信環境とentries.jsonの配置を確認してください。</p><button id="retry">再読み込み</button></div>
+      <div id="error" role="alert" hidden>
+        <p>データを読み込めませんでした。</p><button id="retry">再読み込み</button>
+      </div>
       <div class="month-layout">
         <div id="calendar" aria-labelledby="month-title"></div>
         <aside id="day-panel" aria-live="polite" aria-label="選択した日のエントリ"></aside>
       </div>
-      <p id="empty" class="empty" hidden>この月に該当するエントリはありません。月や絞り込み条件を変更してください。</p>
+      <p id="empty" class="empty" hidden>この月に該当するエントリはありません。</p>
       <section class="timeline-section" aria-labelledby="timeline-title">
-        <div class="section-head"><h3 id="timeline-title">開催期間</h3><p>期間が決まっているイベント・ミッションなど。行を押すと詳細を表示します。</p></div>
-        <div class="timeline-scroll" tabindex="0" role="region" aria-label="開催期間タイムライン（横スクロール可能）"><div id="timeline"></div></div>
+        <div class="section-head">
+          <h3 id="timeline-title">開催期間</h3>
+        </div>
+        <div class="timeline-scroll" tabindex="0" role="region" aria-label="開催期間タイムライン（横スクロール可能）">
+          <div id="timeline"></div>
+        </div>
         <p id="timeline-empty" class="empty" hidden>この月に期間のある項目はありません。</p>
       </section>
-      <div class="calendar-note"><span>日付・時刻は告知の表記に準拠</span><span>「要確認」の項目は詳細から原文を確認できます。</span></div>
     </section>
-    <details id="undated"><summary>日付不明のエントリ <span id="undated-count"></span></summary><div id="undated-list"></div></details>
-    <footer><span>音ゲー更新カレンダー（非公式）</span><p>公式のお知らせをもとにAIで抽出しています。内容・開催日時は各ゲームの公式告知をご確認ください。</p><p id="data-note"></p></footer>
-    <noscript><p>カレンダーの表示にはJavaScriptを有効にしてください。</p></noscript>
+    <details id="undated">
+      <summary>日付不明のエントリ <span id="undated-count"></span></summary>
+      <div id="undated-list"></div>
+    </details>
+    <noscript>
+      <p>カレンダーの表示にはJavaScriptを有効にしてください。</p>
+    </noscript>
   </main>
-  <dialog id="detail" aria-labelledby="detail-title" closedby="any"><form method="dialog"><button class="close" aria-label="詳細を閉じる" autofocus>×</button></form><div id="detail-content"></div></dialog>
+  <dialog id="detail" aria-labelledby="detail-title" closedby="any">
+    <form method="dialog"><button class="close" aria-label="詳細を閉じる" autofocus>×</button></form>
+    <div id="detail-content"></div>
+  </dialog>
 </body>
+
 </html>

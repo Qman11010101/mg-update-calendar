@@ -3,9 +3,9 @@
 記事発表日・タイトル・画像URL・本文 (プレーン + Markdown) をJSON化する.
 
 使い方 (uv 前提):
-    uv run mg-update-calendar --game chunithm --max-pages 1 --output news.json
-    uv run mg-update-calendar --game maimai --max-pages 2 --output news_maimai.json
-    uv run mg-update-calendar --game all --max-pages 1 --output news_all.json
+    uv run mg-update-calendar
+    uv run mg-update-calendar --game maimai --max-pages 2
+    uv run mg-update-calendar --max-pages 3
 
 仕様:
 - 一覧ページ (各サイトのトップ , /page/N/) から記事URLを取得
@@ -471,46 +471,23 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--game",
         choices=["chunithm", "maimai", "ongeki", "chunithm_intl", "all"],
-        default="chunithm",
-        help="対象ゲーム。allで4ゲームまとめて取得 (default: chunithm)",
+        default="all",
+        help="対象ゲーム。allで4ゲームまとめて取得 (default: all)",
     )
     parser.add_argument("--max-pages", type=int, default=1, help="ゲームごとの一覧ページ数 (default: 1)")
-    parser.add_argument("--max-articles", type=int, default=0, help="ゲームごとの記事数上限。0=無制限 (default: 0)")
-    parser.add_argument(
-        "--output",
-        "-o",
-        default=None,
-        help="出力JSONファイルパス。省略時は news_<game>.json (all時は news_all.json)",
-    )
-    parser.add_argument(
-        "--no-detail",
-        action="store_true",
-        help="記事詳細ページを取得せず一覧情報のみでJSON化する (高速・低負荷)",
-    )
-    parser.add_argument(
-        "--interval",
-        type=float,
-        default=REQUEST_INTERVAL_SEC,
-        help="リクエスト間隔(秒)。1秒未満は許可しない (default: 1.0)",
-    )
     args = parser.parse_args(argv)
 
-    if args.interval < 1.0:
-        print("error: --interval は1秒以上を指定してください (サーバ負荷軽減のため)", file=sys.stderr)
-        return 2
-
     games = list(SITES) if args.game == "all" else [args.game]
-    output = args.output or (f"news_{args.game}.json")
+    output = "news_all.json"
 
     # Fetcherを共有し、ゲームまたぎでも1秒間隔を保つ
-    fetcher = Fetcher(interval=args.interval, verbose=True)
+    fetcher = Fetcher(interval=REQUEST_INTERVAL_SEC, verbose=True)
     all_articles: list[dict] = []
     for game in games:
         articles = scrape(
             max_pages=args.max_pages,
-            max_articles=args.max_articles,
-            fetch_detail=not args.no_detail,
-            interval=args.interval,
+            fetch_detail=True,
+            interval=REQUEST_INTERVAL_SEC,
             game=game,
             fetcher=fetcher,
         )

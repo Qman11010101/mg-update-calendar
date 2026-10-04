@@ -6,8 +6,9 @@ from typing import Annotated, Literal, get_args
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 Game = Literal["chunithm", "maimai", "ongeki", "chunithm_intl"]
+Service = Literal["chunithm", "maimai", "ongeki", "card_maker", "chunithm_intl"]
 CommonEntryType = Literal[
-    "song_add", "song_unlock", "version_launch", "maintenance", "service_change", "other",
+    "song_add", "song_unlock", "goods_campaign", "version_launch", "maintenance", "service_change", "other",
 ]
 ChunithmEntryType = Literal[
     "event", "map_add", "quest", "mission", "course_add", "ultima_add", "worlds_end_add",
@@ -29,6 +30,7 @@ GAME_ENTRY_TYPES: dict[Game, tuple[str, ...]] = {
 }
 ENTRY_LABELS = {
     "song_add": "楽曲追加（新曲・復活曲）", "song_unlock": "楽曲の一般開放・解禁条件緩和",
+    "goods_campaign": "グッズキャンペーン",
     "version_launch": "バージョン稼働", "maintenance": "メンテナンス",
     "service_change": "サービス変更", "other": "その他（要確認）",
     "event": "コラボなどのイベント開催", "map_add": "新マップ・マップ拡張",
@@ -65,6 +67,10 @@ class StructuredModel(BaseModel):
 class Entry(StructuredModel):
     type: EntryType
     title: str = Field(min_length=1)
+    service: Service | None
+    event_name: str | None
+    event_evidence: str | None
+    start_is_deadline: bool
     start: date | None
     start_time: Clock | None
     end: date | None
