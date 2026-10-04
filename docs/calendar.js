@@ -165,16 +165,20 @@ function renderNow(all) {
     card.hidden = !nowExpanded && index >= nowLimit;
     card.title = `${games[group.game].name}｜${group.entries.map((entry) => entry.title).join("\n")}`;
     card.addEventListener("click", () => showGroup(group));
-    const head = element("div", "now-head");
-    head.append(element("span", "item-game", games[group.game].short), element("span", "now-period", `${shortDate(group.start)} 〜 ${shortDate(group.end)}`), element("span", "now-left", left === 0 ? "今日まで" : `残り${left}日`));
-    const progress = element("div", "now-progress");
+    const [main, ...rest] = group.entries;
+    const body = element("span", "now-body");
+    body.append(element("span", "now-title", main.title));
+    body.append(element("span", "item-meta", rest.length ? `${types[main.type] || main.type}＋${[...new Set(rest.map((entry) => types[entry.type] || entry.type))].join("・")}（計${group.entries.length}件）` : types[main.type] || main.type));
+    // 残り日数と経過ゲージは本文から切り離した右列にまとめ、ゲーム色の装飾と混同しないようにする。
+    const status = element("span", "now-status");
+    status.append(element("span", "now-left", left === 0 ? "今日まで" : `残り${left}日`));
+    const progress = element("span", "now-progress");
     const bar = element("span");
     bar.style.width = `${Math.round((daysBetween(group.start, today) + 1) / total * 100)}%`;
     progress.append(bar);
     progress.setAttribute("aria-hidden", "true");
-    const [main, ...rest] = group.entries;
-    card.append(head, progress, element("span", "now-title", main.title));
-    card.append(element("span", "item-meta", rest.length ? `${types[main.type] || main.type}＋${[...new Set(rest.map((entry) => types[entry.type] || entry.type))].join("・")}（計${group.entries.length}件）` : types[main.type] || main.type));
+    status.append(progress, element("span", "now-period", `${shortDate(group.start)} – ${shortDate(group.end)}`));
+    card.append(element("span", "item-game", games[group.game].short), body, status);
     list.append(card);
   });
   const more = $("now-more");
@@ -280,8 +284,7 @@ function renderTimeline(ranges, first, last) {
     const weekday = parseDate(key).getUTCDay();
     const head = element("div", `tl-day${weekday === 0 ? " sunday" : weekday === 6 ? " saturday" : ""}${key === today ? " today" : ""}`);
     head.style.gridColumn = String(day + 2);
-    head.append(element("b", "", String(day + 1)), element("span", "", weekdayNames[weekday]));
-    timeline.append(head);
+    head.append(element("b", "", String(day + 1)), element("span", "", weekdayNames[weekday]));    timeline.append(head);
     if (weekday === 0 || weekday === 6) {
       const shade = element("div", "tl-weekend");
       shade.style.gridColumn = String(day + 2);

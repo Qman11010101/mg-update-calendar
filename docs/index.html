@@ -3,15 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f6f7fb">
+  <meta name="theme-color" content="#ffffff">
   <title>音ゲー更新カレンダー</title>
   <link rel="stylesheet" href="./style.css">
   <script src="./calendar.js" defer></script>
 </head>
 <body>
-  <header class="site-header"><a class="brand" href="./"><span class="brand-icon" aria-hidden="true">▦</span> MG UPDATE <span class="brand-sub">CALENDAR</span></a><span class="header-note">セガ音ゲー お知らせカレンダー</span></header>
+  <header class="site-header"><div class="header-inner"><a class="brand" href="./">音ゲー更新カレンダー</a><p class="header-note">CHUNITHM・maimai・オンゲキ・CHUNITHM International の公式お知らせから作った非公式カレンダーです</p></div></header>
   <main>
-    <div class="intro"><div><p class="eyebrow">PLAY YOUR NEXT.</p><h1>次の楽しみを、カレンダーで。</h1><p class="lead">楽曲追加からイベントまで。4タイトルの更新情報をひとつに。</p></div><span class="unofficial">非公式カレンダー</span></div>
     <section class="workspace" aria-label="更新カレンダー">
       <div class="filters"><fieldset id="games"><legend>ゲーム</legend></fieldset><div class="filter-inputs"><label>種類<select id="type"><option value="">すべての種類</option></select></label><label>キーワード<input id="search" type="search" placeholder="イベント・曲名を検索"></label></div></div>
       <section class="now" aria-labelledby="now-title">
@@ -35,7 +34,7 @@
       <div class="calendar-note"><span>日付・時刻は告知の表記に準拠</span><span>「要確認」の項目は詳細から原文を確認できます。</span></div>
     </section>
     <details id="undated"><summary>日付不明のエントリ <span id="undated-count"></span></summary><div id="undated-list"></div></details>
-    <footer><span>MG UPDATE CALENDAR</span><p>公式のお知らせをもとにAIで抽出しています。内容・開催日時は各ゲームの公式告知をご確認ください。</p><p id="data-note"></p></footer>
+    <footer><span>音ゲー更新カレンダー（非公式）</span><p>公式のお知らせをもとにAIで抽出しています。内容・開催日時は各ゲームの公式告知をご確認ください。</p><p id="data-note"></p></footer>
     <noscript><p>カレンダーの表示にはJavaScriptを有効にしてください。</p></noscript>
   </main>
   <dialog id="detail" aria-labelledby="detail-title" closedby="any"><form method="dialog"><button class="close" aria-label="詳細を閉じる" autofocus>×</button></form><div id="detail-content"></div></dialog>
