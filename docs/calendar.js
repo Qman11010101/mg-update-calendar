@@ -169,7 +169,7 @@ function renderNow(all) {
     const body = element("span", "now-body");
     body.append(element("span", "now-title", main.title));
     body.append(element("span", "item-meta", rest.length ? `${types[main.type] || main.type}＋${[...new Set(rest.map((entry) => types[entry.type] || entry.type))].join("・")}（計${group.entries.length}件）` : types[main.type] || main.type));
-    // 残り日数と経過ゲージは本文から切り離した右列にまとめ、ゲーム色の装飾と混同しないようにする。
+    // 残り日数は本文から切り離した右列にまとめ、経過ゲージはカード幅いっぱいの最下段に置く。
     const status = element("span", "now-status");
     status.append(element("span", "now-left", left === 0 ? "今日まで" : `残り${left}日`));
     const progress = element("span", "now-progress");
@@ -177,8 +177,8 @@ function renderNow(all) {
     bar.style.width = `${Math.round((daysBetween(group.start, today) + 1) / total * 100)}%`;
     progress.append(bar);
     progress.setAttribute("aria-hidden", "true");
-    status.append(progress, element("span", "now-period", `${shortDate(group.start)} – ${shortDate(group.end)}`));
-    card.append(element("span", "item-game", games[group.game].short), body, status);
+    status.append(element("span", "now-period", `${shortDate(group.start)} – ${shortDate(group.end)}`));
+    card.append(element("span", "item-game", games[group.game].short), body, status, progress);
     list.append(card);
   });
   const more = $("now-more");

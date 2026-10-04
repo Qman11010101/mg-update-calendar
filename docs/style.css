@@ -71,20 +71,20 @@ h2{font-size:22px;margin:0 12px 0 0;font-variant-numeric:tabular-nums}
 /* いま開催中 */
 .now{padding-bottom:16px}
 #now-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));border-top:1px solid var(--line-soft);margin:0 20px}
-.now-card{display:grid;grid-template-columns:auto minmax(0,1fr) 112px;align-items:start;gap:12px;border:0;border-bottom:1px solid var(--line-soft);border-radius:0;background:transparent;padding:10px 6px;min-width:0;text-align:start}
+.now-card{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:start;gap:8px 12px;border:0;border-bottom:1px solid var(--line-soft);border-radius:0;background:transparent;padding:10px 6px;min-width:0;text-align:start}
 .now-card:hover{background:#f6f7f9}
 .now-body{display:grid;gap:2px;min-width:0}
 .now-title{font-size:14px;line-height:1.5;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
 .now-status{display:grid;gap:4px;font-variant-numeric:tabular-nums}
 .now-left{font-size:13px;font-weight:700;text-align:end}
 .now-card.soon .now-left{color:var(--sunday)}
-.now-progress{height:6px;border-radius:3px;background:#e6e8eb;overflow:hidden}
+.now-progress{grid-column:1 / -1;height:6px;border-radius:3px;background:#e6e8eb;overflow:hidden}
 .now-progress span{display:block;height:100%;background:#8a919b}
 .now-card.soon .now-progress span{background:var(--sunday)}
 .now-period{font-size:11px;color:var(--muted);text-align:end}
 .more-button{display:block;margin:10px 20px 0;font-size:12px}
 .group-list{display:grid;gap:2px}
-#day-panel{position:sticky;top:0;align-self:start;max-height:100dvh;overflow-y:auto;padding:14px 16px 20px;overscroll-behavior:contain}
+#day-panel{position:sticky;top:0;align-self:start;max-height:100dvh;overflow-y:auto;padding:14px 16px 20px}
 .day-title{font-size:16px;margin:0 0 10px}
 .day-group{margin-bottom:12px}
 .day-group summary{font-size:12px;font-weight:700;color:var(--muted);padding:4px 0;margin-bottom:2px;border-bottom:1px solid var(--line-soft)}
@@ -192,7 +192,7 @@ dialog ul{padding-left:22px}
   #day-panel{padding:12px}
   .section-head{padding:12px 12px 8px}
   #now-list{margin:0 12px;grid-template-columns:minmax(0,1fr)}
-  .now-card{grid-template-columns:auto minmax(0,1fr) 84px;gap:8px;padding:10px 2px}
+  .now-card{gap:6px 8px;padding:10px 2px}
   .more-button{margin-inline:12px}
   #timeline{--label:150px}
   .tl-group{padding-inline:10px}
