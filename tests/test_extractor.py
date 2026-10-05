@@ -495,7 +495,7 @@ class ExtractionTests(unittest.TestCase):
         self.assertEqual(data['model'], 'gpt-5.6-luna')
         self.assertEqual(data['mode'], 'extraction')
         self.assertEqual(data['schema_version'], 7)
-        self.assertEqual(data['prompt_version'], '27')
+        self.assertEqual(data['prompt_version'], PROMPT_VERSION)
         self.assertEqual([item['source']['game'] for item in data['articles']], ['chunithm', 'maimai'])
         self.assertNotIn('requests', data)
 
