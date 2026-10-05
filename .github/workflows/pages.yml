@@ -7,6 +7,8 @@ on:
       - "docs/**"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
+  # update.ymlから更新後に呼び出す
+  workflow_call:
 
 permissions:
   contents: read
@@ -21,7 +23,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # 呼び出し時はupdate.ymlがpushした最新のmainを取得する
       - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event_name == 'push' && github.sha || github.ref_name }}
 
       # 公開するのはサイト本体のみ（README等は含めない）
       - name: Collect site files

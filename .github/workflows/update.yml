@@ -1,0 +1,91 @@
+name: Update calendar
+
+on:
+  schedule:
+    # 毎日13:00（日本時間）= 04:00 UTC。混雑時は数分〜数十分遅れることがある
+    - cron: "0 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: update-calendar
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+    env:
+      LLM_PROVIDER: ${{ vars.LLM_PROVIDER }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
+      DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+      DEEPSEEK_MODEL: ${{ vars.DEEPSEEK_MODEL }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: astral-sh/setup-uv@v10
+
+      - run: uv sync --locked
+
+      # 記事収集の差分更新用に前回のnews_all.jsonを復元する（なければ一覧1ページ分を取り直す）
+      - uses: actions/cache/restore@v6
+        with:
+          path: news_all.json
+          key: news-all-${{ github.run_id }}
+          restore-keys: news-all-
+
+      # 抽出の差分更新は公開中のentries.jsonを前回の結果として使う
+      - name: Restore previous entries
+        run: cp docs/entries.json entries.json
+
+      - name: Collect articles
+        run: uv run mg-update-calendar
+
+      - uses: actions/cache/save@v6
+        with:
+          path: news_all.json
+          key: news-all-${{ github.run_id }}
+
+      # 終了コード1（一部記事の抽出失敗）は前回の結果が残るため警告にとどめる
+      - name: Extract entries
+        run: |
+          set +e
+          uv run mg-extract-entries
+          code=$?
+          set -e
+          if [ "$code" -eq 1 ]; then
+            echo "::warning::一部の記事で抽出に失敗しました。次回の実行で再抽出します"
+          elif [ "$code" -ne 0 ]; then
+            exit "$code"
+          fi
+
+      - name: Commit and push
+        id: commit
+        run: |
+          cp entries.json docs/entries.json
+          if git diff --quiet -- docs/entries.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/entries.json
+          git commit -m "カレンダーのデータを更新"
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+  # GITHUB_TOKENでのpushはpages.ymlのpushトリガーを起動しないため、ここから呼び出す
+  deploy:
+    needs: update
+    if: needs.update.outputs.changed == 'true'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/pages.yml
