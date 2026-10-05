@@ -13,3 +13,7 @@ wheels/
 *.json
 !package.json
 *.env
+# Node.js
+node_modules/
+_site/
+!package-lock.json

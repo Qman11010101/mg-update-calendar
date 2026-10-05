@@ -1,6 +1,6 @@
 # mg-update-calendar
 
-CHUNITHM・maimai・オンゲキの公式お知らせを収集し、OpenAIまたはDeepSeekのAPIで楽曲追加やイベントなどの告知を抽出するツールです。抽出結果は付属の静的カレンダーで表示できます。
+CHUNITHM・maimai・オンゲキの公式お知らせを収集し、OpenAIまたはDeepSeekのAPIで楽曲追加やイベントなどの告知を抽出するツールです。抽出結果は付属のカレンダー（Vite + Svelte）で表示できます。
 
 処理は「記事を収集 → 告知を抽出 → カレンダーに反映」の3段階です。以下のコマンドはリポジトリのルートで実行してください。例はWindows / PowerShell向けです。
 
@@ -9,7 +9,7 @@ CHUNITHM・maimai・オンゲキの公式お知らせを収集し、OpenAIまた
 | 公式お知らせを収集する | `uv run mg-update-calendar` | 公式サイト | 記事のJSON |
 | カレンダー用の告知を抽出する | `uv run mg-extract-entries` | 記事のJSON | 抽出結果のJSON。APIキーが必要 |
 | カレンダーに反映する | `Copy-Item entries.json docs/entries.json` | 抽出結果のJSON | 表示用データを置き換える |
-| カレンダーを見る | `uv run python -m http.server 8000 --directory docs` | `docs/` | ブラウザーで表示 |
+| カレンダーを見る | `npm run dev` | `docs/` | ブラウザーで表示。Node.jsが必要 |
 
 `mg-update-calendar`は記事収集だけを行います。AI抽出やカレンダーへの反映には、後続のコマンドも実行してください。
 
@@ -27,6 +27,12 @@ irm https://astral.sh/uv/install.ps1 | iex
 git clone https://github.com/Qman11010101/mg-update-calendar.git
 cd mg-update-calendar
 uv sync
+```
+
+カレンダーの表示・ビルドにはNode.js（24以降）を使います。依存関係をインストールしてください。
+
+```powershell
+npm install
 ```
 
 AI抽出を使う場合は、リポジトリのルートに`.env`を作成します。
@@ -122,12 +128,12 @@ Copy-Item entries.json docs/entries.json
 ### 4. カレンダーを表示する
 
 ```powershell
-uv run python -m http.server 8000 --directory docs
+npm run dev
 ```
 
-ブラウザーで[http://localhost:8000/](http://localhost:8000/)を開きます。サーバーは`Ctrl+C`で停止できます。
+ブラウザーで[http://localhost:5173/](http://localhost:5173/)を開きます。サーバーは`Ctrl+C`で停止できます。
 
-JSONの読み込みにはHTTPサーバーが必要です。表示仕様とGitHub Pagesでの公開方法は[カレンダーのREADME](docs/README.md)を参照してください。
+表示仕様とGitHub Pagesでの公開方法は[カレンダーのREADME](docs/README.md)を参照してください。
 
 ## 差分更新・再実行・中断
 

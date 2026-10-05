@@ -10,8 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@500..800&family=Noto+Sans+JP:wght@400..800&display=swap">
-  <link rel="stylesheet" href="./style.css">
-  <script src="./calendar.js" type="module"></script>
+  <script src="./src/main.js" type="module"></script>
 </head>
 
 <body>
@@ -19,62 +18,9 @@
     <div class="header-inner"><a class="brand" href="./">音ゲーアップデートカレンダー</a>
     </div>
   </header>
-  <main>
-    <section class="workspace" aria-label="アップデートカレンダー">
-      <div class="filters">
-        <fieldset id="games">
-          <legend>ゲーム</legend>
-        </fieldset>
-        <div class="filter-inputs"><label>種類<select id="type">
-              <option value="">すべての種類</option>
-            </select></label><label>キーワード<input id="search" type="search" placeholder="イベント・曲名を検索"></label></div>
-      </div>
-      <section class="now" aria-label="開催状況">
-        <div class="section-head now-tabs" role="tablist" aria-label="開催状況">
-          <button id="tab-current" class="now-tab" type="button" role="tab" aria-selected="true" aria-controls="now-list" data-view="current">いま開催中<span class="tab-count"></span></button>
-          <button id="tab-upcoming" class="now-tab" type="button" role="tab" aria-selected="false" aria-controls="now-list" data-view="upcoming" tabindex="-1">今後開催<span class="tab-count"></span></button>
-        </div>
-        <div id="now-list" role="tabpanel" aria-labelledby="tab-current"></div>
-        <button id="now-more" class="more-button" hidden></button>
-      </section>
-      <div class="toolbar">
-        <div class="month-navigation">
-          <h2 id="month-title"></h2><button id="prev" aria-label="前の月">‹</button><button id="next"
-            aria-label="次の月">›</button><button id="today">今月</button><label class="month-jump"><span
-              class="sr-only">表示する月</span><input id="month" type="month" aria-label="表示する月"></label>
-        </div>
-      </div>
-      <p id="loading" role="status">カレンダーを読み込んでいます…</p>
-      <div id="error" role="alert" hidden>
-        <p>データを読み込めませんでした。</p><button id="retry">再読み込み</button>
-      </div>
-      <div class="month-layout">
-        <div id="calendar" aria-labelledby="month-title"></div>
-        <aside id="day-panel" aria-live="polite" aria-label="選択した日のエントリ"></aside>
-      </div>
-      <p id="empty" class="empty" hidden>この月に該当するエントリはありません。</p>
-      <section class="timeline-section" aria-labelledby="timeline-title">
-        <div class="section-head">
-          <h3 id="timeline-title">開催期間</h3>
-        </div>
-        <div class="timeline-scroll" tabindex="0" role="region" aria-label="開催期間タイムライン（横スクロール可能）">
-          <div id="timeline"></div>
-        </div>
-        <p id="timeline-empty" class="empty" hidden>この月に期間のある項目はありません。</p>
-      </section>
-    </section>
-    <details id="undated">
-      <summary>日付不明のエントリ <span id="undated-count"></span></summary>
-      <div id="undated-list"></div>
-    </details>
-    <noscript>
-      <p>カレンダーの表示にはJavaScriptを有効にしてください。</p>
-    </noscript>
-  </main>
-  <dialog id="detail" aria-labelledby="detail-title">
-    <form method="dialog"><button class="close" aria-label="詳細を閉じる" autofocus>×</button></form>
-    <div id="detail-content"></div>
-  </dialog>
+  <noscript>
+    <p>カレンダーの表示にはJavaScriptを有効にしてください。</p>
+  </noscript>
 </body>
 
 </html>
