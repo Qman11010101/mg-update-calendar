@@ -11,4 +11,5 @@ wheels/
 
 # Scraper outputs (Gitに上げない)
 *.json
+!package.json
 *.env

@@ -26,7 +26,9 @@ Copy-Item entries.json docs/entries.json
 
 GitHub Actions（`.github/workflows/pages.yml`）でデプロイする。リポジトリのSettings → Pagesで、Sourceを「GitHub Actions」にしておく。
 `main`へのpushで`docs/`配下またはワークフローが変更されたときに実行される。ActionsタブのRun workflowから手動でも実行できる。
-公開するのは`index.html`・`calendar.js`・`style.css`・`entries.json`のみで、このREADMEは含めない。公開するファイルを増やす場合はワークフローのコピー対象に追加する。
+公開するのは`index.html`・`calendar.js`・`lib/`・`style.css`・`entries.json`のみで、このREADMEは含めない。公開するファイルを増やす場合はワークフローのコピー対象に追加する。
+
+`lib/`にはDOMに依存しない処理（`dates.js`は日付計算、`entries.js`は読み込み・重複統合・親イベントのまとめ・一覧の分類）を置き、`calendar.js`は描画と操作だけを担う。ES Modulesで読み込むため、表示にはHTTPサーバーが必要。
 Jekyllによるビルドは行わない。CSS・JavaScript・JSONは相対パスで参照する。
 
 参照：[GitHub Pagesの公開元の設定](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
