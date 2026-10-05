@@ -1,4 +1,5 @@
 <script>
+  import X from "@lucide/svelte/icons/x";
   import { entrySources, games, isSong, itemTypes, lastUsableDay, period } from "../lib/entries.js";
   import { detail, openItem } from "./detail.svelte.js";
   import ListItem from "./ListItem.svelte";
@@ -31,7 +32,7 @@
 >
   <form method="dialog">
     <!-- svelte-ignore a11y_autofocus -->
-    <button class="close" aria-label="詳細を閉じる" autofocus>×</button>
+    <button class="close" aria-label="詳細を閉じる" autofocus><X size={20} aria-hidden="true" /></button>
   </form>
   <div id="detail-content">
     {#if item}

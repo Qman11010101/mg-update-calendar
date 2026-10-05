@@ -1,4 +1,5 @@
 <script>
+  import ChevronDown from "@lucide/svelte/icons/chevron-down";
   import { SvelteSet } from "svelte/reactivity";
   import { daysBetween, offsetDate, parseDate, shortDate, today, weekdayNames } from "../lib/dates.js";
   import { endDate, games, period, typeLabel } from "../lib/entries.js";
@@ -82,7 +83,7 @@
         aria-expanded={open}
         onclick={() => toggleGame(group.game)}
       >
-        <span class="tl-caret">▾</span><span class="tl-group-name">{games[group.game].name}</span><span class="group-count">{group.count}件</span>
+        <ChevronDown class="tl-caret" size={14} aria-hidden="true" /><span class="tl-group-name">{games[group.game].name}</span><span class="group-count">{group.count}件</span>
       </button>
       {#each group.rows as { entry, parent, row } (row)}
         {@const family = Boolean(entry.members)}
@@ -104,7 +105,7 @@
           {hidden}
           onclick={() => (family ? toggleFamily(entry) : openItem(entry))}
         >
-          {#if family}<span class="tl-caret">▾</span>{/if}
+          {#if family}<ChevronDown class="tl-caret" size={14} aria-hidden="true" />{/if}
           <span class="item-game">{games[entry.source.game].short}</span>
           <span class="item-body">
             <span class="item-title">{entry.title}</span>

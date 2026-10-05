@@ -1,4 +1,6 @@
 <script>
+  import ChevronLeft from "@lucide/svelte/icons/chevron-left";
+  import ChevronRight from "@lucide/svelte/icons/chevron-right";
   import { SvelteSet } from "svelte/reactivity";
   import { monthRange, shiftMonth, today, validDate } from "../lib/dates.js";
   import { buildEntries, endDate, filterEntries, games, groupFamilies, isRange } from "../lib/entries.js";
@@ -7,6 +9,7 @@
   import Filters from "./Filters.svelte";
   import ListItem from "./ListItem.svelte";
   import MonthCalendar from "./MonthCalendar.svelte";
+  import MonthPicker from "./MonthPicker.svelte";
   import NowList from "./NowList.svelte";
   import Timeline from "./Timeline.svelte";
 
@@ -46,10 +49,6 @@
     selected = key;
     if (matchMedia("(max-width: 960px)").matches) dayPanel.scrollIntoView({ behavior: "smooth", block: "start" });
   }
-  function jumpToMonth(event) {
-    const { value } = event.currentTarget;
-    if (/^\d{4}-\d{2}$/.test(value) && Number(value.slice(0, 4)) >= 100) showMonth(value);
-  }
   // 祝日データは補助情報なので、取得できなくても土日だけでカレンダーを表示する。
   async function loadHolidays() {
     try {
@@ -84,13 +83,10 @@
     <div class="toolbar">
       <div class="month-navigation">
         <h2 id="month-title">{Number(month.slice(0, 4))}年 {Number(month.slice(5))}月</h2>
-        <button id="prev" aria-label="前の月" onclick={() => showMonth(shiftMonth(month, -1))}>‹</button>
-        <button id="next" aria-label="次の月" onclick={() => showMonth(shiftMonth(month, 1))}>›</button>
+        <MonthPicker {month} onpick={(value) => showMonth(value)} />
+        <button id="prev" aria-label="前の月" onclick={() => showMonth(shiftMonth(month, -1))}><ChevronLeft size={18} aria-hidden="true" /></button>
+        <button id="next" aria-label="次の月" onclick={() => showMonth(shiftMonth(month, 1))}><ChevronRight size={18} aria-hidden="true" /></button>
         <button id="today" onclick={() => showMonth(today.slice(0, 7), today)}>今月</button>
-        <label class="month-jump">
-          <span class="sr-only">表示する月</span>
-          <input id="month" type="month" aria-label="表示する月" value={month} onchange={jumpToMonth} />
-        </label>
       </div>
     </div>
     <p id="loading" role="status" hidden={status !== "loading"}>カレンダーを読み込んでいます…</p>
