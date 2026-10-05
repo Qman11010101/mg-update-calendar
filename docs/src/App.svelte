@@ -135,4 +135,10 @@
     </div>
   </details>
 </main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="copyright">© 2026 音ゲーツール置き場 / Qman's Tools Square</p>
+    <p class="disclaimer">当サイトは非公式のファンサイトであり、株式会社セガをはじめとする関係者・関係会社とは一切関係ありません。</p>
+  </div>
+</footer>
 <DetailDialog />
