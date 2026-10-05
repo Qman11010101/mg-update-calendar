@@ -423,6 +423,15 @@ $("type").addEventListener("change", render);
 $("search").addEventListener("input", render);
 $("retry").addEventListener("click", load);
 $("now-more").addEventListener("click", () => { nowExpanded = !nowExpanded; renderNow(filteredEntries()); });
+// closedby="any" は pointerup で閉じるため、スマホでは後続の click が下の要素に抜けて再オープンしてしまう。
+// click で閉じればタップがそこで消費される。
+$("detail").addEventListener("click", (event) => {
+  if (event.target !== $("detail")) return;
+  const rect = $("detail").getBoundingClientRect();
+  const inside = event.clientX >= rect.left && event.clientX <= rect.right
+    && event.clientY >= rect.top && event.clientY <= rect.bottom;
+  if (!inside) $("detail").close();
+});
 function selectNowView(view) {
   nowView = view;
   nowExpanded = false;
