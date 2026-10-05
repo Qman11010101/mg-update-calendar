@@ -46,12 +46,18 @@ export function endDate(entry) {
   return !entry.open_ended && validDate(entry.end) && entry.end >= entry.start ? entry.end : entry.start;
 }
 export function isRange(entry) { return endDate(entry) > entry.start; }
-export function period(entry) {
+// compact は狭い一覧向けの表記。開始は今年なら、終了は開始と同じ年なら年を省く。
+export function period(entry, { compact = false } = {}) {
   if (!entry.start) return "日付不明";
-  const start = (entry.official_start ?? entry.start).replaceAll("-", "/") + (entry.start_time ? ` ${entry.start_time}` : "");
+  const startDate = entry.official_start ?? entry.start;
+  const endDate = entry.official_end ?? entry.end;
+  const format = (date, omitYear) => (omitYear ? date.slice(5) : date).replaceAll("-", "/");
+  const start = format(startDate, compact && startDate.slice(0, 4) === String(new Date().getFullYear()))
+    + (entry.start_time ? ` ${entry.start_time}` : "");
   if (entry.open_ended) return `${start}〜（終了日未定）`;
-  const end = entry.official_end ?? entry.end;
-  return end ? `${start} 〜 ${end.replaceAll("-", "/")}${entry.end_time ? ` ${entry.end_time}` : ""}` : start;
+  if (!endDate) return start;
+  const end = format(endDate, compact && endDate.slice(0, 4) === startDate.slice(0, 4));
+  return `${start} 〜 ${end}${entry.end_time ? ` ${entry.end_time}` : ""}`;
 }
 // 詳細に出す「最終利用日」。カレンダー上の配置日が正式日時と異なるときだけ返す。
 export function lastUsableDay(entry) {
@@ -196,10 +202,7 @@ export function mergeDuplicates(list) {
   const merged = [];
   for (const entry of list) {
     const item = {
-      ...entry, origins: [{
-        source: entry.source, date_text: entry.date_text,
-        evidence: entry.evidence, confidence: entry.confidence
-      }]
+      ...entry, origins: [{ source: entry.source }]
     };
     // 日時や対象曲の違いは、同名の別告知や日程変更の可能性があるため残す。
     const key = JSON.stringify([entry.source.game, entry.service ?? null, entry.type, entry.title,
@@ -232,10 +235,27 @@ export function mergeSongOverlaps(list) {
     return songs.length ? [{ ...entry, songs }] : [];
   });
 }
-// entries.json の内容を表示用の項目一覧にする。対応していない形式なら例外を投げる。
-export function buildEntries(data) {
+// 表示に使う記事。対応していない形式なら例外を投げる。
+function publishedArticles(data) {
   if (!supportedSchemas.includes(data.schema_version) || data.mode !== "extraction" || !Array.isArray(data.articles)) throw new Error("Unsupported data");
-  const extracted = data.articles.filter((article) => article.status !== "failed" && games[article.source.game])
+  return data.articles.filter((article) => article.status !== "failed" && games[article.source.game]);
+}
+// entries.json の内容を表示用の項目一覧にする。
+export function buildEntries(data) {
+  const extracted = publishedArticles(data)
     .flatMap((article) => article.entries.map((entry) => calendarEntry(entry, article.source)));
   return mergeSongOverlaps(mergeDuplicates(extracted));
+}
+// 公開用のentries.jsonに残すエントリの項目。抽出の根拠や差分抽出用の情報は画面で使わないため除く。
+const siteEntryKeys = ["title", "type", "service", "subject", "start", "end", "start_time", "end_time",
+  "calendar_start", "calendar_end", "open_ended", "start_is_deadline", "songs"];
+// 抽出結果から、表示に必要な記事と項目だけを残した公開用のデータを作る。
+export function siteData(data) {
+  return {
+    schema_version: data.schema_version, mode: data.mode, updated_at: data.updated_at ?? null,
+    articles: publishedArticles(data).map((article) => ({
+      source: article.source,
+      entries: article.entries.map((entry) => Object.fromEntries(siteEntryKeys.filter((key) => key in entry).map((key) => [key, entry[key]]))),
+    })),
+  };
 }

@@ -27,7 +27,7 @@ Copy-Item entries.json docs/entries.json
 
 GitHub Actions（`.github/workflows/pages.yml`）でデプロイする。リポジトリのSettings → Pagesで、Sourceを「GitHub Actions」にしておく。
 `main`へのpushで`docs/`配下またはワークフローが変更されたときに実行される。ActionsタブのRun workflowから手動でも実行できる。
-ワークフローは`npm ci`と`npm run build`を実行し、`_site/`を公開する。`entries.json`はバンドルせず、ビルド時に`vite.config.js`のプラグインで`_site/`へそのままコピーする。このREADMEなど、`index.html`から参照されないファイルは公開されない。
+ワークフローは`npm ci`と`npm run build`を実行し、`_site/`を公開する。`entries.json`はバンドルせず、ビルド時に`vite.config.js`のプラグインで`_site/`へ置く。このとき`lib/entries.js`の`siteData`で、失敗した記事と、抽出の根拠（`evidence`・`date_text`）や差分抽出用の情報など画面で使わない項目を除き、インデントなしで書き出す。開発サーバーも同じ内容を返す。`docs/entries.json`自体は抽出結果の全項目を持つまま、Gitで差分を追えるようにする。このREADMEなど、`index.html`から参照されないファイルは公開されない。
 
 `lib/`にはDOMに依存しない処理（`dates.js`は日付計算、`entries.js`は読み込み・重複統合・親イベントのまとめ・一覧の分類）を置き、`src/`のSvelteコンポーネント（`App.svelte`を起点に、絞り込み・開催状況・月間カレンダー・日別パネル・タイムライン・詳細ダイアログ）は描画と操作だけを担う。スタイルは`style.css`にまとめ、`src/main.js`から読み込む。
 Jekyllによるビルドは行わない。GitHub Pagesのサブパスで動くよう、ビルド結果は相対パス（`base: "./"`）で参照する。

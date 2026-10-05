@@ -47,14 +47,14 @@
       <h3>含まれる告知（{contents.length}件）</h3>
       <div class="family-members">
         {#each contents as member (member)}
-          <ListItem entry={member} note={period(member)} />
+          <ListItem entry={member} note={period(member, { compact: true })} />
         {/each}
       </div>
       {#if songs.length}
         <h3>関連楽曲（{songs.length}件）</h3>
         <div class="family-members">
           {#each songs as member (member)}
-            <ListItem entry={member} note={period(member)} songs={member.songs} />
+            <ListItem entry={member} note={period(member, { compact: true })} songs={member.songs} />
           {/each}
         </div>
       {/if}

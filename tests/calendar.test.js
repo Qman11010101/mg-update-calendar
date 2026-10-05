@@ -4,7 +4,7 @@ import { test } from "node:test";
 import { formatDateTime, monthRange, shiftMonth } from "../docs/lib/dates.js";
 import {
   buildEntries, calendarEntry, currentEntries, dayGroups, endDate, entrySources, filterEntries, games, isRange,
-  lastUsableDay, mergeDuplicates, nowLists, period, upcomingEntries,
+  lastUsableDay, mergeDuplicates, nowLists, period, siteData, upcomingEntries,
 } from "../docs/lib/entries.js";
 
 const document = JSON.parse(readFileSync(new URL("../docs/entries.json", import.meta.url), "utf8"));
@@ -45,10 +45,23 @@ test("Calendar date placement and original timestamps", () => {
   assert.equal(isRange(single), false);
 });
 
+test("Site data keeps only what the calendar displays", () => {
+  const site = siteData(document);
+  assert.equal(site.updated_at, document.updated_at);
+  assert.ok(site.articles.every((article) => article.entries.every((entry) => !("evidence" in entry) && !("date_text" in entry))));
+  const full = buildEntries(document);
+  const compact = buildEntries(site);
+  assert.equal(compact.length, full.length);
+  compact.forEach((entry, index) => {
+    for (const [key, value] of Object.entries(entry)) assert.deepEqual(value, full[index][key], key);
+  });
+  assert.throws(() => siteData({ ...document, schema_version: 1 }));
+});
+
 test("Duplicate merging, source links, search and exclusion cases", () => {
   assert.equal(merged.length, 1);
   assert.equal(merged[0].origins.length, 2);
-  assert.equal(merged[0].origins[1].evidence, "原文B");
+  assert.deepEqual(merged[0].origins[1], { source: sourceB });
   assert.equal(a.origins, undefined);
   for (const change of [
     { title: "「別作品」コラボイベント" }, { type: "area_add" }, { start: "2026-09-18" },
