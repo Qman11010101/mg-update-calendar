@@ -25,8 +25,12 @@
   <div class="filter-inputs">
     <label>種類<select id="type" bind:value={type}>
         <option value="">すべての種類</option>
-        {#each types as value (value)}
-          <option {value}>{typeLabel(value)}</option>
+        {#each types as group (group.label)}
+          <optgroup label={group.label}>
+            {#each group.types as value (value)}
+              <option {value}>{typeLabel(value)}</option>
+            {/each}
+          </optgroup>
         {/each}
       </select></label>
     <label>キーワード<input id="search" type="search" placeholder="イベント・曲名を検索" bind:value={query} /></label>

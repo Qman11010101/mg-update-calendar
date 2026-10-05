@@ -27,6 +27,20 @@ const songTypes = new Set(["song_add", "song_unlock", "ultima_add", "worlds_end_
 const supportedSchemas = [2, 3, 4, 5, 6, 7, 8];
 
 export function typeLabel(type) { return types[type] || type; }
+// 種類の選択肢を、複数のゲームで使われる「共通」と各ゲーム固有の種類に分ける。
+export function typeGroups(list) {
+  const usage = new Map();
+  list.forEach((entry) => {
+    if (!usage.has(entry.type)) usage.set(entry.type, new Set());
+    usage.get(entry.type).add(entry.source.game);
+  });
+  const groups = [{ label: "共通", types: [] }, ...Object.entries(games).map(([game, { name }]) => ({ game, label: name, types: [] }))];
+  [...usage].sort(([a], [b]) => a.localeCompare(b)).forEach(([type, used]) => {
+    const group = used.size > 1 ? groups[0] : groups.find((candidate) => used.has(candidate.game));
+    group.types.push(type);
+  });
+  return groups.filter((group) => group.types.length);
+}
 export function endDate(entry) {
   // 終了未定の追加告知は、恒久的なコンテンツを毎日繰り返さないよう開始日の点として扱う。
   return !entry.open_ended && validDate(entry.end) && entry.end >= entry.start ? entry.end : entry.start;

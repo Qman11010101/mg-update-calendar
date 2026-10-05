@@ -3,7 +3,7 @@
   import ChevronRight from "@lucide/svelte/icons/chevron-right";
   import { SvelteSet } from "svelte/reactivity";
   import { formatDateTime, monthRange, shiftMonth, today, validDate } from "../lib/dates.js";
-  import { buildEntries, endDate, filterEntries, games, groupFamilies, isRange } from "../lib/entries.js";
+  import { buildEntries, endDate, filterEntries, games, groupFamilies, isRange, typeGroups } from "../lib/entries.js";
   import DayPanel from "./DayPanel.svelte";
   import DetailDialog from "./DetailDialog.svelte";
   import Filters from "./Filters.svelte";
@@ -27,7 +27,7 @@
 
   const ready = $derived(status === "ready");
   const range = $derived(monthRange(month));
-  const types = $derived([...new Set(entries.map((entry) => entry.type))].sort());
+  const types = $derived(typeGroups(entries));
   // 絞り込みのたびに親イベントを作り直し、前回の entry.family を付け替える。
   const all = $derived.by(() => {
     const list = filterEntries(entries, { games: selectedGames, type, query });
@@ -87,9 +87,11 @@
       <div class="month-navigation">
         <h2 id="month-title">{Number(month.slice(0, 4))}年 {Number(month.slice(5))}月</h2>
         <MonthPicker {month} onpick={(value) => showMonth(value)} />
-        <button id="prev" aria-label="前の月" onclick={() => showMonth(shiftMonth(month, -1))}><ChevronLeft size={18} aria-hidden="true" /></button>
-        <button id="next" aria-label="次の月" onclick={() => showMonth(shiftMonth(month, 1))}><ChevronRight size={18} aria-hidden="true" /></button>
-        <button id="today" onclick={() => showMonth(today.slice(0, 7), today)}>今月</button>
+        <div class="month-stepper" role="group" aria-label="月の移動">
+          <button id="prev" aria-label="前の月" onclick={() => showMonth(shiftMonth(month, -1))}><ChevronLeft size={18} aria-hidden="true" /></button>
+          <button id="today" onclick={() => showMonth(today.slice(0, 7), today)}>今月</button>
+          <button id="next" aria-label="次の月" onclick={() => showMonth(shiftMonth(month, 1))}><ChevronRight size={18} aria-hidden="true" /></button>
+        </div>
       </div>
       {#if ready && formatDateTime(updatedAt)}
         <p class="updated-at">最終更新 <time datetime={updatedAt}>{formatDateTime(updatedAt)}</time></p>
@@ -138,6 +140,7 @@
 <footer class="site-footer">
   <div class="footer-inner">
     <p class="copyright">© 2026 音ゲーツール置き場 / Qman's Tools Square</p>
+    <p class="disclaimer">コンテンツはAIによって生成され、誤りを含む場合があります。</p>
     <p class="disclaimer">当サイトは非公式のファンサイトであり、株式会社セガをはじめとする関係者・関係会社とは一切関係ありません。</p>
   </div>
 </footer>

@@ -50,7 +50,13 @@ h2{font-size:24px;font-weight:800;margin:0 12px 0 0;font-variant-numeric:tabular
 .updated-at{margin:0;font-size:12px;color:var(--muted)}
 .month-navigation button{font-size:13px;min-height:32px}
 #prev,#next,#month-pick{display:inline-grid;place-items:center;padding:0 8px;line-height:1}
-#month-pick{margin-inline-end:6px}
+/* 前月・今月・翌月はひとつながりのボタン群にし、境界線を重ねて1本に見せる。 */
+.month-stepper{display:inline-flex}
+.month-stepper button{border-radius:0;margin-inline-start:-1px}
+.month-stepper button:first-child{border-radius:4px 0 0 4px;margin-inline-start:0}
+.month-stepper button:last-child{border-radius:0 4px 4px 0}
+.month-stepper button:focus-visible{position:relative;z-index:1}
+#today{padding:0 12px;font-weight:700;color:var(--accent)}
 .month-picker{position:relative}
 .month-picker-panel{position:absolute;top:calc(100% + 6px);left:50%;transform:translateX(-50%);z-index:10;width:240px;padding:10px;border:1px solid var(--line);border-radius:6px;background:#fff;box-shadow:0 8px 24px #1c2b4429}
 .picker-year{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;font-weight:800;font-variant-numeric:tabular-nums}
@@ -70,6 +76,8 @@ h2{font-size:24px;font-weight:800;margin:0 12px 0 0;font-variant-numeric:tabular
 .weekdays span:last-child{color:#a9c8ff}
 .day{min-height:108px;border:0;border-radius:0;border-inline-end:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:#fff;font-weight:400;padding:4px 6px 6px;display:flex;flex-direction:column;align-items:stretch;gap:2px;text-align:start;min-width:0;position:relative}
 .week>.day:nth-child(7){border-inline-end:0}
+/* 最終週の下線は下の区切り線と重なるため引かない。 */
+.week:last-child>.day{border-bottom:0}
 /* 前後の月の灰色と取り違えないよう、ホバーは灰色ではなくアクセント色をうすく混ぜる。前後の月も同じ量だけ色を変える。 */
 .day:hover{background:color-mix(in srgb,var(--accent) 10%,#fff)}
 .day.outside{background:#f1f3f6}
@@ -188,6 +196,8 @@ h2{font-size:24px;font-weight:800;margin:0 12px 0 0;font-variant-numeric:tabular
 .tl-group[aria-expanded=false] .tl-caret{transform:rotate(-90deg)}
 .tl-line{grid-column:1 / -1;border-top:1px solid var(--line-soft);z-index:-1}
 .tl-group-line{border-top-color:var(--line)}
+/* 最初のゲームの上線は日付見出しの下線と重なるため引かない。 */
+.tl-day+.tl-group-line{border-top:0}
 .tl-line[data-type]{border-top-color:#fff;background:var(--tag-bg,#fff)}
 .tl-label{grid-column:1;position:sticky;left:0;z-index:3;border-radius:0;background:#fff;border-inline-end:1px solid var(--line);padding:4px 10px 4px 14px;align-items:center}
 .tl-label .item-game{margin-top:0}
@@ -215,9 +225,10 @@ h2{font-size:24px;font-weight:800;margin:0 12px 0 0;font-variant-numeric:tabular
 summary{cursor:pointer;font-size:14px;font-weight:700}
 #undated-count{color:var(--muted);font-weight:400;margin-left:8px}
 #undated-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:2px;margin-top:10px}
-dialog{border:1px solid var(--line);border-radius:6px;padding:24px 28px;width:min(620px,calc(100% - 32px));max-height:85dvh;color:inherit;box-shadow:0 8px 32px #0000002e}
+dialog{border:1px solid var(--line);border-radius:6px;padding:24px 28px;width:min(620px,calc(100% - 32px));max-height:85dvh;color:inherit;box-shadow:0 8px 32px #0000002e;overscroll-behavior:contain}
 dialog::backdrop{background:#0006}
-.close{float:right;display:grid;place-items:center;line-height:1;padding:4px 6px;margin-left:15px}
+html:has(dialog:modal){overflow:hidden;scrollbar-gutter:stable}
+.close{float:right;display:grid;place-items:center;line-height:1;width:32px;height:32px;padding:0;margin-left:15px}
 dialog h2{font-size:20px;font-weight:800;line-height:1.6;margin:12px 0 8px}
 dialog h3{font-size:13px;font-weight:800;margin:22px 0 6px;color:var(--navy);padding-bottom:4px;border-bottom:1px solid var(--line)}
 dialog p,dialog li{font-size:14px;line-height:1.8;overflow-wrap:anywhere}
@@ -251,8 +262,12 @@ a.source-card:hover .source-title{text-decoration:underline}
   .filter-inputs label{flex:1;min-width:120px}
   .filter-inputs input,.filter-inputs select{width:100%}
   .game-filter{font-size:12px;padding:5px 8px}
-  .toolbar{padding:12px}
-  h2{font-size:19px;margin-right:6px}
+  .toolbar{padding:12px;gap:6px}
+  /* 狭い画面では月名と月の選択を左、移動ボタンを右端に寄せて1行に収める。 */
+  .month-navigation{flex-wrap:nowrap;width:100%}
+  .month-stepper{margin-inline-start:auto}
+  h2{font-size:19px;margin-right:2px}
+  #month-title{min-width:0;white-space:nowrap}
   /* 狭い画面ではセルの文字をやめ、ゲーム色の小さな件数ラベルで示す。 */
   .day{min-height:60px;padding:3px 2px;align-items:center;flex-flow:row wrap;justify-content:center;align-content:flex-start;gap:2px}
   .day time{width:100%;height:24px;font-size:14px;border-radius:4px;margin:0}
@@ -260,7 +275,7 @@ a.source-card:hover .source-title{text-decoration:underline}
   .day-chip{padding:0 4px;border-radius:3px;background:var(--ink);color:#fff;font-size:10px;line-height:1.5;gap:0;overflow:visible}
   .day-chip::before,.day-chip b,.chip-text{display:none}
   .day-chip::after{content:attr(data-count);font-weight:700}
-  .day-end{display:none}
+  .day-end{width:100%;font-size:10px;line-height:1.4;text-align:center;white-space:nowrap;letter-spacing:-.02em}
   #day-panel{padding:12px}
   .section-head{padding:12px 12px 8px}
   .now-tabs{padding-bottom:0}
