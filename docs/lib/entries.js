@@ -24,7 +24,7 @@ const familyTypes = new Set(["event", "quest", "map_add", "area_add", "chapter_a
 // 楽曲・譜面追加はイベント終了後も残るため、親の期間を決めずに関連楽曲として親に加える。
 const songTypes = new Set(["song_add", "song_unlock", "ultima_add", "worlds_end_add", "remaster_add",
   "dx_chart_add", "standard_chart_add", "utage_add", "lunatic_add"]);
-const supportedSchemas = [2, 3, 4, 5, 6, 7];
+const supportedSchemas = [2, 3, 4, 5, 6, 7, 8];
 
 export function typeLabel(type) { return types[type] || type; }
 export function endDate(entry) {
@@ -45,6 +45,8 @@ export function lastUsableDay(entry) {
   return (entry.start_is_deadline ? entry.start : entry.end) || null;
 }
 export function isSong(entry) { return songTypes.has(entry.type); }
+// 詳細に出す曲の表記。アーティスト名が分かるときは「曲名 / アーティスト」にする。
+export function songLabel(song) { return song.artist ? `${song.title} / ${song.artist}` : song.title; }
 export function itemTypes(item) { return item.members ? item.members.map((member) => member.type) : [item.type]; }
 
 // 関連記事の一覧。http(s)以外のURLはリンクにしない。
@@ -63,7 +65,7 @@ export function filterEntries(list, { games: selectedGames, type, query }) {
   const normalized = query.normalize("NFKC").toLocaleLowerCase().trim();
   return list.filter((entry) => selectedGames.has(entry.source.game) &&
     (!type || entry.type === type) &&
-    (!normalized || [entry.title, ...entry.songs, ...(entry.origins || [{ source: entry.source }]).map((origin) => origin.source.title)].join(" ").normalize("NFKC").toLocaleLowerCase().includes(normalized)));
+    (!normalized || [entry.title, ...entry.songs.flatMap((song) => [song.title, song.artist ?? ""]), ...(entry.origins || [{ source: entry.source }]).map((origin) => origin.source.title)].join(" ").normalize("NFKC").toLocaleLowerCase().includes(normalized)));
 }
 export function byGame(a, b) {
   const order = Object.keys(games);
@@ -170,6 +172,8 @@ export function calendarEntry(entry, source) {
     ...entry, official_start: entry.start, official_end: entry.end,
     start: validDate(entry.calendar_start) ? entry.calendar_start : validDate(entry.start) ? entry.start : null,
     end: validDate(entry.calendar_end) ? entry.calendar_end : entry.end,
+    // 版7までは曲名だけの文字列で持つ。
+    songs: (entry.songs || []).map((song) => typeof song === "string" ? { title: song, artist: null } : song),
     source,
   };
 }
@@ -187,7 +191,7 @@ export function mergeDuplicates(list) {
     const key = JSON.stringify([entry.source.game, entry.service ?? null, entry.type, entry.title,
     entry.official_start, entry.start_time ?? null, entry.official_end ?? null, entry.end_time ?? null,
     entry.start, entry.end ?? null, entry.open_ended, entry.start_is_deadline ?? false,
-    [...new Set(entry.songs || [])].sort()]);
+    [...new Set(entry.songs.map((song) => song.title))].sort()]);
     if (!validDate(entry.official_start) || !entry.title || !entry.type) {
       merged.push(item);
     } else if (matches.has(key)) {
@@ -206,10 +210,11 @@ export function mergeSongOverlaps(list) {
   const linked = list.filter((entry) => isSong(entry) && entry.start && subjectKey(entry.subject));
   return list.flatMap((entry) => {
     if (!isSong(entry) || !entry.start || subjectKey(entry.subject)) return [entry];
-    const targets = linked.filter((item) => key(item) === key(entry) && item.songs.some((song) => entry.songs.includes(song)));
+    const titles = (item) => item.songs.map((song) => song.title);
+    const targets = linked.filter((item) => key(item) === key(entry) && titles(item).some((title) => titles(entry).includes(title)));
     if (!targets.length) return [entry];
     targets.forEach((target) => target.origins.push(...entry.origins));
-    const songs = entry.songs.filter((song) => !targets.some((target) => target.songs.includes(song)));
+    const songs = entry.songs.filter((song) => !targets.some((target) => titles(target).includes(song.title)));
     return songs.length ? [{ ...entry, songs }] : [];
   });
 }

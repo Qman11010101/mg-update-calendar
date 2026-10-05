@@ -2,7 +2,7 @@
   import ChevronLeft from "@lucide/svelte/icons/chevron-left";
   import ChevronRight from "@lucide/svelte/icons/chevron-right";
   import { SvelteSet } from "svelte/reactivity";
-  import { monthRange, shiftMonth, today, validDate } from "../lib/dates.js";
+  import { formatDateTime, monthRange, shiftMonth, today, validDate } from "../lib/dates.js";
   import { buildEntries, endDate, filterEntries, games, groupFamilies, isRange } from "../lib/entries.js";
   import DayPanel from "./DayPanel.svelte";
   import DetailDialog from "./DetailDialog.svelte";
@@ -18,6 +18,7 @@
   // 項目は表示時に entry.family を書き換えるため、プロキシにしない。
   let entries = $state.raw([]);
   let holidays = $state.raw(new Set());
+  let updatedAt = $state(null);
   let status = $state("loading");
   let type = $state("");
   let query = $state("");
@@ -64,7 +65,9 @@
     try {
       const response = await fetch("./entries.json");
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      entries = buildEntries(await response.json());
+      const data = await response.json();
+      entries = buildEntries(data);
+      updatedAt = data.updated_at ?? null;
       type = "";
       status = "ready";
     } catch (error) {
@@ -88,6 +91,9 @@
         <button id="next" aria-label="次の月" onclick={() => showMonth(shiftMonth(month, 1))}><ChevronRight size={18} aria-hidden="true" /></button>
         <button id="today" onclick={() => showMonth(today.slice(0, 7), today)}>今月</button>
       </div>
+      {#if ready && formatDateTime(updatedAt)}
+        <p class="updated-at">最終更新 <time datetime={updatedAt}>{formatDateTime(updatedAt)}</time></p>
+      {/if}
     </div>
     <p id="loading" role="status" hidden={status !== "loading"}>カレンダーを読み込んでいます…</p>
     <div id="error" role="alert" hidden={status !== "error"}>

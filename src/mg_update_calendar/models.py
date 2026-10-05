@@ -97,6 +97,11 @@ class StructuredModel(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
 
+class Song(StructuredModel):
+    title: str
+    artist: str | None
+
+
 class Entry(StructuredModel):
     type: EntryType
     subject: str | None
@@ -109,7 +114,7 @@ class Entry(StructuredModel):
     end: date | None
     end_time: Clock | None
     open_ended: bool
-    songs: list[str]
+    songs: list[Song]
     date_text: str
     evidence: str = Field(min_length=1)
     confidence: float = Field(ge=0, le=1)
@@ -120,7 +125,7 @@ class Cancellation(StructuredModel):
     subject: str | None
     label: str = Field(min_length=1)
     official_name: str | None
-    songs: list[str]
+    songs: list[Song]
     evidence: str = Field(min_length=1)
     confidence: float = Field(ge=0, le=1)
 
@@ -150,7 +155,7 @@ def display_title(item: Entry | Cancellation) -> str:
     inner = subject[1:-1]
     if subject[:1] == "「" and subject[-1:] == "」" and "「" not in inner and "」" not in inner:
         subject = inner.strip()
-    songs = [song.strip() for song in item.songs if song.strip()]
+    songs = [song.title.strip() for song in item.songs if song.title.strip()]
     # 楽曲・譜面追加は曲名を含めず、所属先の対象名だけを付ける。取り消しはどの曲かが分かるよう曲名を残す。
     if isinstance(item, Entry) and item_type in LABEL_ONLY_TYPES:
         song_keys = {subject_key(song) for song in songs}

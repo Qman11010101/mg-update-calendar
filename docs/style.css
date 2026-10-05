@@ -40,6 +40,7 @@ input[type=search]{width:215px}
 /* 1桁月と2桁月で幅が変わると後ろのボタンがずれるため、2桁月の幅を確保する。 */
 h2{font-size:24px;font-weight:800;margin:0 12px 0 0;font-variant-numeric:tabular-nums}
 #month-title{min-width:6.5em}
+.updated-at{margin:0;font-size:12px;color:var(--muted)}
 .month-navigation button{font-size:13px;min-height:32px}
 #prev,#next,#month-pick{display:inline-grid;place-items:center;padding:0 8px;line-height:1}
 #month-pick{margin-inline-end:6px}

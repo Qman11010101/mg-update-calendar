@@ -229,8 +229,8 @@ npm test
 
 ### JSONの構造
 
-`entries.json`は`schema_version`・`prompt_version`・`provider`・`model`・`mode`と、
-記事ごとの結果配列`articles`を持つ。`schema_version`は`7`。最上位の`prompt_version`・`provider`・`model`は最後に実行したときの設定で、記事ごとの値はその記事を抽出したときの設定を表す。`prompt_version`は抽出時の`prompts.py`の`PROMPT_VERSION`で、プロンプトを変更するたびに上げる。版`6`のファイルも前回の結果として読み込み、記事ごとの`provider`・`model`には最上位の値を引き継ぐ。各記事の結果には次のフィールドを含む。
+`entries.json`は`schema_version`・`prompt_version`・`provider`・`model`・`mode`・`updated_at`と、
+記事ごとの結果配列`articles`を持つ。`updated_at`は`articles`の内容が最後に変わった日時（UTC、ISO 8601）で、前回の結果を再利用しただけの実行では変わらない。`schema_version`は`8`。最上位の`prompt_version`・`provider`・`model`は最後に実行したときの設定で、記事ごとの値はその記事を抽出したときの設定を表す。`prompt_version`は抽出時の`prompts.py`の`PROMPT_VERSION`で、プロンプトを変更するたびに上げる。版`6`・`7`のファイルも前回の結果として読み込み、版`6`の記事ごとの`provider`・`model`には最上位の値を引き継ぐ。版`7`までは`songs`が曲名の文字列の配列で、表示側は両方の形式を読む。各記事の結果には次のフィールドを含む。
 
 | フィールド | 内容 |
 | --- | --- |
@@ -250,6 +250,7 @@ npm test
 エントリには`type`・`subject`・`label`・`official_name`・`start`・`start_time`・`end`・`end_time`・
 `open_ended`・`songs`・`date_text`・`evidence`・`confidence`を持たせる。
 対象サービスの`service`、単日の期限を表す`start_is_deadline`、表示用の`title`・`calendar_start`・`calendar_end`も持つ。
+`songs`の各要素は曲名`title`とアーティスト名`artist`を持ち、`artist`は原文で曲ごとに示されているときだけ設定し、なければ`null`。
 表示用のタイトルと日付は保存時にコードで生成し、AIの出力スキーマには含めない。
 
 ### 独立したエントリ

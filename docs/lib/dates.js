@@ -1,5 +1,12 @@
 // 日付は "YYYY-MM-DD" の文字列で扱い、計算時だけUTCのDateに変換する。
 export const today = new Intl.DateTimeFormat("sv-SE", { timeZone: "Asia/Tokyo" }).format(new Date());
+// ISO 8601の日時を日本時間の "YYYY/MM/DD HH:mm" にする。読めない値はnull。
+export function formatDateTime(value) {
+  const date = new Date(value);
+  if (typeof value !== "string" || Number.isNaN(date.valueOf())) return null;
+  return new Intl.DateTimeFormat("ja-JP", { timeZone: "Asia/Tokyo", year: "numeric", month: "2-digit", day: "2-digit",
+    hour: "2-digit", minute: "2-digit" }).format(date);
+}
 export const weekdayNames = ["日", "月", "火", "水", "木", "金", "土"];
 
 export function dateKey(date) { return date.toISOString().slice(0, 10); }

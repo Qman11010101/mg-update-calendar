@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
-import { monthRange, shiftMonth } from "../docs/lib/dates.js";
+import { formatDateTime, monthRange, shiftMonth } from "../docs/lib/dates.js";
 import {
   buildEntries, calendarEntry, currentEntries, dayGroups, endDate, entrySources, filterEntries, games, isRange,
   lastUsableDay, mergeDuplicates, nowLists, period, upcomingEntries,
@@ -147,4 +147,10 @@ test("Month helpers and data loading", () => {
   assert.equal(shiftMonth("2026-01", -1), "2025-12");
   assert.ok(buildEntries(document).length > 0);
   assert.throws(() => buildEntries({ ...document, schema_version: 1 }), /Unsupported data/);
+});
+
+test("最終更新日時を日本時間で表示し、読めない値は表示しない", () => {
+  assert.equal(formatDateTime("2026-10-05T15:30:00+00:00"), "2026/10/06 00:30");
+  assert.equal(formatDateTime(null), null);
+  assert.equal(formatDateTime("不明"), null);
 });

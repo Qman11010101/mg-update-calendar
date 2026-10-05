@@ -4,6 +4,7 @@ import argparse
 from collections import Counter
 from dataclasses import replace
 from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
+from datetime import datetime, timezone
 import hashlib
 import json
 from pathlib import Path
@@ -17,7 +18,7 @@ from dotenv import load_dotenv
 from pydantic import ValidationError
 
 from mg_update_calendar.models import (
-    Article, Entry, Cancellation, Extraction,
+    Article, Entry, Cancellation, Extraction, Song,
     Game, GAME_ENTRY_TYPES, ENTRY_LABELS, SONG_TYPES, CONTENT_TYPES, display_title, extraction_schema, subject_key,
 )
 from mg_update_calendar.llm import JSONGenerator, LLMClient, LLMConfig, LLMError, LLMRequest
@@ -27,9 +28,9 @@ from mg_update_calendar.services import SERVICE_MAINTENANCE, calendar_dates, mai
 MAX_OUTPUT_TOKENS = 32768
 CONCURRENCY = 5
 MAX_EXTRACTION_ATTEMPTS = 3
-SCHEMA_VERSION = 7
-# 前回の結果として読み込める版。6は記事ごとのプロバイダー・モデルを持たない。
-READABLE_SCHEMA_VERSIONS = (6, 7)
+SCHEMA_VERSION = 8
+# 前回の結果として読み込める版。6は記事ごとのプロバイダー・モデルを持たない。7までは曲名を文字列で持つ。
+READABLE_SCHEMA_VERSIONS = (6, 7, 8)
 # 改行・空白の入り方やMarkdown記法の有無は原文根拠かどうかに関係しないため、照合前に取り除く。
 QUOTE_NOISE = re.compile(r"[\s#*_>`|\\-]+")
 # 対象名末尾の弾数の表記（第2弾、ちほー2、Part2）。作品名と弾数に分けて比べる。
@@ -76,7 +77,7 @@ def parse_response(output: str, game: Game) -> Extraction:
             ])
         extraction.entries = [
             entry for entry in extraction.entries
-            if entry.type not in SONG_TYPES or any(song.strip() for song in entry.songs)
+            if entry.type not in SONG_TYPES or any(song.title.strip() for song in entry.songs)
         ]
         extraction.entries, notes = merge_collab_contents(extraction.entries)
         extraction.notes += notes
@@ -86,7 +87,8 @@ def parse_response(output: str, game: Game) -> Extraction:
         for error in exc.errors(include_input=False, include_context=False, include_url=False):
             # 未知のキー自体にも任意の文字列が入るため、保存する位置をスキーマのフィールドに限定する。
             loc = [part if isinstance(part, int) or part in {
-                "entries", "cancellations", "notes", "review_notes", *Entry.model_fields, *Cancellation.model_fields
+                "entries", "cancellations", "notes", "review_notes", *Entry.model_fields, *Cancellation.model_fields,
+                *Song.model_fields
             } else "unknown_field" for part in error["loc"]]
             details.append({"loc": loc, "type": error["type"]})
         raise ExtractionError("invalid_structured_output", details) from exc
@@ -280,13 +282,13 @@ def load_articles(path: Path) -> list[Article]:
     return [Article.model_validate(item) for item in raw]
 
 
-def load_previous(path: Path) -> dict[str, dict[str, Any]]:
-    """前回の抽出結果を記事URLで引けるようにする。ファイルがなければ空。
+def load_previous(path: Path) -> tuple[dict[str, dict[str, Any]], dict[str, Any]]:
+    """前回の抽出結果を記事URLで引けるようにし、文書全体と組で返す。ファイルがなければ空。
 
     版6の結果は記事ごとのプロバイダー・モデルを持たないため、文書全体の値を引き継ぐ。
     """
     if not path.exists():
-        return {}
+        return {}, {}
     raw = json.loads(path.read_text(encoding="utf-8-sig"))
     if (not isinstance(raw, dict) or raw.get("schema_version") not in READABLE_SCHEMA_VERSIONS
             or raw.get("mode") != "extraction" or not isinstance(raw.get("articles"), list)):
@@ -296,7 +298,7 @@ def load_previous(path: Path) -> dict[str, dict[str, Any]]:
         item.setdefault("provider", raw.get("provider"))
         item.setdefault("model", raw.get("model"))
         previous[item["source"]["url"]] = item
-    return previous
+    return previous, raw
 
 
 def extraction_reason(article: Article, previous: dict[str, Any] | None, config: LLMConfig) -> str | None:
@@ -351,7 +353,7 @@ def main(argv: list[str] | None = None) -> int:
     if unknown:
         parser.error("--urlの記事が入力JSONにありません: " + ", ".join(unknown))
     try:
-        previous = load_previous(output)
+        previous, last = load_previous(output)
     except (OSError, ValueError, KeyError, TypeError, AttributeError) as exc:
         print(f"error: 既存の出力JSONを読み込めません ({type(exc).__name__})。"
               "移動または削除してから再実行してください。", file=sys.stderr)
@@ -374,10 +376,14 @@ def main(argv: list[str] | None = None) -> int:
     results = dict(previous)
     document = {"schema_version": SCHEMA_VERSION, "prompt_version": PROMPT_VERSION,
                 "provider": config.provider, "model": config.model, "mode": "extraction",
-                "articles": []}
+                "updated_at": last.get("updated_at"), "articles": last.get("articles", [])}
 
+    # updated_atは記事の結果が変わったときだけ進める。再利用だけの実行では前回の値を残す。
     def save() -> None:
-        document["articles"] = [results[url] for url in order if url in results]
+        articles = [results[url] for url in order if url in results]
+        if articles != document["articles"] or not document["updated_at"]:
+            document["updated_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+        document["articles"] = articles
         write_json(output, document)
 
     failed = 0

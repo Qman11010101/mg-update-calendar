@@ -25,12 +25,16 @@ ARTICLE = {
 }
 
 
+def songs(*titles):
+    return [{'title': title, 'artist': None} for title in titles]
+
+
 def entry(**changes):
     data = {
         'service': 'chunithm', 'start_is_deadline': False,
         'type': 'song_add', 'subject': None, 'label': '楽曲追加', 'official_name': None, 'start': '2026-09-25',
         'start_time': None, 'end': None, 'end_time': None, 'open_ended': True,
-        'songs': ['曲A', '曲B'], 'date_text': '2026年9月25日より',
+        'songs': songs('曲A', '曲B'), 'date_text': '2026年9月25日より',
         'evidence': '「曲A」「曲B」が追加。', 'confidence': 0.95,
     }
     return data | changes
@@ -95,7 +99,7 @@ class ExtractionTests(unittest.TestCase):
                       date_text='2026年9月25日～2026年11月11日', evidence='コラボは2026年9月25日～2026年11月11日。')
         result = self.extract(response_payload({'entries': [entry(), event], 'review_notes': []}))
         self.assertEqual(result['status'], 'extracted')
-        self.assertEqual(result['entries'][0]['songs'], ['曲A', '曲B'])
+        self.assertEqual(result['entries'][0]['songs'], songs('曲A', '曲B'))
         self.assertIsNone(result['entries'][0]['end'])
         self.assertEqual(result['source']['url'], ARTICLE['url'])
         request = self.requests[0]
@@ -199,7 +203,7 @@ class ExtractionTests(unittest.TestCase):
 
     def test_cancellations_are_separate_and_need_matching(self):
         cancellation = {'target_type': 'song_add', 'subject': '曲A', 'label': '収録見合わせ', 'official_name': None,
-                        'songs': ['曲A'], 'evidence': '曲Aの収録を見合わせます。', 'confidence': 0.95}
+                        'songs': songs('曲A'), 'evidence': '曲Aの収録を見合わせます。', 'confidence': 0.95}
         article = ARTICLE | {'body_text': cancellation['evidence']}
         result = self.extract(response_payload({'entries': [], 'cancellations': [cancellation], 'review_notes': []}), article)
         self.assertEqual(result['entries'], [])
@@ -226,11 +230,11 @@ class ExtractionTests(unittest.TestCase):
         }
         for game, kinds in cases.items():
             for kind in kinds:
-                for songs in [[], ['', ' \t', '\u3000']]:
-                    with self.subTest(game=game, kind=kind, songs=songs):
-                        kept = entry(type=kind, songs=['', '曲A'])
+                for blank in [[], songs('', ' \t', '\u3000')]:
+                    with self.subTest(game=game, kind=kind, songs=blank):
+                        kept = entry(type=kind, songs=songs('', '曲A'))
                         result = self.extract(response_payload({
-                            'entries': [entry(type=kind, songs=songs), kept],
+                            'entries': [entry(type=kind, songs=blank), kept],
                             'review_notes': ['曲名は画像内にあります。'],
                         }), ARTICLE | {'game': game})
                         self.assertEqual(result['entries'], [{'title': '楽曲追加'} | kept | {'calendar_start': kept['start'], 'calendar_end': kept['end']}])
@@ -494,7 +498,7 @@ class ExtractionTests(unittest.TestCase):
         data = json.loads(Path('entries.json').read_text(encoding='utf-8'))
         self.assertEqual(data['model'], 'gpt-5.6-luna')
         self.assertEqual(data['mode'], 'extraction')
-        self.assertEqual(data['schema_version'], 7)
+        self.assertEqual(data['schema_version'], 8)
         self.assertEqual(data['prompt_version'], PROMPT_VERSION)
         self.assertEqual([item['source']['game'] for item in data['articles']], ['chunithm', 'maimai'])
         self.assertNotIn('requests', data)
@@ -651,11 +655,11 @@ class IncrementalExtractionTests(unittest.TestCase):
         data = self.run_cli([kept, changed, news(3)], previous)
         self.assertEqual(self.code, 0)
         self.assertEqual(self.extracted, [changed['url'], news(3)['url']])
-        self.assertEqual(data['schema_version'], 7)
+        self.assertEqual(data['schema_version'], 8)
         self.assertEqual([item['source']['url'] for item in data['articles']],
                          [kept['url'], changed['url'], news(3)['url'], orphan['url']])
         self.assertEqual(data['articles'][0], previous_result(kept) | {'provider': 'openai', 'model': 'gpt-5.6-luna'})
-        self.assertEqual(data['articles'][1]['entries'][0]['songs'], ['曲A', '曲B'])
+        self.assertEqual(data['articles'][1]['entries'][0]['songs'], songs('曲A', '曲B'))
         self.assertEqual((data['articles'][2]['provider'], data['articles'][2]['model']), ('openai', 'gpt-5.6-luna'))
         self.assertIn('[changed]', self.stderr)
         self.assertIn('  - 前回 2026-09-25', self.stderr)
@@ -684,6 +688,16 @@ class IncrementalExtractionTests(unittest.TestCase):
         self.assertEqual(self.extracted, [news(2)['url']])
         self.run_cli(articles, None, ['--full'])
         self.assertEqual(self.extracted, [news(1)['url'], news(2)['url']])
+
+    def test_updated_at_advances_only_when_articles_change(self):
+        article = news(1)
+        previous = self.document(previous_result(article) | {'provider': 'openai', 'model': 'gpt-5.6-luna'})
+        data = self.run_cli([article], previous, environment={})
+        self.assertRegex(data['updated_at'], r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+00:00$')
+        stamp = '2000-01-01T00:00:00+00:00'
+        previous['updated_at'] = stamp
+        self.assertEqual(self.run_cli([article], previous, environment={})['updated_at'], stamp)
+        self.assertNotEqual(self.run_cli([article, news(2)], previous)['updated_at'], stamp)
 
     def test_unknown_url_is_rejected(self):
         Path('news_all.json').write_text(json.dumps([news(1)]), encoding='utf-8')
@@ -796,10 +810,10 @@ class DisplayTitleTests(unittest.TestCase):
     def test_song_titles_use_only_the_label_and_parent_subject(self):
         cases = [
             ({'type': 'song_add', 'subject': None, 'label': '楽曲追加'}, '楽曲追加'),
-            ({'type': 'song_add', 'subject': None, 'label': '楽曲追加', 'songs': ['曲A', ' ']}, '楽曲追加'),
-            ({'type': 'song_add', 'subject': '曲A', 'label': '楽曲追加', 'songs': ['曲A']}, '楽曲追加'),
-            ({'type': 'song_add', 'subject': 'Rotaeno', 'label': '楽曲追加', 'songs': ['曲A', '曲B']}, '「Rotaeno」楽曲追加'),
-            ({'type': 'ultima_add', 'subject': '「いよわ」', 'label': 'ULTIMA譜面追加', 'songs': ['曲A']}, '「いよわ」ULTIMA譜面追加'),
+            ({'type': 'song_add', 'subject': None, 'label': '楽曲追加', 'songs': songs('曲A', ' ')}, '楽曲追加'),
+            ({'type': 'song_add', 'subject': '曲A', 'label': '楽曲追加', 'songs': songs('曲A')}, '楽曲追加'),
+            ({'type': 'song_add', 'subject': 'Rotaeno', 'label': '楽曲追加', 'songs': songs('曲A', '曲B')}, '「Rotaeno」楽曲追加'),
+            ({'type': 'ultima_add', 'subject': '「いよわ」', 'label': 'ULTIMA譜面追加', 'songs': songs('曲A')}, '「いよわ」ULTIMA譜面追加'),
             ({'type': 'avatar_costume', 'subject': 'マップA', 'label': 'アバターコスチューム'}, 'アバターコスチューム'),
             ({'type': 'standard_chart_add', 'subject': 'オトモダチ対戦 シーズン29', 'label': 'スタンダード譜面追加'},
              '「オトモダチ対戦 シーズン29」スタンダード譜面追加'),

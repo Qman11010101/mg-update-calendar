@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
-import { calendarEntry, currentEntries, endDate, groupFamilies, isSong, mergeDuplicates, mergeSongOverlaps, withFamilies } from "../docs/lib/entries.js";
+import { calendarEntry, currentEntries, endDate, groupFamilies, isSong, mergeDuplicates, mergeSongOverlaps, songLabel, withFamilies } from "../docs/lib/entries.js";
 
 const source = { game: "ongeki", url: "https://example.com/a", title: "記事A", date: "2026-09-01" };
 const item = (changes) => calendarEntry({
@@ -85,15 +85,16 @@ test("Song overlap between event and song articles", () => {
   const withOrigin = (entry) => ({ ...entry, origins: [{ source: entry.source }] });
   const eventSong = withOrigin(item({ type: "song_add", subject: "作品F", start: "2026-09-03", end: null, songs: ["曲X"] }));
   const plainSongs = withOrigin(calendarEntry({ type: "song_add", title: "楽曲追加", subject: null, service: "ongeki",
-    start: "2026-09-03", end: null, open_ended: false, songs: ["曲W", "曲X", "曲Y"] }, ongeki));
+    start: "2026-09-03", end: null, open_ended: false,
+    songs: [{ title: "曲W", artist: "歌手W" }, { title: "曲X", artist: "歌手X" }, { title: "曲Y", artist: null }] }, ongeki));
   const onlyX = withOrigin(calendarEntry({ type: "song_add", title: "楽曲追加", subject: null, service: "ongeki",
     start: "2026-09-03", end: null, open_ended: false, songs: ["曲X"] }, ongeki));
   const otherDay = withOrigin(calendarEntry({ type: "song_add", title: "楽曲追加", subject: null, service: "ongeki",
     start: "2026-09-10", end: null, open_ended: false, songs: ["曲X"] }, ongeki));
   const overlapped = mergeSongOverlaps([eventSong, plainSongs, otherDay]);
   assert.equal(overlapped.length, 3);
-  assert.deepEqual(Array.from(overlapped[1].songs), ["曲W", "曲Y"]);
+  assert.deepEqual(Array.from(overlapped[1].songs, songLabel), ["曲W / 歌手W", "曲Y"]);
   assert.deepEqual(Array.from(eventSong.origins, (origin) => origin.source.title), ["記事A", "楽曲追加記事"]);
-  assert.deepEqual(Array.from(overlapped[2].songs), ["曲X"]);
+  assert.deepEqual(Array.from(overlapped[2].songs, songLabel), ["曲X"]);
   assert.equal(mergeSongOverlaps([withOrigin(eventSong), onlyX]).length, 1);
 });
