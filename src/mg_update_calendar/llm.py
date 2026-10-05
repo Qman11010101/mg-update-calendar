@@ -7,8 +7,10 @@ from typing import Any, Literal, Mapping, Protocol
 
 from openai import APIError, OpenAI
 
-Provider = Literal["openai", "deepseek"]
-DEFAULT_MODELS = {"openai": "gpt-5.6-luna", "deepseek": "deepseek-flash"}
+Provider = Literal["openai", "deepseek", "meta"]
+DEFAULT_MODELS = {"openai": "gpt-5.6-luna", "deepseek": "deepseek-flash", "meta": "muse-spark-1.3-contributor"}
+BASE_URLS = {"deepseek": "https://api.deepseek.com", "meta": "https://api.meta.ai/v1"}
+PROVIDER_ERROR = "LLM_PROVIDERはopenai、deepseek、metaのいずれかを指定してください。"
 
 
 class LLMError(Exception):
@@ -34,7 +36,7 @@ class LLMConfig:
 
     def __post_init__(self) -> None:
         if self.provider not in DEFAULT_MODELS:
-            raise ValueError("LLM_PROVIDERはopenaiまたはdeepseekを指定してください。")
+            raise ValueError(PROVIDER_ERROR)
         if not self.model.strip():
             raise ValueError(f"{self.provider.upper()}_MODELは空にできません。")
 
@@ -43,7 +45,7 @@ class LLMConfig:
         environment = os.environ if environment is None else environment
         provider = environment.get("LLM_PROVIDER", "openai").strip().lower()
         if provider not in DEFAULT_MODELS:
-            raise ValueError("LLM_PROVIDERはopenaiまたはdeepseekを指定してください。")
+            raise ValueError(PROVIDER_ERROR)
         prefix = provider.upper()
         return cls(
             provider=provider,
@@ -104,16 +106,40 @@ class DeepSeekProvider:
             # deepseek-flashは思考モードが既定で、思考トークンがmax_tokensを使い切ってしまう。
             extra_body={"thinking": {"type": "disabled"}},
         )
-        if not response.choices:
-            raise LLMError("missing_output")
-        choice = response.choices[0]
-        if choice.message.refusal or choice.finish_reason == "content_filter":
-            raise LLMError("refusal")
-        if choice.finish_reason != "stop":
-            raise LLMError(f"finish_reason_{choice.finish_reason}")
-        if not choice.message.content or not choice.message.content.strip():
-            raise LLMError("missing_output")
-        return choice.message.content
+        return completion_text(response)
+
+
+class MetaProvider:
+    def __init__(self, client: OpenAI, model: str):
+        self.client = client
+        self.model = model
+
+    def generate_json(self, request: LLMRequest) -> str:
+        # Meta Model APIのChat Completions互換エンドポイントは厳密なJSON Schemaを受け付ける。
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=[{"role": "system", "content": request.instructions},
+                      {"role": "user", "content": request.input}],
+            response_format={"type": "json_schema", "json_schema": {
+                "name": request.schema_name, "strict": True, "schema": request.schema}},
+            max_completion_tokens=request.max_output_tokens,
+            # 推論は無効にできないため最小にし、推論なしで動かす他プロバイダーと条件をそろえる。
+            reasoning_effort="minimal",
+        )
+        return completion_text(response)
+
+
+def completion_text(response: Any) -> str:
+    if not response.choices:
+        raise LLMError("missing_output")
+    choice = response.choices[0]
+    if choice.message.refusal or choice.finish_reason == "content_filter":
+        raise LLMError("refusal")
+    if choice.finish_reason != "stop":
+        raise LLMError(f"finish_reason_{choice.finish_reason}")
+    if not choice.message.content or not choice.message.content.strip():
+        raise LLMError("missing_output")
+    return choice.message.content
 
 
 class LLMClient:
@@ -121,10 +147,11 @@ class LLMClient:
         config.validate_credentials()
         options = {"api_key": config.api_key, "timeout": config.timeout,
                    "max_retries": config.max_retries}
-        if config.provider == "deepseek":
-            options["base_url"] = "https://api.deepseek.com"
+        if config.provider in BASE_URLS:
+            options["base_url"] = BASE_URLS[config.provider]
         self.client = OpenAI(**options)
-        provider_class = OpenAIProvider if config.provider == "openai" else DeepSeekProvider
+        provider_class = {"openai": OpenAIProvider, "deepseek": DeepSeekProvider,
+                          "meta": MetaProvider}[config.provider]
         self.provider: JSONGenerator = provider_class(self.client, config.model)
 
     def generate_json(self, request: LLMRequest) -> str:

@@ -9,13 +9,14 @@
 ## 抽出
 
 `mg-update-calendar`で収集したニュースJSONを`mg-extract-entries`で読み込み、
-記事ごとに`LLM_PROVIDER`で選択したOpenAIまたはDeepSeekへ渡す。
-OpenAIの既定モデルは`gpt-5.6-luna`、DeepSeekは`deepseek-flash`。
+記事ごとに`LLM_PROVIDER`で選択したOpenAI・DeepSeek・Meta Model APIへ渡す。
+OpenAIの既定モデルは`gpt-5.6-luna`、DeepSeekは`deepseek-flash`、Metaは`muse-spark-1.3-contributor`。
 構造化出力は`entries[]`、`cancellations[]`、`review_notes[]`を持つ。
 各告知は独立したエントリとして自身の日時・対象サービス・原文根拠を持ち、所属イベントの特定は要求しない。
 OpenAIはResponses APIのStructured Outputsに厳密なJSONスキーマを指定する。
 DeepSeekはChat Completions APIのJSONモードを使い、プロンプトにJSONスキーマを含める。
-どちらも受信後にPydanticで検証する。
+MetaはChat Completions互換APIの`response_format`に厳密なJSONスキーマを指定する。
+いずれも受信後にPydanticで検証する。
 LLM設定・通信・応答処理は`llm.py`、指示文は`prompts.py`に置く。
 抽出結果にはプロバイダー名とモデル名を保存する。
 

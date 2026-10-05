@@ -1,6 +1,6 @@
 # mg-update-calendar
 
-CHUNITHM・maimai・オンゲキの公式お知らせを収集し、OpenAIまたはDeepSeekのAPIで楽曲追加やイベントなどの告知を抽出するツールです。抽出結果は付属のカレンダー（Vite + Svelte）で表示できます。
+CHUNITHM・maimai・オンゲキの公式お知らせを収集し、OpenAI・DeepSeek・Meta Model APIのいずれかで楽曲追加やイベントなどの告知を抽出するツールです。抽出結果は付属のカレンダー（Vite + Svelte）で表示できます。
 
 処理は「記事を収集 → 告知を抽出 → カレンダーに反映」の3段階です。以下のコマンドはリポジトリのルートで実行してください。例はWindows / PowerShell向けです。
 
@@ -58,16 +58,26 @@ DEEPSEEK_MODEL=deepseek-flash
 
 `deepseek-flash`はDeepSeek V4.1 FlashのAPIモデル名です。[公式ドキュメント](https://api-docs.deepseek.com/updates/)
 
+Meta Model API（Muse Spark）を使う場合は、`.env`を次のように設定します。
+
+```dotenv
+LLM_PROVIDER=meta
+META_API_KEY=自分のAPIキー
+META_MODEL=muse-spark-1.3-contributor
+```
+
+`muse-spark-1.3-contributor`は割引料金のContributorティアで、送信したプロンプトと出力をMetaがモデルの学習に使用できます。学習に使わせない場合は`muse-spark-1.3`を指定してください。Muse Sparkは推論を無効にできないため、`reasoning_effort`を最小の`minimal`にして送信します。[公式ドキュメント](https://dev.meta.ai/docs/models)
+
 `mg-extract-entries`は実行ディレクトリの`.env`を自動で読み込みます。設定は既存の環境変数、`.env`、既定値の順で優先します。
 
-| 設定 | OpenAI | DeepSeek |
-| --- | --- | --- |
-| `LLM_PROVIDER` | `openai`（省略時の既定値） | `deepseek` |
-| APIキー | `OPENAI_API_KEY` | `DEEPSEEK_API_KEY` |
-| モデル設定 | `OPENAI_MODEL` | `DEEPSEEK_MODEL` |
-| 既定モデル | `gpt-5.6-luna` | `deepseek-flash` |
+| 設定 | OpenAI | DeepSeek | Meta |
+| --- | --- | --- | --- |
+| `LLM_PROVIDER` | `openai`（省略時の既定値） | `deepseek` | `meta` |
+| APIキー | `OPENAI_API_KEY` | `DEEPSEEK_API_KEY` | `META_API_KEY` |
+| モデル設定 | `OPENAI_MODEL` | `DEEPSEEK_MODEL` | `META_MODEL` |
+| 既定モデル | `gpt-5.6-luna` | `deepseek-flash` | `muse-spark-1.3-contributor` |
 
-両方のAPIキーとモデルを設定しておき、`LLM_PROVIDER`だけで切り替えられます。選択したプロバイダーのAPIキーだけが必要です。
+各プロバイダーのAPIキーとモデルを設定しておき、`LLM_PROVIDER`だけで切り替えられます。選択したプロバイダーのAPIキーだけが必要です。
 
 
 ## 記事収集からカレンダー表示まで
@@ -195,7 +205,7 @@ AI抽出は既定で最大5件を並行実行し、完了した記事から結�
 
 抽出対象がない場合はAPIキーがなくても実行でき、`entries.json`を最新の形式で保存し直します。収集と抽出は同じディレクトリで実行してください。
 
-モデルは`.env`の`OPENAI_MODEL`または`DEEPSEEK_MODEL`で指定できます。APIへの同時リクエスト数は5、1記事あたりの最大出力トークン数は32768、タイムアウトは120秒です。
+モデルは`.env`の`OPENAI_MODEL`・`DEEPSEEK_MODEL`・`META_MODEL`で指定できます。APIへの同時リクエスト数は5、1記事あたりの最大出力トークン数は32768、タイムアウトは120秒です。
 
 ヘルプは次のコマンドで表示できます。
 
@@ -419,7 +429,7 @@ APIエラーはSDKの例外名だけを保存する。SDKは一時的な通信�
 
 ## 対応範囲と制限
 
-OpenAIはResponses APIのStructured Outputsを使い、Pydanticから生成したJSONスキーマを指定します。DeepSeekはChat Completions APIのJSONモードを使い、同じスキーマをプロンプトに含めます。JSONモードはスキーマへの適合を強制しないため、どちらのプロバイダーでも受信後にPydanticで形式・型・値を検証します。APIキーはリクエストの保存・出力ファイルに含めません。
+OpenAIはResponses APIのStructured Outputsを使い、Pydanticから生成したJSONスキーマを指定します。DeepSeekはChat Completions APIのJSONモードを使い、同じスキーマをプロンプトに含めます。MetaはChat Completions互換APIの`response_format`に同じスキーマを厳密モードで指定します。JSONモードはスキーマへの適合を強制しないため、どのプロバイダーでも受信後にPydanticで形式・型・値を検証します。APIキーはリクエストの保存・出力ファイルに含めません。
 
 画像URLは収集しますが、画像そのものはAIへ送信しません。画像内の情報の抽出、表記や分類が異なる項目の記事横断の重複統合、取り消し・延期による既存エントリ更新、外部カレンダー向けの出力には対応していません。
 

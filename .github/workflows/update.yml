@@ -26,6 +26,8 @@ jobs:
       OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
       DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
       DEEPSEEK_MODEL: ${{ vars.DEEPSEEK_MODEL }}
+      META_API_KEY: ${{ secrets.META_API_KEY }}
+      META_MODEL: ${{ vars.META_MODEL }}
     steps:
       - uses: actions/checkout@v7
 

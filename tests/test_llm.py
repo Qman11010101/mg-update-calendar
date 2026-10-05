@@ -38,6 +38,8 @@ class LLMTests(unittest.TestCase):
         self.assertNotIn("deepseek-secret", repr(config))
         self.assertEqual(LLMConfig.from_env({"LLM_PROVIDER": "deepseek", "DEEPSEEK_MODEL": "custom"}).model,
                          "custom")
+        config = LLMConfig.from_env({"LLM_PROVIDER": "meta", "META_API_KEY": "meta-secret"})
+        self.assertEqual((config.model, config.api_key), ("muse-spark-1.3-contributor", "meta-secret"))
 
     def test_invalid_configuration_and_wrong_provider_key(self):
         for environment in ({"LLM_PROVIDER": "unknown"}, {"LLM_PROVIDER": ""},
@@ -85,6 +87,30 @@ class LLMTests(unittest.TestCase):
         for payload, error in cases:
             with self.subTest(error=error), self.assertRaisesRegex(LLMError, "^" + error + "$"):
                 self.run_deepseek(payload)
+
+    def test_meta_json_schema_request_and_response_through_sdk(self):
+        requests = []
+        def handler(request):
+            requests.append(request)
+            return httpx2.Response(200, json=completion('{"ok":true}'))
+        sdk = OpenAI(api_key="meta-test", base_url="https://api.meta.ai/v1", max_retries=0,
+                     http_client=httpx2.Client(transport=httpx2.MockTransport(handler)))
+        with patch("mg_update_calendar.llm.OpenAI", return_value=sdk) as factory:
+            with LLMClient(LLMConfig("meta", "muse-spark-1.3-contributor", "meta-test")) as client:
+                factory.assert_called_once_with(api_key="meta-test", timeout=120.0, max_retries=2,
+                                                base_url="https://api.meta.ai/v1")
+                self.assertEqual(client.generate_json(REQUEST), '{"ok":true}')
+        request = requests[0]
+        self.assertEqual(str(request.url), "https://api.meta.ai/v1/chat/completions")
+        self.assertEqual(request.headers["authorization"], "Bearer meta-test")
+        body = json.loads(request.content)
+        self.assertEqual(body["model"], "muse-spark-1.3-contributor")
+        self.assertEqual(body["response_format"], {"type": "json_schema", "json_schema": {
+            "name": "result", "strict": True, "schema": REQUEST.schema}})
+        self.assertEqual(body["max_completion_tokens"], 8192)
+        self.assertEqual(body["reasoning_effort"], "minimal")
+        self.assertEqual(body["messages"], [{"role": "system", "content": REQUEST.instructions},
+                                            {"role": "user", "content": REQUEST.input}])
 
     def test_api_error_is_sanitized(self):
         with self.assertRaises(LLMError) as error:
