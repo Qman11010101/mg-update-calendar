@@ -196,7 +196,7 @@ function showDetail(entry) {
     entry.songs.forEach((song) => list.append(element("li", "", song)));
     content.append(list);
   }
-  content.append(element("h3", "", "出典"));
+  content.append(element("h3", "", "関連記事"));
   for (const origin of entry.origins || [{ source: entry.source }]) {
     const source = element("p");
     try {

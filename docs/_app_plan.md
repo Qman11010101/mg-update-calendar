@@ -27,6 +27,34 @@
 
 **段階的に移行する。** いきなり全部をWorkersに載せず、まずDBと表示をWorkersに寄せ、収集・抽出は後から移す。
 
+**当面はGitHub上（Pages + Actions）で運用し、`needs_review` の修正が回らなくなったらCloudflareへ移行する。**
+
+### 基盤をどこにするか
+
+無料枠は2026-10-05に各公式ページで確認した値。公開用JSONは現在 約296KB（gzip 約33KB、75記事）。1年分の蓄積でgzip 約330KBと仮定して見積もる。
+
+| 案 | 構成 | 無料枠の要点 | 閲覧ごとにDBを引いた場合 | 長所 | 短所 |
+| --- | --- | --- | --- | --- | --- |
+| **Cloudflare（採用予定）** | Workers + D1 + KV + Access | D1読み取り500万行/日・書き込み10万行/日、Workers 10万リクエスト/日、Static Assetsは無料・無制限。超過時は課金でなくエラー（00:00 UTCにリセット） | 1表示で約7,000行を読む見込みで、1日約700回が上限 | 管理画面のログインをAccessに任せられる。配信・API・DBを1か所で管理できる | Workers（TypeScript）とPython（Actions）の2本立てになる。移行量が多い |
+| Supabase + GitHub Pages | Postgres + Supabase Auth + RLS | DB 500MB、転送量5GB/月、APIリクエスト無制限、1週間使わないと一時停止（cronで書き込めば停止しない） | 転送量が先に尽き、1日約500回が上限 | 今のPagesとPythonをほぼそのまま使える | 管理者だけに書き込みを許すのをRLSで書くことになり、設定ミスがそのまま穴になる。修正をすぐ公開するには別の仕掛けが要る |
+| Firebase | Firestore + Auth + Hosting | Firestore読み取り5万ドキュメント/日、Hosting転送量360MB/日 | 1エントリ1ドキュメントだと1日十数回で上限 | Authが手軽 | 読み取りをドキュメント単位で数えるので、今回のデータの形に合わない |
+| GitHubのみ | Pages + Actions + リポジトリ内の修正ファイル | 実質的な制限なし（Pagesの帯域の目安は100GB/月） | DBなし | 費用も保守もほぼかからない。修正履歴がGitに残る | 管理画面を作りにくい。ログインして修正する運用には向かない |
+
+**どの案でも、閲覧者にDBを直接引かせない。** DBを使うのは取り込みと管理画面だけにし、閲覧には生成済みのスナップショットを返す。こうすれば閲覧数が増えても、DBの無料枠は閲覧数に影響されない。
+
+- Cloudflareの場合：取り込み後または管理画面での保存時に、D1から表示用JSONを生成してKVに置く。`GET /api/entries` はKVを1回読むだけにする
+- さらに減らしたい場合は、生成したJSONをStatic Assetsとして再デプロイする。閲覧は完全に無料・無制限になるが、反映には再デプロイが必要
+- スナップショットはD1の1行には入れない。1行あたりの上限（約2MB、要確認）に、蓄積が進むと届く可能性がある
+- Cache APIは `*.workers.dev` では効かないので、使う場合は独自ドメインが前提
+
+### 当面のGitHub上での運用
+
+- Actionsのスケジュール実行で、収集から差分抽出までを行う。`content_hash` と `prompt_version` が同じ記事はLLMを呼ばない
+- 抽出結果は上書きせず蓄積する。収集は一覧の1ページ目だけなので、上書きすると古い告知が消える
+- 手動修正は抽出結果とは別のファイル（例：`data/overrides/`）に持ち、再抽出しても消えないようにする。D1に移すときは `entry_overrides` に変換する
+- 全件 `extracted` なら `main` へ直接コミットし、`needs_review` か `failed` があればPRを作る
+- `GITHUB_TOKEN` によるpushでは `pages.yml` のpushトリガーが起動しない。デプロイは同じワークフロー内で行うか、`workflow_call` で呼ぶ
+
 ### 収集・抽出をどこで動かすか
 
 | 案 | 内容 | 長所 | 短所 |
@@ -47,13 +75,14 @@ Cron Trigger (例: 1日数回)
                  └─ 重複照合・取り消し照合
 公開Worker
   ├─ Static Assets: index.html / calendar.js / style.css
-  ├─ GET /api/entries?from=&to=&game=  … カレンダー表示用
+  ├─ GET /api/entries  … カレンダー表示用（KVのスナップショットを返す。D1は読まない）
   └─ /admin/*  … needs_review の確認・修正（Cloudflare Accessで保護）
 ```
 
 - APIキー（OpenAI / DeepSeek）は Workers Secrets に置く
 - 記事本文のHTML・LLMの生レスポンスなど大きいものは必要なら R2 に置き、D1にはキーだけ持つ
-- 表示用APIはCache API / KVで短時間キャッシュしてもよい（D1の読み取りが少ないなら不要）
+- 表示用データは、D1の更新時にスナップショットとしてKVへ書き出す（「基盤をどこにするか」を参照）
+- `extractions(article_id, is_current)` と `entries(extraction_id)` にインデックスを張る。D1は返した行数ではなくスキャンした行数で数えるため
 
 ## D1 スキーマ案
 
@@ -174,7 +203,8 @@ CREATE TABLE entry_overrides (
 
 ## 確認・検討事項
 
-- Workersの無料枠/有料プランで足りるか（Cronの実行時間、サブリクエスト数、Queues、D1の容量・行読み取り数）
+- Workersの無料枠/有料プランで足りるか（Cronの実行時間、サブリクエスト数、Queues、D1の容量・行読み取り数）。閲覧はスナップショットで返すので、D1の読み取りは取り込みと管理画面の分だけで見積もる
+- 無料枠を超えると日本時間9時までエラーになる。その間は前回のスナップショットを返し続けられるか
 - LLM呼び出し1回が長い（現在タイムアウト120秒）。Workers上で実行する場合の待ち時間の扱い
 - 公式サイトへのアクセス間隔（現在1秒）をCron/Queuesでどう守るか。Cloudflareの送信元IPからのアクセスが弾かれないか
 - 公式サイトの規約上、本文を保存・再配信してよい範囲（公開APIでは本文を返さず、出典リンクとエントリだけ返す）

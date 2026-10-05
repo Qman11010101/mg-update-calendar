@@ -37,7 +37,7 @@ def entry(**changes):
 
 def wire_extraction(extraction):
     return {'entries': extraction['entries'], 'cancellations': extraction.get('cancellations', []),
-            'review_notes': extraction['review_notes']}
+            'notes': extraction.get('notes', []), 'review_notes': extraction['review_notes']}
 
 
 def response_payload(extraction=None, status='completed', refusal=False):
@@ -381,6 +381,24 @@ class ExtractionTests(unittest.TestCase):
         result = self.extract(response_payload({'entries': [entry(date_text='2026年9月25日\nより')], 'review_notes': []}), article)
         self.assertEqual(result['status'], 'extracted')
 
+    def test_quote_ignores_whitespace_and_markdown_differences(self):
+        article = ARTICLE | {'body_markdown': '## でらっくす譜面追加\n\n**曲A**  \n「作品B」より'}
+        result = self.extract(response_payload({'entries': [
+            entry(date_text='2026年9月25日\nより', evidence='でらっくす譜面追加\n曲A\n「作品Ｂ」より')], 'review_notes': []}), article)
+        self.assertEqual(result['status'], 'extracted')
+
+    def test_quote_of_only_markup_is_not_evidence(self):
+        result = self.extract(response_payload({'entries': [entry(evidence='## **')], 'review_notes': []}))
+        self.assertEqual(result['status'], 'needs_review')
+        self.assertTrue(any('evidenceの原文根拠' in reason for reason in result['review_reasons']))
+
+    def test_notes_are_kept_without_review(self):
+        result = self.extract(response_payload({'entries': [entry()], 'notes': ['年は公開日から補完しました。'],
+                                                'review_notes': []}))
+        self.assertEqual(result['status'], 'extracted')
+        self.assertEqual(result['notes'], ['年は公開日から補完しました。'])
+        self.assertEqual(result['review_reasons'], [])
+
     def test_empty_body_needs_review(self):
         result = self.extract(
             response_payload({'entries': [], 'review_notes': []}),
@@ -411,13 +429,49 @@ class ExtractionTests(unittest.TestCase):
         self.assertEqual([e['end'] for e in result['entries']], ['2026-11-11', '2026-12-01'])
         request = json.loads(self.requests[0].content)
         schema = request['text']['format']['schema']
-        self.assertEqual(set(schema['properties']), {'entries', 'cancellations', 'review_notes'})
+        self.assertEqual(set(schema['properties']), {'entries', 'cancellations', 'notes', 'review_notes'})
         for key in ('parent_ref', 'event_ref', 'relation_evidence', 'event_name', 'event_evidence',
                     'event_id', 'event_parent_id'):
             self.assertNotIn(key, schema['$defs']['Entry']['properties'])
             self.assertTrue(all(key not in e for e in result['entries']))
         self.assertIn('event', schema['$defs']['Entry']['properties']['type']['enum'])
         self.assertNotIn('events', result)
+
+    def test_collab_contents_are_merged_into_the_matching_event(self):
+        body = '作品Aちほー2と作品Bちほー2がオープン。作品Aのコラボ第2弾と作品Aのリバイバルを開催。'
+        maimai = ARTICLE | {'game': 'maimai', 'body_text': body}
+        base = entry(service='maimai', songs=[], evidence=body, open_ended=False, label='イベント')
+        collab = base | {'type': 'event', 'subject': '作品A 第2弾', 'label': 'コラボイベント'}
+        revival = base | {'type': 'event', 'subject': '作品A', 'label': 'リバイバルイベント', 'end': '2026-11-11'}
+        area = base | {'type': 'area_add', 'subject': '作品Aちほー2', 'label': 'ちほー追加',
+                       'start_time': '10:00', 'end': '2026-11-11'}
+        other_area = area | {'subject': 'k4sen ＆ 作品Aちほー2'}
+        result = self.extract(response_payload({'entries': [collab, revival, area, other_area], 'review_notes': []}),
+                              maimai)
+        self.assertEqual([(e['type'], e['subject']) for e in result['entries']],
+                         [('event', '作品A 第2弾'), ('event', '作品A'), ('area_add', 'k4sen ＆ 作品Aちほー2')])
+        merged = result['entries'][0]
+        self.assertEqual((merged['start_time'], merged['end'], merged['open_ended']), ('10:00', '2026-11-11', False))
+        self.assertEqual(len(result['notes']), 1)
+        self.assertIn('作品Aちほー2', result['notes'][0])
+
+        for changes in ({'start': '2026-09-26'}, {'end': '2026-12-01'}, {'subject': '作品Aちほー3'}):
+            with self.subTest(changes=changes):
+                result = self.extract(response_payload({'entries': [collab | {'end': '2026-11-11'}, area | changes],
+                                                        'review_notes': []}), maimai)
+                self.assertEqual([e['type'] for e in result['entries']], ['event', 'area_add'])
+
+        chiho_event = base | {'type': 'event', 'subject': '天界ちほー9', 'end': '2026-11-11'}
+        chiho = area | {'subject': '天界ちほー9', 'end': None}
+        result = self.extract(response_payload({'entries': [chiho_event, chiho], 'review_notes': []}), maimai)
+        self.assertEqual([(e['type'], e['start_time'], e['end']) for e in result['entries']],
+                         [('area_add', '10:00', '2026-11-11')])
+
+        map_entry = base | {'type': 'map_add', 'subject': '作品C 第二弾', 'label': 'マップ追加', 'service': 'chunithm'}
+        event = map_entry | {'type': 'event', 'label': 'コラボイベント', 'end': '2026-10-21'}
+        result = self.extract(response_payload({'entries': [event, map_entry], 'review_notes': []}),
+                              ARTICLE | {'body_text': body})
+        self.assertEqual([(e['type'], e['end']) for e in result['entries']], [('event', '2026-10-21')])
 
     def test_content_hash_includes_metadata(self):
         payload = response_payload({'entries': [], 'review_notes': []})
@@ -440,7 +494,7 @@ class ExtractionTests(unittest.TestCase):
         self.assertEqual(data['model'], 'gpt-5.6-luna')
         self.assertEqual(data['mode'], 'extraction')
         self.assertEqual(data['schema_version'], 6)
-        self.assertEqual(data['prompt_version'], '25')
+        self.assertEqual(data['prompt_version'], '27')
         self.assertEqual([item['source']['game'] for item in data['articles']], ['chunithm', 'maimai'])
         self.assertNotIn('requests', data)
 

@@ -6,16 +6,18 @@ from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
 import hashlib
 import json
 from pathlib import Path
+import re
 import sys
 import tempfile
 from typing import Any
+import unicodedata
 
 from dotenv import load_dotenv
 from pydantic import ValidationError
 
 from mg_update_calendar.models import (
     Article, Entry, Cancellation, Extraction,
-    Game, GAME_ENTRY_TYPES, ENTRY_LABELS, SONG_TYPES, display_title, extraction_schema,
+    Game, GAME_ENTRY_TYPES, ENTRY_LABELS, SONG_TYPES, CONTENT_TYPES, display_title, extraction_schema, subject_key,
 )
 from mg_update_calendar.llm import JSONGenerator, LLMClient, LLMConfig, LLMError, LLMRequest
 from mg_update_calendar.prompts import PROMPT_VERSION, SYSTEM_PROMPT
@@ -24,6 +26,12 @@ from mg_update_calendar.services import SERVICE_MAINTENANCE, calendar_dates, mai
 MAX_OUTPUT_TOKENS = 32768
 CONCURRENCY = 5
 MAX_EXTRACTION_ATTEMPTS = 3
+# 改行・空白の入り方やMarkdown記法の有無は原文根拠かどうかに関係しないため、照合前に取り除く。
+QUOTE_NOISE = re.compile(r"[\s#*_>`|\\-]+")
+# 対象名末尾の弾数の表記（第2弾、ちほー2、Part2）。作品名と弾数に分けて比べる。
+GENERATION = re.compile(r"(?:第([0-9一二三四五六七八九]+)弾|ちほー([0-9]*)|Part([0-9]+))$", re.IGNORECASE)
+KANJI_DIGITS = str.maketrans("一二三四五六七八九", "123456789")
+CHIHO_NAME = re.compile(r"ちほー[0-9]*$")
 
 
 class ExtractionError(Exception):
@@ -66,21 +74,90 @@ def parse_response(output: str, game: Game) -> Extraction:
             entry for entry in extraction.entries
             if entry.type not in SONG_TYPES or any(song.strip() for song in entry.songs)
         ]
+        extraction.entries, notes = merge_collab_contents(extraction.entries)
+        extraction.notes += notes
         return extraction
     except ValidationError as exc:
         details = []
         for error in exc.errors(include_input=False, include_context=False, include_url=False):
             # 未知のキー自体にも任意の文字列が入るため、保存する位置をスキーマのフィールドに限定する。
             loc = [part if isinstance(part, int) or part in {
-                "entries", "cancellations", "review_notes", *Entry.model_fields, *Cancellation.model_fields
+                "entries", "cancellations", "notes", "review_notes", *Entry.model_fields, *Cancellation.model_fields
             } else "unknown_field" for part in error["loc"]]
             details.append({"loc": loc, "type": error["type"]})
         raise ExtractionError("invalid_structured_output", details) from exc
 
 
+def collab_key(subject: str | None) -> tuple[str, str | None] | None:
+    """対象名を作品名と弾数に分ける。弾数の表記がなければ弾数はNone。"""
+    key = subject_key(subject)
+    match = GENERATION.search(key or "")
+    if not key or not match:
+        return (key, None) if key else None
+    number = next((group for group in match.groups() if group), None)
+    work = key[:match.start()]
+    return (work, number.translate(KANJI_DIGITS) if number else None) if work else None
+
+
+def merge_collab_contents(entries: list[Entry]) -> tuple[list[Entry], list[str]]:
+    """同じ作品・期間のイベントと別に出力されたマップ・ちほー・チャプターを、プロンプトの統合ルールどおりイベントにまとめる。
+
+    作品名が一致し、開始日が同じで、終了日が同じかどちらかが未定のときだけ統合する。
+    弾数は両方にあれば一致を必須とし、一致するイベントを優先する（第2弾のちほーをリバイバルではなく第2弾のコラボへ）。
+    統合で消えるエントリの開始時刻・終了日時は、残るエントリで未定のときだけ引き継ぐ。
+    """
+    def compatible(first: object, second: object) -> bool:
+        return first is None or second is None or first == second
+
+    entries = list(entries)
+    merged: set[int] = set()
+    notes = []
+    for index, content in enumerate(entries):
+        key = collab_key(content.subject)
+        if content.type not in CONTENT_TYPES or key is None:
+            continue
+        candidates = []
+        for event_index, event in enumerate(entries):
+            event_key = collab_key(event.subject)
+            if (event.type == "event" and event_index not in merged and event_key and event_key[0] == key[0]
+                    and compatible(event_key[1], key[1])
+                    and event.start == content.start and compatible(event.end, content.end)):
+                candidates.append((event_key[1] != key[1], event_index))
+        if not candidates:
+            continue
+        event_index = min(candidates)[1]
+        event = entries[event_index]
+        # イベントの対象名がちほー名そのものなら、コラボではないちほーをイベントと誤分類したものとしてちほー側を残す。
+        if CHIHO_NAME.search(subject_key(event.subject) or ""):
+            kept_index, absorbed_index = index, event_index
+        else:
+            kept_index, absorbed_index = event_index, index
+        kept, absorbed = entries[kept_index], entries[absorbed_index]
+        update = {}
+        if kept.start_time is None and absorbed.start_time is not None:
+            update["start_time"] = absorbed.start_time
+        if kept.end is None and absorbed.end is not None:
+            update |= {"end": absorbed.end, "end_time": absorbed.end_time, "open_ended": False}
+        elif kept.end_time is None and absorbed.end_time is not None and kept.end == absorbed.end:
+            update["end_time"] = absorbed.end_time
+        entries[kept_index] = kept.model_copy(update=update)
+        merged.add(absorbed_index)
+        notes.append(f"{absorbed.type}「{absorbed.subject}」は同じ作品・期間の{kept.type}「{kept.subject}」へ自動で統合しました。")
+    return [entry for index, entry in enumerate(entries) if index not in merged], notes
+
+
+def quote_key(text: str) -> str:
+    return QUOTE_NOISE.sub("", unicodedata.normalize("NFKC", text))
+
+
 def review_reasons(article: Article, extraction: Extraction) -> list[str]:
     reasons = list(extraction.review_notes)
-    sources = (article.title, article.body_text, article.body_markdown)
+    sources = [quote_key(source) for source in (article.title, article.body_text, article.body_markdown)]
+
+    def quoted(text: str) -> bool:
+        key = quote_key(text)
+        return bool(key) and any(key in source for source in sources)
+
     if not article.body_text.strip() and not article.body_markdown.strip():
         reasons.append("本文がありません。タイトルのみの抽出です。")
     if article.date is None:
@@ -89,7 +166,7 @@ def review_reasons(article: Article, extraction: Extraction) -> list[str]:
         prefix = f"エントリ{index}: "
         for field in ("date_text", "evidence"):
             quote = getattr(entry, field)
-            if not quote or not any(quote in source for source in sources):
+            if not quoted(quote):
                 reasons.append(prefix + f"{field}の原文根拠を確認できません。")
         if entry.start is None:
             reasons.append(prefix + "開始日が不明です。")
@@ -121,7 +198,7 @@ def review_reasons(article: Article, extraction: Extraction) -> list[str]:
             reasons.append(prefix + "confidenceが0.8未満です。")
     for index, cancellation in enumerate(extraction.cancellations, 1):
         prefix = f"取り消し{index}: "
-        if not any(cancellation.evidence in source for source in sources):
+        if not quoted(cancellation.evidence):
             reasons.append(prefix + "evidenceの原文根拠を確認できません。")
         if cancellation.target_type == "other":
             reasons.append(prefix + "取り消し対象の種類が不明です。")
@@ -136,7 +213,7 @@ def extract_article(client: JSONGenerator, article: Article, max_output_tokens: 
     result = {
         "source": {"game": source["game"], "url": source["url"], "date": source["date"], "title": source["title"]},
         "content_hash": hashlib.sha256(json.dumps(source, ensure_ascii=False, sort_keys=True).encode()).hexdigest(),
-        "entries": [], "cancellations": [], "review_reasons": [], "error": None,
+        "entries": [], "cancellations": [], "notes": [], "review_reasons": [], "error": None,
         "validation_errors": [], "attempts": 0, "prompt_version": PROMPT_VERSION,
     }
     try:
@@ -166,7 +243,7 @@ def extract_article(client: JSONGenerator, article: Article, max_output_tokens: 
                                for entry in extraction.entries],
                       cancellations=[{"title": display_title(item)} | item.model_dump(mode="json")
                                      for item in extraction.cancellations],
-                      review_reasons=reasons)
+                      notes=extraction.notes, review_reasons=reasons)
     except (ExtractionError, LLMError) as exc:
         result.update(status="failed", error=str(exc))
     return result

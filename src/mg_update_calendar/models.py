@@ -128,6 +128,7 @@ class Cancellation(StructuredModel):
 class Extraction(StructuredModel):
     entries: list[Entry]
     cancellations: list[Cancellation]
+    notes: list[str]
     review_notes: list[str]
 
 
