@@ -44,8 +44,9 @@ jobs:
       - name: Restore previous entries
         run: cp docs/entries.json entries.json
 
+      # 一覧1ページ目のうち公開7日以内の記事は、公開後の修正を拾うため毎回取り直す
       - name: Collect articles
-        run: uv run mg-update-calendar
+        run: uv run mg-update-calendar --refresh-days 7
 
       - uses: actions/cache/save@v6
         with:
