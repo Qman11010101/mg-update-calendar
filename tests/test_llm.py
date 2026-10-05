@@ -102,7 +102,7 @@ class LLMTests(unittest.TestCase):
                      http_client=httpx2.Client(transport=httpx2.MockTransport(
                          lambda request: httpx2.Response(200, json=next(payloads)))))
         with tempfile.TemporaryDirectory() as directory, contextlib.chdir(directory):
-            Path("news_all.json").write_text(json.dumps([ARTICLE] * 4), encoding="utf-8")
+            Path("news_all.json").write_text(json.dumps([ARTICLE | {"url": f"https://example.com/news/{i}"} for i in range(4)]), encoding="utf-8")
             Path(".env").write_text("LLM_PROVIDER=deepseek\nDEEPSEEK_API_KEY=deepseek-test\n", encoding="utf-8")
             with patch.dict(os.environ, {}, clear=True), patch("mg_update_calendar.llm.OpenAI", return_value=sdk), \
                  patch("mg_update_calendar.extractor.CONCURRENCY", 1), \

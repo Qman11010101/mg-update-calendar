@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+from collections import Counter
 from dataclasses import replace
 from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
 import hashlib
@@ -26,6 +27,9 @@ from mg_update_calendar.services import SERVICE_MAINTENANCE, calendar_dates, mai
 MAX_OUTPUT_TOKENS = 32768
 CONCURRENCY = 5
 MAX_EXTRACTION_ATTEMPTS = 3
+SCHEMA_VERSION = 7
+# 前回の結果として読み込める版。6は記事ごとのプロバイダー・モデルを持たない。
+READABLE_SCHEMA_VERSIONS = (6, 7)
 # 改行・空白の入り方やMarkdown記法の有無は原文根拠かどうかに関係しないため、照合前に取り除く。
 QUOTE_NOISE = re.compile(r"[\s#*_>`|\\-]+")
 # 対象名末尾の弾数の表記（第2弾、ちほー2、Part2）。作品名と弾数に分けて比べる。
@@ -208,11 +212,16 @@ def review_reasons(article: Article, extraction: Extraction) -> list[str]:
     return list(dict.fromkeys(reasons))
 
 
+def content_hash(article: Article) -> str:
+    source = article.model_dump(mode="json")
+    return hashlib.sha256(json.dumps(source, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
+
+
 def extract_article(client: JSONGenerator, article: Article, max_output_tokens: int) -> dict[str, Any]:
     source = article.model_dump(mode="json")
     result = {
         "source": {"game": source["game"], "url": source["url"], "date": source["date"], "title": source["title"]},
-        "content_hash": hashlib.sha256(json.dumps(source, ensure_ascii=False, sort_keys=True).encode()).hexdigest(),
+        "content_hash": content_hash(article),
         "entries": [], "cancellations": [], "notes": [], "review_reasons": [], "error": None,
         "validation_errors": [], "attempts": 0, "prompt_version": PROMPT_VERSION,
     }
@@ -271,10 +280,61 @@ def load_articles(path: Path) -> list[Article]:
     return [Article.model_validate(item) for item in raw]
 
 
+def load_previous(path: Path) -> dict[str, dict[str, Any]]:
+    """前回の抽出結果を記事URLで引けるようにする。ファイルがなければ空。
+
+    版6の結果は記事ごとのプロバイダー・モデルを持たないため、文書全体の値を引き継ぐ。
+    """
+    if not path.exists():
+        return {}
+    raw = json.loads(path.read_text(encoding="utf-8-sig"))
+    if (not isinstance(raw, dict) or raw.get("schema_version") not in READABLE_SCHEMA_VERSIONS
+            or raw.get("mode") != "extraction" or not isinstance(raw.get("articles"), list)):
+        raise ValueError("抽出結果のJSONではありません。")
+    previous = {}
+    for item in raw["articles"]:
+        item.setdefault("provider", raw.get("provider"))
+        item.setdefault("model", raw.get("model"))
+        previous[item["source"]["url"]] = item
+    return previous
+
+
+def extraction_reason(article: Article, previous: dict[str, Any] | None, config: LLMConfig) -> str | None:
+    """記事を抽出し直す理由。前回の結果をそのまま使えるならNone。"""
+    if previous is None:
+        return "new"
+    if previous.get("content_hash") != content_hash(article):
+        return "changed"
+    if previous.get("prompt_version") != PROMPT_VERSION:
+        return "prompt"
+    if (previous.get("provider"), previous.get("model")) != (config.provider, config.model):
+        return "model"
+    if previous.get("status") == "failed":
+        return "failed"
+    return None
+
+
+def entry_changes(before: dict[str, Any] | None, after: dict[str, Any]) -> list[str]:
+    """記事のエントリの増減を、タイトルとカレンダー上の期間で表す。"""
+    def keys(result: dict[str, Any] | None) -> Counter[str]:
+        return Counter(
+            " ".join(filter(None, [entry["title"], "〜".join(filter(None, [
+                entry.get("calendar_start") or "日付不明", entry.get("calendar_end")]))]))
+            for entry in (result or {}).get("entries", [])
+        )
+    old, new = keys(before), keys(after)
+    return [f"  - {key}" for key in (old - new).elements()] + [f"  + {key}" for key in (new - old).elements()]
+
+
 def main(argv: list[str] | None = None) -> int:
     load_dotenv(Path.cwd() / ".env", override=False, encoding="utf-8-sig")
-    parser = argparse.ArgumentParser(description="収集済みニュースをLLMでエントリに分解する")
-    parser.parse_args(argv)
+    parser = argparse.ArgumentParser(
+        description="収集済みニュースをLLMでエントリに分解する。前回の結果から変わった記事だけを抽出する")
+    parser.add_argument("--full", action="store_true", help="前回の結果を再利用せず、全記事を抽出し直す")
+    parser.add_argument("--url", action="append", default=[], metavar="URL",
+                        help="指定した記事を抽出し直す。複数回指定できる")
+    parser.add_argument("--dry-run", action="store_true", help="抽出対象と理由を表示する。LLMを呼ばず、保存もしない")
+    args = parser.parse_args(argv)
     source = Path("news_all.json")
     output = Path("entries.json")
     try:
@@ -286,20 +346,51 @@ def main(argv: list[str] | None = None) -> int:
     except (OSError, ValueError) as exc:
         print(f"error: 入力JSONを読み込めません ({type(exc).__name__})", file=sys.stderr)
         return 2
-    document = {"schema_version": 6, "prompt_version": PROMPT_VERSION,
+    urls = [article.url for article in articles]
+    unknown = [url for url in args.url if url not in urls]
+    if unknown:
+        parser.error("--urlの記事が入力JSONにありません: " + ", ".join(unknown))
+    try:
+        previous = load_previous(output)
+    except (OSError, ValueError, KeyError, TypeError, AttributeError) as exc:
+        print(f"error: 既存の出力JSONを読み込めません ({type(exc).__name__})。"
+              "移動または削除してから再実行してください。", file=sys.stderr)
+        return 2
+
+    targets = []
+    for article in articles:
+        reason = ("forced" if args.full or article.url in args.url
+                  else extraction_reason(article, previous.get(article.url), config))
+        if reason:
+            targets.append((article, reason))
+    if args.dry_run:
+        for article, reason in targets:
+            print(f"{reason}: [{article.game}] {article.date or '-'} {article.title} {article.url}")
+        print(f"dry run: extract={len(targets)}, reuse={len(articles) - len(targets)}")
+        return 0
+
+    # 出力は入力記事の順。入力にない前回の記事も消さずに末尾へ残す。
+    order = urls + [url for url in previous if url not in set(urls)]
+    results = dict(previous)
+    document = {"schema_version": SCHEMA_VERSION, "prompt_version": PROMPT_VERSION,
                 "provider": config.provider, "model": config.model, "mode": "extraction",
                 "articles": []}
+
+    def save() -> None:
+        document["articles"] = [results[url] for url in order if url in results]
+        write_json(output, document)
+
+    failed = 0
     try:
-        if articles:
+        if targets:
             try:
                 config.validate_credentials()
             except ValueError as exc:
                 print(f"error: {exc}", file=sys.stderr)
                 return 2
-        write_json(output, document)
-        if articles:
-            completed = {}
-            remaining = iter(enumerate(articles))
+        save()
+        if targets:
+            remaining = iter(targets)
             with LLMClient(config) as client:
                 with ThreadPoolExecutor(max_workers=CONCURRENCY) as executor:
                     pending = {}
@@ -307,25 +398,32 @@ def main(argv: list[str] | None = None) -> int:
                     def submit_next() -> None:
                         item = next(remaining, None)
                         if item is not None:
-                            index, article = item
+                            article, reason = item
                             future = executor.submit(extract_article, client, article, MAX_OUTPUT_TOKENS)
-                            pending[future] = (index, article)
+                            pending[future] = (article, reason)
 
-                    for _ in range(min(CONCURRENCY, len(articles))):
+                    for _ in range(min(CONCURRENCY, len(targets))):
                         submit_next()
                     try:
                         while pending:
                             done, _ = wait(pending, return_when=FIRST_COMPLETED)
                             for future in done:
-                                index, article = pending.pop(future)
-                                result = future.result()
-                                completed[index] = result
-                                document["articles"] = [completed[i] for i in sorted(completed)]
-                                write_json(output, document)
+                                article, reason = pending.pop(future)
+                                result = future.result() | {"provider": config.provider, "model": config.model}
+                                before = previous.get(article.url)
                                 status = result["status"]
                                 if status == "failed":
+                                    failed += 1
                                     status += f" ({result['error']})"
-                                print(f"[{article.game}] {article.url}: {status}", file=sys.stderr)
+                                # 失敗しても、前回成功した結果があれば残す。次回の実行で再び抽出対象になる。
+                                if result["status"] == "failed" and before and before["status"] != "failed":
+                                    status += ", 前回の結果を残します"
+                                else:
+                                    results[article.url] = result
+                                save()
+                                print(f"[{article.game}] {article.url}: {status} [{reason}]", file=sys.stderr)
+                                for line in entry_changes(before, results[article.url]):
+                                    print(line, file=sys.stderr)
                             for _ in done:
                                 submit_next()
                     finally:
@@ -337,8 +435,8 @@ def main(argv: list[str] | None = None) -> int:
     except KeyboardInterrupt:
         print("中断しました。保存済みの記事結果は出力ファイルに残っています。", file=sys.stderr)
         return 130
-    failed = sum(item["status"] == "failed" for item in document["articles"])
-    print(f"{len(articles)} articles -> {output} ({document['mode']}, failed={failed})")
+    print(f"{len(articles)} articles -> {output} "
+          f"(extracted={len(targets)}, reused={len(articles) - len(targets)}, failed={failed})")
     return 1 if failed else 0
 
 

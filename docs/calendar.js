@@ -564,7 +564,7 @@ async function load() {
     const response = await fetch("./entries.json");
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
-    if (![2, 3, 4, 5, 6].includes(data.schema_version) || data.mode !== "extraction" || !Array.isArray(data.articles)) throw new Error("Unsupported data");
+    if (![2, 3, 4, 5, 6, 7].includes(data.schema_version) || data.mode !== "extraction" || !Array.isArray(data.articles)) throw new Error("Unsupported data");
     const extracted = data.articles.filter((article) => article.status !== "failed" && games[article.source.game])
       .flatMap((article) => article.entries.map((entry) => calendarEntry(entry, article.source)));
     entries = mergeSongOverlaps(mergeDuplicates(extracted));

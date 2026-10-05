@@ -6,12 +6,16 @@
     uv run mg-update-calendar
     uv run mg-update-calendar --game maimai --max-pages 2
     uv run mg-update-calendar --max-pages 3
+    uv run mg-update-calendar --refresh-days 7
+    uv run mg-update-calendar --dry-run
 
 仕様:
 - 一覧ページ (各サイトのトップ , /page/N/) から記事URLを取得
 - 各記事ページを fetch して 発表日・タイトル・画像URL(og:image + 本文画像)を取得
 - HTTPリクエストとリクエストの間には必ず1秒の間隔をあける (time.sleep(1))。
   複数ゲームを連続取得する場合もゲームをまたいで間隔を保つ。
+- 差分更新: 既存の news_all.json にある記事は詳細ページを取り直さず、前回の内容を使う。
+  一覧1ページ分がすべて既知の記事なら次のページへ進まない。一覧から外れた記事も消さずに残す。
 """
 
 from __future__ import annotations
@@ -22,6 +26,8 @@ import re
 import sys
 import time
 from dataclasses import dataclass
+from datetime import date, timedelta
+from pathlib import Path
 from urllib.parse import urljoin, urlparse
 
 import requests
@@ -153,6 +159,18 @@ def make_record(
         "body_markdown": body_markdown,
         "headings": headings or [],
     }
+
+
+def needs_refetch(record: dict, refresh_since: str | None = None) -> bool:
+    """既知の記事の詳細ページを取り直すか。
+
+    本文が空の記事は詳細取得に失敗して一覧情報で代用した可能性があるため取り直す
+    (JSリダイレクト記事も本文が空なので毎回取り直すが、件数はわずか)。
+    refresh_since (YYYY-MM-DD) 以降に公開された記事は、公開後の修正を拾うため取り直す。
+    """
+    if not record.get("body_text") and not record.get("body_markdown"):
+        return True
+    return bool(refresh_since) and (record.get("date") or "") >= refresh_since
 
 
 def fetch_html(session: requests.Session, url: str, timeout: int = 15) -> str:
@@ -370,6 +388,8 @@ def scrape(
     verbose: bool = True,
     game: str = "chunithm",
     fetcher: Fetcher | None = None,
+    known: dict[str, dict] | None = None,
+    refresh_since: str | None = None,
 ) -> list[dict]:
     """一覧+詳細をスクレイピングしてJSON化可能なlist[dict]を返す。
 
@@ -381,7 +401,11 @@ def scrape(
         verbose: 進捗をstderrに出す。
         game: 対象ゲーム ("chunithm" | "maimai" | "ongeki")。
         fetcher: 共有Fetcher。複数ゲーム連続取得時に渡すとゲームまたぎの間隔も保つ。
+        known: URLをキーにした既知の記事。詳細ページを取り直さずこの内容を使い、
+            一覧1ページ分がすべて既知なら巡回を終える。
+        refresh_since: この日 (YYYY-MM-DD) 以降に公開された既知の記事は詳細ページを取り直す。
     """
+    known = known or {}
     site = SITES[game]
     if fetcher is None:
         fetcher = Fetcher(interval=interval, verbose=verbose)
@@ -414,14 +438,17 @@ def scrape(
                 continue
             seen_urls.add(card["url"])
 
-            if fetch_detail:
+            previous = known.get(card["url"])
+            if previous is not None and not needs_refetch(previous, refresh_since):
+                results.append(previous)
+            elif fetch_detail:
                 try:
                     detail_html = fetcher.get(card["url"])
                 except requests.HTTPError as e:
                     if verbose:
                         print(f"warn: failed {card['url']}: {e}", file=sys.stderr)
-                    # 詳細取得に失敗したら一覧情報でフォールバック
-                    results.append(card)
+                    # 詳細取得に失敗したら前回の内容、なければ一覧情報でフォールバック
+                    results.append(previous or card)
                     if max_articles > 0 and len(results) >= max_articles:
                         return results
                     continue
@@ -446,9 +473,41 @@ def scrape(
             if max_articles > 0 and len(results) >= max_articles:
                 return results
 
+        # 1ページ分がすべて既知なら、それより古いページも取得済みとみなす
+        if known and all(card["url"] in known for card in cards):
+            if verbose:
+                print(f"[{site.game}] page {page}: no new articles, stop.", file=sys.stderr)
+            break
         page += 1
 
     return results
+
+
+def load_known(path: Path) -> list[dict]:
+    """前回収集した記事。ファイルがなければ空。"""
+    if not path.exists():
+        return []
+    raw = json.loads(path.read_text(encoding="utf-8-sig"))
+    if not isinstance(raw, list) or not all(isinstance(item, dict) and item.get("url") for item in raw):
+        raise ValueError("記事の配列ではありません")
+    return raw
+
+
+def merge_articles(known: list[dict], scraped: dict[str, list[dict]]) -> list[dict]:
+    """既知の記事と今回取得した記事をURLでまとめ、ゲーム順・公開日の新しい順に並べる。
+
+    今回取得した記事を優先し、一覧から外れた既知の記事も残す。
+    """
+    fresh = {record["url"] for records in scraped.values() for record in records}
+    games = list(SITES) + [record.get("game") for record in known]
+    merged: list[dict] = []
+    for game in dict.fromkeys(games):
+        records = scraped.get(game, []) + [
+            record for record in known if record.get("game") == game and record["url"] not in fresh
+        ]
+        # 安定ソートなので、公開日が同じ記事は一覧の順序 (今回取得分が先) を保つ
+        merged.extend(sorted(records, key=lambda record: record.get("date") or "", reverse=True))
+    return merged
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -462,30 +521,66 @@ def main(argv: list[str] | None = None) -> int:
         help="対象ゲーム。allで3ゲームまとめて取得 (default: all)",
     )
     parser.add_argument("--max-pages", type=int, default=1, help="ゲームごとの一覧ページ数 (default: 1)")
+    parser.add_argument(
+        "--refresh-days", type=int, default=0, metavar="N",
+        help="公開からN日以内の既知の記事も詳細ページを取り直す (default: 0 = 新着のみ)",
+    )
+    parser.add_argument("--full", action="store_true", help="既知の記事も含めて詳細ページを取り直す")
+    parser.add_argument("--dry-run", action="store_true", help="一覧ページだけを取得し、新着と取り直す記事を表示する")
     args = parser.parse_args(argv)
 
     games = list(SITES) if args.game == "all" else [args.game]
-    output = "news_all.json"
+    output = Path("news_all.json")
+    try:
+        known = load_known(output)
+    except (OSError, ValueError) as exc:
+        print(f"error: 既存の{output}を読み込めません ({type(exc).__name__})。"
+              "移動または削除してから再実行してください。", file=sys.stderr)
+        return 2
+    known_by_url = {record["url"]: record for record in known}
+    # 公開日を含めてN日分 (N=1なら今日公開の記事だけ)
+    refresh_since = (
+        (date.today() - timedelta(days=args.refresh_days - 1)).isoformat() if args.refresh_days > 0 else None
+    )
 
     # Fetcherを共有し、ゲームまたぎでも1秒間隔を保つ
     fetcher = Fetcher(interval=REQUEST_INTERVAL_SEC, verbose=True)
-    all_articles: list[dict] = []
+    scraped: dict[str, list[dict]] = {}
     for game in games:
         articles = scrape(
             max_pages=args.max_pages,
-            fetch_detail=True,
+            fetch_detail=not args.dry_run,
             interval=REQUEST_INTERVAL_SEC,
             game=game,
             fetcher=fetcher,
+            known={} if args.full else known_by_url,
+            refresh_since=refresh_since,
         )
         print(f"[{game}] {len(articles)} articles", file=sys.stderr)
-        all_articles.extend(articles)
+        scraped[game] = articles
 
-    with open(output, "w", encoding="utf-8") as f:
+    fresh = [record for records in scraped.values() for record in records]
+    if args.dry_run:
+        new = [record for record in fresh if record["url"] not in known_by_url]
+        refetch = [record for record in fresh if record["url"] in known_by_url
+                   and (args.full or needs_refetch(known_by_url[record["url"]], refresh_since))]
+        for label, records in (("new", new), ("refetch", refetch)):
+            for record in records:
+                print(f"{label}: [{record['game']}] {record.get('date') or '-'} {record['title']} {record['url']}")
+        print(f"dry run: new={len(new)}, refetch={len(refetch)}")
+        return 0
+
+    all_articles = merge_articles(known, scraped)
+    new = sum(record["url"] not in known_by_url for record in fresh)
+    updated = sum(record["url"] in known_by_url and record != known_by_url[record["url"]] for record in fresh)
+    # 蓄積した記事を失わないよう、一時ファイルに書いてから置き換える
+    temporary = output.with_name(output.name + ".tmp")
+    with open(temporary, "w", encoding="utf-8") as f:
         json.dump(all_articles, f, ensure_ascii=False, indent=2)
         f.write("\n")
+    temporary.replace(output)
 
-    print(f"{len(all_articles)} articles -> {output}")
+    print(f"{len(all_articles)} articles -> {output} (new={new}, updated={updated})")
     return 0
 
 

@@ -11,7 +11,8 @@ from unittest.mock import patch
 import httpx2
 from openai import OpenAI
 
-from mg_update_calendar.extractor import extract_article, main
+from mg_update_calendar.extractor import content_hash, extract_article, main
+from mg_update_calendar.prompts import PROMPT_VERSION
 from mg_update_calendar.models import Article, Cancellation, Entry, display_title, subject_key
 from mg_update_calendar.llm import LLMClient, LLMConfig
 
@@ -480,7 +481,7 @@ class ExtractionTests(unittest.TestCase):
         self.assertNotEqual(first['content_hash'], second['content_hash'])
 
     def test_no_arguments_extracts_all_articles_to_default_output(self):
-        articles = [ARTICLE, ARTICLE | {'game': 'maimai'}]
+        articles = [ARTICLE, ARTICLE | {'game': 'maimai', 'url': 'https://example.com/news/2'}]
         Path('news_all.json').write_text(json.dumps(articles), encoding='utf-8')
         client = OpenAI(api_key='test-key', max_retries=0, http_client=httpx2.Client(
             transport=httpx2.MockTransport(lambda request: httpx2.Response(
@@ -493,7 +494,7 @@ class ExtractionTests(unittest.TestCase):
         data = json.loads(Path('entries.json').read_text(encoding='utf-8'))
         self.assertEqual(data['model'], 'gpt-5.6-luna')
         self.assertEqual(data['mode'], 'extraction')
-        self.assertEqual(data['schema_version'], 6)
+        self.assertEqual(data['schema_version'], 7)
         self.assertEqual(data['prompt_version'], '27')
         self.assertEqual([item['source']['game'] for item in data['articles']], ['chunithm', 'maimai'])
         self.assertNotIn('requests', data)
@@ -502,6 +503,7 @@ class ExtractionTests(unittest.TestCase):
         for concurrency in (1, 2, 5):
             with self.subTest(concurrency=concurrency):
                 source, target = Path('news_all.json'), Path('entries.json')
+                target.unlink(missing_ok=True)
                 articles = [ARTICLE | {'url': f'https://example.com/news/{i}'}
                             for i in range(concurrency + 2)]
                 source.write_text(json.dumps(articles), encoding='utf-8')
@@ -562,7 +564,7 @@ class ExtractionTests(unittest.TestCase):
     def test_removed_options_do_not_overwrite_output(self):
         Path('news_all.json').write_text(json.dumps([ARTICLE]), encoding='utf-8')
         Path('entries.json').write_text('keep', encoding='utf-8')
-        options = [['--dry-run'], ['--model', 'example'], ['--concurrency', '1'],
+        options = [['--model', 'example'], ['--concurrency', '1'],
                    ['--max-articles', '1'], ['--max-output-tokens', '8192'], ['--timeout', '120'],
                    ['--input', 'other.json'], ['--output', 'other.json']]
         for option in options:
@@ -598,6 +600,130 @@ class ExtractionTests(unittest.TestCase):
             self.assertEqual(code, 1)
             results = json.loads(target.read_text(encoding='utf-8'))['articles']
             self.assertEqual([item['status'] for item in results], ['failed', 'extracted'])
+
+
+def news(number, **changes):
+    return ARTICLE | {'url': f'https://example.com/news/{number}'} | changes
+
+
+def previous_result(article, **changes):
+    return {'source': {'game': article['game'], 'url': article['url'], 'date': article['date'],
+                       'title': article['title']},
+            'content_hash': content_hash(Article.model_validate(article)), 'status': 'extracted',
+            'entries': [{'title': '前回', 'calendar_start': '2026-09-25', 'calendar_end': None}],
+            'prompt_version': PROMPT_VERSION} | changes
+
+
+class IncrementalExtractionTests(unittest.TestCase):
+    def setUp(self):
+        directory = self.enterContext(tempfile.TemporaryDirectory())
+        self.enterContext(contextlib.chdir(directory))
+
+    def run_cli(self, articles, previous, arguments=(), payload=None, environment=None):
+        Path('news_all.json').write_text(json.dumps(articles), encoding='utf-8')
+        if previous is not None:
+            Path('entries.json').write_text(json.dumps(previous), encoding='utf-8')
+        self.extracted = []
+
+        def handler(request):
+            self.extracted.append(json.loads(json.loads(request.content)['input'][0]['content'])['url'])
+            return httpx2.Response(200, json=payload or response_payload({'entries': [entry()], 'review_notes': []}))
+
+        client = OpenAI(api_key='test-key', max_retries=0, http_client=httpx2.Client(
+            transport=httpx2.MockTransport(handler)))
+        environment = {'OPENAI_API_KEY': 'test-key'} if environment is None else environment
+        with patch.dict(os.environ, environment, clear=True), \
+             patch('mg_update_calendar.llm.OpenAI', return_value=client), \
+             patch('mg_update_calendar.extractor.CONCURRENCY', 1), \
+             contextlib.redirect_stdout(io.StringIO()) as stdout, contextlib.redirect_stderr(io.StringIO()) as stderr:
+            self.code = main(list(arguments))
+        self.stdout, self.stderr = stdout.getvalue(), stderr.getvalue()
+        return json.loads(Path('entries.json').read_text(encoding='utf-8'))
+
+    def document(self, *results, schema_version=7, model='gpt-5.6-luna'):
+        return {'schema_version': schema_version, 'prompt_version': PROMPT_VERSION, 'provider': 'openai',
+                'model': model, 'mode': 'extraction', 'articles': list(results)}
+
+    def test_only_new_and_changed_articles_are_extracted_and_others_are_kept(self):
+        kept, changed, orphan = news(1), news(2), news(9)
+        previous = self.document(previous_result(kept), previous_result(changed | {'title': '旧'}),
+                                 previous_result(orphan), schema_version=6)
+        data = self.run_cli([kept, changed, news(3)], previous)
+        self.assertEqual(self.code, 0)
+        self.assertEqual(self.extracted, [changed['url'], news(3)['url']])
+        self.assertEqual(data['schema_version'], 7)
+        self.assertEqual([item['source']['url'] for item in data['articles']],
+                         [kept['url'], changed['url'], news(3)['url'], orphan['url']])
+        self.assertEqual(data['articles'][0], previous_result(kept) | {'provider': 'openai', 'model': 'gpt-5.6-luna'})
+        self.assertEqual(data['articles'][1]['entries'][0]['songs'], ['曲A', '曲B'])
+        self.assertEqual((data['articles'][2]['provider'], data['articles'][2]['model']), ('openai', 'gpt-5.6-luna'))
+        self.assertIn('[changed]', self.stderr)
+        self.assertIn('  - 前回 2026-09-25', self.stderr)
+        self.assertIn('  + 楽曲追加 2026-09-25', self.stderr)
+        self.assertIn('extracted=2, reused=1, failed=0', self.stdout)
+
+    def test_prompt_model_and_failure_trigger_extraction(self):
+        articles = [news(1), news(2), news(3), news(4)]
+        previous = self.document(previous_result(articles[0], prompt_version='0'),
+                                 previous_result(articles[1], model='other-model'),
+                                 previous_result(articles[2], status='failed'),
+                                 previous_result(articles[3]))
+        for item in previous['articles'][1:]:
+            item.setdefault('provider', 'openai')
+            item.setdefault('model', 'gpt-5.6-luna')
+        self.run_cli(articles, previous, ['--dry-run'])
+        self.assertEqual(self.stdout.splitlines()[:3],
+                         [f'{reason}: [chunithm] 2026-09-22 {ARTICLE["title"]} {article["url"]}'
+                          for reason, article in zip(['prompt', 'model', 'failed'], articles)])
+        self.assertIn('extract=3, reuse=1', self.stdout)
+
+    def test_full_and_url_force_extraction(self):
+        articles = [news(1), news(2)]
+        previous = self.document(*[previous_result(article) for article in articles])
+        self.run_cli(articles, previous, ['--url', news(2)['url']])
+        self.assertEqual(self.extracted, [news(2)['url']])
+        self.run_cli(articles, None, ['--full'])
+        self.assertEqual(self.extracted, [news(1)['url'], news(2)['url']])
+
+    def test_unknown_url_is_rejected(self):
+        Path('news_all.json').write_text(json.dumps([news(1)]), encoding='utf-8')
+        with patch.dict(os.environ, {'OPENAI_API_KEY': 'test-key'}, clear=True), \
+             contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit) as error:
+            main(['--url', news(2)['url']])
+        self.assertEqual(error.exception.code, 2)
+        self.assertFalse(Path('entries.json').exists())
+
+    def test_failure_keeps_the_previous_successful_result(self):
+        article = news(1)
+        before = previous_result(article | {'title': '旧'})
+        data = self.run_cli([article], self.document(before), payload=response_payload(refusal=True))
+        self.assertEqual(self.code, 1)
+        self.assertEqual(data['articles'][0]['entries'], before['entries'])
+        self.assertIn('前回の結果を残します', self.stderr)
+
+    def test_dry_run_and_full_reuse_need_no_key_or_llm(self):
+        article = news(1)
+        previous = self.document(previous_result(article) | {'provider': 'openai', 'model': 'gpt-5.6-luna'})
+        Path('entries.json').write_text(json.dumps(previous), encoding='utf-8')
+        self.run_cli([article, news(2)], None, ['--dry-run'], environment={})
+        self.assertEqual(self.code, 0)
+        self.assertEqual(json.loads(Path('entries.json').read_text(encoding='utf-8')), previous)
+        self.assertIn('new: ', self.stdout)
+        data = self.run_cli([article], None, environment={})
+        self.assertEqual(self.code, 0)
+        self.assertEqual(self.extracted, [])
+        self.assertEqual(data['articles'], previous['articles'])
+
+    def test_unreadable_previous_output_is_not_overwritten(self):
+        Path('news_all.json').write_text(json.dumps([news(1)]), encoding='utf-8')
+        for raw in ['broken', '{"schema_version": 5, "mode": "extraction", "articles": []}', '{"schema_version": 7, "mode": "extraction", "articles": [{}]}']:
+            with self.subTest(raw=raw):
+                Path('entries.json').write_text(raw, encoding='utf-8')
+                with patch.dict(os.environ, {'OPENAI_API_KEY': 'test-key'}, clear=True), \
+                     patch('mg_update_calendar.llm.OpenAI') as client, contextlib.redirect_stderr(io.StringIO()):
+                    self.assertEqual(main([]), 2)
+                client.assert_not_called()
+                self.assertEqual(Path('entries.json').read_text(encoding='utf-8'), raw)
 
 
 class DisplayTitleTests(unittest.TestCase):
