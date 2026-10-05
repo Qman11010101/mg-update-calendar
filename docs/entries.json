@@ -3442,26 +3442,6 @@
       "content_hash": "67b40d9f4dc39dcc43f4a9f1b7cc0749041438c77a37c9c81c3aa23c731da61a",
       "entries": [
         {
-          "title": "maimai でらっくす MAGiCAL 稼働",
-          "type": "version_launch",
-          "subject": "maimai でらっくす MAGiCAL",
-          "label": "稼働",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-09-17",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "9/17(木) 『maimai でらっくす MAGiCAL』稼働日決定のお知らせ",
-          "evidence": "9/17(木)、新バージョン『maimai でらっくす MAGiCAL』稼働と同時に、",
-          "confidence": 0.99,
-          "calendar_start": "2026-09-17",
-          "calendar_end": null
-        },
-        {
           "title": "「超かぐや姫！」コラボイベント",
           "type": "event",
           "subject": "超かぐや姫！",
@@ -3569,26 +3549,6 @@
           "date_text": "9/17(木)、新バージョン『maimai でらっくす MAGiCAL』稼働と同時に、",
           "evidence": "「ごはん食べヨ」が、新バージョン稼働後すぐにプレイできます！",
           "confidence": 0.98,
-          "calendar_start": "2026-09-17",
-          "calendar_end": null
-        },
-        {
-          "title": "maimai でらっくす MAGiCAL 稼働",
-          "type": "version_launch",
-          "subject": "maimai でらっくす MAGiCAL",
-          "label": "稼働",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-09-17",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "▼新バージョン『maimai でらっくす MAGiCAL』は9/17(木)より稼働開始！",
-          "evidence": "▼新バージョン『maimai でらっくす MAGiCAL』は9/17(木)より稼働開始！",
-          "confidence": 0.97,
           "calendar_start": "2026-09-17",
           "calendar_end": null
         }
@@ -4479,12 +4439,33 @@
           "open_ended": false,
           "songs": [
             "イレギュラーマン",
-            "ちっちゃな私",
+            "ちっちゃな私"
+          ],
+          "date_text": "2026年7月17日(金)より、\n「マサラダちほー」\nがオープンします！！",
+          "evidence": "イベント開催にあわせて\n「niconico＆ボーカロイド™」に新曲「イレギュラーマン」「ちっちゃな私」が追加されます！",
+          "confidence": 1.0,
+          "calendar_start": "2026-07-17",
+          "calendar_end": null
+        },
+        {
+          "title": "楽曲追加",
+          "type": "song_add",
+          "subject": null,
+          "label": "楽曲追加",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": false,
+          "start": "2026-07-17",
+          "start_time": "10:00",
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [
             "2代目閻魔",
             "シスターに懺悔を"
           ],
           "date_text": "2026年7月17日(金)より、\n「マサラダちほー」\nがオープンします！！",
-          "evidence": "イベント開催にあわせて\n「niconico＆ボーカロイド™」に新曲「イレギュラーマン」「ちっちゃな私」が追加されます！\nそして、ちほーを進めることで、「重音テト（イレギュラーマン）」をはじめとした\nさまざまなキャラクターが「つあーメンバー」としてゲットできます！\nさらに、「niconico＆ボーカロイド™」に新曲「2代目閻魔」「シスターに懺悔を」が追加されます！",
+          "evidence": "さらに、「niconico＆ボーカロイド™」に新曲「2代目閻魔」「シスターに懺悔を」が追加されます！",
           "confidence": 1.0,
           "calendar_start": "2026-07-17",
           "calendar_end": null
