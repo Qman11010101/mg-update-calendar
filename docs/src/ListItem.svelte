@@ -3,7 +3,7 @@
   import { openItem } from "./detail.svelte.js";
   import TypeTags from "./TypeTags.svelte";
 
-  let { entry, note, onclick = () => openItem(entry) } = $props();
+  let { entry, note, songs, onclick = () => openItem(entry) } = $props();
 </script>
 
 <button
@@ -18,5 +18,12 @@
     <TypeTags types={itemTypes(entry)}>
       {#if note}<span class="item-meta">{note}</span>{/if}
     </TypeTags>
+    {#if songs?.length}
+      <ul class="item-songs">
+        {#each songs as song, index (index)}
+          <li><span class="song-title">{song.title}</span>{#if song.artist}<span class="song-artist">{song.artist}</span>{/if}</li>
+        {/each}
+      </ul>
+    {/if}
   </span>
 </button>

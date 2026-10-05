@@ -1,6 +1,6 @@
 <script>
   import X from "@lucide/svelte/icons/x";
-  import { entrySources, games, isSong, itemTypes, lastUsableDay, period, songLabel } from "../lib/entries.js";
+  import { entrySources, games, isSong, itemTypes, lastUsableDay, period } from "../lib/entries.js";
   import { detail, openItem } from "./detail.svelte.js";
   import ListItem from "./ListItem.svelte";
   import TypeTags from "./TypeTags.svelte";
@@ -54,7 +54,7 @@
         <h3>関連楽曲（{songs.length}件）</h3>
         <div class="family-members">
           {#each songs as member (member)}
-            <ListItem entry={member} note="{period(member)}・{member.songs.map(songLabel).join('、')}" />
+            <ListItem entry={member} note={period(member)} songs={member.songs} />
           {/each}
         </div>
       {/if}
@@ -73,20 +73,24 @@
       {#if item.songs.length}
         <h3>対象楽曲</h3>
         <ul>
-          {#each item.songs as song, index (index)}<li>{songLabel(song)}</li>{/each}
+          {#each item.songs as song, index (index)}<li><strong>{song.title}</strong>{#if song.artist}{` / ${song.artist}`}{/if}</li>{/each}
         </ul>
       {/if}
       <h3>関連記事</h3>
-      {#each entrySources(item) as { title, url, date }, index (index)}
-        <p>
-          {#if url}
-            <a class="source-link" href={url} target="_blank" rel="noopener noreferrer">{title}</a>
-          {:else}
-            {title}
-          {/if}
-        </p>
-        <p class="detail-meta">記事公開日：{date}</p>
-      {/each}
+      <div class="source-cards">
+        {#each entrySources(item) as { title, url, date }, index (index)}
+          <svelte:element
+            this={url ? "a" : "div"}
+            class="source-card"
+            href={url || undefined}
+            target={url ? "_blank" : undefined}
+            rel={url ? "noopener noreferrer" : undefined}
+          >
+            <span class="source-title">{title}</span>
+            <span class="detail-meta">{date}</span>
+          </svelte:element>
+        {/each}
+      </div>
     {/if}
   </div>
 </dialog>
