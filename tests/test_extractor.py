@@ -13,7 +13,9 @@ from openai import OpenAI
 
 from mg_update_calendar.extractor import content_hash, extract_article, main
 from mg_update_calendar.prompts import PROMPT_VERSION
-from mg_update_calendar.models import Article, Cancellation, Entry, display_title, subject_key
+from mg_update_calendar.models import (
+    Article, Cancellation, Entry, FIXED_LABELS, LabelParts, build_label, display_title, subject_key,
+)
 from mg_update_calendar.llm import LLMClient, LLMConfig
 
 
@@ -29,15 +31,29 @@ def songs(*titles):
     return [{'title': title, 'artist': None} for title in titles]
 
 
+LABEL_PARTS = {'collab': False, 'revival': False, 'change': 'add', 'kind_name': None, 'free_label': None}
+
+
 def entry(**changes):
     data = {
         'service': 'chunithm', 'start_is_deadline': False,
-        'type': 'song_add', 'subject': None, 'label': '楽曲追加', 'official_name': None, 'start': '2026-09-25',
+        'type': 'song_add', 'subject': None, **LABEL_PARTS, 'official_name': None, 'start': '2026-09-25',
         'start_time': None, 'end': None, 'end_time': None, 'open_ended': True,
         'songs': songs('曲A', '曲B'), 'date_text': '2026年9月25日より',
         'evidence': '「曲A」「曲B」が追加。', 'confidence': 0.95,
     }
     return data | changes
+
+
+def cancellation_of(**changes):
+    data = {'target_type': 'song_add', 'subject': None, **LABEL_PARTS, 'official_name': None,
+            'songs': [], 'evidence': ARTICLE['body_text'], 'confidence': 0.95}
+    return data | changes
+
+
+def stored(item, label):
+    """LLMの出力を、組み立てたlabelを持つ保存時の形にする。"""
+    return {key: value for key, value in item.items() if key not in LABEL_PARTS} | {'label': label}
 
 
 def wire_extraction(extraction):
@@ -95,7 +111,7 @@ class ExtractionTests(unittest.TestCase):
             return extract_article(generator, Article.model_validate(article or ARTICLE), 8192)
 
     def test_multiple_entries_and_strict_request_through_sdk(self):
-        event = entry(type='event', subject='作品A', label='コラボイベント', end='2026-11-11', open_ended=False, songs=[],
+        event = entry(type='event', subject='作品A', collab=True, end='2026-11-11', open_ended=False, songs=[],
                       date_text='2026年9月25日～2026年11月11日', evidence='コラボは2026年9月25日～2026年11月11日。')
         result = self.extract(response_payload({'entries': [entry(), event], 'review_notes': []}))
         self.assertEqual(result['status'], 'extracted')
@@ -135,16 +151,16 @@ class ExtractionTests(unittest.TestCase):
                     self.assertNotEqual(result['status'], 'failed')
                     body = json.loads(self.requests[0].content)
                     definitions = body['text']['format']['schema']['$defs']
-                    allowed = definitions['Entry']['properties']['type']['enum']
+                    allowed = definitions['EntryDraft']['properties']['type']['enum']
                     self.assertIn(kind, allowed)
                     self.assertNotIn('chart_add', allowed)
                     self.assertNotIn('song_withdrawn', allowed)
-                    self.assertEqual(set(allowed), set(definitions['Cancellation']['properties']['target_type']['enum']))
+                    self.assertEqual(set(allowed), set(definitions['CancellationDraft']['properties']['target_type']['enum']))
                     self.assertIn(game, body['instructions'])
 
     def test_goods_campaign_for_all_games_and_cancellations(self):
         evidence = '2026年9月25日～2026年11月11日、グッズ交換キャンペーンを開催。'
-        campaign = entry(type='goods_campaign', label='グッズ交換キャンペーン', songs=[],
+        campaign = entry(type='goods_campaign', songs=[],
                          end='2026-11-11', open_ended=False,
                          date_text='2026年9月25日～2026年11月11日', evidence=evidence)
         for game in ['chunithm', 'maimai', 'ongeki']:
@@ -157,22 +173,20 @@ class ExtractionTests(unittest.TestCase):
                 self.assertEqual(result['entries'][0]['end'], '2026-11-11')
                 body = json.loads(self.requests[0].content)
                 definitions = body['text']['format']['schema']['$defs']
-                for model, field in [('Entry', 'type'), ('Cancellation', 'target_type')]:
+                for model, field in [('EntryDraft', 'type'), ('CancellationDraft', 'target_type')]:
                     self.assertIn('goods_campaign', definitions[model]['properties'][field]['enum'])
                 self.assertIn('goods_campaign: グッズキャンペーン', body['instructions'])
-                cancellation = {'target_type': 'goods_campaign', 'subject': None, 'label': campaign['label'], 'official_name': None,
-                                'songs': [], 'evidence': 'グッズ交換キャンペーンを中止します。',
-                                'confidence': 0.95}
+                cancellation = cancellation_of(target_type='goods_campaign', evidence='グッズ交換キャンペーンを中止します。')
                 result = self.extract(response_payload({'entries': [], 'cancellations': [cancellation],
                                                        'review_notes': []}),
                                       article | {'body_text': cancellation['evidence']})
                 self.assertNotEqual(result['status'], 'failed')
                 self.assertEqual(result['entries'], [])
-                self.assertEqual(result['cancellations'], [{'title': 'グッズ交換キャンペーン'} | cancellation])
+                self.assertEqual(result['cancellations'], [{'title': 'グッズキャンペーン'} | stored(cancellation, 'グッズキャンペーン')])
 
     def test_chunithm_login_bonus_is_extracted_and_allowed_by_schema(self):
         quote = '2026年7月2日～7月15日の期間中に特別なログインボーナスが登場します！'
-        bonus = entry(type='login_bonus', subject='Mate', label='ログインボーナス', official_name='【祝】Mate ログインボーナス', songs=[],
+        bonus = entry(type='login_bonus', subject='Mate', official_name='【祝】Mate ログインボーナス', songs=[],
                       start='2026-07-02', end='2026-07-15', open_ended=False,
                       date_text='2026年7月2日～7月15日', evidence=quote)
         result = self.extract(response_payload({'entries': [entry(), bonus], 'review_notes': []}),
@@ -181,15 +195,15 @@ class ExtractionTests(unittest.TestCase):
         self.assertEqual(result['attempts'], 1)
         self.assertEqual([e['type'] for e in result['entries']], ['song_add', 'login_bonus'])
         schema = json.loads(self.requests[0].content)['text']['format']['schema']
-        for model, field in [('Entry', 'type'), ('Cancellation', 'target_type')]:
+        for model, field in [('EntryDraft', 'type'), ('CancellationDraft', 'target_type')]:
             self.assertIn('login_bonus', schema['$defs'][model]['properties'][field]['enum'])
-        cancellation = {'target_type': 'login_bonus', 'subject': 'Mate', 'label': 'ログインボーナス', 'official_name': bonus['official_name'], 'songs': [],
-                        'evidence': 'ログインボーナスを中止します。', 'confidence': 0.95}
+        cancellation = cancellation_of(target_type='login_bonus', subject='Mate', official_name=bonus['official_name'],
+                                       evidence='ログインボーナスを中止します。')
         result = self.extract(response_payload({'entries': [], 'cancellations': [cancellation],
                                                'review_notes': []}),
                               ARTICLE | {'body_text': cancellation['evidence']})
         self.assertIsNone(result['error'])
-        self.assertEqual(result['cancellations'], [{'title': '【祝】Mate ログインボーナス'} | cancellation])
+        self.assertEqual(result['cancellations'], [{'title': '【祝】Mate ログインボーナス'} | stored(cancellation, 'ログインボーナス')])
 
     def test_wrong_game_and_removed_types_are_rejected(self):
         for game, kind in [('chunithm', 'utage_add'), ('maimai', 'ultima_add'),
@@ -202,12 +216,11 @@ class ExtractionTests(unittest.TestCase):
                 self.assertEqual(result['entries'], [])
 
     def test_cancellations_are_separate_and_need_matching(self):
-        cancellation = {'target_type': 'song_add', 'subject': '曲A', 'label': '収録見合わせ', 'official_name': None,
-                        'songs': songs('曲A'), 'evidence': '曲Aの収録を見合わせます。', 'confidence': 0.95}
+        cancellation = cancellation_of(subject='曲A', songs=songs('曲A'), evidence='曲Aの収録を見合わせます。')
         article = ARTICLE | {'body_text': cancellation['evidence']}
         result = self.extract(response_payload({'entries': [], 'cancellations': [cancellation], 'review_notes': []}), article)
         self.assertEqual(result['entries'], [])
-        self.assertEqual(result['cancellations'], [{'title': '「曲A」収録見合わせ'} | cancellation])
+        self.assertEqual(result['cancellations'], [{'title': '「曲A」楽曲追加'} | stored(cancellation, '楽曲追加') | {'subject': None}])
         self.assertEqual(result['status'], 'needs_review')
         self.assertTrue(any('照合' in reason for reason in result['review_reasons']))
         for changes in [{'target_type': 'utage_add'}, {'evidence': ''}]:
@@ -216,7 +229,7 @@ class ExtractionTests(unittest.TestCase):
                                                        'review_notes': []}), article)
                 self.assertEqual(result['status'], 'failed')
         result = self.extract(response_payload({'entries': [], 'cancellations': [cancellation | {
-            'target_type': 'other', 'evidence': '架空', 'confidence': 0.2}], 'review_notes': []}), article)
+            'target_type': 'other', 'free_label': '告知A中止', 'evidence': '架空', 'confidence': 0.2}], 'review_notes': []}), article)
         self.assertTrue(any('原文根拠' in reason for reason in result['review_reasons']))
         self.assertTrue(any('種類が不明' in reason for reason in result['review_reasons']))
         self.assertTrue(any('confidence' in reason for reason in result['review_reasons']))
@@ -237,13 +250,14 @@ class ExtractionTests(unittest.TestCase):
                             'entries': [entry(type=kind, songs=blank), kept],
                             'review_notes': ['曲名は画像内にあります。'],
                         }), ARTICLE | {'game': game})
-                        self.assertEqual(result['entries'], [{'title': '楽曲追加'} | kept | {'calendar_start': kept['start'], 'calendar_end': kept['end']}])
+                        label = FIXED_LABELS[kind]
+                        self.assertEqual(result['entries'], [{'title': label} | stored(kept, label) | {'calendar_start': kept['start'], 'calendar_end': kept['end']}])
                         self.assertEqual(result['error'], None)
                         self.assertIn('曲名は画像内にあります。', result['review_reasons'])
 
     def test_only_empty_song_entry_becomes_successful_empty_extraction(self):
         result = self.extract(response_payload({
-            'entries': [entry(label='新曲を大量追加！', songs=[])], 'review_notes': [],
+            'entries': [entry(songs=[])], 'review_notes': [],
         }))
         self.assertEqual(result['entries'], [])
         self.assertEqual(result['status'], 'extracted')
@@ -255,12 +269,13 @@ class ExtractionTests(unittest.TestCase):
                       'remaster_add', 'dx_chart_add', 'standard_chart_add', 'utage_add', 'lunatic_add'}
         for game, kinds in GAME_ENTRY_TYPES.items():
             with self.subTest(game=game):
-                entries = [entry(type=kind, songs=[]) for kind in kinds if kind not in song_types]
+                entries = [entry(type=kind, songs=[], free_label='告知A' if kind in ('service_change', 'other') else None,
+                                 open_ended=kind != 'version_launch')
+                           for kind in kinds if kind not in song_types]
                 for item in entries:
                     if item['type'] == 'event':
-                        item.update(subject='作品A', label='コラボイベント', evidence=ARTICLE['body_text'], end='2026-11-11', open_ended=False)
-                cancellation = {'target_type': 'song_add', 'subject': None, 'label': '収録見合わせ', 'official_name': None,
-                                'songs': [], 'evidence': ARTICLE['body_text'], 'confidence': 0.95}
+                        item.update(subject='作品A', collab=True, evidence=ARTICLE['body_text'], end='2026-11-11', open_ended=False)
+                cancellation = cancellation_of()
                 result = self.extract(response_payload({
                     'entries': entries, 'cancellations': [cancellation], 'review_notes': [],
                 }), ARTICLE | {'game': game})
@@ -268,9 +283,9 @@ class ExtractionTests(unittest.TestCase):
                 self.assertTrue(all(e['songs'] == [] for e in result['entries']))
                 for expected in entries:
                     actual = next(e for e in result['entries'] if e['type'] == expected['type'])
-                    for field in ('start', 'end', 'subject', 'label', 'open_ended'):
+                    for field in ('start', 'end', 'subject', 'open_ended'):
                         self.assertEqual(actual[field], expected[field])
-                self.assertEqual(result['cancellations'], [{'title': '収録見合わせ'} | cancellation])
+                self.assertEqual(result['cancellations'], [{'title': '楽曲追加'} | stored(cancellation, '楽曲追加')])
 
     def test_service_deadline_boundaries_and_original_times(self):
         cases = [
@@ -287,7 +302,7 @@ class ExtractionTests(unittest.TestCase):
         ]
         for game, service, clock, expected in cases:
             with self.subTest(game=game, service=service, clock=clock):
-                item = entry(type='service_change', service=service, start_is_deadline=True,
+                item = entry(type='service_change', free_label='楽曲プレイ期限', service=service, start_is_deadline=True,
                              start='2026-09-01', start_time=clock, open_ended=False)
                 result = self.extract(response_payload({'entries': [item], 'review_notes': []}),
                                       ARTICLE | {'game': game})
@@ -301,9 +316,9 @@ class ExtractionTests(unittest.TestCase):
 
     def test_same_article_services_and_start_actions_are_independent(self):
         items = [
-            entry(type='service_change', service='card_maker', start_is_deadline=True,
+            entry(type='service_change', free_label='パス販売終了', service='card_maker', start_is_deadline=True,
                   start='2026-09-02', start_time='01:59', open_ended=False),
-            entry(type='service_change', service='maimai', start_time='01:59', open_ended=False),
+            entry(type='service_change', free_label='新機能実装', service='maimai', start_time='01:59', open_ended=False),
         ]
         result = self.extract(response_payload({'entries': items, 'review_notes': []}),
                               ARTICLE | {'game': 'maimai'})
@@ -314,7 +329,7 @@ class ExtractionTests(unittest.TestCase):
         self.assertIn('maimai: 04:00〜07:00', instructions)
 
     def test_period_end_uses_last_available_day_and_can_become_single_day(self):
-        item = entry(type='event', subject='作品A', label='コラボイベント', evidence=ARTICLE['body_text'], service='maimai', start='2026-09-01', start_time='07:00',
+        item = entry(type='event', subject='作品A', collab=True, evidence=ARTICLE['body_text'], service='maimai', start='2026-09-01', start_time='07:00',
                      end='2026-09-02', end_time='03:59', open_ended=False)
         result = self.extract(response_payload({'entries': [item], 'review_notes': []}),
                               ARTICLE | {'game': 'maimai'})
@@ -331,12 +346,12 @@ class ExtractionTests(unittest.TestCase):
             {'type': 'maintenance', 'start_is_deadline': False},
             {'start_time': None}, {'start_time': '07:00'}, {'start_time': '10:00'},
         ]:
-            item = entry(type='service_change', start_is_deadline=True, start_time='02:00',
+            item = entry(type='service_change', free_label='楽曲プレイ期限', start_is_deadline=True, start_time='02:00',
                          start='2026-01-01', open_ended=False)
             item.update(changes)
             result = self.extract(response_payload({'entries': [item], 'review_notes': []}))
             self.assertEqual(result['entries'][0]['calendar_start'], '2026-01-01')
-        item = entry(type='service_change', start_is_deadline=True, start_time='01:59',
+        item = entry(type='service_change', free_label='楽曲プレイ期限', start_is_deadline=True, start_time='01:59',
                      start='2026-01-01', open_ended=False)
         result = self.extract(response_payload({'entries': [item], 'review_notes': []}))
         self.assertEqual(result['entries'][0]['calendar_start'], '2025-12-31')
@@ -355,7 +370,7 @@ class ExtractionTests(unittest.TestCase):
                 self.assertEqual(result['error'], error)
 
     def test_invalid_schema_dates_times_and_types_are_failures(self):
-        for invalid in [entry(start='2026-02-30'), entry(start_time='24:00'),
+        for invalid in [entry(start='2026-02-30'), entry(start_time='24:01'), entry(start=None, start_time='24:00'),
                         entry(type='invented'), entry(confidence=1.1), entry(extra='oops'),
                         entry(open_ended='true'), entry(service='invented'), entry(start_is_deadline='true')]:
             with self.subTest(invalid=invalid):
@@ -368,12 +383,66 @@ class ExtractionTests(unittest.TestCase):
         self.assertTrue(any('evidence' in reason for reason in result['review_reasons']))
         self.assertTrue(any('終了日が開始日より前' in reason for reason in result['review_reasons']))
 
+    def test_start_weekday_must_match_the_quoted_weekday(self):
+        article = ARTICLE | {'body_text': '2025年9月25日(木)より「曲A」「曲B」が追加。8/12(水)まで。'}
+        cases = [
+            ('2025-09-25', '2025年9月25日(木)より', False),
+            ('2026-09-25', '2025年9月25日(木)より', True),  # 2026-09-25は金曜日
+            ('2026-09-24', '2026年9月24日（木）より', False),
+            ('2026-09-25', '8/12(水)まで。', False),  # 開始日以外の月日は照合しない
+            ('2026-09-25', '2026年9月25日より', False),
+        ]
+        for start, date_text, mismatch in cases:
+            with self.subTest(start=start, date_text=date_text):
+                result = self.extract(response_payload({'entries': [entry(start=start, date_text=date_text)],
+                                                        'review_notes': []}), article)
+                self.assertEqual(any('曜日' in reason for reason in result['review_reasons']), mismatch)
+
     def test_song_entries_with_end_date_need_review(self):
         result = self.extract(response_payload({'entries': [
-            entry(type='song_unlock', label='楽曲一般開放', end='2026-11-11', open_ended=False)], 'review_notes': []}))
+            entry(type='song_unlock', end='2026-11-11', open_ended=False)], 'review_notes': []}))
         self.assertEqual(result['status'], 'needs_review')
         self.assertTrue(any('楽曲・譜面追加に終了日' in reason for reason in result['review_reasons']))
         self.assertEqual(result['entries'][0]['end'], '2026-11-11')
+
+    def test_version_launch_becomes_a_single_day(self):
+        for changes in ({'open_ended': True}, {'end': '2026-11-11', 'end_time': '03:59', 'open_ended': False}):
+            with self.subTest(changes=changes):
+                result = self.extract(response_payload({'entries': [
+                    entry(type='version_launch', songs=[], **changes)], 'review_notes': []}))
+                self.assertEqual(result['status'], 'extracted')
+                actual = result['entries'][0]
+                self.assertEqual((actual['end'], actual['end_time'], actual['open_ended']), (None, None, False))
+                self.assertTrue(any('バージョン稼働' in note for note in result['notes']))
+
+    def test_midnight_24_00_becomes_00_00_of_the_next_day(self):
+        result = self.extract(response_payload({'entries': [
+            entry(type='event', subject='作品A', songs=[], start='2026-09-24', start_time='24:00',
+                  end='2026-10-31', end_time='24:00', open_ended=False)], 'review_notes': []}))
+        actual = result['entries'][0]
+        self.assertEqual((actual['start'], actual['start_time'], actual['end'], actual['end_time']),
+                         ('2026-09-25', '00:00', '2026-11-01', '00:00'))
+
+    def test_double_corner_brackets_and_song_cancellation_subjects_are_normalized(self):
+        body = '『作品A』のイベントと、曲Aの収録見合わせ。'
+        result = self.extract(response_payload({
+            'entries': [entry(type='event', subject='『作品A』', official_name='『作品A』記念イベント', songs=[], evidence=body)],
+            'cancellations': [cancellation_of(subject='作品A', songs=songs('曲A'), evidence=body)],
+            'review_notes': []}), ARTICLE | {'body_text': body})
+        self.assertEqual((result['entries'][0]['subject'], result['entries'][0]['official_name']),
+                         ('「作品A」', '「作品A」記念イベント'))
+        self.assertIsNone(result['cancellations'][0]['subject'])
+        self.assertEqual(result['cancellations'][0]['title'], '「曲A」楽曲追加')
+
+    def test_readings_after_names_are_removed(self):
+        result = self.extract(response_payload({'entries': [
+            entry(type='version_launch', subject='maimai でらっくす MAGiCAL（マジカル）'),
+            entry(subject='CHUNITHM Mate (チュウニズム メイト)', official_name='CHUNITHM Mate (チュウニズム メイト) 記念イベント'),
+            entry(subject='作品A（第2弾）')], 'review_notes': []}))
+        self.assertEqual([item['subject'] for item in result['entries']],
+                         ['maimai でらっくす MAGiCAL', 'CHUNITHM Mate', '作品A（第2弾）'])
+        self.assertEqual(result['entries'][0]['title'], 'maimai でらっくす MAGiCAL 稼働')
+        self.assertEqual(result['entries'][1]['official_name'], 'CHUNITHM Mate 記念イベント')
 
     def test_unknown_dates_and_low_confidence_are_preserved(self):
         result = self.extract(response_payload({'entries': [entry(start=None, date_text='', confidence=0.4)], 'review_notes': ['年が不明']}))
@@ -417,6 +486,54 @@ class ExtractionTests(unittest.TestCase):
         self.assertEqual(result['error'], 'AuthenticationError')
         self.assertNotIn('secret-key', json.dumps(result))
 
+    def test_labels_are_built_from_flags_and_descriptions(self):
+        body = '作品Aの復刻コラボ、作品Bと作品Cのシルバージュエルイベント、マップ拡張、サービス変更。'
+        base = entry(service='chunithm', songs=[], evidence=body, end='2026-11-11', open_ended=False)
+        items = [
+            base | {'type': 'event', 'subject': '作品A', 'collab': True, 'revival': True},
+            base | {'type': 'event', 'subject': '作品B', 'kind_name': 'シルバージュエルイベント'},
+            base | {'type': 'event', 'subject': '作品C', 'kind_name': 'シルバージュエルイベント「作品C」'},
+            base | {'type': 'map_add', 'subject': 'マップD', 'change': 'expand'},
+            base | {'type': 'service_change', 'free_label': '『機能E』提供終了'},
+            entry(free_label='無視される記述'),
+        ]
+        result = self.extract(response_payload({'entries': items, 'review_notes': []}),
+                              ARTICLE | {'body_text': ARTICLE['body_text'] + body})
+        self.assertEqual([e['label'] for e in result['entries']], [
+            'リバイバルイベント', 'シルバージュエルイベント', 'イベント', 'マップ拡張', '「機能E」提供終了', '楽曲追加'])
+        self.assertTrue(all(key not in e for e in result['entries'] for key in LABEL_PARTS))
+        self.assertEqual(len(result['notes']), 1)
+        self.assertIn('シルバージュエルイベント「作品C」', result['notes'][0])
+
+    def test_official_names_drop_kind_names_and_ranking_events_become_rankings(self):
+        body = '全国対戦イベント ～ 第9回「皇帝イベント」 ～盟帝～、オリジナルランキングイベント「作品A」開催。'
+        base = entry(type='event', songs=[], evidence=body, end='2026-11-11', open_ended=False)
+        official = base | {'subject': '第9回「皇帝イベント」 ～盟帝～', 'kind_name': '全国対戦イベント',
+                           'official_name': '第9回「皇帝イベント」 ～盟帝～'}
+        ranking = base | {'subject': '作品A', 'kind_name': 'オリジナルランキングイベント', 'service': 'ongeki'}
+        result = self.extract(response_payload({'entries': [official, ranking], 'review_notes': []}),
+                              ARTICLE | {'game': 'ongeki', 'body_text': ARTICLE['body_text'] + body})
+        self.assertEqual([(e['type'], e['label'], e['title']) for e in result['entries']], [
+            ('event', 'イベント', '第9回「皇帝イベント」 ～盟帝～'),
+            ('ranking', 'オリジナルランキングイベント', '「作品A」オリジナルランキングイベント'),
+        ])
+        self.assertEqual(len(result['notes']), 1)
+        self.assertIn('ranking', result['notes'][0])
+        # rankingのないゲームではイベントのまま種類名を使う。
+        result = self.extract(response_payload({'entries': [ranking | {'service': 'chunithm'}], 'review_notes': []}),
+                              ARTICLE | {'body_text': ARTICLE['body_text'] + body})
+        self.assertEqual([(e['type'], e['label']) for e in result['entries']], [('event', 'オリジナルランキングイベント')])
+
+    def test_free_label_types_without_description_are_retried_and_fail(self):
+        for item in (entry(type='service_change'), entry(type='other', free_label=' ')):
+            with self.subTest(item=item):
+                result = self.extract(response_payload({'entries': [item], 'review_notes': []}))
+                self.assertEqual(result['status'], 'failed')
+                self.assertEqual(result['error'], 'missing_free_label')
+                self.assertEqual(result['attempts'], 3)
+                self.assertEqual(result['validation_errors'][0]['errors'],
+                                 [{'loc': ['entries', 0, 'free_label'], 'type': 'missing_free_label'}])
+
     def test_empty_publication_date_is_supported(self):
         result = self.extract(response_payload({'entries': [entry()], 'review_notes': []}), ARTICLE | {'date': ''})
         self.assertEqual(result['status'], 'needs_review')
@@ -424,7 +541,7 @@ class ExtractionTests(unittest.TestCase):
 
     def test_events_and_other_announcements_are_independent(self):
         body = '作品Aのイベントとテクニカルチャレンジを開催。'
-        event = entry(type='event', subject='作品A', label='イベント', end='2026-11-11', open_ended=False,
+        event = entry(type='event', subject='作品A', end='2026-11-11', open_ended=False,
                       songs=[], evidence=body, service='ongeki')
         challenge = event | {'type': 'technical_challenge', 'end': '2026-12-01'}
         result = self.extract(response_payload({'entries': [event, challenge], 'review_notes': []}),
@@ -437,18 +554,18 @@ class ExtractionTests(unittest.TestCase):
         self.assertEqual(set(schema['properties']), {'entries', 'cancellations', 'notes', 'review_notes'})
         for key in ('parent_ref', 'event_ref', 'relation_evidence', 'event_name', 'event_evidence',
                     'event_id', 'event_parent_id'):
-            self.assertNotIn(key, schema['$defs']['Entry']['properties'])
+            self.assertNotIn(key, schema['$defs']['EntryDraft']['properties'])
             self.assertTrue(all(key not in e for e in result['entries']))
-        self.assertIn('event', schema['$defs']['Entry']['properties']['type']['enum'])
+        self.assertIn('event', schema['$defs']['EntryDraft']['properties']['type']['enum'])
         self.assertNotIn('events', result)
 
     def test_collab_contents_are_merged_into_the_matching_event(self):
         body = '作品Aちほー2と作品Bちほー2がオープン。作品Aのコラボ第2弾と作品Aのリバイバルを開催。'
         maimai = ARTICLE | {'game': 'maimai', 'body_text': body}
-        base = entry(service='maimai', songs=[], evidence=body, open_ended=False, label='イベント')
-        collab = base | {'type': 'event', 'subject': '作品A 第2弾', 'label': 'コラボイベント'}
-        revival = base | {'type': 'event', 'subject': '作品A', 'label': 'リバイバルイベント', 'end': '2026-11-11'}
-        area = base | {'type': 'area_add', 'subject': '作品Aちほー2', 'label': 'ちほー追加',
+        base = entry(service='maimai', songs=[], evidence=body, open_ended=False)
+        collab = base | {'type': 'event', 'subject': '作品A 第2弾', 'collab': True}
+        revival = base | {'type': 'event', 'subject': '作品A', 'revival': True, 'end': '2026-11-11'}
+        area = base | {'type': 'area_add', 'subject': '作品Aちほー2',
                        'start_time': '10:00', 'end': '2026-11-11'}
         other_area = area | {'subject': 'k4sen ＆ 作品Aちほー2'}
         result = self.extract(response_payload({'entries': [collab, revival, area, other_area], 'review_notes': []}),
@@ -472,8 +589,8 @@ class ExtractionTests(unittest.TestCase):
         self.assertEqual([(e['type'], e['start_time'], e['end']) for e in result['entries']],
                          [('area_add', '10:00', '2026-11-11')])
 
-        map_entry = base | {'type': 'map_add', 'subject': '作品C 第二弾', 'label': 'マップ追加', 'service': 'chunithm'}
-        event = map_entry | {'type': 'event', 'label': 'コラボイベント', 'end': '2026-10-21'}
+        map_entry = base | {'type': 'map_add', 'subject': '作品C 第二弾', 'service': 'chunithm'}
+        event = map_entry | {'type': 'event', 'collab': True, 'end': '2026-10-21'}
         result = self.extract(response_payload({'entries': [event, map_entry], 'review_notes': []}),
                               ARTICLE | {'body_text': body})
         self.assertEqual([(e['type'], e['end']) for e in result['entries']], [('event', '2026-10-21')])
@@ -666,20 +783,16 @@ class IncrementalExtractionTests(unittest.TestCase):
         self.assertIn('  + 楽曲追加 2026-09-25', self.stderr)
         self.assertIn('extracted=2, reused=1, failed=0', self.stdout)
 
-    def test_prompt_model_and_failure_trigger_extraction(self):
+    def test_failure_triggers_extraction_but_prompt_and_model_changes_do_not(self):
         articles = [news(1), news(2), news(3), news(4)]
         previous = self.document(previous_result(articles[0], prompt_version='0'),
                                  previous_result(articles[1], model='other-model'),
                                  previous_result(articles[2], status='failed'),
                                  previous_result(articles[3]))
-        for item in previous['articles'][1:]:
-            item.setdefault('provider', 'openai')
-            item.setdefault('model', 'gpt-5.6-luna')
         self.run_cli(articles, previous, ['--dry-run'])
-        self.assertEqual(self.stdout.splitlines()[:3],
-                         [f'{reason}: [chunithm] 2026-09-22 {ARTICLE["title"]} {article["url"]}'
-                          for reason, article in zip(['prompt', 'model', 'failed'], articles)])
-        self.assertIn('extract=3, reuse=1', self.stdout)
+        self.assertEqual(self.stdout.splitlines()[:1],
+                         [f'failed: [chunithm] 2026-09-22 {ARTICLE["title"]} {articles[2]["url"]}'])
+        self.assertIn('extract=1, reuse=3', self.stdout)
 
     def test_full_and_url_force_extraction(self):
         articles = [news(1), news(2)]
@@ -748,7 +861,7 @@ class DisplayTitleTests(unittest.TestCase):
         self.assertIsNone(subject_key(' 「」 '))
 
     def title(self, **changes):
-        return display_title(Entry.model_validate(entry(**{'type': 'event'} | changes)))
+        return display_title(Entry.model_validate(stored(entry(type='event'), '楽曲追加') | changes))
 
     def test_titles_are_built_from_subject_label_and_official_name(self):
         cases = [
@@ -828,6 +941,46 @@ class DisplayTitleTests(unittest.TestCase):
         cancellation = Cancellation(target_type='friend_battle', subject='シーズン29', label='オトモダチ対戦',
                                     official_name=None, songs=[], evidence='中止', confidence=0.9)
         self.assertEqual(display_title(cancellation), 'オトモダチ対戦 シーズン29')
+
+
+class LabelTests(unittest.TestCase):
+    def test_labels_follow_the_type_flags_and_descriptions(self):
+        cases = [
+            ('song_add', 'chunithm', {}, None, '楽曲追加'),
+            ('song_add', 'chunithm', {'change': 'expand', 'free_label': '新曲'}, None, '楽曲追加'),
+            ('song_unlock', 'maimai', {}, None, '楽曲一般開放'),
+            ('song_unlock', 'maimai', {'change': 'relax'}, None, '楽曲解禁条件緩和'),
+            ('course_add', 'chunithm', {}, None, 'クラス認定コース追加'),
+            ('course_add', 'maimai', {}, None, '段位認定コース追加'),
+            ('area_add', 'maimai', {'change': 'expand'}, '天界ちほー9', 'ちほー拡張'),
+            ('chapter_add', 'ongeki', {'change': 'add_and_expand'}, None, 'チャプター追加・拡張'),
+            ('event', 'chunithm', {}, '作品A', 'イベント'),
+            ('event', 'chunithm', {'collab': True}, '作品A', 'コラボイベント'),
+            ('event', 'chunithm', {'collab': True, 'revival': True}, '作品A', 'リバイバルイベント'),
+            ('event', 'ongeki', {'kind_name': ' ジュエルイベント '}, '作品A【第3弾】', 'ジュエルイベント'),
+            ('event', 'ongeki', {'kind_name': 'コラボイベント'}, '作品A', 'イベント'),
+            ('event', 'ongeki', {'kind_name': '作品Aイベント'}, '作品A', 'イベント'),
+            ('event', 'ongeki', {'kind_name': '特別企画'}, '作品A', 'イベント'),
+            ('ranking', 'ongeki', {}, '作品A', 'ランキングイベント'),
+            ('ranking', 'ongeki', {'kind_name': 'ぷちランキングイベント'}, '作品A', 'ぷちランキングイベント'),
+            ('maintenance', 'maimai', {}, 'maimai', 'メンテナンス'),
+            ('maintenance', 'maimai', {'free_label': 'ネットワークメンテナンス'}, 'maimai', 'ネットワークメンテナンス'),
+            ('service_change', 'maimai', {'free_label': '『機能A』提供終了'}, None, '「機能A」提供終了'),
+            ('other', 'maimai', {'free_label': '  '}, None, None),
+        ]
+        for kind, game, changes, subject, expected in cases:
+            with self.subTest(kind=kind, changes=changes):
+                parts = LabelParts.model_validate(LABEL_PARTS | changes)
+                self.assertEqual(build_label(kind, game, parts, subject), expected)
+
+    def test_every_allowed_type_has_a_label(self):
+        from mg_update_calendar.models import GAME_ENTRY_TYPES
+
+        parts = LabelParts.model_validate(LABEL_PARTS | {'free_label': '告知A'})
+        for game, kinds in GAME_ENTRY_TYPES.items():
+            for kind in kinds:
+                with self.subTest(game=game, kind=kind):
+                    self.assertTrue(build_label(kind, game, parts, None))
 
 
 if __name__ == '__main__':

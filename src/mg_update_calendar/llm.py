@@ -95,8 +95,11 @@ class DeepSeekProvider:
 
     def generate_json(self, request: LLMRequest) -> str:
         # JSONモードはスキーマを強制しないため、形状を指示文にも含める。
-        instructions = request.instructions + "\n以下のJSON Schemaに従うJSONオブジェクトのみを返してください。\n" + json.dumps(
-            request.schema, ensure_ascii=False)
+        instructions = request.instructions + (
+            "\n以下のJSON Schemaに従うJSONオブジェクトのみを返してください。"
+            "必須フィールドはすべて出力し、配列は省略やnullにせず空配列を、不明な値はスキーマで許可されたnullを使用してください。"
+            "文字列の「null」「true」や空文字を日時の代わりに使わず、余分なフィールドやMarkdownのコードブロックは出力しないでください。\n"
+        ) + json.dumps(request.schema, ensure_ascii=False)
         response = self.client.chat.completions.create(
             model=self.model,
             messages=[{"role": "system", "content": instructions},

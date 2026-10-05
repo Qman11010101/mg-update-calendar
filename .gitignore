@@ -12,6 +12,7 @@ wheels/
 # Scraper outputs (Gitに上げない)
 *.json
 !package.json
+!tests/regression_cases.json
 *.env
 # Node.js
 node_modules/

@@ -1,0 +1,181 @@
+[
+  {
+    "url": "https://info-chunithm.sega.jp/13112/",
+    "reason": "正式名称のあるイベントに原文の種類名（全国対戦イベント）を重ねない",
+    "expect": [
+      {"type": "event", "title": "第9回「皇帝イベント」 ～盟帝～", "start": "2026-09-10", "end": "2026-09-13"}
+    ]
+  },
+  {
+    "url": "https://info-chunithm.sega.jp/12527/",
+    "reason": "リバイバルイベントの対象名にリバイバルを含めない",
+    "expect": [
+      {"type": "event", "title": "「ストリートファイター 6」リバイバルイベント", "start": "2026-09-03", "end": "2026-10-21"},
+      {"type": "quest", "title": "「ストリートファイター 6」チュウニズムクエスト", "start": "2026-09-03", "end": "2026-10-21"}
+    ]
+  },
+  {
+    "url": "https://info-ongeki.sega.jp/12920/",
+    "reason": "オリジナルランキングイベントはeventではなくranking（イベントストーリー追加をchapter_addにするかは判断が分かれるため照合しない）",
+    "expect": [
+      {"type": "ranking", "label": "オリジナルランキングイベント", "start": "2026-08-20", "end": "2026-09-02"},
+      {"type": "song_add", "start": "2026-08-20", "songs_include": ["morph", "ときめきインビテーション"]}
+    ],
+    "forbid": [{"type": "event"}]
+  },
+  {
+    "url": "https://info-ongeki.sega.jp/12533/",
+    "reason": "原文の種類名（ジュエルイベント）をlabelに使う",
+    "expect": [
+      {"type": "event", "title": "「Muse Dash」ジュエルイベント", "start": "2026-08-06", "end": "2026-10-28"}
+    ]
+  },
+  {
+    "url": "https://info-chunithm.sega.jp/12053/",
+    "reason": "本文の年の誤記（2025年6月18日(木)）を採用せず、曜日と公開日に合う2026年にする",
+    "expect": [
+      {"type": "map_add", "subject": "maimai でらっくす Part2", "start": "2026-06-18"},
+      {"type": "song_add", "subject": "maimai でらっくす Part2", "start": "2026-06-18", "songs_include": ["プリズム△▽リズム", "ARAIS"]},
+      {"type": "map_add", "subject": "オンゲキ Chapter7 【WakeUP MakeUP FEVER!】", "start": "2026-06-18"}
+    ],
+    "forbid": [{"start": "2025-06-18"}]
+  },
+  {
+    "url": "https://info-chunithm.sega.jp/12155/",
+    "reason": "正式名称のログインボーナス、コラボ楽曲の追加をイベントにまとめず残す",
+    "expect": [
+      {"type": "version_launch", "title": "CHUNITHM Mate 稼働", "start": "2026-07-02"},
+      {"type": "login_bonus", "title": "【祝】Mate ログインボーナス", "start": "2026-07-02", "end": "2026-07-15"},
+      {"type": "event", "title": "「モンスターハンターワイルズ」コラボイベント", "start": "2026-07-02", "end": "2026-08-19"},
+      {"type": "song_add", "subject": "モンスターハンターワイルズ", "songs_include": ["英雄の証", "白光に響く生命の叫び"]},
+      {"type": "event", "title": "「タコピーの原罪」コラボイベント", "start": "2026-07-02", "end": "2026-07-29"},
+      {"type": "song_add", "subject": "タコピーの原罪", "songs_include": ["ハッピーラッキーチャッピー"]}
+    ]
+  },
+  {
+    "url": "https://info-maimai.sega.jp/9577/",
+    "reason": "別記事で告知される新バージョン稼働への言及からversion_launchを作らない",
+    "expect": [
+      {"type": "event", "title": "「超かぐや姫！」コラボイベント", "start": "2026-09-17", "end": "2026-11-19"},
+      {"type": "song_add", "subject": "超かぐや姫！", "start": "2026-09-17"}
+    ],
+    "forbid": [{"type": "version_launch"}]
+  },
+  {
+    "url": "https://info-maimai.sega.jp/9573/",
+    "reason": "別記事で告知される新バージョン稼働への言及からversion_launchを作らない",
+    "expect": [
+      {"type": "event", "title": "「野原ひろし 昼メシの流儀」コラボイベント", "start": "2026-09-17", "end": "2026-11-19"},
+      {"type": "song_add", "subject": "野原ひろし 昼メシの流儀", "songs_include": ["ごはん食べヨ"]}
+    ],
+    "forbid": [{"type": "version_launch"}]
+  },
+  {
+    "url": "https://info-maimai.sega.jp/9081/",
+    "reason": "ジャンル名「オンゲキ＆CHUNITHM」を他のゲームと取り違えず、新曲追加を抽出する",
+    "expect": [
+      {"type": "area_add", "subject": "イロドリミドリちほー2", "start": "2026-07-02", "end": "2026-09-16"},
+      {"type": "song_add", "start": "2026-07-02", "songs_include": ["私たちは、花になる", "Here the Our MIRAI!"]},
+      {"type": "song_add", "subject": "イロドリミドリちほー2", "songs_include": ["色彩過剰のダイアリーミュージック"]}
+    ]
+  },
+  {
+    "url": "https://info-chunithm.sega.jp/12972/",
+    "reason": "補足として書かれた初期不良カードの期限も、日付ごとに独立させる",
+    "expect": [
+      {"type": "service_change", "start": "2026-09-02", "start_is_deadline": true},
+      {"type": "service_change", "start": "2026-10-02"},
+      {"type": "service_change", "start": "2026-10-18"}
+    ]
+  },
+  {
+    "url": "https://info-maimai.sega.jp/9772/",
+    "reason": "販売停止・効果終了・代替機能・初期不良カードの期限を日付ごとに独立させる",
+    "expect": [
+      {"type": "service_change", "start": "2026-09-02"},
+      {"type": "service_change", "start": "2026-09-17", "start_time": "03:59"},
+      {"type": "service_change", "start": "2026-09-17", "start_time": "07:00"},
+      {"type": "service_change", "start": "2026-10-02"},
+      {"type": "service_change", "start": "2026-10-18"}
+    ]
+  },
+  {
+    "url": "https://info-maimai.sega.jp/9463/",
+    "reason": "イベント期間中の参加受付終了を独立させる",
+    "expect": [
+      {"type": "event", "subject": "サークルフェスタ シーズン3", "start": "2026-06-12", "end": "2026-06-28"},
+      {"type": "service_change", "start": "2026-06-19"}
+    ]
+  },
+  {
+    "url": "https://info-chunithm.sega.jp/12423/",
+    "reason": "新機能の紹介を個別のエントリにせず、別記事で告知される稼働からversion_launchを作らない。日付のある廃止は残す",
+    "expect": [
+      {"type": "service_change", "start": "2026-07-02"}
+    ],
+    "forbid": [{"type": "version_launch"}],
+    "count": {"service_change": [1, 3], "other": [0, 1]}
+  },
+  {
+    "url": "https://info-ongeki.sega.jp/12282/",
+    "reason": "新機能の紹介記事で、別記事で告知される稼働からversion_launchを作らない",
+    "expect": [],
+    "forbid": [{"type": "version_launch"}],
+    "count": {"service_change": [0, 1], "other": [0, 1]}
+  },
+  {
+    "url": "https://info-maimai.sega.jp/9568/",
+    "reason": "稼働日決定の記事で、新機能の紹介を個別のエントリにせず、リセットや削除は残す",
+    "expect": [
+      {"type": "version_launch", "title": "maimai でらっくす MAGiCAL 稼働", "start": "2026-09-17"},
+      {"type": "area_add", "subject": "魔法おうこくちほー", "start": "2026-09-17"},
+      {"type": "song_unlock", "start": "2026-09-17", "songs_include": ["Break The Speakers"]},
+      {"type": "service_change", "start": "2026-09-17", "songs_include": ["お願いマッスル", "Burn My Soul"]}
+    ],
+    "count": {"service_change": [2, 7], "other": [0, 1]}
+  },
+  {
+    "url": "https://info-chunithm.sega.jp/13084/",
+    "reason": "本文が空でも、タイトルからサービス変更を抽出する",
+    "status": "needs_review",
+    "expect": [
+      {"type": "service_change", "start": null}
+    ]
+  },
+  {
+    "url": "https://info-chunithm.sega.jp/12440/",
+    "reason": "Linked Gateの発見条件緩和はsong_unlockではなくother",
+    "expect": [
+      {"type": "other", "start": "2026-08-06"},
+      {"type": "map_add", "subject": "ロシェの配信部屋", "start": "2026-08-06"}
+    ],
+    "forbid": [{"type": "song_unlock", "label": "楽曲解禁条件緩和"}]
+  },
+  {
+    "url": "https://info-chunithm.sega.jp/12670/",
+    "reason": "Linked Gateの発見条件緩和をotherとして残す。コラボのクエストに作品名を付ける",
+    "expect": [
+      {"type": "other", "start": "2026-09-03"},
+      {"type": "event", "title": "「GUILTY GEAR -STRIVE-」コラボイベント", "start": "2026-09-03"},
+      {"type": "quest", "title": "「GUILTY GEAR -STRIVE-」チュウニズムクエスト", "start": "2026-09-03"}
+    ],
+    "forbid": [{"type": "song_unlock", "label": "楽曲解禁条件緩和"}]
+  },
+  {
+    "url": "https://info-maimai.sega.jp/9285/",
+    "reason": "でらっくす譜面の一般開放はservice_changeではなくsong_unlock",
+    "expect": [
+      {"type": "area_add", "subject": "天界ちほー9", "start": "2026-08-07"},
+      {"type": "song_unlock", "start": "2026-09-17", "songs_include": ["チルノのパーフェクトさんすう教室", "BAD∞END∞NIGHT"]}
+    ]
+  },
+  {
+    "url": "https://info-maimai.sega.jp/9609/",
+    "reason": "以前のシーズンで獲得できた譜面を今回のシーズンの譜面追加にしない",
+    "expect": [
+      {"type": "friend_battle", "title": "オトモダチ対戦 シーズン29", "start": "2026-10-02"},
+      {"type": "standard_chart_add", "subject": "オトモダチ対戦 シーズン29", "songs_include": ["居並ぶ穀物と溜息まじりの運送屋"]}
+    ],
+    "forbid": [{"type": "dx_chart_add"}]
+  }
+]

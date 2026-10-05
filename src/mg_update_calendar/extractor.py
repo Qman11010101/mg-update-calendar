@@ -4,28 +4,31 @@ import argparse
 from collections import Counter
 from dataclasses import replace
 from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 import hashlib
 import json
 from pathlib import Path
 import re
 import sys
 import tempfile
-from typing import Any
+from typing import Any, TypeVar
 import unicodedata
 
 from dotenv import load_dotenv
 from pydantic import ValidationError
 
 from mg_update_calendar.models import (
-    Article, Entry, Cancellation, Extraction, Song,
-    Game, GAME_ENTRY_TYPES, ENTRY_LABELS, SONG_TYPES, CONTENT_TYPES, display_title, extraction_schema, subject_key,
+    Article, Entry, Cancellation, Extraction, Song, StructuredModel, LabelParts,
+    EntryDraft, CancellationDraft, ExtractionDraft,
+    Game, GAME_ENTRY_TYPES, ENTRY_LABELS, SONG_TYPES, CONTENT_TYPES, FREE_LABEL_TYPES, KIND_NAME_TYPES,
+    build_label, corner_brackets, display_title, extraction_schema, subject_key, usable_kind_name,
 )
 from mg_update_calendar.llm import JSONGenerator, LLMClient, LLMConfig, LLMError, LLMRequest
 from mg_update_calendar.prompts import PROMPT_VERSION, SYSTEM_PROMPT
 from mg_update_calendar.services import SERVICE_MAINTENANCE, calendar_dates, maintenance_for
 
 MAX_OUTPUT_TOKENS = 32768
+Named = TypeVar("Named", Entry, Cancellation)
 CONCURRENCY = 5
 MAX_EXTRACTION_ATTEMPTS = 3
 SCHEMA_VERSION = 8
@@ -37,6 +40,11 @@ QUOTE_NOISE = re.compile(r"[\s#*_>`|\\-]+")
 GENERATION = re.compile(r"(?:第([0-9一二三四五六七八九]+)弾|ちほー([0-9]*)|Part([0-9]+))$", re.IGNORECASE)
 KANJI_DIGITS = str.maketrans("一二三四五六七八九", "123456789")
 CHIHO_NAME = re.compile(r"ちほー[0-9]*$")
+# 名称の後に括弧で添えた読みがな（MAGiCAL（マジカル）、Mate（チュウニズム メイト））。同じ対象の表記がそろわなくなるため落とす。
+READING = re.compile(r"(?<=\S)\s*[（(][ぁ-ゖァ-ヺー・\s]+[）)]")
+# 月日に添えた曜日（6月18日(木)、6/18(木)）。開始日と同じ月日の曜日だけを照合する。
+DATED_WEEKDAY = re.compile(r"(\d{1,2})[/月](\d{1,2})日?\s*[（(]([月火水木金土日])[）)]")
+WEEKDAYS = "月火水木金土日"
 
 
 class ExtractionError(Exception):
@@ -63,22 +71,32 @@ def build_request(article: Article, max_output_tokens: int) -> LLMRequest:
 
 def parse_response(output: str, game: Game) -> Extraction:
     try:
-        extraction = Extraction.model_validate_json(output, strict=True)
+        draft = ExtractionDraft.model_validate_json(output, strict=True)
+        items = [("entries", index, item.type, item) for index, item in enumerate(draft.entries)] + [
+            ("cancellations", index, item.target_type, item) for index, item in enumerate(draft.cancellations)]
         allowed = GAME_ENTRY_TYPES[game]
-        if any(entry.type not in allowed for entry in extraction.entries) or any(
-            cancellation.target_type not in allowed for cancellation in extraction.cancellations
-        ):
+        if any(kind not in allowed for _, _, kind, _ in items):
             raise ExtractionError("invalid_game_entry_type", [
-                {"loc": ["entries", index, "type"], "type": "invalid_game_entry_type"}
-                for index, entry in enumerate(extraction.entries) if entry.type not in allowed
-            ] + [
-                {"loc": ["cancellations", index, "target_type"], "type": "invalid_game_entry_type"}
-                for index, cancellation in enumerate(extraction.cancellations) if cancellation.target_type not in allowed
+                {"loc": [section, index, "type" if section == "entries" else "target_type"],
+                 "type": "invalid_game_entry_type"}
+                for section, index, kind, _ in items if kind not in allowed
             ])
+        if any(kind in FREE_LABEL_TYPES and not (item.free_label or "").strip() for _, _, kind, item in items):
+            raise ExtractionError("missing_free_label", [
+                {"loc": [section, index, "free_label"], "type": "missing_free_label"}
+                for section, index, kind, item in items if kind in FREE_LABEL_TYPES and not (item.free_label or "").strip()
+            ])
+        extraction = Extraction(entries=[], cancellations=[], notes=draft.notes, review_notes=draft.review_notes)
+        for section, _, kind, item in items:
+            converted, notes = from_draft(item, Entry if section == "entries" else Cancellation, kind, game)
+            getattr(extraction, section).append(converted)
+            extraction.notes += notes
         extraction.entries = [
             entry for entry in extraction.entries
             if entry.type not in SONG_TYPES or any(song.title.strip() for song in entry.songs)
         ]
+        extraction.entries = [without_reading(entry) for entry in extraction.entries]
+        extraction.cancellations = [without_reading(item) for item in extraction.cancellations]
         extraction.entries, notes = merge_collab_contents(extraction.entries)
         extraction.notes += notes
         return extraction
@@ -87,11 +105,64 @@ def parse_response(output: str, game: Game) -> Extraction:
         for error in exc.errors(include_input=False, include_context=False, include_url=False):
             # 未知のキー自体にも任意の文字列が入るため、保存する位置をスキーマのフィールドに限定する。
             loc = [part if isinstance(part, int) or part in {
-                "entries", "cancellations", "notes", "review_notes", *Entry.model_fields, *Cancellation.model_fields,
-                *Song.model_fields
+                "entries", "cancellations", "notes", "review_notes", *EntryDraft.model_fields,
+                *CancellationDraft.model_fields, *Song.model_fields
             } else "unknown_field" for part in error["loc"]]
             details.append({"loc": loc, "type": error["type"]})
         raise ExtractionError("invalid_structured_output", details) from exc
+
+
+def from_draft(draft: StructuredModel, model: type[Named], kind: str, game: Game) -> tuple[Named, list[str]]:
+    """LLMの出力をlabelを組み立てたエントリ・取り消しにする。種類や種類名を補正したときは判断の記録も返す。"""
+    part_names = set(LabelParts.model_fields)
+    parts = LabelParts.model_validate(draft.model_dump(include=part_names))
+    subject = getattr(draft, "subject")
+    data = draft.model_dump(exclude=part_names)
+    notes = []
+    # 正式名称は種類を示すため、種類名を重ねない（第9回「皇帝イベント」に全国対戦イベントを付けない）。
+    if getattr(draft, "official_name"):
+        parts = parts.model_copy(update={"kind_name": None})
+    # ランキングの種類名を持つイベントは、ランキングを扱うゲームならrankingにそろえる。
+    if kind == "event" and "ランキング" in (parts.kind_name or "") and "ranking" in GAME_ENTRY_TYPES[game]:
+        kind = "ranking"
+        data["type" if model is Entry else "target_type"] = kind
+        notes.append(f"種類名「{parts.kind_name}」のイベント「{subject}」はrankingとしました。")
+    label = build_label(kind, game, parts, subject)
+    if (kind in KIND_NAME_TYPES and (parts.kind_name or "").strip()
+            and not (kind == "event" and (parts.collab or parts.revival))
+            and usable_kind_name(parts.kind_name, subject) is None):
+        notes.append(f"種類名「{parts.kind_name}」は対象名やコラボ・復刻の表記を含むため、labelに使わず「{label}」としました。")
+    for field in ("subject", "official_name"):
+        if data[field]:
+            data[field] = corner_brackets(data[field])
+    # 取り消しの楽曲・譜面追加は曲名で対象を示すため、所属先の対象名を付けない。
+    if model is Cancellation and kind in SONG_TYPES:
+        data["subject"] = None
+    if model is Entry:
+        notes += normalize_dates(data, kind)
+    return model.model_validate(data | {"label": label}), notes
+
+
+def normalize_dates(data: dict[str, Any], kind: str) -> list[str]:
+    """原文どおりの24:00を翌日の00:00にし、バージョン稼働を単日にする。補正したときは判断の記録を返す。"""
+    notes = []
+    for day, clock in (("start", "start_time"), ("end", "end_time")):
+        # 日付がなければ変換できないため、そのまま検証でエラーにする。
+        if data[clock] == "24:00" and data[day] is not None:
+            data[day] += timedelta(days=1)
+            data[clock] = "00:00"
+    if kind == "version_launch" and (data["end"] is not None or data["end_time"] is not None or data["open_ended"]):
+        data.update(end=None, end_time=None, open_ended=False)
+        notes.append("バージョン稼働は稼働日の単日として、終了日と継続の指定を外しました。")
+    return notes
+
+
+def without_reading(item: Named) -> Named:
+    """対象名と正式名称から、括弧で添えた読みがなを取り除く。"""
+    return item.model_copy(update={
+        field: READING.sub("", value).strip() for field in ("subject", "official_name")
+        if (value := getattr(item, field)) and READING.search(value)
+    })
 
 
 def collab_key(subject: str | None) -> tuple[str, str | None] | None:
@@ -174,6 +245,11 @@ def review_reasons(article: Article, extraction: Extraction) -> list[str]:
             quote = getattr(entry, field)
             if not quoted(quote):
                 reasons.append(prefix + f"{field}の原文根拠を確認できません。")
+        # 原文の年の誤記を取り違えると曜日が合わなくなる（2025年6月18日(木)は水曜日）。
+        weekdays = {match[3] for match in DATED_WEEKDAY.finditer(unicodedata.normalize("NFKC", entry.date_text))
+                    if entry.start and (int(match[1]), int(match[2])) == (entry.start.month, entry.start.day)}
+        if entry.start and weekdays and WEEKDAYS[entry.start.weekday()] not in weekdays:
+            reasons.append(prefix + f"開始日の曜日が原文の（{'・'.join(sorted(weekdays))}）と一致しません。年を確認してください。")
         if entry.start is None:
             reasons.append(prefix + "開始日が不明です。")
         if entry.start and entry.end and entry.start > entry.end:
@@ -301,16 +377,16 @@ def load_previous(path: Path) -> tuple[dict[str, dict[str, Any]], dict[str, Any]
     return previous, raw
 
 
-def extraction_reason(article: Article, previous: dict[str, Any] | None, config: LLMConfig) -> str | None:
-    """記事を抽出し直す理由。前回の結果をそのまま使えるならNone。"""
+def extraction_reason(article: Article, previous: dict[str, Any] | None) -> str | None:
+    """記事を抽出し直す理由。前回の結果をそのまま使えるならNone。
+
+    プロンプトやモデルが変わっただけでは抽出し直さない。抽出のたびに結果が揺れ、確認済みの結果が崩れるため。
+    古い記事に新しいプロンプトを当てるときは--urlか--fullで指定する。
+    """
     if previous is None:
         return "new"
     if previous.get("content_hash") != content_hash(article):
         return "changed"
-    if previous.get("prompt_version") != PROMPT_VERSION:
-        return "prompt"
-    if (previous.get("provider"), previous.get("model")) != (config.provider, config.model):
-        return "model"
     if previous.get("status") == "failed":
         return "failed"
     return None
@@ -362,7 +438,7 @@ def main(argv: list[str] | None = None) -> int:
     targets = []
     for article in articles:
         reason = ("forced" if args.full or article.url in args.url
-                  else extraction_reason(article, previous.get(article.url), config))
+                  else extraction_reason(article, previous.get(article.url)))
         if reason:
             targets.append((article, reason))
     if args.dry_run:

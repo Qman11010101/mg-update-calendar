@@ -66,7 +66,7 @@
 
 <div id="timeline" bind:this={timeline} hidden={!ranges.length} style:--days={days}>
   {#if ranges.length}
-    <div class="tl-corner">項目</div>
+    <div class="tl-corner" aria-hidden="true"></div>
     {#each dayKeys as key, day (key)}
       {@const weekday = parseDate(key).getUTCDay()}
       <div class="tl-day{weekdayClass(key, weekday, holidays)}{key === today ? ' today' : ''}" style:grid-column={String(day + 2)}>
