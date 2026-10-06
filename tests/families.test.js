@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
-import { calendarEntry, currentEntries, endDate, groupFamilies, isSong, mergeDuplicates, mergeSongOverlaps, songLabel, withFamilies } from "../docs/lib/entries.js";
+import { calendarEntry, currentEntries, endDate, groupFamilies, isSong, mergeDuplicates, mergeSongOverlaps, period, songLabel, withFamilies } from "../docs/lib/entries.js";
 
 const source = { game: "ongeki", url: "https://example.com/a", title: "記事A", date: "2026-09-01" };
 const item = (changes) => calendarEntry({
@@ -65,6 +65,18 @@ test("Parent event grouping by subject and overlapping periods", () => {
   assert.equal(battleFamilies.length, 1);
   assert.equal(battleFamilies[0].title, "オトモダチ対戦 シーズン29");
   assert.equal(battleChart.family, battleFamilies[0]);
+  // 終了日のない常設マップも、同じ日に始まる所属楽曲を関連楽曲としてまとめる。後日の楽曲はまとめない。
+  const map = item({ type: "map_add", subject: "Mate ep. IV", title: "「Mate ep. IV」マップ", service: "chunithm", start: "2026-10-08", end: null });
+  const mapSongs = item({ type: "song_add", subject: "Mate ep. IV", service: "chunithm", start: "2026-10-08", end: null, songs: ["曲H"] });
+  const laterMapSongs = item({ type: "song_add", subject: "Mate ep. IV", service: "chunithm", start: "2026-11-05", end: null, songs: ["曲I"] });
+  const mapFamilies = groupFamilies([map, mapSongs, laterMapSongs]);
+  assert.equal(mapFamilies.length, 1);
+  assert.equal(mapFamilies[0].title, "「Mate ep. IV」マップ");
+  assert.equal(mapFamilies[0].end, null);
+  assert.equal(period(mapFamilies[0]), "2026/10/08");
+  assert.deepEqual(Array.from(mapFamilies[0].members), [map, mapSongs]);
+  assert.equal(laterMapSongs.family, undefined);
+  assert.equal(groupFamilies([map]).length, 0);
   // 楽曲だけ、または期間のある告知のない組み合わせは親にしない。
   assert.equal(groupFamilies([collabSongs, item({ type: "ultima_add", subject: "Rotaeno", service: "maimai", start: "2026-08-21", end: null, songs: ["曲E"] })]).length, 0);
 
@@ -74,8 +86,8 @@ test("Parent event grouping by subject and overlapping periods", () => {
   const found = groupFamilies(published);
   for (const family of found) {
     assert.ok(new Set(family.members.map((member) => member.type)).size >= 2);
-    assert.ok(family.members.every((member) => member.start >= family.start && member.start <= family.end));
-    assert.ok(family.members.filter((member) => !isSong(member)).every((member) => endDate(member) <= family.end));
+    assert.ok(family.members.every((member) => member.start >= family.start && member.start <= endDate(family)));
+    assert.ok(family.members.filter((member) => !isSong(member)).every((member) => endDate(member) <= endDate(family)));
   }
 });
 

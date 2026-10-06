@@ -159,13 +159,16 @@ export function groupFamilies(list) {
     const clusterEnd = () => cluster.filter((entry) => !isSong(entry)).map(endDate).sort().at(-1);
     const flush = () => {
       const contents = cluster.filter((entry) => !isSong(entry));
-      if (new Set(cluster.map((entry) => entry.type)).size >= 2 && contents.some(isRange)) {
+      // 常設のマップ・ちほー・チャプターは終了日がなくても、同じ日に始まる所属楽曲を関連楽曲としてまとめる。
+      const anchored = contents.some((entry) => isRange(entry) || contentWords[entry.type]);
+      if (new Set(cluster.map((entry) => entry.type)).size >= 2 && anchored) {
         const event = contents.find((entry) => entry.type === "event");
         const subject = contents[0].subject.trim().replaceAll("『", "「").replaceAll("』", "」");
         const family = {
           title: event ? event.title : contents.length === 1 ? contents[0].title : `「${subject.replace(/^「([^「」]*)」$/, "$1")}」`,
           source: contents[0].source, service: contents[0].service, members: cluster, songs: [],
-          start: contents[0].start, end: clusterEnd(), open_ended: false,
+          // 常設マップと同じ日の楽曲だけなら、期間ではなく開始日だけを表示する。
+          start: contents[0].start, end: clusterEnd() > contents[0].start ? clusterEnd() : null, open_ended: false,
         };
         cluster.forEach((entry) => { entry.family = family; });
         families.push(family);
