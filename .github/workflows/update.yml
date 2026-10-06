@@ -2,8 +2,8 @@ name: Update calendar
 
 on:
   schedule:
-    # 毎日13:00（日本時間）= 04:00 UTC。混雑時は数分〜数十分遅れることがある
-    - cron: "0 4 * * *"
+    # 毎日12:53（日本時間）= 03:53 UTC。毎時0分は混雑で大幅に遅れたり実行されなかったりするため、ずらしている
+    - cron: "53 3 * * *"
   workflow_dispatch:
 
 permissions:
@@ -31,7 +31,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: astral-sh/setup-uv@v10
+      - uses: astral-sh/setup-uv@v10.2.0
 
       - run: uv sync --locked
 
