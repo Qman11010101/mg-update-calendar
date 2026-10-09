@@ -8,6 +8,89 @@
   "articles": [
     {
       "source": {
+        "game": "maimai",
+        "url": "https://maimai.sega.jp/kop8th/",
+        "date": "2026-10-09",
+        "title": "「KING of Performai The 8th」大会サイトを公開しました！"
+      },
+      "content_hash": null,
+      "entries": [
+        {
+          "title": "「KING of Performai The 8th」オンライン予選",
+          "type": "event",
+          "subject": "KING of Performai The 8th",
+          "label": "オンライン予選",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": false,
+          "start": "2026-10-29",
+          "start_time": "07:00",
+          "end": "2026-11-23",
+          "end_time": "23:59",
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2026年10月29日（木）7:00～11月23日（月祝）23:59",
+          "evidence": "SCHEDULE\nオンライン予選\n2026年10月29日（木）7:00～11月23日（月祝）23:59",
+          "confidence": 1.0,
+          "calendar_start": "2026-10-29",
+          "calendar_end": "2026-11-23"
+        },
+        {
+          "title": "「KING of Performai The 8th」LCQ（最終予選）",
+          "type": "event",
+          "subject": "KING of Performai The 8th",
+          "label": "LCQ（最終予選）",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": false,
+          "start": "2026-12-09",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2026年12月9日（水）",
+          "evidence": "LCQ(Last Chance Qualifier、最終予選)\n2026年12月9日（水）\n都内某所",
+          "confidence": 1.0,
+          "calendar_start": "2026-12-09",
+          "calendar_end": null
+        },
+        {
+          "title": "「KING of Performai The 8th」全国決勝大会",
+          "type": "event",
+          "subject": "KING of Performai The 8th",
+          "label": "全国決勝大会",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": false,
+          "start": "2027-02-14",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2027年2月14日（日）",
+          "evidence": "全国決勝大会\n2027年2月14日（日）\n東京国際フォーラム ホールB7\n有観客開催決定！",
+          "confidence": 1.0,
+          "calendar_start": "2027-02-14",
+          "calendar_end": null
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "大会サイト（https://maimai.sega.jp/kop8th/）を元に手動で追加した。オンゲキ・CHUNITHM・maimai でらっくすの3タイトル合同大会。"
+      ],
+      "review_reasons": [],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 0,
+      "prompt_version": null,
+      "status": "extracted",
+      "provider": "manual",
+      "model": null
+    },
+    {
+      "source": {
         "game": "chunithm",
         "url": "https://info-chunithm.sega.jp/12743/",
         "date": "2026-10-06",
