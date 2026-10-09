@@ -4,257 +4,8 @@
   "provider": "openai",
   "model": "gpt-5.6-luna",
   "mode": "extraction",
-  "updated_at": "2026-10-06T05:47:07+00:00",
+  "updated_at": "2026-10-09T07:49:33+00:00",
   "articles": [
-    {
-      "source": {
-        "game": "maimai",
-        "url": "https://maimai.sega.jp/kop8th/",
-        "date": "2026-10-09",
-        "title": "「KING of Performai The 8th」大会サイトを公開しました！"
-      },
-      "content_hash": null,
-      "entries": [
-        {
-          "title": "「KING of Performai The 8th」オンライン予選",
-          "type": "event",
-          "subject": "KING of Performai The 8th",
-          "label": "オンライン予選",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-10-29",
-          "start_time": "07:00",
-          "end": "2026-11-23",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年10月29日（木）7:00～11月23日（月祝）23:59",
-          "evidence": "SCHEDULE\nオンライン予選\n2026年10月29日（木）7:00～11月23日（月祝）23:59",
-          "confidence": 1.0,
-          "calendar_start": "2026-10-29",
-          "calendar_end": "2026-11-23"
-        },
-        {
-          "title": "「KING of Performai The 8th」LCQ（最終予選）",
-          "type": "event",
-          "subject": "KING of Performai The 8th",
-          "label": "LCQ（最終予選）",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-12-09",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年12月9日（水）",
-          "evidence": "LCQ(Last Chance Qualifier、最終予選)\n2026年12月9日（水）\n都内某所",
-          "confidence": 1.0,
-          "calendar_start": "2026-12-09",
-          "calendar_end": null
-        },
-        {
-          "title": "「KING of Performai The 8th」全国決勝大会",
-          "type": "event",
-          "subject": "KING of Performai The 8th",
-          "label": "全国決勝大会",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2027-02-14",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2027年2月14日（日）",
-          "evidence": "全国決勝大会\n2027年2月14日（日）\n東京国際フォーラム ホールB7\n有観客開催決定！",
-          "confidence": 1.0,
-          "calendar_start": "2027-02-14",
-          "calendar_end": null
-        }
-      ],
-      "cancellations": [],
-      "notes": [
-        "大会サイト（https://maimai.sega.jp/kop8th/）を元に手動で追加した。オンゲキ・CHUNITHM・maimai でらっくすの3タイトル合同大会。"
-      ],
-      "review_reasons": [],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 0,
-      "prompt_version": null,
-      "status": "extracted",
-      "provider": "manual",
-      "model": null
-    },
-    {
-      "source": {
-        "game": "chunithm",
-        "url": "https://maimai.sega.jp/kop8th/#chunithm",
-        "date": "2026-10-09",
-        "title": "「KING of Performai The 8th」大会サイトを公開しました！"
-      },
-      "content_hash": null,
-      "entries": [
-        {
-          "title": "「KING of Performai The 8th」オンライン予選",
-          "type": "event",
-          "subject": "KING of Performai The 8th",
-          "label": "オンライン予選",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-10-29",
-          "start_time": "07:00",
-          "end": "2026-11-23",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年10月29日（木）7:00～11月23日（月祝）23:59",
-          "evidence": "SCHEDULE\nオンライン予選\n2026年10月29日（木）7:00～11月23日（月祝）23:59",
-          "confidence": 1.0,
-          "calendar_start": "2026-10-29",
-          "calendar_end": "2026-11-23"
-        },
-        {
-          "title": "「KING of Performai The 8th」LCQ（最終予選）",
-          "type": "event",
-          "subject": "KING of Performai The 8th",
-          "label": "LCQ（最終予選）",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-12-09",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年12月9日（水）",
-          "evidence": "LCQ(Last Chance Qualifier、最終予選)\n2026年12月9日（水）\n都内某所",
-          "confidence": 1.0,
-          "calendar_start": "2026-12-09",
-          "calendar_end": null
-        },
-        {
-          "title": "「KING of Performai The 8th」全国決勝大会",
-          "type": "event",
-          "subject": "KING of Performai The 8th",
-          "label": "全国決勝大会",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2027-02-14",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2027年2月14日（日）",
-          "evidence": "全国決勝大会\n2027年2月14日（日）\n東京国際フォーラム ホールB7\n有観客開催決定！",
-          "confidence": 1.0,
-          "calendar_start": "2027-02-14",
-          "calendar_end": null
-        }
-      ],
-      "cancellations": [],
-      "notes": [
-        "大会サイト（https://maimai.sega.jp/kop8th/）を元に手動で追加した。オンゲキ・CHUNITHM・maimai でらっくすの3タイトル合同大会。"
-      ],
-      "review_reasons": [],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 0,
-      "prompt_version": null,
-      "status": "extracted",
-      "provider": "manual",
-      "model": null
-    },
-    {
-      "source": {
-        "game": "ongeki",
-        "url": "https://maimai.sega.jp/kop8th/#ongeki",
-        "date": "2026-10-09",
-        "title": "「KING of Performai The 8th」大会サイトを公開しました！"
-      },
-      "content_hash": null,
-      "entries": [
-        {
-          "title": "「KING of Performai The 8th」オンライン予選",
-          "type": "event",
-          "subject": "KING of Performai The 8th",
-          "label": "オンライン予選",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-10-29",
-          "start_time": "07:00",
-          "end": "2026-11-23",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年10月29日（木）7:00～11月23日（月祝）23:59",
-          "evidence": "SCHEDULE\nオンライン予選\n2026年10月29日（木）7:00～11月23日（月祝）23:59",
-          "confidence": 1.0,
-          "calendar_start": "2026-10-29",
-          "calendar_end": "2026-11-23"
-        },
-        {
-          "title": "「KING of Performai The 8th」LCQ（最終予選）",
-          "type": "event",
-          "subject": "KING of Performai The 8th",
-          "label": "LCQ（最終予選）",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-12-09",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年12月9日（水）",
-          "evidence": "LCQ(Last Chance Qualifier、最終予選)\n2026年12月9日（水）\n都内某所",
-          "confidence": 1.0,
-          "calendar_start": "2026-12-09",
-          "calendar_end": null
-        },
-        {
-          "title": "「KING of Performai The 8th」全国決勝大会",
-          "type": "event",
-          "subject": "KING of Performai The 8th",
-          "label": "全国決勝大会",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2027-02-14",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2027年2月14日（日）",
-          "evidence": "全国決勝大会\n2027年2月14日（日）\n東京国際フォーラム ホールB7\n有観客開催決定！",
-          "confidence": 1.0,
-          "calendar_start": "2027-02-14",
-          "calendar_end": null
-        }
-      ],
-      "cancellations": [],
-      "notes": [
-        "大会サイト（https://maimai.sega.jp/kop8th/）を元に手動で追加した。オンゲキ・CHUNITHM・maimai でらっくすの3タイトル合同大会。"
-      ],
-      "review_reasons": [],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 0,
-      "prompt_version": null,
-      "status": "extracted",
-      "provider": "manual",
-      "model": null
-    },
     {
       "source": {
         "game": "chunithm",
@@ -280,7 +31,7 @@
           "songs": [],
           "date_text": "2026年10月8日(木)より、",
           "evidence": "新マップ「Mate ep. IV」登場！\n2026年10月8日(木)より、\n新マップ\n「Mate ep. IV」\nが登場！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-10-08",
           "calendar_end": null
         },
@@ -309,7 +60,7 @@
           ],
           "date_text": "2026年10月8日(木)より、",
           "evidence": "「Mate ep. IV」では、こちらの楽曲が課題曲としてプレイできます。\n楽曲とアーティスト様はコチラ！\nORIGINAL\nコンクエスト・チャレンジ\nサツキ feat.ろん\nハイボルテージガール\nマサラダ feat.あられ",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-10-08",
           "calendar_end": null
         },
@@ -329,7 +80,7 @@
           "songs": [],
           "date_text": "2026年10月8日(木)～2026年12月9日(水)の期間で、",
           "evidence": "アバターコスチューム追加！\n2026年10月8日(木)～2026年12月9日(水)の期間で、\n「アバターチャンス」「おかわりボーナス」に以下のコスチュームが追加されます！\n今回の期間追加されるコスチューム一覧\nウェア：カメラマンの服\nバック：ブルーバック\nヘッド：カメラマンの帽子\nフロント：ライトスタンドと反射板\nバック：グリーンバック\nアイテム：ストロボ",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-10-08",
           "calendar_end": "2026-12-09"
         },
@@ -349,7 +100,7 @@
           "songs": [],
           "date_text": "2026年10月8日(木)より、",
           "evidence": "「Linked Gate AMAZON」発見条件緩和！\n2026年10月8日(木)より、\n「Linked Gate AMAZON」の発見条件が緩和され、マップの完走が不要になります。",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-10-08",
           "calendar_end": null
         }
@@ -408,7 +159,7 @@
           ],
           "date_text": "2026年10月8日(木)より、",
           "evidence": "「niconico」に新曲「雑魚」「風呂入るプロファイル」「SAN値直葬」が追加！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-10-08",
           "calendar_end": null
         },
@@ -428,7 +179,7 @@
           "songs": [],
           "date_text": "2026年10月8日(木)より、",
           "evidence": "マップ「Encounters with Mates ep. I」に新たなマップが追加！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-10-08",
           "calendar_end": null
         },
@@ -448,7 +199,7 @@
           "songs": [],
           "date_text": "2026年10月8日(木)～2026年11月11日(水)の期間で「Mate 4th」ミッションが出現します！",
           "evidence": "2026年10月8日(木)～2026年11月11日(水)の期間で「Mate 4th」ミッションが出現します！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-10-08",
           "calendar_end": "2026-11-11"
         },
@@ -481,7 +232,7 @@
           ],
           "date_text": "2026年10月8日(木)より、",
           "evidence": "以下の楽曲を通常開放します。\n\n| 曲　名 | アーティスト名 |\n| --- | --- |\n| Warp Speed | Nhato |\n| In the Straying Story | polysha |\n| PhenomenoN | Laur feat.Tia |",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-10-08",
           "calendar_end": null
         }
@@ -522,7 +273,7 @@
           "songs": [],
           "date_text": "2026年9月25日(金)～2026年11月11\n日(水)までの期間で\n「ドキドキ文芸部!」\nとのコラボイベントを開催！",
           "evidence": "2026年9月25日(金)～2026年11月11\n日(水)までの期間で\n「ドキドキ文芸部!」\nとのコラボイベントを開催！\n「ドキドキ文芸部!」マップが開放されます！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-09-25",
           "calendar_end": "2026-11-11"
         },
@@ -547,7 +298,7 @@
           ],
           "date_text": "2026年9月25日(金)～2026年11月11\n日(水)までの期間で\n「ドキドキ文芸部!」\nとのコラボイベントを開催！",
           "evidence": "イベント開催にあわせて、\n楽曲「Your Reality (Kenji Mizuno Remix)」が追加！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-09-25",
           "calendar_end": null
         },
@@ -587,7 +338,7 @@
           "songs": [],
           "date_text": "2026年9月25日(金)より、",
           "evidence": "クラス認定に新たなコースが追加されます！\nCLASS\nコース名\nⅠ\nSlow Speed Set\nⅡ\nずっと、夏！ Set\nⅢ\nパズルゲーム Set\nⅣ\nHigh Speed Set\nⅤ\nみぞれヤナギ Set",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-09-25",
           "calendar_end": null
         }
@@ -753,7 +504,7 @@
           "songs": [],
           "date_text": "2026年9月17日(木)より、",
           "evidence": "新マップ「Mate ep. III」登場！\n2026年9月17日(木)より、\n新マップ\n「Mate ep. III」\nが登場！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-09-17",
           "calendar_end": null
         },
@@ -790,7 +541,7 @@
           ],
           "date_text": "2026年9月17日(木)より、",
           "evidence": "「Mate ep. III」では、こちらの楽曲が課題曲としてプレイできます。\n楽曲とアーティスト様はコチラ！\n\nORIGINAL\nPrismatic Theory\n荒谷サトル\nKnockout Ravebox\nHommarju\nアンサレステラー\n花徒めと\n[IMPERIALDISORDER]\nBlacklolita",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-09-17",
           "calendar_end": null
         },
@@ -823,7 +574,7 @@
           ],
           "date_text": "2026年9月17日(木)より、",
           "evidence": "新たなWORLD’S END楽曲追加！\n2026年9月17日(木)より、\n新たなWORLD’S END楽曲が追加されます！\n\nWORLD’S END追加楽曲\nヤババイナ\n【\n狂\n】\n黒塗り世界宛て書簡\n【\n止\n】\n熱異常\n【\n敷\n】",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-09-17",
           "calendar_end": null
         }
@@ -1137,7 +888,7 @@
           "songs": [],
           "date_text": "9月17日(木)より順次稼働開始です！",
           "evidence": "新バージョン『maimai でらっくす MAGiCAL』\nいよいよ本日、9月17日(木)より順次稼働開始です！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-09-17",
           "calendar_end": null
         },
@@ -1259,7 +1010,7 @@
           "songs": [],
           "date_text": "「野原ひろし 昼メシの流儀 ちほー」オープン！ (9/17～11/19)",
           "evidence": "「野原ひろし 昼メシの流儀 ちほー」オープン！\n(9/17～11/19)",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-09-17",
           "calendar_end": "2026-11-19"
         },
@@ -1279,7 +1030,7 @@
           "songs": [],
           "date_text": "「超かぐや姫！ちほー」オープン！ (9/17～11/19)",
           "evidence": "「超かぐや姫！ちほー」オープン！\n(9/17～11/19)",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-09-17",
           "calendar_end": "2026-11-19"
         },
@@ -1299,7 +1050,7 @@
           "songs": [],
           "date_text": "「魔法おうこくちほー」オープン！ (9/17～)",
           "evidence": "「魔法おうこくちほー」オープン！\n(9/17～)",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-09-17",
           "calendar_end": null
         },
@@ -1446,7 +1197,7 @@
           "songs": [],
           "date_text": "9月17日(木)より、まじかるパスのイラストが追加されます！",
           "evidence": "「まじかるパス」キャラクター追加！\n9月17日(木)より、まじかるパスのイラストが追加されます！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-09-17",
           "calendar_end": null
         }
@@ -1497,7 +1248,7 @@
             }
           ],
           "evidence": "9月17日(木)稼働開始の新バージョン『maimai でらっくす MAGiCAL』にて収録を予定しておりました、楽曲「ループザルーム / ルシノ」につきまして、\n諸般の事情により、楽曲収録を見合わせることとなりました。",
-          "confidence": 1.0
+          "confidence": 1
         }
       ],
       "notes": [],
@@ -1793,136 +1544,6 @@
       "content_hash": "667067aeeb47d7a7a8f1714b3fec8e4e3f41c328794b64fa1bebaa2e18001360",
       "entries": [
         {
-          "title": "「Shooter’s Dream 《bitter flavor & 7EVENDAYS⇔HOLIDAYS》」オリジナルランキングイベント",
-          "type": "ranking",
-          "subject": "Shooter’s Dream 《bitter flavor & 7EVENDAYS⇔HOLIDAYS》",
-          "label": "オリジナルランキングイベント",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-09-17",
-          "start_time": null,
-          "end": "2026-09-30",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [],
-          "date_text": "9/17(木)～9/30(水)23:59の期間で、",
-          "evidence": "オリジナルランキングイベント「Shooter’s Dream 《bitter flavor & 7EVENDAYS⇔HOLIDAYS》」を開催します！",
-          "confidence": 0.99,
-          "calendar_start": "2026-09-17",
-          "calendar_end": "2026-09-30"
-        },
-        {
-          "title": "「Shooter’s Dream 《bitter flavor & 7EVENDAYS⇔HOLIDAYS》」楽曲追加",
-          "type": "song_add",
-          "subject": "Shooter’s Dream 《bitter flavor & 7EVENDAYS⇔HOLIDAYS》",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-09-17",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "Yami Yami",
-              "artist": "曲：2tros (Digz, Inc. Group)／歌：bitter flavor[桜井 春菜(CV：近藤 玲奈)、早乙女 彩華(CV：中島 唯)]、7EVENDAYS⇔HOLIDAYS[井之原 小星(CV：ももの はるな)、柏木 咲姫(CV：石見 舞菜香)]"
-            },
-            {
-              "title": "ハルシナイト（starring オンゲキシューターズ）",
-              "artist": "曲：かしこ。／歌：bitter flavor [桜井 春菜(CV：近藤 玲奈)、早乙女 彩華(CV：中島 唯)]"
-            },
-            {
-              "title": "Sugarfull:Overbloom",
-              "artist": "Reku Mochizuki"
-            }
-          ],
-          "date_text": "9/17(木)～9/30(水)23:59の期間で、",
-          "evidence": "さらに、イベントに合わせて新曲「Yami Yami」「ハルシナイト（starring オンゲキシューターズ）」「Sugarfull:Overbloom」を追加！",
-          "confidence": 0.98,
-          "calendar_start": "2026-09-17",
-          "calendar_end": null
-        },
-        {
-          "title": "Shooter’s Dream 《bitter flavor & 7EVENDAYS⇔HOLIDAYS》　イベント開催記念ログインボーナス",
-          "type": "login_bonus",
-          "subject": "Shooter’s Dream 《bitter flavor & 7EVENDAYS⇔HOLIDAYS》",
-          "label": "ログインボーナス",
-          "official_name": "Shooter’s Dream 《bitter flavor & 7EVENDAYS⇔HOLIDAYS》　イベント開催記念ログインボーナス",
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-09-17",
-          "start_time": null,
-          "end": "2026-10-07",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "9/17(木)～10/7(水)の期間で、",
-          "evidence": "「Shooter’s Dream 《bitter flavor & 7EVENDAYS⇔HOLIDAYS》　イベント開催記念ログインボーナス」を開催します！",
-          "confidence": 0.99,
-          "calendar_start": "2026-09-17",
-          "calendar_end": "2026-10-07"
-        },
-        {
-          "title": "「Shooter’s Dream 《bitter flavor & 7EVENDAYS⇔HOLIDAYS》」テクニカルチャレンジ",
-          "type": "technical_challenge",
-          "subject": "Shooter’s Dream 《bitter flavor & 7EVENDAYS⇔HOLIDAYS》",
-          "label": "テクニカルチャレンジ",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-09-17",
-          "start_time": null,
-          "end": "2026-10-07",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "心",
-              "artist": null
-            },
-            {
-              "title": "Never Ending Adventure",
-              "artist": null
-            },
-            {
-              "title": "ジャンヌ・ダルクの慟哭",
-              "artist": null
-            },
-            {
-              "title": "Vibes 2k20",
-              "artist": null
-            }
-          ],
-          "date_text": "9/17(木)～10/7(水)23:59の期間で、",
-          "evidence": "テクニカルチャレンジ「Shooter’s Dream 《bitter flavor & 7EVENDAYS⇔HOLIDAYS》」を開催します！",
-          "confidence": 0.99,
-          "calendar_start": "2026-09-17",
-          "calendar_end": "2026-10-07"
-        },
-        {
-          "title": "「Shooter’s Dream 《bitter flavor & 7EVENDAYS⇔HOLIDAYS》」チャプター",
-          "type": "chapter_add",
-          "subject": "Shooter’s Dream 《bitter flavor & 7EVENDAYS⇔HOLIDAYS》",
-          "label": "チャプター追加",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-09-17",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "9/17(木)～9/30(水)23:59の期間で、",
-          "evidence": "Shooter’s Dream 《bitter flavor & 7EVENDAYS⇔HOLIDAYS》のチャプターでは、イベントストーリーが追加されます。",
-          "confidence": 0.86,
-          "calendar_start": "2026-09-17",
-          "calendar_end": null
-        },
-        {
           "title": "楽曲一般開放",
           "type": "song_unlock",
           "subject": null,
@@ -2009,26 +1630,6 @@
           "confidence": 0.99,
           "calendar_start": "2026-09-03",
           "calendar_end": null
-        },
-        {
-          "title": "9月度 マンスリーミッション",
-          "type": "mission",
-          "subject": "9月度",
-          "label": "ミッション",
-          "official_name": "9月度 マンスリーミッション",
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-09-03",
-          "start_time": null,
-          "end": "2026-09-30",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "9/3(木)～9/30(水)の期間で、\n「9月度 マンスリーミッション」を開催します！",
-          "evidence": "9/3(木)～9/30(水)の期間で、\n「9月度 マンスリーミッション」を開催します！",
-          "confidence": 0.99,
-          "calendar_start": "2026-09-03",
-          "calendar_end": "2026-09-30"
         }
       ],
       "cancellations": [],
@@ -2134,6 +1735,255 @@
       "status": "extracted",
       "provider": "openai",
       "model": "gpt-5.6-luna"
+    },
+    {
+      "source": {
+        "game": "maimai",
+        "url": "https://maimai.sega.jp/kop8th/",
+        "date": "2026-10-09",
+        "title": "「KING of Performai The 8th」大会サイトを公開しました！"
+      },
+      "content_hash": null,
+      "entries": [
+        {
+          "title": "「KING of Performai The 8th」オンライン予選",
+          "type": "event",
+          "subject": "KING of Performai The 8th",
+          "label": "オンライン予選",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": false,
+          "start": "2026-10-29",
+          "start_time": "07:00",
+          "end": "2026-11-23",
+          "end_time": "23:59",
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2026年10月29日（木）7:00～11月23日（月祝）23:59",
+          "evidence": "SCHEDULE\nオンライン予選\n2026年10月29日（木）7:00～11月23日（月祝）23:59",
+          "confidence": 1,
+          "calendar_start": "2026-10-29",
+          "calendar_end": "2026-11-23"
+        },
+        {
+          "title": "「KING of Performai The 8th」LCQ（最終予選）",
+          "type": "event",
+          "subject": "KING of Performai The 8th",
+          "label": "LCQ（最終予選）",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": false,
+          "start": "2026-12-09",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2026年12月9日（水）",
+          "evidence": "LCQ(Last Chance Qualifier、最終予選)\n2026年12月9日（水）\n都内某所",
+          "confidence": 1,
+          "calendar_start": "2026-12-09",
+          "calendar_end": null
+        },
+        {
+          "title": "「KING of Performai The 8th」全国決勝大会",
+          "type": "event",
+          "subject": "KING of Performai The 8th",
+          "label": "全国決勝大会",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": false,
+          "start": "2027-02-14",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2027年2月14日（日）",
+          "evidence": "全国決勝大会\n2027年2月14日（日）\n東京国際フォーラム ホールB7\n有観客開催決定！",
+          "confidence": 1,
+          "calendar_start": "2027-02-14",
+          "calendar_end": null
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "大会サイト（https://maimai.sega.jp/kop8th/）を元に手動で追加した。オンゲキ・CHUNITHM・maimai でらっくすの3タイトル合同大会。"
+      ],
+      "review_reasons": [],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 0,
+      "prompt_version": null,
+      "status": "extracted",
+      "provider": "manual",
+      "model": null
+    },
+    {
+      "source": {
+        "game": "chunithm",
+        "url": "https://maimai.sega.jp/kop8th/#chunithm",
+        "date": "2026-10-09",
+        "title": "「KING of Performai The 8th」大会サイトを公開しました！"
+      },
+      "content_hash": null,
+      "entries": [
+        {
+          "title": "「KING of Performai The 8th」オンライン予選",
+          "type": "event",
+          "subject": "KING of Performai The 8th",
+          "label": "オンライン予選",
+          "official_name": null,
+          "service": "chunithm",
+          "start_is_deadline": false,
+          "start": "2026-10-29",
+          "start_time": "07:00",
+          "end": "2026-11-23",
+          "end_time": "23:59",
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2026年10月29日（木）7:00～11月23日（月祝）23:59",
+          "evidence": "SCHEDULE\nオンライン予選\n2026年10月29日（木）7:00～11月23日（月祝）23:59",
+          "confidence": 1,
+          "calendar_start": "2026-10-29",
+          "calendar_end": "2026-11-23"
+        },
+        {
+          "title": "「KING of Performai The 8th」LCQ（最終予選）",
+          "type": "event",
+          "subject": "KING of Performai The 8th",
+          "label": "LCQ（最終予選）",
+          "official_name": null,
+          "service": "chunithm",
+          "start_is_deadline": false,
+          "start": "2026-12-09",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2026年12月9日（水）",
+          "evidence": "LCQ(Last Chance Qualifier、最終予選)\n2026年12月9日（水）\n都内某所",
+          "confidence": 1,
+          "calendar_start": "2026-12-09",
+          "calendar_end": null
+        },
+        {
+          "title": "「KING of Performai The 8th」全国決勝大会",
+          "type": "event",
+          "subject": "KING of Performai The 8th",
+          "label": "全国決勝大会",
+          "official_name": null,
+          "service": "chunithm",
+          "start_is_deadline": false,
+          "start": "2027-02-14",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2027年2月14日（日）",
+          "evidence": "全国決勝大会\n2027年2月14日（日）\n東京国際フォーラム ホールB7\n有観客開催決定！",
+          "confidence": 1,
+          "calendar_start": "2027-02-14",
+          "calendar_end": null
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "大会サイト（https://maimai.sega.jp/kop8th/）を元に手動で追加した。オンゲキ・CHUNITHM・maimai でらっくすの3タイトル合同大会。"
+      ],
+      "review_reasons": [],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 0,
+      "prompt_version": null,
+      "status": "extracted",
+      "provider": "manual",
+      "model": null
+    },
+    {
+      "source": {
+        "game": "ongeki",
+        "url": "https://maimai.sega.jp/kop8th/#ongeki",
+        "date": "2026-10-09",
+        "title": "「KING of Performai The 8th」大会サイトを公開しました！"
+      },
+      "content_hash": null,
+      "entries": [
+        {
+          "title": "「KING of Performai The 8th」オンライン予選",
+          "type": "event",
+          "subject": "KING of Performai The 8th",
+          "label": "オンライン予選",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-10-29",
+          "start_time": "07:00",
+          "end": "2026-11-23",
+          "end_time": "23:59",
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2026年10月29日（木）7:00～11月23日（月祝）23:59",
+          "evidence": "SCHEDULE\nオンライン予選\n2026年10月29日（木）7:00～11月23日（月祝）23:59",
+          "confidence": 1,
+          "calendar_start": "2026-10-29",
+          "calendar_end": "2026-11-23"
+        },
+        {
+          "title": "「KING of Performai The 8th」LCQ（最終予選）",
+          "type": "event",
+          "subject": "KING of Performai The 8th",
+          "label": "LCQ（最終予選）",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-12-09",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2026年12月9日（水）",
+          "evidence": "LCQ(Last Chance Qualifier、最終予選)\n2026年12月9日（水）\n都内某所",
+          "confidence": 1,
+          "calendar_start": "2026-12-09",
+          "calendar_end": null
+        },
+        {
+          "title": "「KING of Performai The 8th」全国決勝大会",
+          "type": "event",
+          "subject": "KING of Performai The 8th",
+          "label": "全国決勝大会",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2027-02-14",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2027年2月14日（日）",
+          "evidence": "全国決勝大会\n2027年2月14日（日）\n東京国際フォーラム ホールB7\n有観客開催決定！",
+          "confidence": 1,
+          "calendar_start": "2027-02-14",
+          "calendar_end": null
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "大会サイト（https://maimai.sega.jp/kop8th/）を元に手動で追加した。オンゲキ・CHUNITHM・maimai でらっくすの3タイトル合同大会。"
+      ],
+      "review_reasons": [],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 0,
+      "prompt_version": null,
+      "status": "extracted",
+      "provider": "manual",
+      "model": null
     },
     {
       "source": {
@@ -2273,28 +2123,7 @@
         "title": "9/10(木) 全国対戦イベント ～ 第9回「皇帝イベント」開催！"
       },
       "content_hash": "580beeb90fb8d0cfdd42a6dea52d26d8acfcbfcaa0da92d298979b6a9bc33e7d",
-      "entries": [
-        {
-          "title": "第9回「皇帝イベント」 ～盟帝～",
-          "type": "event",
-          "subject": "第9回「皇帝イベント」 ～盟帝～",
-          "label": "イベント",
-          "official_name": "第9回「皇帝イベント」 ～盟帝～",
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-09-10",
-          "start_time": null,
-          "end": "2026-09-13",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年9月10日(木)より、\n第9回「皇帝イベント」\n（エンペラーイベント）を開催します！\n期間内に全国対戦を遊んだ結果に応じて、報酬が獲得できます！\n■実施期間\n2026年9月10日(木) ～ 9月13日(日)",
-          "evidence": "2026年9月10日(木)より、\n第9回「皇帝イベント」\n（エンペラーイベント）を開催します！\n期間内に全国対戦を遊んだ結果に応じて、報酬が獲得できます！\n■実施期間\n2026年9月10日(木) ～ 9月13日(日)\n第9回「皇帝イベント」\n～盟帝～\n開催！",
-          "confidence": 0.99,
-          "calendar_start": "2026-09-10",
-          "calendar_end": "2026-09-13"
-        }
-      ],
+      "entries": [],
       "cancellations": [],
       "notes": [
         "全国対戦を使用したランキング形式の告知ですが、対象ゲームで許可されている分類にランキングがないため、eventとして抽出しました。"
@@ -2333,7 +2162,7 @@
           "songs": [],
           "date_text": "2026年9月3日(木)～2026年10月21日(水)までの期間で",
           "evidence": "『ストリートファイター 6』リバイバルイベントを開催！  \n「ストリートファイター 6」マップに新たなマップが追加されて再登場します！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-09-03",
           "calendar_end": "2026-10-21"
         },
@@ -2428,103 +2257,6 @@
       },
       "content_hash": "f63ea27b683eeea42a84b3b8c6f6018cef33858f37e805f86674c5cafb241803",
       "entries": [
-        {
-          "title": "「GUILTY GEAR -STRIVE-」コラボイベント",
-          "type": "event",
-          "subject": "GUILTY GEAR -STRIVE-",
-          "label": "コラボイベント",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-09-03",
-          "start_time": null,
-          "end": "2026-10-07",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年9月3日(木)～2026年10月7日(水)までの期間で\n「GUILTY GEAR -STRIVE-」\nとのコラボイベントを開催！",
-          "evidence": "2026年9月3日(木)～2026年10月7日(水)までの期間で\n「GUILTY GEAR -STRIVE-」\nとのコラボイベントを開催！\n「GUILTY GEAR -STRIVE-」マップが開放されます！",
-          "confidence": 0.99,
-          "calendar_start": "2026-09-03",
-          "calendar_end": "2026-10-07"
-        },
-        {
-          "title": "「GUILTY GEAR -STRIVE-」楽曲追加",
-          "type": "song_add",
-          "subject": "GUILTY GEAR -STRIVE-",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-09-03",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "Smell of the Game",
-              "artist": null
-            },
-            {
-              "title": "Find Your One Way",
-              "artist": null
-            },
-            {
-              "title": "Drift",
-              "artist": null
-            },
-            {
-              "title": "The Disaster of Passion",
-              "artist": null
-            }
-          ],
-          "date_text": "2026年9月3日(木)～2026年10月7日(水)までの期間で\n「GUILTY GEAR -STRIVE-」\nとのコラボイベントを開催！",
-          "evidence": "イベント開催にあわせて、\n楽曲「Smell of the Game」「Find Your One Way」「Drift」「The Disaster of Passion」が追加！",
-          "confidence": 0.99,
-          "calendar_start": "2026-09-03",
-          "calendar_end": null
-        },
-        {
-          "title": "「GUILTY GEAR -STRIVE-」チュウニズムクエスト",
-          "type": "quest",
-          "subject": "GUILTY GEAR -STRIVE-",
-          "label": "チュウニズムクエスト",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-09-03",
-          "start_time": null,
-          "end": "2026-10-07",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年9月3日(木)～2026年10月7日(水)までの期間で\n「GUILTY GEAR -STRIVE-」\nとのコラボイベントを開催！",
-          "evidence": "今回のコラボイベントと同時にチュウニズムクエストが発生！\nイベント期間中に、対象キャラクターのランクを上げると、称号がゲットできます！",
-          "confidence": 0.97,
-          "calendar_start": "2026-09-03",
-          "calendar_end": "2026-10-07"
-        },
-        {
-          "title": "「Mate 3rd」ミッション",
-          "type": "mission",
-          "subject": "Mate 3rd",
-          "label": "ミッション",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-09-03",
-          "start_time": null,
-          "end": "2026-10-07",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年9月3日(木)～2026年10月7日(水)の期間で「Mate 3rd」ミッションが出現します！",
-          "evidence": "「Mate 3rd」ミッションが出現！\n2026年9月3日(木)～2026年10月7日(水)の期間で「Mate 3rd」ミッションが出現します！",
-          "confidence": 0.99,
-          "calendar_start": "2026-09-03",
-          "calendar_end": "2026-10-07"
-        },
         {
           "title": "楽曲一般開放",
           "type": "song_unlock",
@@ -2689,26 +2421,6 @@
           "calendar_end": null
         },
         {
-          "title": "アバターコスチューム",
-          "type": "avatar_costume",
-          "subject": null,
-          "label": "アバターコスチューム",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-08-20",
-          "start_time": null,
-          "end": "2026-10-07",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年8月20日(木)～2026年10月7日(水)の期間で、",
-          "evidence": "アバターコスチューム追加！\n2026年8月20日(木)～2026年10月7日(水)の期間で、\n「アバターチャンス」「おかわりボーナス」に以下のコスチュームが追加されます！\n今回の期間追加されるコスチューム一覧\nウェア：宇宙海賊の服\nバック：宇宙海賊のマント\nヘッド：宇宙海賊の頭\nアイテム：惑星模型とスペースガン",
-          "confidence": 0.99,
-          "calendar_start": "2026-08-20",
-          "calendar_end": "2026-10-07"
-        },
-        {
           "title": "楽曲一般開放",
           "type": "song_unlock",
           "subject": null,
@@ -2871,29 +2583,9 @@
           ],
           "date_text": "2026年8月6日(木)より、",
           "evidence": "「VARIETY」に新曲「On And On!!」「E.V.E」が追加されます！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-08-06",
           "calendar_end": null
-        },
-        {
-          "title": "「ロシェの配信部屋」マップ",
-          "type": "map_add",
-          "subject": "ロシェの配信部屋",
-          "label": "マップ追加",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-08-06",
-          "start_time": null,
-          "end": "2026-09-02",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年8月6日(木)～2026年9月2日(水)の期間で、",
-          "evidence": "「ロシェの配信部屋」マップが登場します！",
-          "confidence": 1.0,
-          "calendar_start": "2026-08-06",
-          "calendar_end": "2026-09-02"
         },
         {
           "title": "Linked Gate AIR発見条件緩和",
@@ -2911,7 +2603,7 @@
           "songs": [],
           "date_text": "2026年8月6日(木)より、",
           "evidence": "「Linked Gate AIR」の発見条件が緩和され、マップの完走が不要になります。",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-08-06",
           "calendar_end": null
         }
@@ -2939,26 +2631,6 @@
       "content_hash": "693315318dce383599abe25a835745b8e22be12e9a063425f9d75b60d2bb493a",
       "entries": [
         {
-          "title": "「ブルーアーカイブ -Blue Archive- 第二弾」コラボイベント",
-          "type": "event",
-          "subject": "ブルーアーカイブ -Blue Archive- 第二弾",
-          "label": "コラボイベント",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-08-06",
-          "start_time": null,
-          "end": "2026-09-24",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年8月6日(木)～2026年9月24日(木)までの期間で",
-          "evidence": "2026年8月6日(木)～2026年9月24日(木)までの期間で\n『ブルーアーカイブ -Blue Archive-』\nコラボイベント第二弾を開催！\n「ブルーアーカイブ -Blue Archive- 第二弾」マップが開放されます！",
-          "confidence": 0.99,
-          "calendar_start": "2026-08-06",
-          "calendar_end": "2026-09-24"
-        },
-        {
           "title": "「ブルーアーカイブ -Blue Archive-」リバイバルイベント",
           "type": "event",
           "subject": "ブルーアーカイブ -Blue Archive-",
@@ -2979,55 +2651,6 @@
           "calendar_end": null
         },
         {
-          "title": "「ブルーアーカイブ -Blue Archive- 第二弾」楽曲追加",
-          "type": "song_add",
-          "subject": "ブルーアーカイブ -Blue Archive- 第二弾",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-08-06",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "Glitch Street",
-              "artist": null
-            },
-            {
-              "title": "Bunny Bunny Carrot Carrot",
-              "artist": null
-            }
-          ],
-          "date_text": "2026年8月6日(木)～2026年9月24日(木)までの期間で",
-          "evidence": "さらに、イベント開催にあわせて、\n楽曲「Glitch Street」「Bunny Bunny Carrot Carrot」が追加！",
-          "confidence": 0.99,
-          "calendar_start": "2026-08-06",
-          "calendar_end": null
-        },
-        {
-          "title": "「ブルーアーカイブ -Blue Archive- 第二弾」チュウニズムクエスト",
-          "type": "quest",
-          "subject": "ブルーアーカイブ -Blue Archive- 第二弾",
-          "label": "チュウニズムクエスト",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-08-06",
-          "start_time": null,
-          "end": "2026-09-24",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年8月6日(木)～2026年9月24日(木)までの期間で",
-          "evidence": "今回のコラボイベントと同時にチュウニズムクエストが発生！\nイベント期間中に、対象キャラクターのランクを上げると、称号がゲットできます！",
-          "confidence": 0.95,
-          "calendar_start": "2026-08-06",
-          "calendar_end": "2026-09-24"
-        },
-        {
           "title": "「ブルーアーカイブ -Blue Archive-」チュウニズムクエスト",
           "type": "quest",
           "subject": "ブルーアーカイブ -Blue Archive-",
@@ -3046,26 +2669,6 @@
           "confidence": 0.91,
           "calendar_start": "2026-08-06",
           "calendar_end": null
-        },
-        {
-          "title": "「Mate 2nd」ミッション",
-          "type": "mission",
-          "subject": "Mate 2nd",
-          "label": "ミッション",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-08-06",
-          "start_time": null,
-          "end": "2026-09-02",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年8月6日(木)～2026年9月2日(水)の期間で「Mate 2nd」ミッションが出現します！",
-          "evidence": "「Mate 2nd」ミッションが出現！\n2026年8月6日(木)～2026年9月2日(水)の期間で「Mate 2nd」ミッションが出現します！",
-          "confidence": 0.99,
-          "calendar_start": "2026-08-06",
-          "calendar_end": "2026-09-02"
         },
         {
           "title": "楽曲一般開放",
@@ -3162,7 +2765,7 @@
           ],
           "date_text": "2026年7月30日(木)より、",
           "evidence": "「niconico」に新曲「幕を下ろそう、パレードへ」「Ribbon」が追加されるほか、",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-07-30",
           "calendar_end": null
         },
@@ -3191,7 +2794,7 @@
           ],
           "date_text": "2026年7月30日(木)より、",
           "evidence": "楽曲「ドーナツホール」「マトリョシカ」にULTIMA譜面が\n追加されます！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-07-30",
           "calendar_end": null
         }
@@ -3215,28 +2818,7 @@
         "title": "7/30(木) デジタルアイテムキャンペーン第3弾開催！"
       },
       "content_hash": "6dbe5a17b70bc52daba36179d6e18063440d31eabd102a6b3808a8bc32c35959",
-      "entries": [
-        {
-          "title": "「デジタルアイテムキャンペーン 第3弾」イベント",
-          "type": "event",
-          "subject": "デジタルアイテムキャンペーン 第3弾",
-          "label": "イベント",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-30",
-          "start_time": null,
-          "end": "2026-09-02",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年7月30日(木) ～ 2026年9月2日(水）",
-          "evidence": "2026年7月30日(木)より、\n「デジタルアイテムキャンペーン」第3弾\nを開催します！",
-          "confidence": 0.99,
-          "calendar_start": "2026-07-30",
-          "calendar_end": "2026-09-02"
-        }
-      ],
+      "entries": [],
       "cancellations": [],
       "notes": [
         "デジタルアイテムをポイント交換で獲得するゲーム内キャンペーンのため、実物グッズを対象とするgoods_campaignではなくeventとして分類しました。",
@@ -3259,73 +2841,7 @@
         "title": "7/30(木)「銀河特急 ミルキー☆サブウェイ」コラボイベント開催！"
       },
       "content_hash": "86e5a12122a19a6c5b6c9fc4ab6e490b2b3704c58b5be392e74f712712eb3c81",
-      "entries": [
-        {
-          "title": "「銀河特急 ミルキー☆サブウェイ」コラボイベント",
-          "type": "event",
-          "subject": "銀河特急 ミルキー☆サブウェイ",
-          "label": "コラボイベント",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-30",
-          "start_time": null,
-          "end": "2026-09-16",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年7月30日(木)～2026年9月16日(水)までの期間で  \n**「銀河特急 ミルキー☆サブウェイ」**とのコラボイベントを開催！",
-          "evidence": "2026年7月30日(木)～2026年9月16日(水)までの期間で  \n**「銀河特急 ミルキー☆サブウェイ」**とのコラボイベントを開催！  \n「銀河特急 ミルキー☆サブウェイ」マップが開放されます！",
-          "confidence": 0.99,
-          "calendar_start": "2026-07-30",
-          "calendar_end": "2026-09-16"
-        },
-        {
-          "title": "「銀河特急 ミルキー☆サブウェイ」楽曲追加",
-          "type": "song_add",
-          "subject": "銀河特急 ミルキー☆サブウェイ",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-30",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "ときめき★メテオストライク",
-              "artist": null
-            }
-          ],
-          "date_text": "2026年7月30日(木)～2026年9月16日(水)までの期間で  \n**「銀河特急 ミルキー☆サブウェイ」**とのコラボイベントを開催！",
-          "evidence": "イベント開催にあわせて、  \n楽曲「ときめき★メテオストライク」が追加！",
-          "confidence": 0.98,
-          "calendar_start": "2026-07-30",
-          "calendar_end": null
-        },
-        {
-          "title": "「銀河特急 ミルキー☆サブウェイ」チュウニズムクエスト",
-          "type": "quest",
-          "subject": "銀河特急 ミルキー☆サブウェイ",
-          "label": "チュウニズムクエスト",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-30",
-          "start_time": null,
-          "end": "2026-09-16",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年7月30日(木)～2026年9月16日(水)までの期間で  \n**「銀河特急 ミルキー☆サブウェイ」**とのコラボイベントを開催！",
-          "evidence": "今回のコラボイベントと同時にチュウニズムクエストが発生！  \nイベント期間中に、対象キャラクターのランクを上げると、称号がゲットできます！",
-          "confidence": 0.96,
-          "calendar_start": "2026-07-30",
-          "calendar_end": "2026-09-16"
-        }
-      ],
+      "entries": [],
       "cancellations": [],
       "notes": [
         "イベントマップは同一内容・期間のコラボイベントに統合しました。楽曲追加は「イベント開催にあわせて」と明記されているため、イベントの開始日を開始日として設定し、終了日は設定していません。チュウニズムクエストはコラボイベントと同時に発生し、イベント期間中と明記されているため、イベントと同じ期間に設定しました。"
@@ -3421,75 +2937,6 @@
           "confidence": 0.99,
           "calendar_start": "2026-07-16",
           "calendar_end": null
-        },
-        {
-          "title": "「周防パトラ」リバイバルイベント",
-          "type": "event",
-          "subject": "周防パトラ",
-          "label": "リバイバルイベント",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-16",
-          "start_time": null,
-          "end": "2026-09-02",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年7月16日(木)～2026年9月2日(水)までの期間で\n『周防パトラ』\nリバイバルイベント\nを開催！",
-          "evidence": "2026年7月16日(木)～2026年9月2日(水)までの期間で\n『周防パトラ』\nリバイバルイベント\nを開催！",
-          "confidence": 0.99,
-          "calendar_start": "2026-07-16",
-          "calendar_end": "2026-09-02"
-        },
-        {
-          "title": "「周防パトラ」楽曲追加",
-          "type": "song_add",
-          "subject": "周防パトラ",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-16",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "偉大なる悪魔は実は大天使パトラちゃん様なのだ！",
-              "artist": null
-            },
-            {
-              "title": "ウニの歌(Nanoru Naganai Remix)",
-              "artist": null
-            }
-          ],
-          "date_text": "2026年7月16日(木)～2026年9月2日(水)までの期間で\n『周防パトラ』\nリバイバルイベント\nを開催！",
-          "evidence": "今回のイベントにあわせて新曲「偉大なる悪魔は実は大天使パトラちゃん様なのだ！」「ウニの歌(Nanoru Naganai Remix)」が追加されるほか、\n新たなマップが追加されて再登場し\nます！",
-          "confidence": 0.99,
-          "calendar_start": "2026-07-16",
-          "calendar_end": null
-        },
-        {
-          "title": "「周防パトラ」チュウニズムクエスト",
-          "type": "quest",
-          "subject": "周防パトラ",
-          "label": "チュウニズムクエスト",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-16",
-          "start_time": null,
-          "end": "2026-09-02",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年7月16日(木)～2026年9月2日(水)までの期間で\n『周防パトラ』\nリバイバルイベント\nを開催！",
-          "evidence": "今回のコラボイベントと同時にチュウニズムクエストも再登場！",
-          "confidence": 0.98,
-          "calendar_start": "2026-07-16",
-          "calendar_end": "2026-09-02"
         }
       ],
       "cancellations": [],
@@ -3515,73 +2962,7 @@
         "title": "7/16(木)「いずれ菖蒲か杜若」コラボイベント開催！"
       },
       "content_hash": "c6dcbd3c9da98e2e6885e9e5bab28f8f2de881bd5255f16d148465ccb873220d",
-      "entries": [
-        {
-          "title": "「いずれ菖蒲か杜若」コラボイベント",
-          "type": "event",
-          "subject": "いずれ菖蒲か杜若",
-          "label": "コラボイベント",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-16",
-          "start_time": null,
-          "end": "2026-09-02",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年7月16日(木)～2026年9月2日(水)までの期間で  \n**「いずれ菖蒲か杜若」**とのコラボイベントを開催！",
-          "evidence": "2026年7月16日(木)～2026年9月2日(水)までの期間で  \n**「いずれ菖蒲か杜若」**とのコラボイベントを開催！  \n「いずれ菖蒲か杜若」マップが開放されます！",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-16",
-          "calendar_end": "2026-09-02"
-        },
-        {
-          "title": "「いずれ菖蒲か杜若」楽曲追加",
-          "type": "song_add",
-          "subject": "いずれ菖蒲か杜若",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-16",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "シャオシャオ蘭々♪",
-              "artist": null
-            }
-          ],
-          "date_text": "2026年7月16日(木)～2026年9月2日(水)までの期間で  \n**「いずれ菖蒲か杜若」**とのコラボイベントを開催！",
-          "evidence": "イベント開催にあわせて、  \n楽曲「シャオシャオ蘭々♪」が追加！",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-16",
-          "calendar_end": null
-        },
-        {
-          "title": "「いずれ菖蒲か杜若」チュウニズムクエスト",
-          "type": "quest",
-          "subject": "いずれ菖蒲か杜若",
-          "label": "チュウニズムクエスト",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-16",
-          "start_time": null,
-          "end": "2026-09-02",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年7月16日(木)～2026年9月2日(水)までの期間で  \n**「いずれ菖蒲か杜若」**とのコラボイベントを開催！",
-          "evidence": "今回のコラボイベントと同時にチュウニズムクエストが発生！  \nイベント期間中に、対象キャラクターのランクを上げると、称号がゲットできます！",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-16",
-          "calendar_end": "2026-09-02"
-        }
-      ],
+      "entries": [],
       "cancellations": [],
       "notes": [
         "イベント用マップは同一内容・期間のコラボイベントに統合しました。",
@@ -3594,1175 +2975,6 @@
       "attempts": 1,
       "prompt_version": "40",
       "status": "extracted",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "chunithm",
-        "url": "https://info-chunithm.sega.jp/12155/",
-        "date": "2026-07-02",
-        "title": "7/2(木)　『CHUNITHM Mate』本日稼働開始！"
-      },
-      "content_hash": "595e2c28cf67e86ac534f019dace0072bded15e229e890afab9acb328c107446",
-      "entries": [
-        {
-          "title": "CHUNITHM Mate 稼働",
-          "type": "version_launch",
-          "subject": "CHUNITHM Mate",
-          "label": "稼働",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "本日2026年7月2日(木)より、CHUNITHM がさらに大型バージョンアップ！",
-          "evidence": "『\nCHUNITHM Mate（チュウニズム メイト）\n』\n順次稼働開始いたします！！",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-02",
-          "calendar_end": null
-        },
-        {
-          "title": "「モンスターハンターワイルズ」コラボイベント",
-          "type": "event",
-          "subject": "モンスターハンターワイルズ",
-          "label": "コラボイベント",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": null,
-          "end": "2026-08-19",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年7月2日～8月19日の期間で、",
-          "evidence": "「モンスターハンターワイルズ」とのコラボイベントを実施します！",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-02",
-          "calendar_end": "2026-08-19"
-        },
-        {
-          "title": "「モンスターハンターワイルズ」楽曲追加",
-          "type": "song_add",
-          "subject": "モンスターハンターワイルズ",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "英雄の証",
-              "artist": "カプコン・サウンドチーム"
-            },
-            {
-              "title": "白光に響く生命の叫び",
-              "artist": "カプコン・サウンドチーム"
-            }
-          ],
-          "date_text": "2026年7月2日～8月19日の期間で、",
-          "evidence": "「モンスターハンターワイルズ」より、コチラの楽曲がチュウニズムに登場します！\nVARIETY\n英雄の証\nカプコン・サウンドチーム\n白光に響く生命の叫び\nカプコン・サウンドチーム",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-02",
-          "calendar_end": null
-        },
-        {
-          "title": "「モンスターハンターワイルズ」チュウニズムクエスト",
-          "type": "quest",
-          "subject": "モンスターハンターワイルズ",
-          "label": "チュウニズムクエスト",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": null,
-          "end": "2026-08-19",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年7月2日～8月19日の期間で、",
-          "evidence": "さらに、今回のコラボイベントと同時にチュウニズムクエストが発生！\nイベント期間中に、対象キャラクターのランクを上げると、\n称号\nがゲットできます！",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-02",
-          "calendar_end": "2026-08-19"
-        },
-        {
-          "title": "「タコピーの原罪」コラボイベント",
-          "type": "event",
-          "subject": "タコピーの原罪",
-          "label": "コラボイベント",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": null,
-          "end": "2026-07-29",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年7月2日～7月29日の期間で、",
-          "evidence": "「タコピーの原罪」とのコラボイベントを実施します！",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-02",
-          "calendar_end": "2026-07-29"
-        },
-        {
-          "title": "「タコピーの原罪」楽曲追加",
-          "type": "song_add",
-          "subject": "タコピーの原罪",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "ハッピーラッキーチャッピー",
-              "artist": "ano"
-            }
-          ],
-          "date_text": "2026年7月2日～7月29日の期間で、",
-          "evidence": "「タコピーの原罪」より、コチラの楽曲がチュウニズムに登場します！\nPOPS＆ANIME\nハッピーラッキーチャッピー\nano",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-02",
-          "calendar_end": null
-        },
-        {
-          "title": "「タコピーの原罪」チュウニズムクエスト",
-          "type": "quest",
-          "subject": "タコピーの原罪",
-          "label": "チュウニズムクエスト",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": null,
-          "end": "2026-07-29",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年7月2日～7月29日の期間で、",
-          "evidence": "さらに、今回のコラボイベントと同時にチュウニズムクエストが発生！\nイベント期間中に対象キャラクターのランクを上げると、\n称号\nがゲットできます！",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-02",
-          "calendar_end": "2026-07-29"
-        },
-        {
-          "title": "「勝利の女神：NIKKE」「グルーヴコースター」リバイバルイベント",
-          "type": "event",
-          "subject": "勝利の女神：NIKKE」「グルーヴコースター",
-          "label": "リバイバルイベント",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": null,
-          "end": "2026-08-05",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年7月2日～8月5日の期間で、",
-          "evidence": "「勝利の女神：NIKKE」「グルーヴコースター」が再登場します！",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-02",
-          "calendar_end": "2026-08-05"
-        },
-        {
-          "title": "「Mate ep. I」マップ",
-          "type": "map_add",
-          "subject": "Mate ep. I",
-          "label": "マップ追加",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年7月2日(木)より、",
-          "evidence": "新マップ「Mate ep. I」登場！\n2026年7月2日(木)より、\n新マップ\n「Mate ep. I」\nが登場！",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-02",
-          "calendar_end": null
-        },
-        {
-          "title": "「Mate ep. I」楽曲追加",
-          "type": "song_add",
-          "subject": "Mate ep. I",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "ひなたでワチャチャ",
-              "artist": "瀬名航 feat.ねんね"
-            },
-            {
-              "title": "白昼熱演",
-              "artist": "ぬゆり feat.SHiNO from 雨ニマケテモ"
-            },
-            {
-              "title": "絶対一生これで生きていく！",
-              "artist": "えびかれー伯爵 feat.叶 響"
-            },
-            {
-              "title": "Luminous CANDY",
-              "artist": "7mai"
-            },
-            {
-              "title": "SOMA TONE",
-              "artist": "MYUKKE."
-            },
-            {
-              "title": "Tachy∅n",
-              "artist": "CHUBAY"
-            }
-          ],
-          "date_text": "2026年7月2日(木)より、",
-          "evidence": "「Mate ep. I」では、こちらの楽曲が課題曲としてプレイできます。\n楽曲とアーティスト様はコチラ！\nORIGINAL\nひなたでワチャチャ\n瀬名航 feat.ねんね\n白昼熱演\nぬゆり feat.SHiNO from 雨ニマケテモ\n絶対一生これで生きていく！\nえびかれー伯爵 feat.叶 響\nLuminous CANDY\n7mai\nSOMA TONE\nMYUKKE.\nTachy∅n\nCHUBAY",
-          "confidence": 0.99,
-          "calendar_start": "2026-07-02",
-          "calendar_end": null
-        },
-        {
-          "title": "「Encounters with Mates ep. I」マップ",
-          "type": "map_add",
-          "subject": "Encounters with Mates ep. I",
-          "label": "マップ追加",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年7月2日(木)より、",
-          "evidence": "新マップ「Encounters with Mates ep. I」登場！\n2026年7月2日(木)より、\n新マップ\n「Encounters with Mates ep. I」\nが登場！",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-02",
-          "calendar_end": null
-        },
-        {
-          "title": "「オンゲキ Chapter7 【WakeUP MakeUP FEVER!】」マップ拡張",
-          "type": "map_add",
-          "subject": "オンゲキ Chapter7 【WakeUP MakeUP FEVER!】",
-          "label": "マップ拡張",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年7月2日(木)より、",
-          "evidence": "「オンゲキ Chapter7 【WakeUP MakeUP FEVER!】」延長！\n2026年7月2日(木)より、\nマップ\n『オンゲキ Chapter7 【WakeUP MakeUP FEVER!】\n』\nが延長！",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-02",
-          "calendar_end": null
-        },
-        {
-          "title": "「オンゲキ Chapter7 【WakeUP MakeUP FEVER!】」楽曲追加",
-          "type": "song_add",
-          "subject": "オンゲキ Chapter7 【WakeUP MakeUP FEVER!】",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "Honey Bear",
-              "artist": "Freezer"
-            }
-          ],
-          "date_text": "2026年7月2日(木)より、",
-          "evidence": "このマップでは、「Honey Bear」が課題曲としてプレイできます。",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-02",
-          "calendar_end": null
-        },
-        {
-          "title": "「「maimai でらっくす」「オンゲキ」楽曲連動」イベント",
-          "type": "event",
-          "subject": "「maimai でらっくす」「オンゲキ」楽曲連動",
-          "label": "イベント",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": true,
-          "songs": [],
-          "date_text": "2026年7月2日(木)より、",
-          "evidence": "『maimai でらっくす』『オンゲキ』楽曲連動\nイベント開催！\n『maimai でらっくす』や『オンゲキ』で対象楽曲をプレイすると、『CHUNITHM』でも遊べるようになります！",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-02",
-          "calendar_end": null
-        },
-        {
-          "title": "アバターコスチューム",
-          "type": "avatar_costume",
-          "subject": null,
-          "label": "アバターコスチューム",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": null,
-          "end": "2026-08-19",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年7月2日～8月19日の期間で、",
-          "evidence": "「アバターチャンス」「おかわりボーナス」に以下のコスチュームが追加されます！\n今回の期間追加されるコスチューム一覧\nウェア：ギタリストの服\nフロント：アンプと壊れたギター\nヘッド：ギタリストの頭\nアイテム：アコースティックギター\nバック：スピーカー",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-02",
-          "calendar_end": "2026-08-19"
-        },
-        {
-          "title": "WORLD’S END譜面追加",
-          "type": "worlds_end_add",
-          "subject": null,
-          "label": "WORLD’S END譜面追加",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "luminoid love PART2",
-              "artist": null
-            },
-            {
-              "title": "Flap&Clap",
-              "artist": null
-            },
-            {
-              "title": "エテルニタス・ルドロジー",
-              "artist": null
-            }
-          ],
-          "date_text": "",
-          "evidence": "WORLD’S END追加楽曲\nluminoid love PART2\n【弾】\nFlap&Clap\n【跳】\nエテルニタス・ルドロジー\n【狂】",
-          "confidence": 0.99,
-          "calendar_start": "2026-07-02",
-          "calendar_end": null
-        },
-        {
-          "title": "クラス認定コース追加",
-          "type": "course_add",
-          "subject": null,
-          "label": "クラス認定コース追加",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "",
-          "evidence": "WORLD’S ENDに新曲！クラス認定にも新しいコースが追加！\n今作も個性的な新しいWORLD’S ENDやコースをドドンと追加！",
-          "confidence": 0.98,
-          "calendar_start": "2026-07-02",
-          "calendar_end": null
-        },
-        {
-          "title": "【祝】Mate ログインボーナス",
-          "type": "login_bonus",
-          "subject": "Mate",
-          "label": "ログインボーナス",
-          "official_name": "【祝】Mate ログインボーナス",
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": null,
-          "end": "2026-07-15",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年7月2日～7月15日の期間中に",
-          "evidence": "【祝】Mate ログインボーナス登場！\n2026年7月2日～7月15日の期間中に特別なログインボーナスが登場します！",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-02",
-          "calendar_end": "2026-07-15"
-        }
-      ],
-      "cancellations": [],
-      "notes": [
-        "本文中の「イベント開催にあわせて」またはイベント・マップの課題曲であることが明示されている楽曲は、所属先を設定した。",
-        "「『maimai でらっくす』『オンゲキ』楽曲連動イベント」は終了日の記載がなく、「2026年7月2日(木)より」と継続を示しているためopen_ended=trueとした。",
-        "WORLD’S END追加楽曲およびコース追加は、本文の掲載日と同日の大型バージョンアップに伴う追加として2026-07-02を設定した。"
-      ],
-      "review_reasons": [
-        "「新曲を大量追加！」の対象曲名は画像内にしかなく、本文から具体的な曲名を取得できないためエントリを作成していない。",
-        "ULTIMA追加対象曲名は画像内にしかなく、本文から具体的な曲名を取得できないためエントリを作成していない。",
-        "UNLOCK CHALLENGE対象の2曲は画像内にしかなく、本文から具体的な曲名を取得できないためエントリを作成していない。",
-        "エントリ16: date_textの原文根拠を確認できません。",
-        "エントリ17: date_textの原文根拠を確認できません。"
-      ],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "needs_review",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "chunithm",
-        "url": "https://info-chunithm.sega.jp/12212/",
-        "date": "2026-07-01",
-        "title": "7/2(木)　『In Falsus』より「Cryogenic」が登場！"
-      },
-      "content_hash": "4cc98835d43f26c2a2af3736e2243ab0dee4757b4c95d48c3762a04b56d0057f",
-      "entries": [
-        {
-          "title": "楽曲追加",
-          "type": "song_add",
-          "subject": null,
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "Cryogenic",
-              "artist": "Camellia feat. Petra Gurin"
-            }
-          ],
-          "date_text": "2026年7月2日(木)より、",
-          "evidence": "「VARIETY」に『In Falsus』の楽曲「Cryogenic」が追加されます！",
-          "confidence": 0.99,
-          "calendar_start": "2026-07-02",
-          "calendar_end": null
-        }
-      ],
-      "cancellations": [],
-      "notes": [],
-      "review_reasons": [],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "extracted",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "chunithm",
-        "url": "https://info-chunithm.sega.jp/12423/",
-        "date": "2026-06-30",
-        "title": "7/2(木) CHUNITHM Mateの新要素まとめ！"
-      },
-      "content_hash": "6dcb8d80411146ede3df02aeca94d87cd0aa6e87055fecd674e371f0a04d3a00",
-      "entries": [],
-      "cancellations": [],
-      "notes": [
-        "記事は「CHUNITHM Mate」の新機能・新要素の紹介記事であり、7/2(木)の稼働自体は本文中で別記事への誘導として言及されているため、version_launchは作成しませんでした。新機能には個別の日付が告知されていないため、独立したエントリも作成していません。",
-        "本文中の「12/11(木)『CHUNITHM X-VERSE-X』本日稼働開始！」は、過去のバージョンアップ告知への参照・背景説明として除外しました。"
-      ],
-      "review_reasons": [],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "extracted",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "chunithm",
-        "url": "https://info-chunithm.sega.jp/12026/",
-        "date": "2026-06-19",
-        "title": "7/2(木) CHUNITHMのバージョンアップにともなうお知らせ"
-      },
-      "content_hash": "df12f3d70bfed1327d8d4dcdaaf9e222f1ba72d5648d970a78e40acd11b0754a",
-      "entries": [
-        {
-          "title": "CHUNITHM Mate 稼働",
-          "type": "version_launch",
-          "subject": "CHUNITHM Mate",
-          "label": "稼働",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": "07:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年7月2日(木)より、CHUNITHMがバージョンアップいたします。",
-          "evidence": "2026年7月2日(木)より、CHUNITHMがバージョンアップいたします。  \nその名も\n\n**『CHUNITHM Mate****(チュウニズム メイト)』！！**",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-02",
-          "calendar_end": null
-        },
-        {
-          "title": "MASTER・ULTIMA・WORLD’S ENDプレイチケット廃止",
-          "type": "service_change",
-          "subject": null,
-          "label": "MASTER・ULTIMA・WORLD’S ENDプレイチケット廃止",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": "07:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "※7/2(木)のアップデートにつきましては、新バージョン稼働に伴い楽曲追加やイベントの開始時刻が「当日の午前7時頃」となります。",
-          "evidence": "それに伴い、従来の「MASTER」「ULTIMA」「WORLD’S END」各プレイチケットは廃止となります。",
-          "confidence": 0.99,
-          "calendar_start": "2026-07-02",
-          "calendar_end": null
-        },
-        {
-          "title": "総獲得メモリーランキング表示終了",
-          "type": "service_change",
-          "subject": null,
-          "label": "総獲得メモリーランキング表示終了",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": true,
-          "start": "2026-07-01",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "CHUNITHM-NETにて、「総獲得メモリーランキング」が表示されるのは、7/1(水)までとなります。",
-          "evidence": "CHUNITHM-NETにて、「総獲得メモリーランキング」が表示されるのは、7/1(水)までとなります。",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-01",
-          "calendar_end": null
-        },
-        {
-          "title": "CHUNITHM Mate新通貨ランキング開始",
-          "type": "service_change",
-          "subject": null,
-          "label": "CHUNITHM Mate新通貨ランキング開始",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-03",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "7/3(金)から、「CHUNITHM Mate」の新たな通貨のランキング結果が反映されます。",
-          "evidence": "7/3(金)から、「CHUNITHM Mate」の新たな通貨のランキング結果が反映されます。",
-          "confidence": 0.99,
-          "calendar_start": "2026-07-03",
-          "calendar_end": null
-        },
-        {
-          "title": "楽曲・WORLD’S END譜面削除（11曲）",
-          "type": "service_change",
-          "subject": null,
-          "label": "楽曲・WORLD’S END譜面削除",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": true,
-          "start": "2026-07-02",
-          "start_time": "07:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "Love Cheat!",
-              "artist": null
-            },
-            {
-              "title": "未来への咆哮",
-              "artist": null
-            },
-            {
-              "title": "Paradisus-Paradoxum",
-              "artist": null
-            },
-            {
-              "title": "Reverberate[半]☆☆☆",
-              "artist": null
-            },
-            {
-              "title": "《種子》 ～ Set You Free[翔]☆☆☆",
-              "artist": null
-            },
-            {
-              "title": "セガサターン起動音[H.][Remix][舞]☆☆☆☆",
-              "artist": null
-            },
-            {
-              "title": "レーイレーイ[？]☆☆",
-              "artist": null
-            },
-            {
-              "title": "人生攻略☆Tips[割]☆",
-              "artist": null
-            },
-            {
-              "title": "M.S.S.Planet[割]☆☆☆",
-              "artist": null
-            },
-            {
-              "title": "STARTLINER[避]☆",
-              "artist": null
-            },
-            {
-              "title": "今ぞ♡崇め奉れ☆オマエらよ！！～姫の秘メタル渇望～[狂]☆☆☆☆",
-              "artist": null
-            }
-          ],
-          "date_text": "「CHUNITHM Mate」の稼働に伴い、  \n一部の楽曲、一部の「WORLD’S END」をプレイすることができなくなります。",
-          "evidence": "「CHUNITHM Mate」の稼働に伴い、  \n一部の楽曲、一部の「WORLD’S END」をプレイすることができなくなります。  \n対象楽曲についてはこちらをご覧ください。",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-02",
-          "calendar_end": null
-        },
-        {
-          "title": "マップ削除",
-          "type": "service_change",
-          "subject": null,
-          "label": "マップ削除",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": true,
-          "start": "2026-07-02",
-          "start_time": "07:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "「CHUNITHM Mate」の稼働に伴い、  \n一部のマップをプレイすることができなくなります。",
-          "evidence": "「CHUNITHM Mate」の稼働に伴い、  \n一部のマップをプレイすることができなくなります。  \n対象マップについてはこちらをご覧ください。",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-02",
-          "calendar_end": null
-        },
-        {
-          "title": "楽曲ジャンル変更（14曲）",
-          "type": "service_change",
-          "subject": null,
-          "label": "楽曲ジャンル変更",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": "07:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "ゴーゴー幽霊船",
-              "artist": null
-            },
-            {
-              "title": "ジングルベル",
-              "artist": null
-            },
-            {
-              "title": "ラブリー☆えんじぇる!!",
-              "artist": null
-            },
-            {
-              "title": "Our Fighting",
-              "artist": null
-            },
-            {
-              "title": "Cosmic twinkle star",
-              "artist": null
-            },
-            {
-              "title": "終わりなき物語",
-              "artist": null
-            },
-            {
-              "title": "ラブって♡ジュエリー♪えんじぇる☆ブレイク！！",
-              "artist": null
-            },
-            {
-              "title": "ぶれいくるみるくらぶ！",
-              "artist": null
-            },
-            {
-              "title": "Burn it All",
-              "artist": null
-            },
-            {
-              "title": "Stronghold LandEater",
-              "artist": null
-            },
-            {
-              "title": "RE Aoharu",
-              "artist": null
-            },
-            {
-              "title": "Unwelcome School",
-              "artist": null
-            },
-            {
-              "title": "彩りキャンバス",
-              "artist": null
-            },
-            {
-              "title": "Advance（CHUNITHM edit）",
-              "artist": null
-            }
-          ],
-          "date_text": "「CHUNITHM Mate」の稼働に伴い、  \n一部楽曲のジャンルを変更します。",
-          "evidence": "「CHUNITHM Mate」の稼働に伴い、  \n一部楽曲のジャンルを変更します。  \n対象楽曲についてはこちらをご覧ください。",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-02",
-          "calendar_end": null
-        },
-        {
-          "title": "楽曲一般開放",
-          "type": "song_unlock",
-          "subject": null,
-          "label": "楽曲一般開放",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": "07:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "しとしとと",
-              "artist": null
-            },
-            {
-              "title": "Starlight★Limited",
-              "artist": null
-            },
-            {
-              "title": "BIRTH",
-              "artist": null
-            },
-            {
-              "title": "THE TRiANGLE",
-              "artist": null
-            },
-            {
-              "title": "PANDORA PARADOXXX",
-              "artist": null
-            },
-            {
-              "title": "μ3",
-              "artist": null
-            },
-            {
-              "title": "†渚の小悪魔ラヴリィ～レイディオ†",
-              "artist": null
-            },
-            {
-              "title": "聖者の息吹",
-              "artist": null
-            },
-            {
-              "title": "超MANJIラッシュ",
-              "artist": null
-            },
-            {
-              "title": "Lips XTC -Sorist Remix-",
-              "artist": null
-            },
-            {
-              "title": "ALTER EGO",
-              "artist": null
-            },
-            {
-              "title": "Marigold",
-              "artist": null
-            },
-            {
-              "title": "glory MAX -to the MAXimum-",
-              "artist": null
-            },
-            {
-              "title": "DESTRUCTION 3,2,1",
-              "artist": null
-            },
-            {
-              "title": "Ré：Ré",
-              "artist": null
-            }
-          ],
-          "date_text": "※7/2(木)のアップデートにつきましては、新バージョン稼働に伴い楽曲追加やイベントの開始時刻が「当日の午前7時頃」となります。",
-          "evidence": "「CHUNITHM Mate」の稼働に伴い、  \n以下の楽曲を通常開放いたします！",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-02",
-          "calendar_end": null
-        },
-        {
-          "title": "Linked Gate ORIGIN発見条件緩和",
-          "type": "service_change",
-          "subject": null,
-          "label": "Linked Gate ORIGIN発見条件緩和",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年7月2日(木)より、",
-          "evidence": "2026年7月2日(木)より、  \n「Linked Gate ORIGIN」の発見条件が緩和され、マップの完走が不要になります。",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-02",
-          "calendar_end": null
-        },
-        {
-          "title": "スキルGRADEリセット",
-          "type": "service_change",
-          "subject": null,
-          "label": "スキルGRADEリセット",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": "07:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "「CHUNITHM Mate」の稼働に伴い、  \n以下のスキルに紐づくGRADEがリセットされます。",
-          "evidence": "「CHUNITHM Mate」の稼働に伴い、  \n以下のスキルに紐づくGRADEがリセットされます。",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-02",
-          "calendar_end": null
-        },
-        {
-          "title": "店内マッチング対象条件緩和（10曲）",
-          "type": "service_change",
-          "subject": null,
-          "label": "店内マッチング対象条件緩和",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": "07:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "神鳴",
-              "artist": null
-            },
-            {
-              "title": "Tru’nembra",
-              "artist": null
-            },
-            {
-              "title": "Everything Will Be One",
-              "artist": null
-            },
-            {
-              "title": "OUTRAGE",
-              "artist": null
-            },
-            {
-              "title": "輪廻玲々",
-              "artist": null
-            },
-            {
-              "title": "創 -汝ら新世界へ歩む者なり-",
-              "artist": null
-            },
-            {
-              "title": "轆轤首",
-              "artist": null
-            },
-            {
-              "title": "Sweet & Sour",
-              "artist": null
-            },
-            {
-              "title": "Phantom Crisis",
-              "artist": null
-            },
-            {
-              "title": "月葬",
-              "artist": null
-            }
-          ],
-          "date_text": "「CHUNITHM Mate」の稼働に伴い、下記楽曲について、マッチング相手が楽曲を未所持でも店内マッチングでプレイできるようになります！",
-          "evidence": "「CHUNITHM Mate」の稼働に伴い、下記楽曲について、マッチング相手が楽曲を未所持でも店内マッチングでプレイできるようになります！",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-02",
-          "calendar_end": null
-        },
-        {
-          "title": "全国対戦でのULTIMA選曲制限継続（2曲）",
-          "type": "service_change",
-          "subject": null,
-          "label": "全国対戦でのULTIMA選曲制限継続",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": "07:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "YOUNITHM(ULTIMA)",
-              "artist": null
-            },
-            {
-              "title": "Melodiniq(ULTIMA)",
-              "artist": null
-            }
-          ],
-          "date_text": "「CHUNITHM Mate」の稼働後も引き続き、全国対戦内での選曲が制限されます。",
-          "evidence": "下記楽曲の難易度「ULTIMA」につきましては、「CHUNITHM Mate」の稼働後も引き続き、全国対戦内での選曲が制限されます。",
-          "confidence": 0.99,
-          "calendar_start": "2026-07-02",
-          "calendar_end": null
-        }
-      ],
-      "cancellations": [],
-      "notes": [
-        "記事公開日と本文のバージョンアップ日から、本文中で年が省略されている7/1・7/2・7/3は2026年として補完しました。",
-        "バージョン稼働に伴う楽曲追加・イベントの開始時刻が当日の午前7時頃と明記されているため、同時期の直接告知には開始時刻07:00を設定しました。",
-        "「ゲキマイ」連動・伝導楽曲は通常開放の告知であり、新規追加ではないためsong_unlockに分類しました。",
-        "楽曲ジャンル変更、マッチング条件変更、全国対戦の選曲制限など、既存コンテンツの利用条件変更はservice_changeに分類しました。"
-      ],
-      "review_reasons": [],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "extracted",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "chunithm",
-        "url": "https://info-chunithm.sega.jp/12463/",
-        "date": "2026-06-19",
-        "title": "7/1(水)  『CHUNITHM Mate稼働直前！ゲキ！チュウマイ公式生放送』決定！"
-      },
-      "content_hash": "866d22894e113735dac589e39f473cc447c1d868efd330e95300f6a882576b35",
-      "entries": [
-        {
-          "title": "CHUNITHM Mate稼働直前！ゲキ！チュウマイ公式生放送",
-          "type": "other",
-          "subject": null,
-          "label": "公式生放送",
-          "official_name": "CHUNITHM Mate稼働直前！ゲキ！チュウマイ公式生放送",
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-07-01",
-          "start_time": "18:30",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年7月1日(水) 18時30分～",
-          "evidence": "『CHUNITHM Mate稼働直前！ゲキ！チュウマイ公式生放送』は、\n2026年7月1日(水) 18時30分～\nYouTube Live & ニコニコチャンネル にて放送予定です！！",
-          "confidence": 0.99,
-          "calendar_start": "2026-07-01",
-          "calendar_end": null
-        }
-      ],
-      "cancellations": [],
-      "notes": [
-        "新バージョン『CHUNITHM Mate』の稼働そのものではなく、稼働直前の公式生放送の告知としてotherに分類しました。"
-      ],
-      "review_reasons": [
-        "エントリ1: 種類がotherです。"
-      ],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "needs_review",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "chunithm",
-        "url": "https://info-chunithm.sega.jp/12053/",
-        "date": "2026-06-15",
-        "title": "6/18(木)「maimai でらっくす Part2」マップ登場！さらに、「オンゲキ Chapter7 【WakeUP MakeUP FEVER!】」に新たなマップを追加！"
-      },
-      "content_hash": "84422b264ac29022f3441ec8d3ad906779360156bfc48fe1de2f1e07d80dd463",
-      "entries": [
-        {
-          "title": "「maimai でらっくす Part2」マップ",
-          "type": "map_add",
-          "subject": "maimai でらっくす Part2",
-          "label": "マップ追加",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-06-18",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年6月18日(木)より、",
-          "evidence": "「maimai でらっくす Part2」が登場！",
-          "confidence": 0.98,
-          "calendar_start": "2026-06-18",
-          "calendar_end": null
-        },
-        {
-          "title": "「maimai でらっくす Part2」楽曲追加",
-          "type": "song_add",
-          "subject": "maimai でらっくす Part2",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-06-18",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "プリズム△▽リズム",
-              "artist": null
-            },
-            {
-              "title": "ARAIS",
-              "artist": null
-            }
-          ],
-          "date_text": "2026年6月18日(木)より、",
-          "evidence": "maimai でらっくす Part2マップでは  \n楽曲「プリズム△▽リズム」「ARAIS」が  \n課題曲としてプレイできます。",
-          "confidence": 0.98,
-          "calendar_start": "2026-06-18",
-          "calendar_end": null
-        },
-        {
-          "title": "「オンゲキ Chapter7 【WakeUP MakeUP FEVER!】」マップ拡張",
-          "type": "map_add",
-          "subject": "オンゲキ Chapter7 【WakeUP MakeUP FEVER!】",
-          "label": "マップ拡張",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-06-18",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年6月18日(木)より、",
-          "evidence": "マップ「オンゲキ Chapter7 【WakeUP MakeUP FEVER!】」にマップ追加！",
-          "confidence": 0.98,
-          "calendar_start": "2026-06-18",
-          "calendar_end": null
-        },
-        {
-          "title": "「オンゲキ Chapter7 【WakeUP MakeUP FEVER!】」楽曲追加",
-          "type": "song_add",
-          "subject": "オンゲキ Chapter7 【WakeUP MakeUP FEVER!】",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-06-18",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "いちげき！のテーマ",
-              "artist": null
-            },
-            {
-              "title": "アイシング・ドリーム",
-              "artist": null
-            },
-            {
-              "title": "Pastel Sprinkles",
-              "artist": null
-            }
-          ],
-          "date_text": "2026年6月18日(木)より、",
-          "evidence": "オンゲキ Chapter7 【WakeUP MakeUP FEVER!】マップでは  \n楽曲「いちげき！のテーマ」「アイシング・ドリーム」「Pastel Sprinkles」  \nが課題曲としてプレイできます。",
-          "confidence": 0.98,
-          "calendar_start": "2026-06-18",
-          "calendar_end": null
-        }
-      ],
-      "cancellations": [],
-      "notes": [
-        "記事冒頭では開始日を2026年6月18日と記載しているため採用しました。各マップの詳細見出し以下には「2025年6月18日」と記載されていますが、2025年6月18日は水曜日で、記事公開日および冒頭の日付（2026年6月18日(木)）と整合しないため、曜日と記事公開日に整合する2026年を採用しました。",
-        "各楽曲はそれぞれのマップの課題曲としてプレイできる旨が記載されているため、マップごとの楽曲追加として抽出しました。"
-      ],
-      "review_reasons": [
-        "詳細部分に「2025年6月18日(木)」と記載されており、冒頭の「2026年6月18日(木)」と年が矛盾しています。"
-      ],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "needs_review",
       "provider": "openai",
       "model": "gpt-5.6-luna"
     },
@@ -4865,7 +3077,7 @@
           "songs": [],
           "date_text": "9月17日(木)より順次稼働開始となります！",
           "evidence": "新バージョン\n『maimai でらっくす MAGiCAL（マジカル\n）』\n稼働日が決定しました！\n9月17日(木)より順次稼働開始となります！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-09-17",
           "calendar_end": null
         },
@@ -4910,7 +3122,7 @@
           ],
           "date_text": "『maimai でらっくす MAGiCAL』の稼働日より、",
           "evidence": "『maimai でらっくす MAGiCAL』の稼働日より、\nオトモダチ対戦の伝導楽曲として登場した「Break The Speakers」が、どなたでもプレイできるようになります。",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-09-17",
           "calendar_end": null
         },
@@ -4979,7 +3191,7 @@
           "songs": [],
           "date_text": "※「maiマイル」所持数のリセットは「9/17(木) AM4:00」のタイミングで行われます。",
           "evidence": "→バージョンアップに伴い、「maiマイル」の所持数は0にリセットされます。\n「maiマイルショップ」でのアイテム交換は、かならずバージョンアップ前にお済ませください。\nゲームプレイ中以外にも、\nmaimaiでらっくすNET\nでの交換も可能です。\n※「maiマイル」所持数のリセットは「9/17(木) AM4:00」のタイミングで行われます。",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-09-17",
           "calendar_end": null
         },
@@ -5019,7 +3231,7 @@
           "songs": [],
           "date_text": "ボーナスの獲得期限は「9/17(木) AM6:59」までとなり、",
           "evidence": "※バージョンアップの前週となる 9/7(月) AM7:00 ～ 9/14(月) AM6:59 に達成された\nボーナスの獲得期限は「9/17(木) AM6:59」までとなり、\n上記日時以降は獲得することができなくなりますので、あらかじめご了承ください。",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-09-17",
           "calendar_end": null
         },
@@ -5039,7 +3251,7 @@
           "songs": [],
           "date_text": "9/17(木)より、一部のオリジナルちほーが選択できなくなります。",
           "evidence": "9/17(木)より、一部のオリジナルちほーが選択できなくなります。\n対象ちほー\nトリコロちほー\nkawaiiちほー2\n高天原ちほー2\nスカイストリートちほー7\nサークルちほー2\nパーリィちほー\nメトロポリスちほー7\nスカイストリートちほー5\n7sRefちほー3\nBLACK ROSEちほー9",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-09-17",
           "calendar_end": null
         },
@@ -5068,7 +3280,7 @@
           ],
           "date_text": "9/17(木)より、一部の楽曲がプレイすることができなくなります。",
           "evidence": "9/17(木)より、一部の楽曲がプレイすることができなくなります。\n削除対象楽曲についてはこちらをご覧ください。\n削除対象楽曲\nお願いマッスル\nBurn My Soul",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-09-17",
           "calendar_end": null
         }
@@ -5119,7 +3331,7 @@
           ],
           "date_text": "2026年9月4日(金)より、",
           "evidence": "2026年9月4日(金)より、\n「POPS＆アニメ」に新曲「相性×優勝ドロップス」が追加されるほか、",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-09-04",
           "calendar_end": null
         },
@@ -5148,7 +3360,7 @@
           ],
           "date_text": "2026年9月4日(金)より、",
           "evidence": "2026年9月4日(金)より、\n「POPS＆アニメ」に新曲「相性×優勝ドロップス」が追加されるほか、\n「niconico＆ボーカロイド™」に新曲「光線歌」「電脳眠眠猫」が追加されます！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-09-04",
           "calendar_end": null
         }
@@ -5240,7 +3452,7 @@
           "songs": [],
           "date_text": "2026年8月21日(金)より、\n「Rotaenoちほー」\nがオープンします！！",
           "evidence": "「Rotaenoちほー」オープン！\n(2026/8/21～2026/11/5)",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-08-21",
           "calendar_end": "2026-11-05"
         },
@@ -5269,7 +3481,7 @@
           ],
           "date_text": "2026年8月21日(金)より、",
           "evidence": "イベント開催にあわせて\n「ゲーム＆バラエティ」に新曲「Broomstick adventure!」「無彩色のディストピア」が追加されます！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-08-21",
           "calendar_end": null
         },
@@ -5298,29 +3510,9 @@
           ],
           "date_text": "2026年8月21日(金)より、",
           "evidence": "さらに、ちほーを進めることで楽曲「\nManifold Hypothesis\n」「Inverted World」がプレイできるほか、",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-08-21",
           "calendar_end": null
-        },
-        {
-          "title": "ちほー進行5倍チケット追加",
-          "type": "other",
-          "subject": null,
-          "label": "ちほー進行5倍チケット追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-08-21",
-          "start_time": "10:00",
-          "end": "2026-09-16",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年8月21日(金)より、",
-          "evidence": "「ちほー進行5倍チケット」追加！\n(2026/8/21～2026/9/16)\n2026年8月21日(金)より、追加クレジットで購入できるチケットに「ちほー進行5倍チケット」が追加されます！",
-          "confidence": 1.0,
-          "calendar_start": "2026-08-21",
-          "calendar_end": "2026-09-16"
         }
       ],
       "cancellations": [],
@@ -5363,7 +3555,7 @@
           "songs": [],
           "date_text": "2026年8月7日(金)より、\n「天界ちほー9」\nがオープンします！！",
           "evidence": "「天界ちほー9」オープン！\n(2026/8/7～)",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-08-07",
           "calendar_end": null
         },
@@ -5400,7 +3592,7 @@
           ],
           "date_text": "「天界ちほー9」オープン！\n(2026/8/7～)",
           "evidence": "「天界ちほー9」では、「課題曲」と「パーフェクトチャレンジ楽曲」が出現します！\n「課題曲」と「パーフェクトチャレンジ」はクリアすることで楽曲をゲットできます！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-08-07",
           "calendar_end": null
         },
@@ -5449,7 +3641,7 @@
           ],
           "date_text": "8月7日(金)より、『サークルフェスタ シーズン3』フェスタ勝利報酬として登場した「歌え踊れや桃源郷！」、\nフェスタポイント報酬として登場した「オトヒメモリー☆ウタゲーション」が、どなたでもプレイできるようになります。",
           "evidence": "8月7日(金)より、『サークルフェスタ シーズン3』フェスタ勝利報酬として登場した「歌え踊れや桃源郷！」、\n\nフェスタポイント報酬として登場した「オトヒメモリー☆ウタゲーション」が、どなたでもプレイできるようになります。",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-08-07",
           "calendar_end": null
         },
@@ -5469,7 +3661,7 @@
           "songs": [],
           "date_text": "9月17日(木)より、以下の「すたんぷカード」が選択できなくなります。",
           "evidence": "9月17日(木)より、以下の「すたんぷカード」が選択できなくなります。\n\n対象すたんぷカード\nアイコン：CiRCLE\nネームプレート：はっぴー（さーくる）\nフレーム：ATLAS RUSH\nでらっくす譜面：チルノのパーフェクトさんすう教室\nでらっくす譜面：BAD∞END∞NIGHT",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-09-17",
           "calendar_end": null
         },
@@ -5498,7 +3690,7 @@
           ],
           "date_text": "以下の譜面につきましては、9月17日(木)のアップデートにてどなたでもプレイできるようになります。",
           "evidence": "以下の譜面につきましては、9月17日(木)のアップデートにてどなたでもプレイできるようになります。\n\n・でらっくす譜面：チルノのパーフェクトさんすう教室  \n・でらっくす譜面：BAD∞END∞NIGHT\n\n※楽曲やコレクションが追加されるのは当日の午前10時頃となります。",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-09-17",
           "calendar_end": null
         }
@@ -5690,7 +3882,7 @@
           "songs": [],
           "date_text": "「ぼくわたチャンネルちほー」オープン！\n(2026/8/4～2026/10/15)",
           "evidence": "2026年8月4日(火)より、\n「ぼくわたチャンネルちほー」\nがオープンします！！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-08-04",
           "calendar_end": "2026-10-15"
         },
@@ -5720,51 +3912,6 @@
           "calendar_end": null
         },
         {
-          "title": "オトモダチ対戦 シーズン28",
-          "type": "friend_battle",
-          "subject": "オトモダチ対戦 シーズン28",
-          "label": "オトモダチ対戦",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-08-04",
-          "start_time": "10:00",
-          "end": "2026-08-24",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年8月4日(火) 10:00～8月24日(月) 23:59の期間で「オトモダチ対戦」を遊ぶと、",
-          "evidence": "オトモダチ対戦 シーズン28開幕！\n(2026/8/4～2026/8/24)\n2026年8月4日(火) 10:00～8月24日(月) 23:59の期間で「オトモダチ対戦」を遊ぶと、",
-          "confidence": 1.0,
-          "calendar_start": "2026-08-04",
-          "calendar_end": "2026-08-24"
-        },
-        {
-          "title": "「オトモダチ対戦 シーズン28」でらっくす譜面追加",
-          "type": "dx_chart_add",
-          "subject": "オトモダチ対戦 シーズン28",
-          "label": "でらっくす譜面追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-08-04",
-          "start_time": "10:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "Ignite Infinity",
-              "artist": null
-            }
-          ],
-          "date_text": "2026年8月4日(火) 10:00～8月24日(月) 23:59の期間で「オトモダチ対戦」を遊ぶと、",
-          "evidence": "シーズンポイント報酬・\nでらっくす譜面\n追加\n（300SPでゲット！）\nIgnite Infinity\n「PHANTASY STAR PORTABLE2 ∞」",
-          "confidence": 0.98,
-          "calendar_start": "2026-08-04",
-          "calendar_end": null
-        },
-        {
           "title": "「オトモダチ対戦 シーズン25」楽曲一般開放",
           "type": "song_unlock",
           "subject": "オトモダチ対戦 シーズン25",
@@ -5785,7 +3932,7 @@
           ],
           "date_text": "また、シーズン25ポイント報酬の楽曲「怪盗Rのテーマ」でらっくす譜面は、8/4(火)よりどなたでもプレイできるようになります。",
           "evidence": "また、シーズン25ポイント報酬の楽曲「怪盗Rのテーマ」でらっくす譜面は、8/4(火)よりどなたでもプレイできるようになります。",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-08-04",
           "calendar_end": null
         }
@@ -5868,55 +4015,6 @@
       "content_hash": "96f64f1f073beaa29af47142206ba1b1e9ebc77a07b869eef92af0a41a154269",
       "entries": [
         {
-          "title": "マサラダちほー",
-          "type": "area_add",
-          "subject": "マサラダちほー",
-          "label": "ちほー追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-07-17",
-          "start_time": null,
-          "end": "2026-09-16",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年7\n月17日(金)より、\n「マサラダちほー」\nがオープンします！！",
-          "evidence": "2026年7\n月17日(金)より、\n「マサラダちほー」\nがオープンします！！\n\nイベント開催にあわせて",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-17",
-          "calendar_end": "2026-09-16"
-        },
-        {
-          "title": "「マサラダちほー」楽曲追加",
-          "type": "song_add",
-          "subject": "マサラダちほー",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-07-17",
-          "start_time": "10:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "イレギュラーマン",
-              "artist": "マサラダ"
-            },
-            {
-              "title": "ちっちゃな私",
-              "artist": "マサラダ"
-            }
-          ],
-          "date_text": "2026年7\n月17日(金)より、",
-          "evidence": "イベント開催にあわせて\n「niconico＆ボーカロイド™」に新曲「イレギュラーマン」「ちっちゃな私」が追加されます！",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-17",
-          "calendar_end": null
-        },
-        {
           "title": "楽曲追加",
           "type": "song_add",
           "subject": null,
@@ -5974,7 +4072,7 @@
           ],
           "date_text": "8月7日(金)より、一部の楽曲・宴譜面がプレイすることができなくなります。",
           "evidence": "8月7日(金)より、一部の楽曲・宴譜面がプレイすることができなくなります。  \n削除対象楽曲についてはこちらをご覧ください。",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-08-07",
           "calendar_end": null
         }
@@ -5992,1099 +4090,6 @@
       "attempts": 1,
       "prompt_version": "40",
       "status": "extracted",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "maimai",
-        "url": "https://info-maimai.sega.jp/9081/",
-        "date": "2026-07-01",
-        "title": "7/2(木)「イロドリミドリちほー2」オープン！"
-      },
-      "content_hash": "7aaa89de941750aaf33b5309ff0efa9aaee828f8f6fe8de6f832e01a3f4836f6",
-      "entries": [
-        {
-          "title": "イロドリミドリちほー2",
-          "type": "area_add",
-          "subject": "イロドリミドリちほー2",
-          "label": "ちほー追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": null,
-          "end": "2026-09-16",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年7月2日(木)より、\n\n**「イロドリミドリちほー2」**がオープンします！\n\nイベント開催にあわせて",
-          "evidence": "2026年7月2日(木)より、\n\n**「イロドリミドリちほー2」**がオープンします！\n\nイベント開催にあわせて  \n「オンゲキ＆CHUNITHM」に新曲「私たちは、花になる」「Here the Our MIRAI!」が追加！\n\nさらに、ちほーを進めることで楽曲「色彩過剰のダイアリーミュージック」がプレイできるほか、",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-02",
-          "calendar_end": "2026-09-16"
-        },
-        {
-          "title": "「イロドリミドリちほー2」楽曲追加",
-          "type": "song_add",
-          "subject": "イロドリミドリちほー2",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": "10:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "私たちは、花になる",
-              "artist": "イロドリミドリ｜HaNaMiNa｜S.S.L."
-            },
-            {
-              "title": "Here the Our MIRAI!",
-              "artist": "イロドリミドリ"
-            }
-          ],
-          "date_text": "2026年7月2日(木)より、",
-          "evidence": "イベント開催にあわせて  \n「オンゲキ＆CHUNITHM」に新曲「私たちは、花になる」「Here the Our MIRAI!」が追加！",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-02",
-          "calendar_end": null
-        },
-        {
-          "title": "「イロドリミドリちほー2」楽曲追加",
-          "type": "song_add",
-          "subject": "イロドリミドリちほー2",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-07-02",
-          "start_time": "10:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "色彩過剰のダイアリーミュージック",
-              "artist": "イロドリミドリ"
-            }
-          ],
-          "date_text": "2026年7月2日(木)より、",
-          "evidence": "さらに、ちほーを進めることで楽曲「色彩過剰のダイアリーミュージック」がプレイできるほか、",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-02",
-          "calendar_end": null
-        }
-      ],
-      "cancellations": [],
-      "notes": [
-        "新曲やコレクションの追加時刻が「当日の午前10時頃」と明記されているため、楽曲追加の開始時刻を10:00とした。",
-        "「私たちは、花になる」「Here the Our MIRAI!」は「イロドリミドリちほー2」のイベント開催にあわせた追加として、同ちほーを所属先に設定した。",
-        "「色彩過剰のダイアリーミュージック」はちほーを進めることでプレイできる楽曲として、同ちほーを所属先に設定した。"
-      ],
-      "review_reasons": [],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "extracted",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "maimai",
-        "url": "https://info-maimai.sega.jp/8978/",
-        "date": "2026-06-25",
-        "title": "6/26(金)「森羅万象ちほー」オープン！さらに、「東方Project」に新曲追加！"
-      },
-      "content_hash": "a8fd0ed9d4f67eb724ac038e2fb10c8ede5dcc237255b854036e68cbbd78229f",
-      "entries": [
-        {
-          "title": "森羅万象ちほー",
-          "type": "area_add",
-          "subject": "森羅万象ちほー",
-          "label": "ちほー追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-06-26",
-          "start_time": null,
-          "end": "2026-09-03",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "# 「森羅万象ちほー」オープン！ (2026/6/26～2026/9/3)",
-          "evidence": "2026年6月26日(金)より、\n「森羅万象ちほー」\nがオープンします！！",
-          "confidence": 1.0,
-          "calendar_start": "2026-06-26",
-          "calendar_end": "2026-09-03"
-        },
-        {
-          "title": "「森羅万象ちほー」楽曲追加",
-          "type": "song_add",
-          "subject": "森羅万象ちほー",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-06-26",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "純情アルメリア",
-              "artist": "森羅万象"
-            },
-            {
-              "title": "運命線上のアリア",
-              "artist": "森羅万象"
-            },
-            {
-              "title": "デンデラパーティーナイト",
-              "artist": "森羅万象"
-            }
-          ],
-          "date_text": "2026年6月26日(金)より、",
-          "evidence": "イベント開催にあわせて\n「東方Project」に新曲「純情アルメリア」「運命線上のアリア」「デンデラパーティーナイト」が追加されます！",
-          "confidence": 1.0,
-          "calendar_start": "2026-06-26",
-          "calendar_end": null
-        },
-        {
-          "title": "楽曲追加",
-          "type": "song_add",
-          "subject": null,
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-06-26",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "Absolute Queen",
-              "artist": "Laur"
-            }
-          ],
-          "date_text": "2026年6月26日(金)より、",
-          "evidence": "さらに、「東方Project」に\n新曲「Absolute Queen」が追加されます！",
-          "confidence": 0.98,
-          "calendar_start": "2026-06-26",
-          "calendar_end": null
-        }
-      ],
-      "cancellations": [],
-      "notes": [
-        "「純情アルメリア」「運命線上のアリア」「デンデラパーティーナイト」は、森羅万象ちほーの開催にあわせた追加として、ちほーを所属先に設定しました。",
-        "「Absolute Queen」は同日追加ですが、本文では森羅万象ちほーとの所属関係が明示されていないため、subjectはnullとしました。「さらに」に続く同記事内の告知のため、開始日を直前の告知と同じ2026-06-26としました。",
-        "宴譜面の追加は告知されていますが、曲名が画像内にしかなく、本文から具体的な曲名を取得できないためエントリ化していません。"
-      ],
-      "review_reasons": [
-        "「宴会場」カテゴリに追加される宴譜面の曲名が画像内にしか記載されておらず、特定できません。"
-      ],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "needs_review",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "maimai",
-        "url": "https://info-maimai.sega.jp/9007/",
-        "date": "2026-06-11",
-        "title": "6/12(金)「メトロポリスちほー10」オープン！"
-      },
-      "content_hash": "5a3a9b1b4aa0eeea811734950656209fde7b31e4efd26407a2096aa5603b1ff3",
-      "entries": [
-        {
-          "title": "メトロポリスちほー10",
-          "type": "area_add",
-          "subject": "メトロポリスちほー10",
-          "label": "ちほー追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-06-12",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": true,
-          "songs": [],
-          "date_text": "2026年6月12日(金)より、\n「メトロポリスちほー10」\nがオープンします！！",
-          "evidence": "2026年6月12日(金)より、\n「メトロポリスちほー10」\nがオープンします！！",
-          "confidence": 1.0,
-          "calendar_start": "2026-06-12",
-          "calendar_end": null
-        },
-        {
-          "title": "「メトロポリスちほー10」楽曲追加",
-          "type": "song_add",
-          "subject": "メトロポリスちほー10",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-06-12",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "TAKE CONTROL",
-              "artist": "ryhki"
-            },
-            {
-              "title": "HyperdrivE",
-              "artist": "KARUT"
-            },
-            {
-              "title": "Paradoxical Empress",
-              "artist": "polysha"
-            },
-            {
-              "title": "RONDØ",
-              "artist": "Ashrount"
-            }
-          ],
-          "date_text": "2026年6月12日(金)より、\n「メトロポリスちほー10」\nがオープンします！！",
-          "evidence": "「メトロポリスちほー10」では、「課題曲」と「パーフェクトチャレンジ楽曲」が出現します！\n「課題曲」と「パーフェクトチャレンジ」はクリアすることで楽曲をゲットできます！",
-          "confidence": 1.0,
-          "calendar_start": "2026-06-12",
-          "calendar_end": null
-        },
-        {
-          "title": "でらっくすパスイラスト更新",
-          "type": "service_change",
-          "subject": null,
-          "label": "でらっくすパスイラスト更新",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-06-12",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "6月12日(金)より、でらっくすパスのイラストが更新されます！",
-          "evidence": "6月12日(金)より、でらっくすパスのイラストが更新されます！  \n今回の追加イラストはコチラ！",
-          "confidence": 0.95,
-          "calendar_start": "2026-06-12",
-          "calendar_end": null
-        },
-        {
-          "title": "楽曲連動終了（2曲）",
-          "type": "service_change",
-          "subject": null,
-          "label": "楽曲連動終了",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": true,
-          "start": "2026-06-11",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "TECHNOPOLIS 2085",
-              "artist": null
-            },
-            {
-              "title": "Galaxy Blaster",
-              "artist": null
-            }
-          ],
-          "date_text": "6月11日(木)にて楽曲連動を終了させていただきます。",
-          "evidence": "『CHUNITHM』『オンゲキ』楽曲連動イベントの対象となっている以下の楽曲につきまして、\n6月11日(木)にて楽曲連動を終了させていただきます。",
-          "confidence": 1.0,
-          "calendar_start": "2026-06-11",
-          "calendar_end": null
-        },
-        {
-          "title": "楽曲一般開放",
-          "type": "song_unlock",
-          "subject": null,
-          "label": "楽曲一般開放",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-06-12",
-          "start_time": "10:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "TECHNOPOLIS 2085",
-              "artist": null
-            },
-            {
-              "title": "Galaxy Blaster",
-              "artist": null
-            }
-          ],
-          "date_text": "なお、対象楽曲は6月12日(金)のアップデートにて、どなたでもプレイできるようになります。",
-          "evidence": "なお、対象楽曲は6月12日(金)のアップデートにて、どなたでもプレイできるようになります。\n\n対象楽曲\nTECHNOPOLIS 2085\nGalaxy Blaster\n※楽曲やコレクションが追加されるのは当日の午前10時頃となります。",
-          "confidence": 1.0,
-          "calendar_start": "2026-06-12",
-          "calendar_end": null
-        }
-      ],
-      "cancellations": [],
-      "notes": [
-        "本文中の年が省略された6月11日・12日は、記事公開日と冒頭の2026年6月12日の記載、および曜日の整合から2026年として補完しました。",
-        "「メトロポリスちほー10」で獲得できる楽曲は、ちほー追加とは別に楽曲追加エントリとして抽出しました。",
-        "楽曲連動終了後の対象楽曲は、6月12日のアップデートで一般開放されるため、楽曲連動終了と楽曲解禁を別エントリに分けました。",
-        "楽曲・コレクションの追加時刻として記載された「午前10時頃」を10:00として設定しました。"
-      ],
-      "review_reasons": [],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "extracted",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "maimai",
-        "url": "https://info-maimai.sega.jp/9463/",
-        "date": "2026-06-05",
-        "title": "6/12(金)「サークルフェスタ シーズン3」開催！"
-      },
-      "content_hash": "67601d766ed4e655149fe5d3b3370eee0f91d037465a2e033ee51221ac4ffc43",
-      "entries": [
-        {
-          "title": "「サークルフェスタ シーズン3」イベント",
-          "type": "event",
-          "subject": "サークルフェスタ シーズン3",
-          "label": "イベント",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-06-12",
-          "start_time": "07:00",
-          "end": "2026-06-28",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [],
-          "date_text": "6月12日(金) 7:00～6月28日(日) 23:59の期間で",
-          "evidence": "6月12日(金) 7:00～6月28日(日) 23:59の期間で\n「サークルフェスタ シーズン3」が開幕！",
-          "confidence": 1.0,
-          "calendar_start": "2026-06-12",
-          "calendar_end": "2026-06-28"
-        },
-        {
-          "title": "サークルフェスタ シーズン3参加受付終了",
-          "type": "service_change",
-          "subject": null,
-          "label": "サークルフェスタ シーズン3参加受付終了",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": true,
-          "start": "2026-06-19",
-          "start_time": "04:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "6月19日(金) 4:00\n「サークルフェスタ シーズン3」参加締め切り（投票期間終了）",
-          "evidence": "6月19日(金) 4:00\n「サークルフェスタ シーズン3」参加締め切り（投票期間終了）",
-          "confidence": 1.0,
-          "calendar_start": "2026-06-18",
-          "calendar_end": null
-        },
-        {
-          "title": "「サークルフェスタ シーズン3」楽曲追加",
-          "type": "song_add",
-          "subject": "サークルフェスタ シーズン3",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": null,
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "歌え踊れや桃源郷！",
-              "artist": "karato feat.yuno"
-            }
-          ],
-          "date_text": "※フェスタ勝利報酬は、フェスタ終了後のアップデートで追加されます。",
-          "evidence": "フェスタ勝利報酬・楽曲追加\n（勝利チームに先行解禁！）\n歌え踊れや桃源郷！\nkarato feat.yuno\n※フェスタ勝利報酬は、フェスタ終了後のアップデートで追加されます。",
-          "confidence": 0.95,
-          "calendar_start": null,
-          "calendar_end": null
-        },
-        {
-          "title": "「サークルフェスタ シーズン3」でらっくす譜面追加",
-          "type": "dx_chart_add",
-          "subject": "サークルフェスタ シーズン3",
-          "label": "でらっくす譜面追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-06-12",
-          "start_time": "07:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "オトヒメモリー☆ウタゲーション",
-              "artist": "Junky feat. 乙姫(CV:浅川悠)"
-            }
-          ],
-          "date_text": "6月12日(金) 7:00～6月28日(日) 23:59の期間で",
-          "evidence": "フェスタポイント報酬・でらっくす譜面追加\n（20,000FPでゲット！）\nオトヒメモリー☆ウタゲーション\nJunky feat. 乙姫(CV:浅川悠)",
-          "confidence": 0.95,
-          "calendar_start": "2026-06-12",
-          "calendar_end": null
-        }
-      ],
-      "cancellations": [],
-      "notes": [
-        "記事冒頭で2026年6月12日と明記されているため、年のないスケジュールの日付は2026年として補完しました。",
-        "「オトヒメモリー☆ウタゲーション」のでらっくす譜面は、サークルフェスタの開始に伴う報酬として、イベント開始日時を追加日時に採用しました。",
-        "「歌え踊れや桃源郷！」はフェスタ終了後のアップデートで追加されると記載されており、具体的な追加日時が示されていないため開始日時を未設定としました。"
-      ],
-      "review_reasons": [
-        "「歌え踊れや桃源郷！」の追加日時は「フェスタ終了後のアップデート」とのみ記載され、具体的な日付・時刻が不明です。",
-        "エントリ3: 開始日が不明です。"
-      ],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "needs_review",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "maimai",
-        "url": "https://info-maimai.sega.jp/8967/",
-        "date": "2026-05-28",
-        "title": "5/29(金) 「niconico＆ボーカロイド™」「ゲーム＆バラエティ」に新曲追加！宴譜面の追加も！"
-      },
-      "content_hash": "5aac58629aacb21abb39d808b320a9aeed3eaf4e332958f3e579f12ca88d044e",
-      "entries": [
-        {
-          "title": "楽曲追加",
-          "type": "song_add",
-          "subject": null,
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-05-29",
-          "start_time": "10:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "Intergalactic Bound",
-              "artist": "Yunosuke / CircusP"
-            },
-            {
-              "title": "LEMON MELON COOKIE",
-              "artist": "TAK"
-            }
-          ],
-          "date_text": "2026年5月29日(金)より、",
-          "evidence": "「niconico＆ボーカロイド™」に\n「Intergalactic Bound」「LEMON MELON COOKIE」が\n「ゲーム＆バラエティ」に\n「3rd Avenue」が追加されます！！",
-          "confidence": 0.99,
-          "calendar_start": "2026-05-29",
-          "calendar_end": null
-        },
-        {
-          "title": "楽曲追加",
-          "type": "song_add",
-          "subject": null,
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-05-29",
-          "start_time": "10:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "3rd Avenue",
-              "artist": "Sound Souler"
-            }
-          ],
-          "date_text": "2026年5月29日(金)より、",
-          "evidence": "「niconico＆ボーカロイド™」に\n「Intergalactic Bound」「LEMON MELON COOKIE」が\n「ゲーム＆バラエティ」に\n「3rd Avenue」が追加されます！！",
-          "confidence": 0.99,
-          "calendar_start": "2026-05-29",
-          "calendar_end": null
-        }
-      ],
-      "cancellations": [],
-      "notes": [
-        "「niconico＆ボーカロイド™」と「ゲーム＆バラエティ」は楽曲の所属先ではなくジャンル名のため、subjectはnullとした。",
-        "楽曲の追加時刻は本文の「楽曲が追加されるのは当日の午前10時頃となります。」に基づき、10:00とした。"
-      ],
-      "review_reasons": [
-        "「宴会場」カテゴリへの宴譜面追加は本文で告知されているが、具体的な曲名が画像内にしかないため、utage_addエントリを作成できない。"
-      ],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "needs_review",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "maimai",
-        "url": "https://info-maimai.sega.jp/8939/",
-        "date": "2026-05-13",
-        "title": "5/14(木)「ヒメヒナちほー2」オープン！さらに、「ヒメヒナちほー」復活と宴譜面を追加！"
-      },
-      "content_hash": "f1fe4d8f9e1851cb9ea7e087e0d1befd0ca3fb3e70fc214bb0537346121a4af3",
-      "entries": [
-        {
-          "title": "「ヒメヒナ」コラボイベント",
-          "type": "event",
-          "subject": "ヒメヒナ",
-          "label": "コラボイベント",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-05-14",
-          "start_time": null,
-          "end": "2026-07-30",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年5月14日(木)より、\n「ヒメヒナ」\nとのコラボイベント第2弾が開催決定！",
-          "evidence": "2026年5月14日(木)より、\n「ヒメヒナ」\nとのコラボイベント第2弾が開催決定！\n新曲「キスキツネ」「WWW」「うたかたよいかないで」が追加されます！",
-          "confidence": 0.99,
-          "calendar_start": "2026-05-14",
-          "calendar_end": "2026-07-30"
-        },
-        {
-          "title": "「ヒメヒナ」楽曲追加",
-          "type": "song_add",
-          "subject": "ヒメヒナ",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-05-14",
-          "start_time": "10:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "キスキツネ",
-              "artist": "HIMEHINA"
-            },
-            {
-              "title": "WWW",
-              "artist": "HIMEHINA"
-            },
-            {
-              "title": "うたかたよいかないで",
-              "artist": "HIMEHINA"
-            }
-          ],
-          "date_text": "2026年5月14日(木)より、\n「ヒメヒナ」\nとのコラボイベント第2弾が開催決定！",
-          "evidence": "新曲「キスキツネ」「WWW」「うたかたよいかないで」が追加されます！",
-          "confidence": 0.99,
-          "calendar_start": "2026-05-14",
-          "calendar_end": null
-        },
-        {
-          "title": "「ヒメヒナ」リバイバルイベント",
-          "type": "event",
-          "subject": "ヒメヒナ",
-          "label": "リバイバルイベント",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-05-14",
-          "start_time": null,
-          "end": "2026-07-30",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年5月14日(木)より、過去に開催していた「ヒメヒナちほー」が復刻開催されます。",
-          "evidence": "そして同日より、「ヒメヒナ」コラボ第1弾の復刻開催と\n新たな宴譜面が追加されます！\n「ヒメヒナちほー」復活！\n(2026/5/14～2026/7/30)\n2026年5月14日(木)より、過去に開催していた「ヒメヒナちほー」が復刻開催されます。",
-          "confidence": 0.99,
-          "calendar_start": "2026-05-14",
-          "calendar_end": "2026-07-30"
-        }
-      ],
-      "cancellations": [],
-      "notes": [
-        "「ヒメヒナちほー2」は「ヒメヒナ」とのコラボイベント第2弾に付随するちほーのため、コラボイベントに統合しました。復刻の「ヒメヒナちほー」は別の復刻イベントとして抽出しました。",
-        "新曲はコラボイベントに伴う追加で、楽曲やコレクションの追加時刻として本文にある「午前10時頃」を10:00にしました。",
-        "宴譜面は追加が告知されていますが、対象曲名が本文テキストに記載されていません。"
-      ],
-      "review_reasons": [
-        "宴譜面の対象曲名が画像内にしか存在しないため、utage_addエントリを作成できません。",
-        "エントリ3: evidenceの原文根拠を確認できません。"
-      ],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "needs_review",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "maimai",
-        "url": "https://info-maimai.sega.jp/8922/",
-        "date": "2026-05-07",
-        "title": "5/8(金)「BLACK ROSEちほー11」オープン！"
-      },
-      "content_hash": "be31d63524669d8930fbd90b362255456c67b2caec4376437c8a1420cef73c06",
-      "entries": [
-        {
-          "title": "BLACK ROSEちほー11",
-          "type": "area_add",
-          "subject": "BLACK ROSEちほー11",
-          "label": "ちほー追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-05-08",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": true,
-          "songs": [],
-          "date_text": "2026年5月8日(金)より、\n「BLACK ROSEちほー11」\nがオープンします！！",
-          "evidence": "「BLACK ROSEちほー11」では、「課題曲」と「パーフェクトチャレンジ楽曲」が出現します！",
-          "confidence": 1.0,
-          "calendar_start": "2026-05-08",
-          "calendar_end": null
-        },
-        {
-          "title": "「BLACK ROSEちほー11」楽曲追加",
-          "type": "song_add",
-          "subject": "BLACK ROSEちほー11",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-05-08",
-          "start_time": "10:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "オールマスター",
-              "artist": "大漠波新 feat.ヲタみん"
-            },
-            {
-              "title": "STRAY",
-              "artist": "umigame"
-            },
-            {
-              "title": "クロノイデア",
-              "artist": "iDEN LiLY feat.X-Fenriey"
-            }
-          ],
-          "date_text": "「BLACK ROSEちほー11」オープン！ (2026/5/8～)",
-          "evidence": "「課題曲」と「パーフェクトチャレンジ」はクリアすることで楽曲をゲットできます！",
-          "confidence": 1.0,
-          "calendar_start": "2026-05-08",
-          "calendar_end": null
-        },
-        {
-          "title": "でらっくすパスキャラクター更新",
-          "type": "other",
-          "subject": null,
-          "label": "でらっくすパスキャラクター更新",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-05-08",
-          "start_time": "10:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "5月8日(金)より、でらっくすパスのイラストが更新されます！",
-          "evidence": "「でらっくすパス」キャラクター更新！\n\n5月8日(金)より、でらっくすパスのイラストが更新されます！",
-          "confidence": 1.0,
-          "calendar_start": "2026-05-08",
-          "calendar_end": null
-        }
-      ],
-      "cancellations": [],
-      "notes": [
-        "「BLACK ROSEちほー11」で獲得できる楽曲として明示されている3曲を、ちほー追加とは別のsong_addエントリにまとめた。",
-        "楽曲・コレクションの追加時刻は本文の「当日の午前10時頃」を10:00として設定した。"
-      ],
-      "review_reasons": [
-        "エントリ3: 種類がotherです。"
-      ],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "needs_review",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "maimai",
-        "url": "https://info-maimai.sega.jp/8868/",
-        "date": "2026-04-30",
-        "title": "5/1(金)「ブルーアーカイブちほー2」オープン！さらに、「ブルーアーカイブちほー」復活！"
-      },
-      "content_hash": "e6a296cb95a704d125f8f4d9e8eb38b55cd1f95f22f06ebcedd1824ef167eeea",
-      "entries": [
-        {
-          "title": "「ブルーアーカイブ 第2弾」コラボイベント",
-          "type": "event",
-          "subject": "ブルーアーカイブ 第2弾",
-          "label": "コラボイベント",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-05-01",
-          "start_time": null,
-          "end": "2026-07-16",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年5月1日(金)より、\n「ブルーアーカイブ」\nとのコラボイベント第2弾が開催決定！",
-          "evidence": "2026年5月1日(金)より、\n「ブルーアーカイブ」\nとのコラボイベント第2弾が開催決定！\n新曲「Operation☆DOTABATA!」「RE Aoharu」「Usagi Flap」が追加されます！\nさらに、ちほーを進めることで「ブルーアーカイブ」のキャラクターたちが「つあーメンバー」としてゲットできます！\n\n「ブルーアーカイブちほー2」オープン！\n(2026/5/1～2026/7/16)",
-          "confidence": 0.99,
-          "calendar_start": "2026-05-01",
-          "calendar_end": "2026-07-16"
-        },
-        {
-          "title": "「ブルーアーカイブ 第2弾」楽曲追加",
-          "type": "song_add",
-          "subject": "ブルーアーカイブ 第2弾",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-05-01",
-          "start_time": "10:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "Operation☆DOTABATA!",
-              "artist": "Mitsukiyo「ブルーアーカイブ -Blue Archive-」"
-            },
-            {
-              "title": "RE Aoharu",
-              "artist": "Nor「ブルーアーカイブ -Blue Archive-」"
-            },
-            {
-              "title": "Usagi Flap",
-              "artist": "Nor「ブルーアーカイブ -Blue Archive-」"
-            }
-          ],
-          "date_text": "2026年5月1日(金)より、",
-          "evidence": "新曲「Operation☆DOTABATA!」「RE Aoharu」「Usagi Flap」が追加されます！\n\n新曲追加！！\nゲーム＆バラエティ\nOperation☆DOTABATA!\nMitsukiyo「ブルーアーカイブ -Blue Archive-」\nRE Aoharu\nNor「ブルーアーカイブ -Blue Archive-」\nUsagi Flap\nNor「ブルーアーカイブ -Blue Archive-」\n\n※楽曲やコレクションが追加されるのは当日の午前10時頃となります。",
-          "confidence": 0.99,
-          "calendar_start": "2026-05-01",
-          "calendar_end": null
-        },
-        {
-          "title": "「ブルーアーカイブ 第1弾」リバイバルイベント",
-          "type": "event",
-          "subject": "ブルーアーカイブ 第1弾",
-          "label": "リバイバルイベント",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-05-01",
-          "start_time": null,
-          "end": "2026-07-16",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "そして同日より、「ブルーアーカイブ」コラボ第1弾の復刻開催も決定！",
-          "evidence": "そして同日より、「ブルーアーカイブ」コラボ第1弾の復刻開催も決定！\n\n「ブルーアーカイブちほー」復活！\n(5/1～7/16)\n2026年5月1日(金)より、過去に開催していた「ブルーアーカイブちほー」が復刻開催されます。",
-          "confidence": 0.99,
-          "calendar_start": "2026-05-01",
-          "calendar_end": "2026-07-16"
-        }
-      ],
-      "cancellations": [],
-      "notes": [
-        "「ブルーアーカイブちほー2」は同一内容・期間のコラボイベントに統合し、イベントのsubjectはコラボ相手と弾数を保持した「ブルーアーカイブ 第2弾」とした。復刻の「ブルーアーカイブちほー」は「ブルーアーカイブ 第1弾」の復刻イベントとして分離した。",
-        "新曲は第2弾コラボに伴う追加であるため、song_addのsubjectをイベントと同じ「ブルーアーカイブ 第2弾」とした。楽曲・コレクションの追加時刻は本文の「午前10時頃」から10:00とした。"
-      ],
-      "review_reasons": [
-        "エントリ1: evidenceの原文根拠を確認できません。",
-        "エントリ2: evidenceの原文根拠を確認できません。",
-        "エントリ3: evidenceの原文根拠を確認できません。"
-      ],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "needs_review",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "maimai",
-        "url": "https://info-maimai.sega.jp/8851/",
-        "date": "2026-04-16",
-        "title": "4/17(金)「DEEMOちほー」オープン！"
-      },
-      "content_hash": "513e7a76e839450c44d479bdf385e4c6c203c34553c06238670fc08b497f312e",
-      "entries": [
-        {
-          "title": "DEEMOちほー",
-          "type": "area_add",
-          "subject": "DEEMOちほー",
-          "label": "ちほー追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-04-17",
-          "start_time": null,
-          "end": "2026-06-25",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "# 「DEEMOちほー」オープン！ (2026/4/17～2026/6/25)",
-          "evidence": "2026年4月17日(金)より、\n「DEEMOちほー」\nがオープンします！！",
-          "confidence": 1.0,
-          "calendar_start": "2026-04-17",
-          "calendar_end": "2026-06-25"
-        },
-        {
-          "title": "「DEEMOちほー」楽曲追加",
-          "type": "song_add",
-          "subject": "DEEMOちほー",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-04-17",
-          "start_time": "10:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "Nine Point Eight",
-              "artist": "Mili"
-            },
-            {
-              "title": "Myosotis",
-              "artist": "M2U / Arranger : M2U & NICODE / Vocal : Guriri & Lucy"
-            }
-          ],
-          "date_text": "2026年4月17日(金)より、",
-          "evidence": "イベント開催にあわせて\n「ゲーム＆バラエティ」に新曲「Nine Point Eight」「Myosotis」が追加されます！",
-          "confidence": 1.0,
-          "calendar_start": "2026-04-17",
-          "calendar_end": null
-        },
-        {
-          "title": "「DEEMOちほー」楽曲追加",
-          "type": "song_add",
-          "subject": "DEEMOちほー",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-04-17",
-          "start_time": "10:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "ANiMA",
-              "artist": "xi"
-            }
-          ],
-          "date_text": "# 「DEEMOちほー」オープン！ (2026/4/17～2026/6/25)",
-          "evidence": "さらに、ちほーを進めることで楽曲「ANiMA」がプレイできるほか、",
-          "confidence": 1.0,
-          "calendar_start": "2026-04-17",
-          "calendar_end": null
-        }
-      ],
-      "cancellations": [],
-      "notes": [
-        "「DEEMOちほー」は独立したちほー追加として分類しました。本文に「コラボイベント」と明記されていないため、コラボイベントのエントリは作成していません。",
-        "「Nine Point Eight」「Myosotis」はイベント開催にあわせた追加として、ちほーの開始日を開始日に設定しました。本文の「※楽曲やコレクションが追加されるのは当日の午前10時頃となります。」に基づき、楽曲追加の開始時刻を10:00としました。",
-        "「ANiMA」は「DEEMOちほー」を進めることでプレイできる楽曲として、ちほーに伴う楽曲追加に分類しました。"
-      ],
-      "review_reasons": [],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "extracted",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "maimai",
-        "url": "https://info-maimai.sega.jp/8839/",
-        "date": "2026-04-02",
-        "title": "4/3(金)「niconico＆ボーカロイド™」「ゲーム＆バラエティ」に新曲追加！さらに、オトモダチ対戦 シーズン27開幕！"
-      },
-      "content_hash": "acf0f15bb126759549e78c6ff6cf39d2fee7d8f7ab3affc9e9bbc403c7784186",
-      "entries": [
-        {
-          "title": "楽曲追加",
-          "type": "song_add",
-          "subject": null,
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-04-03",
-          "start_time": "10:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "雑魚",
-              "artist": "柊マグネタイト"
-            },
-            {
-              "title": "お返事まだカナ？おじさん構文！",
-              "artist": "吉本おじさん"
-            },
-            {
-              "title": "ZEUS",
-              "artist": "DÉ DÉ MOUSE & KAJI"
-            }
-          ],
-          "date_text": "2026年4月3日(金)より、",
-          "evidence": "2026年4月3日(金)より、\n「niconico＆ボーカロイド™」「ゲーム＆バラエティ」に新曲\n「雑魚」「お返事まだカナ？おじさん構文！」「ZEUS」が追加されます！",
-          "confidence": 1.0,
-          "calendar_start": "2026-04-03",
-          "calendar_end": null
-        },
-        {
-          "title": "オトモダチ対戦 シーズン27",
-          "type": "friend_battle",
-          "subject": "オトモダチ対戦 シーズン27",
-          "label": "オトモダチ対戦",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-04-03",
-          "start_time": "10:00",
-          "end": "2026-04-23",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年4月3日(金) 10:00～4月23日(木) 23:59の期間で「オトモダチ対戦」を遊ぶと、",
-          "evidence": "さらに！オトモダチ対戦 シーズン27が開催されます！\n\nオトモダチ対戦 シーズン27開幕！\n(2026/4/3～2026/4/23)\n2026年4月3日(金) 10:00～4月23日(木) 23:59の期間で「オトモダチ対戦」を遊ぶと、",
-          "confidence": 1.0,
-          "calendar_start": "2026-04-03",
-          "calendar_end": "2026-04-23"
-        },
-        {
-          "title": "「オトモダチ対戦 シーズン27」でらっくす譜面追加",
-          "type": "dx_chart_add",
-          "subject": "オトモダチ対戦 シーズン27",
-          "label": "でらっくす譜面追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-04-03",
-          "start_time": "10:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "バッド・ダンス・ホール",
-              "artist": "ぱなまん/カラスヤサボウ"
-            }
-          ],
-          "date_text": "2026年4月3日(金) 10:00～4月23日(木) 23:59の期間で「オトモダチ対戦」を遊ぶと、",
-          "evidence": "今回のシーズンポイント報酬楽曲と、上位ランキング報酬はコチラ！\n\nシーズンポイント報酬・\nでらっくす譜面\n追加\n（300SPでゲット！）\nバッド・ダンス・ホール\nぱなまん/カラスヤサボウ",
-          "confidence": 1.0,
-          "calendar_start": "2026-04-03",
-          "calendar_end": null
-        },
-        {
-          "title": "「オトモダチ対戦 シーズン24」楽曲一般開放",
-          "type": "song_unlock",
-          "subject": "オトモダチ対戦 シーズン24",
-          "label": "楽曲一般開放",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-04-03",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "ローリンガール",
-              "artist": null
-            }
-          ],
-          "date_text": "4/3(金)よりどなたでもプレイできるようになります。",
-          "evidence": "また、シーズン24ポイント報酬の楽曲「ローリンガール」でらっくす譜面は、4/3(金)よりどなたでもプレイできるようになります。",
-          "confidence": 1.0,
-          "calendar_start": "2026-04-03",
-          "calendar_end": null
-        }
-      ],
-      "cancellations": [],
-      "notes": [
-        "新曲3曲は同日・同条件のため1件に統合しました。本文末尾の「楽曲やコレクションが追加されるのは当日の午前10時頃」と、4月3日開始の告知から、楽曲追加の開始時刻を10:00としました。",
-        "「バッド・ダンス・ホール」はオトモダチ対戦 シーズン27の新規報酬でらっくす譜面のため、dx_chart_addとして抽出しました。",
-        "以前のシーズンで獲得できた「怪盗Rのテーマ」「Paranoia」の譜面は、既存報酬の再掲のため抽出していません。"
-      ],
-      "review_reasons": [
-        "エントリ2: evidenceの原文根拠を確認できません。"
-      ],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "needs_review",
       "provider": "openai",
       "model": "gpt-5.6-luna"
     },
@@ -7248,128 +4253,6 @@
       "content_hash": "38991d474fb7da47eea7f43493c7f676f3dbad6da85d803d26966eb32feb9029",
       "entries": [
         {
-          "title": "「Shooter’s Dream《⊿TRiEDGE》」オリジナルランキングイベント",
-          "type": "ranking",
-          "subject": "Shooter’s Dream《⊿TRiEDGE》",
-          "label": "オリジナルランキングイベント",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-08-20",
-          "start_time": null,
-          "end": "2026-09-02",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [],
-          "date_text": "8/20(木)～9/2(水)23:59の期間で、",
-          "evidence": "オリジナルランキングイベント「Shooter’s Dream《⊿TRiEDGE》」を開催します！",
-          "confidence": 1.0,
-          "calendar_start": "2026-08-20",
-          "calendar_end": "2026-09-02"
-        },
-        {
-          "title": "「Shooter’s Dream《⊿TRiEDGE》」楽曲追加",
-          "type": "song_add",
-          "subject": "Shooter’s Dream《⊿TRiEDGE》",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-08-20",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "morph",
-              "artist": "雄之助"
-            },
-            {
-              "title": "ときめきインビテーション",
-              "artist": "曲：Kijibato／歌：⊿TRiEDGE [高瀬 梨緒(CV：久保 ユリカ)、結城 莉玖(CV：朝日奈 丸佳)、藍原 椿(CV：橋本 ちなみ)]"
-            }
-          ],
-          "date_text": "8/20(木)～9/2(水)23:59の期間で、",
-          "evidence": "さらに、イベントに合わせて新曲「morph」「ときめきインビテーション」を追加！",
-          "confidence": 1.0,
-          "calendar_start": "2026-08-20",
-          "calendar_end": null
-        },
-        {
-          "title": "Shooter’s Dream《⊿TRiEDGE》　イベント開催記念ログインボーナス",
-          "type": "login_bonus",
-          "subject": "Shooter’s Dream《⊿TRiEDGE》",
-          "label": "ログインボーナス",
-          "official_name": "Shooter’s Dream《⊿TRiEDGE》　イベント開催記念ログインボーナス",
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-08-20",
-          "start_time": null,
-          "end": "2026-09-09",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "8/20(木)～9/9(水)の期間で、",
-          "evidence": "「Shooter’s Dream《⊿TRiEDGE》　イベント開催記念ログインボーナス」を開催します！",
-          "confidence": 1.0,
-          "calendar_start": "2026-08-20",
-          "calendar_end": "2026-09-09"
-        },
-        {
-          "title": "「Shooter’s Dream《⊿TRiEDGE》」テクニカルチャレンジ",
-          "type": "technical_challenge",
-          "subject": "Shooter’s Dream《⊿TRiEDGE》",
-          "label": "テクニカルチャレンジ",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-08-20",
-          "start_time": null,
-          "end": "2026-09-09",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "ICEBURN",
-              "artist": null
-            },
-            {
-              "title": "Knocking Harder",
-              "artist": null
-            },
-            {
-              "title": "美夜月鏡",
-              "artist": null
-            }
-          ],
-          "date_text": "8/20(木)～9/9(水)23:59の期間で、",
-          "evidence": "テクニカルチャレンジ「Shooter’s Dream 《⊿TRiEDGE》」を開催します！",
-          "confidence": 1.0,
-          "calendar_start": "2026-08-20",
-          "calendar_end": "2026-09-09"
-        },
-        {
-          "title": "「Shooter’s Dream《⊿TRiEDGE》」チャプター",
-          "type": "chapter_add",
-          "subject": "Shooter’s Dream《⊿TRiEDGE》",
-          "label": "チャプター追加",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-08-20",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "8/20(木)～9/2(水)23:59の期間で、",
-          "evidence": "Shooter’s Dream 《⊿TRiEDGE》のチャプターでは、イベントストーリーが追加されます。",
-          "confidence": 0.94,
-          "calendar_start": "2026-08-20",
-          "calendar_end": null
-        },
-        {
           "title": "楽曲一般開放",
           "type": "song_unlock",
           "subject": null,
@@ -7390,7 +4273,7 @@
           ],
           "date_text": "8/20(木)より、以下の楽曲を通常開放します！",
           "evidence": "通常開放された楽曲は「マイリスト」に入り、誰でも解禁不要でプレイできるようになります。",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-08-20",
           "calendar_end": null
         }
@@ -7458,26 +4341,6 @@
           "confidence": 0.99,
           "calendar_start": "2026-08-06",
           "calendar_end": "2026-10-14"
-        },
-        {
-          "title": "8月度 マンスリーミッション",
-          "type": "mission",
-          "subject": "8月度 マンスリーミッション",
-          "label": "ミッション",
-          "official_name": "8月度 マンスリーミッション",
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-08-06",
-          "start_time": null,
-          "end": "2026-09-02",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "8/6(木)～9/2(水)の期間で、「8月度 マンスリーミッション」を開催します！",
-          "evidence": "「8月度 マンスリーミッション」を開催します！",
-          "confidence": 0.99,
-          "calendar_start": "2026-08-06",
-          "calendar_end": "2026-09-02"
         }
       ],
       "cancellations": [],
@@ -7519,7 +4382,7 @@
           "songs": [],
           "date_text": "8/6(木)～10/28(水)23:59の期間で、\nジュエルイベント「Muse Dash」を開催します！",
           "evidence": "ジュエルイベント開催！\n8/6(木)～10/28(水)23:59の期間で、\nジュエルイベント「Muse Dash」を開催します！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-08-06",
           "calendar_end": "2026-10-28"
         },
@@ -7552,7 +4415,7 @@
           ],
           "date_text": "8/6(木)～10/28(水)23:59の期間で、\nジュエルイベント「Muse Dash」を開催します！",
           "evidence": "さらに、イベントに合わせて新曲を追加！\nそれはもうらぶちゅ\nタケノコ少年 feat. 周央サンゴ（にじさんじ）\nCthugha\nUSAO\nアルメリアの鳥籠\na_hisa",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-08-06",
           "calendar_end": null
         },
@@ -7572,7 +4435,7 @@
           "songs": [],
           "date_text": "8/6(木)～\n8/19(水)の期間で、",
           "evidence": "ログインボーナス開催！\n8/6(木)～\n8/19(水)の期間で、\n「Muse Dash　イベント開催記念ログインボーナス」を開催します！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-08-06",
           "calendar_end": "2026-08-19"
         },
@@ -7605,7 +4468,7 @@
           ],
           "date_text": "8/6(木)～10/28(水)23:59の期間で、\nテクニカルチャレンジ「Muse Dash」を開催します！",
           "evidence": "テクニカルチャレンジ開催！\n8/6(木)～10/28(水)23:59の期間で、\nテクニカルチャレンジ「Muse Dash」を開催します！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-08-06",
           "calendar_end": "2026-10-28"
         }
@@ -7776,28 +4639,7 @@
         "title": "7/23(木)「8周年記念!! 8th Anniversaryガチャ」開催！"
       },
       "content_hash": "94d596cae9a5158c5363da6560cc5685ad4b9b3591f14bf2fa2cfe73fa3fef45",
-      "entries": [
-        {
-          "title": "8周年記念!! 8th Anniversaryガチャ",
-          "type": "gacha",
-          "subject": "8周年記念!! 8th Anniversary",
-          "label": "ガチャ",
-          "official_name": "8周年記念!! 8th Anniversaryガチャ",
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-07-23",
-          "start_time": "07:00",
-          "end": "2026-08-20",
-          "end_time": "01:59",
-          "open_ended": false,
-          "songs": [],
-          "date_text": "7/23(木)7:00～8/20(木)1:59の期間で、",
-          "evidence": "7/23(木)7:00～8/20(木)1:59の期間で、\n「8周年記念!! 8th Anniversaryガチャ」を開催します！",
-          "confidence": 0.99,
-          "calendar_start": "2026-07-23",
-          "calendar_end": "2026-08-19"
-        }
-      ],
+      "entries": [],
       "cancellations": [],
       "notes": [
         "年は記事の公開日2026-07-23およびタイトルの日付から2026年として補完しました。"
@@ -7845,7 +4687,7 @@
           ],
           "date_text": "7/23(木)に楽曲「What’s up? Pop!」「メモリア」が追加されます！",
           "evidence": "7/23(木)に楽曲「What’s up? Pop!」「メモリア」が追加されます！\n楽曲は「マイリスト」に追加され、どのチャプターからでも最初からプレイできます。\nWhat’s up? Pop!\nCapchii\nメモリア\nAira",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-07-23",
           "calendar_end": null
         }
@@ -7937,130 +4779,7 @@
         "title": "7/23(木)オリジナルランキングイベント「O.N.G.E.K.I. 8th Anniversary」開催！"
       },
       "content_hash": "4eada40f75eb634921232449a1015013dd1371d75121d4e3efde08eae4a4cc92",
-      "entries": [
-        {
-          "title": "「O.N.G.E.K.I. 8th Anniversary」オリジナルランキングイベント",
-          "type": "ranking",
-          "subject": "O.N.G.E.K.I. 8th Anniversary",
-          "label": "オリジナルランキングイベント",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-07-23",
-          "start_time": null,
-          "end": "2026-08-05",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [],
-          "date_text": "7/23(木)～8/5(水)23:59の期間で、\nオリジナルランキングイベント「O.N.G.E.K.I. 8th Anniversary」\nを開催します！",
-          "evidence": "ランキングイベント開催！\n7/23(木)～8/5(水)23:59の期間で、\nオリジナルランキングイベント「O.N.G.E.K.I. 8th Anniversary」\nを開催します！",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-23",
-          "calendar_end": "2026-08-05"
-        },
-        {
-          "title": "「O.N.G.E.K.I. 8th Anniversary」楽曲追加",
-          "type": "song_add",
-          "subject": "O.N.G.E.K.I. 8th Anniversary",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-07-23",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "poppin’ hoppin’ flappin’☆☆☆",
-              "artist": "曲：宮崎まゆ・賀佐泰洋 (SUPA LOVE)／歌：星咲 あかり(CV：赤尾 ひかる)、藤沢 柚子(CV：保科 李沙)、三角 葵(CV：春野 杏)"
-            }
-          ],
-          "date_text": "7/23(木)～8/5(水)23:59の期間で、\nオリジナルランキングイベント「O.N.G.E.K.I. 8th Anniversary」\nを開催します！",
-          "evidence": "さらに、イベントに合わせて8周年記念楽曲「poppin’ hoppin’ flappin’☆☆☆」を追加！",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-23",
-          "calendar_end": null
-        },
-        {
-          "title": "「O.N.G.E.K.I. 8th Anniversary」チャプター",
-          "type": "chapter_add",
-          "subject": "O.N.G.E.K.I. 8th Anniversary",
-          "label": "チャプター追加",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-07-23",
-          "start_time": null,
-          "end": "2026-08-12",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [],
-          "date_text": "7/23(木)～8/5(水)23:59の期間で、\nオリジナルランキングイベント「O.N.G.E.K.I. 8th Anniversary」\nを開催します！",
-          "evidence": "チャプターは8/12(水)\n23:59まで遊ぶことができます。",
-          "confidence": 0.98,
-          "calendar_start": "2026-07-23",
-          "calendar_end": "2026-08-12"
-        },
-        {
-          "title": "O.N.G.E.K.I. 8th Anniversary　イベント開催記念ログインボーナス",
-          "type": "login_bonus",
-          "subject": "O.N.G.E.K.I. 8th Anniversary",
-          "label": "ログインボーナス",
-          "official_name": "O.N.G.E.K.I. 8th Anniversary　イベント開催記念ログインボーナス",
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-07-23",
-          "start_time": null,
-          "end": "2026-08-12",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "7/23(木)～8/12(水)の期間で、  \n「O.N.G.E.K.I. 8th Anniversary　イベント開催記念ログインボーナス」を開催します！",
-          "evidence": "ログインボーナス開催！\n7/23(木)～\n8/12(水)の期間で、\n「O.N.G.E.K.I. 8th Anniversary　イベント開催記念ログインボーナス」を開催します！",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-23",
-          "calendar_end": "2026-08-12"
-        },
-        {
-          "title": "「O.N.G.E.K.I. 8th Anniversary」テクニカルチャレンジ",
-          "type": "technical_challenge",
-          "subject": "O.N.G.E.K.I. 8th Anniversary",
-          "label": "テクニカルチャレンジ",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-07-23",
-          "start_time": null,
-          "end": "2026-08-12",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "poppin’ hoppin’ flappin’☆☆☆",
-              "artist": null
-            },
-            {
-              "title": "Perfect Shining!!",
-              "artist": null
-            },
-            {
-              "title": "みんな Happy!!",
-              "artist": null
-            },
-            {
-              "title": "Zest of Blue",
-              "artist": null
-            }
-          ],
-          "date_text": "7/23(木)～8/12(水)23:59の期間で、  \nテクニカルチャレンジ「O.N.G.E.K.I. 8th Anniversary」を開催します！",
-          "evidence": "テクニカルチャレンジ開催！\n\n7/23(木)～8/12(水)23:59の期間で、\nテクニカルチャレンジ「O.N.G.E.K.I. 8th Anniversary」を開催します！",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-23",
-          "calendar_end": "2026-08-12"
-        }
-      ],
+      "entries": [],
       "cancellations": [],
       "notes": [
         "記事の日付が2026-07-20で、本文の日付に年がないため、記載された曜日と記事公開日の文脈から2026年として補完しました。",
@@ -8183,28 +4902,7 @@
         "title": "7/23(木)リバイバルイベント「時々ボソッとロシア語でデレる隣のアーリャさん」開催！"
       },
       "content_hash": "62ae596052fcd0f89ae9fea6def7079f91774dc853c47e3764afaf2499220e91",
-      "entries": [
-        {
-          "title": "「時々ボソッとロシア語でデレる隣のアーリャさん」リバイバルイベント",
-          "type": "event",
-          "subject": "時々ボソッとロシア語でデレる隣のアーリャさん",
-          "label": "リバイバルイベント",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-07-23",
-          "start_time": null,
-          "end": "2026-09-16",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [],
-          "date_text": "7/23(木)～9/16(水)23:59の期間で、",
-          "evidence": "7/23(木)～9/16(水)23:59の期間で、\n「時々ボソッとロシア語でデレる隣のアーリャさん」のリバイバルイベント\nを開催します！",
-          "confidence": 0.99,
-          "calendar_start": "2026-07-23",
-          "calendar_end": "2026-09-16"
-        }
-      ],
+      "entries": [],
       "cancellations": [],
       "notes": [
         "年の記載がないため、記事公開日2026-07-19および曜日表記（7/23(木)、9/16(水)）に基づき2026年として補完しました。",
@@ -8294,110 +4992,7 @@
         "title": "7/23(木)ジュエルイベント「温泉むすめ【第4弾】」開催！"
       },
       "content_hash": "e414f48957ff8b67abd0b1ff643ffa2511366a2cdba276d5ea920b7fba52510c",
-      "entries": [
-        {
-          "title": "「温泉むすめ【第4弾】」ジュエルイベント",
-          "type": "event",
-          "subject": "温泉むすめ【第4弾】",
-          "label": "ジュエルイベント",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-07-23",
-          "start_time": null,
-          "end": "2026-09-16",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [],
-          "date_text": "7/23(木)～9/16(水)23:59の期間で、",
-          "evidence": "ジュエルイベント開催！\n7/23(木)～9/16(水)23:59の期間で、\nジュエルイベント「温泉むすめ【第4弾】」\nを開催します！",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-23",
-          "calendar_end": "2026-09-16"
-        },
-        {
-          "title": "「温泉むすめ【第4弾】」楽曲追加",
-          "type": "song_add",
-          "subject": "温泉むすめ【第4弾】",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-07-23",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "ユメハナビ",
-              "artist": "VUCCA「温泉むすめ」"
-            },
-            {
-              "title": "涌遊スマイルパワー",
-              "artist": "Ambassador「温泉むすめ」"
-            }
-          ],
-          "date_text": "7/23(木)～9/16(水)23:59の期間で、",
-          "evidence": "楽曲追加！\nさらに、イベントに合わせて新曲を追加！\nユメハナビ\nVUCCA「温泉むすめ」\n涌遊スマイルパワー\nAmbassador「温泉むすめ」",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-23",
-          "calendar_end": null
-        },
-        {
-          "title": "温泉むすめ【第4弾】　イベント開催記念ログインボーナス",
-          "type": "login_bonus",
-          "subject": "温泉むすめ【第4弾】",
-          "label": "ログインボーナス",
-          "official_name": "温泉むすめ【第4弾】　イベント開催記念ログインボーナス",
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-07-23",
-          "start_time": null,
-          "end": "2026-08-05",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "7/23(木)～8/5(水)の期間で、",
-          "evidence": "ログインボーナス開催！\n7/23(木)～8/5(水)の期間で、\n「温泉むすめ【第4弾】　イベント開催記念ログインボーナス」を開催します！",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-23",
-          "calendar_end": "2026-08-05"
-        },
-        {
-          "title": "「温泉むすめ【第4弾】」テクニカルチャレンジ",
-          "type": "technical_challenge",
-          "subject": "温泉むすめ【第4弾】",
-          "label": "テクニカルチャレンジ",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-07-23",
-          "start_time": null,
-          "end": "2026-09-16",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "ユメハナビ",
-              "artist": null
-            },
-            {
-              "title": "未来の彼方",
-              "artist": null
-            },
-            {
-              "title": "おはようジャポニカ",
-              "artist": null
-            }
-          ],
-          "date_text": "7/23(木)～9/16(水)23:59の期間で、",
-          "evidence": "テクニカルチャレンジ開催！\n7/23(木)～9/16(水)23:59の期間で、\nテクニカルチャレンジ「温泉むすめ【第4弾】」を開催します！\n\nテクニカルチャレンジ「温泉むすめ【第4弾】」の対象曲は下記の通りです。\nテクニカルチャレンジ「温泉むすめ【第4弾】」対象楽曲\n曲名\n難易度\nユメハナビ\nMASTER\n未来の彼方\nMASTER\nおはようジャポニカ\nMASTER",
-          "confidence": 1.0,
-          "calendar_start": "2026-07-23",
-          "calendar_end": "2026-09-16"
-        }
-      ],
+      "entries": [],
       "cancellations": [],
       "notes": [
         "記事の公開日が2026-07-18で、本文の日付の曜日と整合するため、年が省略された日付を2026年として補完しました。",
@@ -8423,77 +5018,7 @@
         "title": "7/23(木)シルバージュエルイベント「いよわ」開催！"
       },
       "content_hash": "63b86ba917cabfc022c7c0f2d63a7b5e20183d9ed904910c05dde237587c851f",
-      "entries": [
-        {
-          "title": "「いよわ」シルバージュエルイベント",
-          "type": "event",
-          "subject": "いよわ",
-          "label": "シルバージュエルイベント",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-07-23",
-          "start_time": null,
-          "end": "2026-09-16",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [],
-          "date_text": "7/23(木)～9/16(水)23:59の期間で、\nシルバージュエルイベント「いよわ」\nを開催します！",
-          "evidence": "シルバージュエルイベント開催！\n7/23(木)～9/16(水)23:59の期間で、\nシルバージュエルイベント「いよわ」\nを開催します！",
-          "confidence": 0.99,
-          "calendar_start": "2026-07-23",
-          "calendar_end": "2026-09-16"
-        },
-        {
-          "title": "「いよわ」楽曲追加",
-          "type": "song_add",
-          "subject": "いよわ",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-07-23",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "熱異常",
-              "artist": "いよわ"
-            },
-            {
-              "title": "ももいろの鍵",
-              "artist": "いよわ"
-            }
-          ],
-          "date_text": "7/23(木)～9/16(水)23:59の期間で、",
-          "evidence": "楽曲追加！\nさらに、イベントに合わせて新曲を追加！\n熱異常\nいよわ\nももいろの鍵\nいよわ",
-          "confidence": 0.99,
-          "calendar_start": "2026-07-23",
-          "calendar_end": null
-        },
-        {
-          "title": "いよわ　イベント開催記念ログインボーナス",
-          "type": "login_bonus",
-          "subject": "いよわ",
-          "label": "ログインボーナス",
-          "official_name": "いよわ　イベント開催記念ログインボーナス",
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-07-23",
-          "start_time": null,
-          "end": "2026-09-16",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "7/23(木)～9/16(水)の期間で、",
-          "evidence": "ログインボーナス開催！\n7/23(木)～9/16(水)の期間で、\n「いよわ　イベント開催記念ログインボーナス」を開催します！",
-          "confidence": 0.99,
-          "calendar_start": "2026-07-23",
-          "calendar_end": "2026-09-16"
-        }
-      ],
+      "entries": [],
       "cancellations": [],
       "notes": [
         "年の記載がない日付は、記事の公開日が2026-07-17であり、記載された曜日（7/23(木)、9/16(水)）とも整合するため2026年として補完しました。",
@@ -8533,7 +5058,7 @@
           "songs": [],
           "date_text": "2026/7/23(木)より、オンゲキがアップデート！",
           "evidence": "2026/7/23(木)より、オンゲキがアップデート！\n「オンゲキ Re:Fresh Act.2」\nとして、稼働開始いたします！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-07-23",
           "calendar_end": null
         },
@@ -8553,7 +5078,7 @@
           "songs": [],
           "date_text": "「オンゲキ Re:Fresh Act.2」の稼働に伴い、一部の称号が入手不可能になります。",
           "evidence": "「オンゲキ Re:Fresh Act.2」の稼働に伴い、一部の称号が入手不可能になります。\n対象となる称号は以下の通りです。\n「オンゲキ Re:Fresh Act.2」稼働後に獲得できなくなる称号\n俺は虹レだぞ！Re:Fresh\nオンゲキRe:Freshでレーティング 19.000達成",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-07-23",
           "calendar_end": null
         },
@@ -8573,7 +5098,7 @@
           "songs": [],
           "date_text": "2026/7/23(木)3:59",
           "evidence": "一部の楽曲につきまして、プレイできるのは\n2026/7/23(木)3:59\nまでとなります。\n期間を過ぎますと、プレイすることができなくなります。",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-07-22",
           "calendar_end": null
         },
@@ -8593,7 +5118,7 @@
           "songs": [],
           "date_text": "2026/7/22(水)23:59",
           "evidence": "また、一部カードの印刷期限は\n2026/7/22(水)23:59\nまでとなります。",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-07-22",
           "calendar_end": null
         },
@@ -8613,7 +5138,7 @@
           "songs": [],
           "date_text": "2026/8/1(土)より、オンゲキ-NETのスタンダードコースおよびプレミアムコースの月間ログインボーナスを下記の通り変更いたします。",
           "evidence": "2026/8/1(土)より、オンゲキ-NETのスタンダードコースおよびプレミアムコースの月間ログインボーナスを下記の通り変更いたします。",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-08-01",
           "calendar_end": null
         }
@@ -8622,141 +5147,6 @@
       "notes": [
         "バージョンアップに伴う新機能・スペシャルプレート追加や称号取得条件変更は、個別の種類・日付を持つ独立告知としては抽出せず、バージョン稼働のお知らせに含まれる紹介として扱った。",
         "一部楽曲の対象一覧はリンク先に委ねられているが、プレイ期限自体が本文で直接告知されているため、対象曲を特定せずサービス変更として抽出した。"
-      ],
-      "review_reasons": [],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "extracted",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "ongeki",
-        "url": "https://info-ongeki.sega.jp/12356/",
-        "date": "2026-07-07",
-        "title": "7/9(木)「イロドリミドリ【第2弾】」コラボぷちランキングイベント開催！＆「7月度 マンスリーミッション」開催！"
-      },
-      "content_hash": "2e5cbf831199f54189d81a6d8cb88fa4538d5514d2f1d61c81b3e696d4e01902",
-      "entries": [
-        {
-          "title": "「イロドリミドリ【第2弾】」コラボイベント",
-          "type": "event",
-          "subject": "イロドリミドリ【第2弾】",
-          "label": "コラボイベント",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-07-09",
-          "start_time": null,
-          "end": "2026-09-02",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026/7/9(木)～2026/9/2(水)23:59の期間で、",
-          "evidence": "「イロドリミドリ」とのコラボイベント第2弾を開催します！",
-          "confidence": 0.99,
-          "calendar_start": "2026-07-09",
-          "calendar_end": "2026-09-02"
-        },
-        {
-          "title": "「イロドリミドリ【第2弾】」ぷちランキングイベント",
-          "type": "ranking",
-          "subject": "イロドリミドリ【第2弾】",
-          "label": "ぷちランキングイベント",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-07-09",
-          "start_time": null,
-          "end": "2026-07-22",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [],
-          "date_text": "また、2026/7/9(木)～2026/7/22(水)23:59の期間で、",
-          "evidence": "「イロドリミドリ【第2弾】」のぷちランキングイベントを開催します！",
-          "confidence": 0.99,
-          "calendar_start": "2026-07-09",
-          "calendar_end": "2026-07-22"
-        },
-        {
-          "title": "「イロドリミドリ【第2弾】」楽曲追加",
-          "type": "song_add",
-          "subject": "イロドリミドリ【第2弾】",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-07-09",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "私たちは、花になる",
-              "artist": "イロドリミドリ｜HaNaMiNa｜S.S.L."
-            },
-            {
-              "title": "Λlteration",
-              "artist": "小仏 凪(CV:佐倉 薫)＆月鈴 白奈(CV:高野 麻里佳)＆御形 アリシアナ(CV:福原 綾香)＆桔梗 小夜曲(CV:原田 彩楓)"
-            }
-          ],
-          "date_text": "2026/7/9(木)～2026/9/2(水)23:59の期間で、",
-          "evidence": "さらに、イベント開催にあわせて新曲「私たちは、花になる」「Λlteration」が追加されます！",
-          "confidence": 0.99,
-          "calendar_start": "2026-07-09",
-          "calendar_end": null
-        },
-        {
-          "title": "イロドリミドリ【第2弾】　イベント開催記念ログインボーナス",
-          "type": "login_bonus",
-          "subject": "イロドリミドリ【第2弾】",
-          "label": "ログインボーナス",
-          "official_name": "イロドリミドリ【第2弾】　イベント開催記念ログインボーナス",
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-07-09",
-          "start_time": null,
-          "end": "2026-09-02",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026/7/9(木)～2026/9/2(水)の期間で、",
-          "evidence": "「イロドリミドリ【第2弾】　イベント開催記念ログインボーナス」を開催します！",
-          "confidence": 0.99,
-          "calendar_start": "2026-07-09",
-          "calendar_end": "2026-09-02"
-        },
-        {
-          "title": "7月度 マンスリーミッション",
-          "type": "mission",
-          "subject": "7月度 マンスリーミッション",
-          "label": "ミッション",
-          "official_name": "7月度 マンスリーミッション",
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-07-09",
-          "start_time": null,
-          "end": "2026-08-05",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "7/9(木)～8/5(水)の期間で、「7月度 マンスリーミッション」を開催します！",
-          "evidence": "7/9(木)～8/5(水)の期間で、「7月度 マンスリーミッション」を開催します！",
-          "confidence": 0.98,
-          "calendar_start": "2026-07-09",
-          "calendar_end": "2026-08-05"
-        }
-      ],
-      "cancellations": [],
-      "notes": [
-        "年のない日付は、記事の公開日が2026-07-07であり、本文中の2026年表記および曜日と整合するため2026年として補完しました。",
-        "コラボイベントと同一内容・期間のイベントチャプターはイベントに統合しました。",
-        "新曲はイベント開催にあわせた追加と明記されているため、イベントの開始日を楽曲追加の開始日としました。終了日は恒久的な追加のため設定していません。",
-        "ぷちランキングイベントはコラボイベント本体と期間が異なるため、ランキングとして別エントリに分けました。"
       ],
       "review_reasons": [],
       "error": null,
