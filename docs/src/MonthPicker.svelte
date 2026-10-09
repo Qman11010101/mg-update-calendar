@@ -4,7 +4,7 @@
   import ChevronRight from "@lucide/svelte/icons/chevron-right";
   import { today } from "../lib/dates.js";
 
-  let { month, onpick } = $props();
+  let { month, bounds, onpick } = $props();
   let open = $state(false);
   let year = $state(0);
   let root;
@@ -35,9 +35,9 @@
   {#if open}
     <div id="month-picker-panel" class="month-picker-panel" role="dialog" aria-label="表示する月">
       <div class="picker-year">
-        <button aria-label="前の年" onclick={() => year--}><ChevronLeft size={16} aria-hidden="true" /></button>
+        <button aria-label="前の年" disabled={year <= Number(bounds.first.slice(0, 4))} onclick={() => year--}><ChevronLeft size={16} aria-hidden="true" /></button>
         <span>{year}年</span>
-        <button aria-label="次の年" onclick={() => year++}><ChevronRight size={16} aria-hidden="true" /></button>
+        <button aria-label="次の年" disabled={year >= Number(bounds.last.slice(0, 4))} onclick={() => year++}><ChevronRight size={16} aria-hidden="true" /></button>
       </div>
       <div class="picker-months">
         {#each Array.from({ length: 12 }, (_, index) => index + 1) as monthNumber (monthNumber)}
@@ -46,6 +46,7 @@
             class:current={value === month}
             class:this-month={value === today.slice(0, 7)}
             aria-current={value === month ? "date" : undefined}
+            disabled={value < bounds.first || value > bounds.last}
             onclick={() => pick(monthNumber)}
           >{monthNumber}月</button>
         {/each}

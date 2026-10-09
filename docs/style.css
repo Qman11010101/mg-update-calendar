@@ -5,6 +5,7 @@ button,input,select{font:inherit}
 button,a,input,select,summary{-webkit-tap-highlight-color:transparent}
 button{cursor:pointer;border:1px solid var(--line);border-radius:4px;background:#fff;color:inherit;padding:6px 12px;font-weight:600}
 button:hover{background:#e8ecf1}
+button:disabled{cursor:default;opacity:.4;background:#fff}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 a{color:var(--accent)}
 

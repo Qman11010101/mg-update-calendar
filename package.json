@@ -6,6 +6,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "prune": "node scripts/prune-entries.js",
     "test": "node --test \"tests/*.test.js\""
   },
   "devDependencies": {

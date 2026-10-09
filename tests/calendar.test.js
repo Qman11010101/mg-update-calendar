@@ -20,10 +20,13 @@ const b = calendarEntry({ ...base, evidence: "原文B" }, sourceB);
 const merged = mergeDuplicates([a, b]);
 
 test("Calendar date placement and original timestamps", () => {
-  const article = document.articles.find((a) => a.source.url === "https://info-maimai.sega.jp/9772/");
-  const raw = article.entries.find((e) => e.service === "card_maker");
-  assert.ok(raw);
-  const item = calendarEntry(raw, article.source);
+  // 掲載終了で実データから消えるため、https://info-maimai.sega.jp/9772/ のカードメイカーの項目を写して使う。
+  const raw = {
+    title: "でらっくすパス新規販売停止", type: "service_change", service: "card_maker", start_is_deadline: true,
+    start: "2026-09-02", start_time: "01:59", end: null, end_time: null, open_ended: false, songs: [],
+    calendar_start: "2026-09-01", calendar_end: null,
+  };
+  const item = calendarEntry(raw, { ...sourceA, url: "https://info-maimai.sega.jp/9772/", date: "2026-08-05" });
   assert.equal(item.start, "2026-09-01");
   assert.equal(item.official_start, "2026-09-02");
   assert.equal(period(item), "2026/09/02 01:59");

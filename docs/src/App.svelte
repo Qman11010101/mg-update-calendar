@@ -27,6 +27,12 @@
 
   const ready = $derived(status === "ready");
   const range = $derived(monthRange(month));
+  // 移動できる月は、項目のある最初の月から最後の月まで。絞り込みでは変えず、今月は項目がなくても含める。
+  const bounds = $derived.by(() => {
+    const months = entries.filter((entry) => entry.start).flatMap((entry) => [entry.start, endDate(entry)])
+      .map((date) => date.slice(0, 7)).concat(today.slice(0, 7)).sort();
+    return { first: months[0], last: months.at(-1) };
+  });
   const types = $derived(typeGroups(entries));
   // 絞り込みのたびに親イベントを作り直し、前回の entry.family を付け替える。
   const all = $derived.by(() => {
@@ -41,6 +47,7 @@
   const ranges = $derived(dated.filter((entry) => isRange(entry) && entry.start <= range.last && endDate(entry) >= range.first));
 
   function showMonth(value, day) {
+    if (value < bounds.first || value > bounds.last) return;
     month = value;
     if (day) selected = day;
     else if (!selected.startsWith(month)) selected = today.startsWith(month) ? today : starts.map((entry) => entry.start).sort()[0] || range.first;
@@ -86,11 +93,11 @@
     <div class="toolbar">
       <div class="month-navigation">
         <h2 id="month-title">{Number(month.slice(0, 4))}年 {Number(month.slice(5))}月</h2>
-        <MonthPicker {month} onpick={(value) => showMonth(value)} />
+        <MonthPicker {month} {bounds} onpick={(value) => showMonth(value)} />
         <div class="month-stepper" role="group" aria-label="月の移動">
-          <button id="prev" aria-label="前の月" onclick={() => showMonth(shiftMonth(month, -1))}><ChevronLeft size={18} aria-hidden="true" /></button>
+          <button id="prev" aria-label="前の月" disabled={month <= bounds.first} onclick={() => showMonth(shiftMonth(month, -1))}><ChevronLeft size={18} aria-hidden="true" /></button>
           <button id="today" onclick={() => showMonth(today.slice(0, 7), today)}>今月</button>
-          <button id="next" aria-label="次の月" onclick={() => showMonth(shiftMonth(month, 1))}><ChevronRight size={18} aria-hidden="true" /></button>
+          <button id="next" aria-label="次の月" disabled={month >= bounds.last} onclick={() => showMonth(shiftMonth(month, 1))}><ChevronRight size={18} aria-hidden="true" /></button>
         </div>
       </div>
       {#if ready && formatDateTime(updatedAt)}

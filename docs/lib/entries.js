@@ -1,5 +1,5 @@
 // 抽出結果の読み込み・統合・分類など、DOMに依存しない処理。
-import { daysBetween, shortDate, today, validDate } from "./dates.js";
+import { addMonths, daysBetween, shortDate, today, validDate } from "./dates.js";
 
 export const games = {
   chunithm: { name: "CHUNITHM", short: "CHU" },
@@ -248,6 +248,46 @@ export function buildEntries(data) {
   const extracted = publishedArticles(data)
     .flatMap((article) => article.entries.map((entry) => calendarEntry(entry, article.source)));
   return mergeSongOverlaps(mergeDuplicates(extracted));
+}
+// 期間のない点の項目（終了日未定を含む）を残す月数。
+const pointMonths = 3;
+// 項目自身を残す最終日。期間は終了日、点は開始日（日付不明なら記事の公開日）から3か月後。基準の日がなければnull。
+function ownLastDay(entry) {
+  if (entry.start) return isRange(entry) ? endDate(entry) : addMonths(entry.start, pointMonths);
+  return validDate(entry.source.date) ? addMonths(entry.source.date, pointMonths) : null;
+}
+// 項目を残す最終日。親イベントにまとまる項目は、親の期間が終わるまでまとめて残す。
+// 先に終わるメンバーだけを消すと親のまとまりが崩れ、点の項目が親から外れてしまうため。
+// 親に終了日がなければ（常設マップと同じ日の楽曲など）、メンバーそれぞれの最終日のうち最も遅い日まで残す。
+export function keepUntil(entry) {
+  if (!entry.family) return ownLastDay(entry);
+  const family = entry.family.end ?? entry.family.members.map(ownLastDay).sort().at(-1);
+  const own = isRange(entry) ? endDate(entry) : null;
+  return own && own > family ? own : family;
+}
+// 抽出結果から、残す最終日を過ぎたエントリを除く。エントリが残らず、公開日から3か月を過ぎた記事は記事ごと除く。
+// 公開から間もない記事を残すのは、一覧に載っている間に新着として抽出し直さないため。
+// 戻り値の removed は記事ごと除いたURL。記事収集の結果からも外す。
+export function pruneData(data, referenceDate = today) {
+  const items = data.articles.map((article) => ({
+    article, entries: article.entries.map((entry) => calendarEntry(entry, article.source)),
+  }));
+  groupFamilies(items.flatMap((item) => item.entries));
+  const removed = [];
+  let entryCount = 0;
+  const articles = items.flatMap(({ article, entries }) => {
+    const kept = article.entries.filter((_, index) => {
+      const last = keepUntil(entries[index]);
+      return !last || last >= referenceDate;
+    });
+    entryCount += article.entries.length - kept.length;
+    if (!kept.length && validDate(article.source.date) && addMonths(article.source.date, pointMonths) < referenceDate) {
+      removed.push(article.source.url);
+      return [];
+    }
+    return [kept.length === article.entries.length ? article : { ...article, entries: kept }];
+  });
+  return { data: { ...data, articles }, removed, entryCount };
 }
 // 公開用のentries.jsonに残すエントリの項目。抽出の根拠や差分抽出用の情報は画面で使わないため除く。
 const siteEntryKeys = ["title", "type", "service", "subject", "start", "end", "start_time", "end_time",

@@ -32,3 +32,9 @@ export function shiftMonth(month, delta) {
   date.setUTCMonth(date.getUTCMonth() + delta);
   return dateKey(date).slice(0, 7);
 }
+// 月数を足した日。移動先の月にない日（11/30の3か月後など）は月末にする。
+export function addMonths(value, months) {
+  const [year, month, day] = value.split("-").map(Number);
+  const last = new Date(Date.UTC(year, month + months, 0)).getUTCDate();
+  return dateKey(new Date(Date.UTC(year, month - 1 + months, Math.min(day, last))));
+}
