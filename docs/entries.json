@@ -4,7 +4,7 @@
   "provider": "openai",
   "model": "gpt-5.6-luna",
   "mode": "extraction",
-  "updated_at": "2026-10-09T07:49:33+00:00",
+  "updated_at": "2026-10-13T12:02:18+00:00",
   "articles": [
     {
       "source": {
@@ -1342,6 +1342,196 @@
       "attempts": 1,
       "prompt_version": "40",
       "status": "needs_review",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
+    {
+      "source": {
+        "game": "ongeki",
+        "url": "https://info-ongeki.sega.jp/13234/",
+        "date": "2026-10-13",
+        "title": "10/15(木)「Summer Pockets REFLECTION BLUE」コラボランキングイベント開催＆「niconico」カテゴリに新曲追加！"
+      },
+      "content_hash": "019b0ae5bbf45ff9e1cc0af4d1056994306f471f1c7092f2d12865f3201c445c",
+      "entries": [
+        {
+          "title": "「Summer Pockets REFLECTION BLUE」コラボイベント",
+          "type": "event",
+          "subject": "Summer Pockets REFLECTION BLUE",
+          "label": "コラボイベント",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-10-15",
+          "start_time": null,
+          "end": "2026-12-23",
+          "end_time": "23:59",
+          "open_ended": false,
+          "songs": [],
+          "date_text": "10/15(木)～12/23(水)23:59の期間で、",
+          "evidence": "10/15(木)～12/23(水)23:59の期間で、\n「Summer Pockets REFLECTION BLUE」とのコラボイベントを開催します！",
+          "confidence": 0.99,
+          "calendar_start": "2026-10-15",
+          "calendar_end": "2026-12-23"
+        },
+        {
+          "title": "「Summer Pockets REFLECTION BLUE」ランキングイベント",
+          "type": "ranking",
+          "subject": "Summer Pockets REFLECTION BLUE",
+          "label": "ランキングイベント",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-10-15",
+          "start_time": null,
+          "end": "2026-10-28",
+          "end_time": "23:59",
+          "open_ended": false,
+          "songs": [],
+          "date_text": "10/15(木)～10/28(水)23:59の期間で、",
+          "evidence": "10/15(木)～10/28(水)23:59の期間で、\n「Summer Pockets REFLECTION BLUE」コラボランキングイベントを開催！",
+          "confidence": 0.99,
+          "calendar_start": "2026-10-15",
+          "calendar_end": "2026-10-28"
+        },
+        {
+          "title": "「Summer Pockets REFLECTION BLUE」楽曲追加",
+          "type": "song_add",
+          "subject": "Summer Pockets REFLECTION BLUE",
+          "label": "楽曲追加",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-10-15",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [
+            {
+              "title": "アルカテイル",
+              "artist": "鈴木このみ「Summer Pockets REFLECTION BLUE」"
+            }
+          ],
+          "date_text": "10/15(木)～12/23(水)23:59の期間で、",
+          "evidence": "さらに、イベントに合わせて新曲「アルカテイル」が追加されるほか、",
+          "confidence": 0.98,
+          "calendar_start": "2026-10-15",
+          "calendar_end": null
+        },
+        {
+          "title": "楽曲追加",
+          "type": "song_add",
+          "subject": null,
+          "label": "楽曲追加",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-10-15",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [
+            {
+              "title": "忘れものセンターにまたね！",
+              "artist": "いのうつはSA"
+            },
+            {
+              "title": "ロウワー",
+              "artist": "ぬゆり"
+            }
+          ],
+          "date_text": "10/15(木)～12/23(水)23:59の期間で、",
+          "evidence": "「niconico」カテゴリーに「忘れものセンターにまたね！」「ロウワー」を追加！",
+          "confidence": 0.99,
+          "calendar_start": "2026-10-15",
+          "calendar_end": null
+        },
+        {
+          "title": "Summer Pockets　イベント開催記念ログインボーナス",
+          "type": "login_bonus",
+          "subject": "Summer Pockets",
+          "label": "ログインボーナス",
+          "official_name": "Summer Pockets　イベント開催記念ログインボーナス",
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-10-15",
+          "start_time": null,
+          "end": "2026-12-23",
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "10/15(木)～\n12/23(水)の期間で、",
+          "evidence": "「Summer Pockets　イベント開催記念ログインボーナス」を開催します！",
+          "confidence": 0.98,
+          "calendar_start": "2026-10-15",
+          "calendar_end": "2026-12-23"
+        },
+        {
+          "title": "「Summer Pockets REFLECTION BLUE」テクニカルチャレンジ",
+          "type": "technical_challenge",
+          "subject": "Summer Pockets REFLECTION BLUE",
+          "label": "テクニカルチャレンジ",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-10-15",
+          "start_time": null,
+          "end": "2026-12-23",
+          "end_time": "23:59",
+          "open_ended": false,
+          "songs": [],
+          "date_text": "10/15(木)～12/23(水)23:59の期間で、",
+          "evidence": "テクニカルチャレンジ「Summer Pockets REFLECTION BLUE」を開催します！",
+          "confidence": 0.99,
+          "calendar_start": "2026-10-15",
+          "calendar_end": "2026-12-23"
+        },
+        {
+          "title": "楽曲一般開放",
+          "type": "song_unlock",
+          "subject": null,
+          "label": "楽曲一般開放",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-10-15",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": true,
+          "songs": [
+            {
+              "title": "Yami Yami",
+              "artist": "曲：2tros (Digz, Inc. Group)／歌：bitter flavor[桜井 春菜(CV：近藤 玲奈)、早乙女 彩華(CV：中島 唯)]、7EVENDAYS⇔HOLIDAYS[井之原 小星(CV：ももの はるな)、柏木 咲姫(CV：石見 舞菜香)]"
+            },
+            {
+              "title": "Sugarfull:Overbloom",
+              "artist": "Reku Mochizuki"
+            }
+          ],
+          "date_text": "10/15(木)より、以下の楽曲を通常開放します！",
+          "evidence": "通常開放された楽曲は「マイリスト」に入り、誰でも解禁不要でプレイできるようになります。",
+          "confidence": 0.99,
+          "calendar_start": "2026-10-15",
+          "calendar_end": null
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "記事公開日が2026-10-13で、記載された曜日（10/15(木)、10/28(水)、12/23(水)）と整合するため、年を2026年として補完しました。",
+        "「アルカテイル」はイベントに合わせた追加と明記されているため、コラボイベントのsubjectを所属先として設定しました。",
+        "「忘れものセンターにまたね！」「ロウワー」はniconicoカテゴリーへの追加で、イベント所属の明記がないためsubjectをnullとしました。",
+        "テクニカルチャレンジの対象曲は既存譜面の対象一覧であり、楽曲追加エントリにはしていません。",
+        "通常開放の楽曲は、解禁不要で誰でもプレイ可能になる告知のためsong_unlockとしました。"
+      ],
+      "review_reasons": [],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
+      "status": "extracted",
       "provider": "openai",
       "model": "gpt-5.6-luna"
     },
