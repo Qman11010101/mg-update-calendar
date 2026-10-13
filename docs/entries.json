@@ -3146,30 +3146,6 @@
     },
     {
       "source": {
-        "game": "chunithm",
-        "url": "https://info-chunithm.sega.jp/12376/",
-        "date": "2026-07-13",
-        "title": "7/16(木)「いずれ菖蒲か杜若」コラボイベント開催！"
-      },
-      "content_hash": "c6dcbd3c9da98e2e6885e9e5bab28f8f2de881bd5255f16d148465ccb873220d",
-      "entries": [],
-      "cancellations": [],
-      "notes": [
-        "イベント用マップは同一内容・期間のコラボイベントに統合しました。",
-        "楽曲追加は「イベント開催にあわせて」と明記されているため、イベントの開始日を追加開始日として設定しました。",
-        "チュウニズムクエストはコラボイベントと同時に発生し、イベント期間中と明記されているため、イベントと同じ期間に設定しました。"
-      ],
-      "review_reasons": [],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "extracted",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
         "game": "maimai",
         "url": "https://info-maimai.sega.jp/9573/",
         "date": "2026-09-09",
