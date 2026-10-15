@@ -4229,51 +4229,6 @@
       "content_hash": "c4050cd2e7cee2f50d6cdc12a72a26f392bf6635aadd15df757d4930df9933aa",
       "entries": [
         {
-          "title": "ぼくわたチャンネルちほー",
-          "type": "area_add",
-          "subject": "ぼくわたチャンネルちほー",
-          "label": "ちほー追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-08-04",
-          "start_time": null,
-          "end": "2026-10-15",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "「ぼくわたチャンネルちほー」オープン！\n(2026/8/4～2026/10/15)",
-          "evidence": "2026年8月4日(火)より、\n「ぼくわたチャンネルちほー」\nがオープンします！！",
-          "confidence": 1,
-          "calendar_start": "2026-08-04",
-          "calendar_end": "2026-10-15"
-        },
-        {
-          "title": "「ぼくわたチャンネルちほー」楽曲追加",
-          "type": "song_add",
-          "subject": "ぼくわたチャンネルちほー",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-08-04",
-          "start_time": "10:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "ボックスワンターバ〜ン",
-              "artist": "ぼくわたチャンネル"
-            }
-          ],
-          "date_text": "2026年8月4日(火)より、",
-          "evidence": "イベント開催にあわせて\n「POPS＆アニメ」に新曲「ボックスワンターバ〜ン」が追加されます！",
-          "confidence": 0.98,
-          "calendar_start": "2026-08-04",
-          "calendar_end": null
-        },
-        {
           "title": "「オトモダチ対戦 シーズン25」楽曲一般開放",
           "type": "song_unlock",
           "subject": "オトモダチ対戦 シーズン25",
