@@ -4,7 +4,7 @@
   "provider": "openai",
   "model": "gpt-5.6-luna",
   "mode": "extraction",
-  "updated_at": "2026-10-13T12:02:18+00:00",
+  "updated_at": "2026-10-15T08:13:03+00:00",
   "articles": [
     {
       "source": {
@@ -589,6 +589,202 @@
       "attempts": 1,
       "prompt_version": "40",
       "status": "extracted",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
+    {
+      "source": {
+        "game": "maimai",
+        "url": "https://info-maimai.sega.jp/9634/",
+        "date": "2026-10-15",
+        "title": "10/16(金)「GRANRODEOちほー」オープン！"
+      },
+      "content_hash": "54f830775c51f099313f24331372506f2a3c0da15ddd39ae3a10057489753cca",
+      "entries": [
+        {
+          "title": "GRANRODEOちほー",
+          "type": "area_add",
+          "subject": "GRANRODEOちほー",
+          "label": "ちほー追加",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": false,
+          "start": "2026-10-16",
+          "start_time": null,
+          "end": "2027-01-07",
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "「GRANRODEOちほー」オープン！\n(2026/10/16～2027/1/7)",
+          "evidence": "2026年10月16日(金)より、\n「GRANRODEOちほー」\nがオープンします！！",
+          "confidence": 0.99,
+          "calendar_start": "2026-10-16",
+          "calendar_end": "2027-01-07"
+        },
+        {
+          "title": "「GRANRODEOちほー」楽曲追加",
+          "type": "song_add",
+          "subject": "GRANRODEOちほー",
+          "label": "楽曲追加",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": false,
+          "start": "2026-10-16",
+          "start_time": "10:00",
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [
+            {
+              "title": "ChaosBlue",
+              "artist": "GRANRODEO"
+            },
+            {
+              "title": "GO GO PARADISE!!",
+              "artist": "GRANRODEO"
+            }
+          ],
+          "date_text": "2026年10月16日(金)より、",
+          "evidence": "イベント開催にあわせて\n「POPS＆アニメ」に新曲「ChaosBlue」「GO GO PARADISE!!」が追加されるほか、",
+          "confidence": 0.99,
+          "calendar_start": "2026-10-16",
+          "calendar_end": null
+        },
+        {
+          "title": "「GRANRODEOちほー」楽曲追加",
+          "type": "song_add",
+          "subject": "GRANRODEOちほー",
+          "label": "楽曲追加",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": false,
+          "start": "2026-10-16",
+          "start_time": "10:00",
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [
+            {
+              "title": "Can Do",
+              "artist": "GRANRODEO"
+            }
+          ],
+          "date_text": "2026年10月16日(金)より、",
+          "evidence": "楽曲「Can Do」が復活します！",
+          "confidence": 0.99,
+          "calendar_start": "2026-10-16",
+          "calendar_end": null
+        },
+        {
+          "title": "「GRANRODEOちほー」スタンダード譜面追加",
+          "type": "standard_chart_add",
+          "subject": "GRANRODEOちほー",
+          "label": "スタンダード譜面追加",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": false,
+          "start": "2026-10-16",
+          "start_time": "10:00",
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [
+            {
+              "title": "Can Do",
+              "artist": "GRANRODEO"
+            }
+          ],
+          "date_text": "2026年10月16日(金)より、",
+          "evidence": "※楽曲「Can Do」は、「\nBASIC\n」「\nADVANCED\n」「\nEXPERT\n」譜面がリニューアルされた譜面として登場します。",
+          "confidence": 0.95,
+          "calendar_start": "2026-10-16",
+          "calendar_end": null
+        },
+        {
+          "title": "「GRANRODEOちほー」Re:MASTER譜面追加",
+          "type": "remaster_add",
+          "subject": "GRANRODEOちほー",
+          "label": "Re:MASTER譜面追加",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": false,
+          "start": "2026-10-16",
+          "start_time": "10:00",
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [
+            {
+              "title": "Can Do",
+              "artist": "GRANRODEO"
+            }
+          ],
+          "date_text": "2026年10月16日(金)より、",
+          "evidence": "また、「\nRe:MASTER\n」譜面が新たに追加されます。",
+          "confidence": 0.99,
+          "calendar_start": "2026-10-16",
+          "calendar_end": null
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "新曲・復活曲・譜面追加の開始時刻は、「楽曲やコレクションが追加されるのは当日の午前10時頃」とあるため10:00とした。",
+        "新曲およびCan Doは、イベント開催にあわせて追加され、ちほーを進めることで楽曲を獲得できるため、所属先を「GRANRODEOちほー」とした。",
+        "Can DoのBASIC・ADVANCED・EXPERT譜面のリニューアルはstandard_chart_add、Re:MASTER譜面の新規追加はremaster_addとして分けた。"
+      ],
+      "review_reasons": [],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
+      "status": "extracted",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
+    {
+      "source": {
+        "game": "maimai",
+        "url": "https://info-maimai.sega.jp/10062/",
+        "date": "2026-10-15",
+        "title": "不具合内容と今後の対応について"
+      },
+      "content_hash": "4af1acf559ce72dfa98f2c48b3493fecbce22606e205492dfceb4812abbcd723",
+      "entries": [
+        {
+          "title": "称号「筋肉は全てを解決してくれる」獲得停止",
+          "type": "service_change",
+          "subject": null,
+          "label": "称号「筋肉は全てを解決してくれる」獲得停止",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": false,
+          "start": null,
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "",
+          "evidence": "こちらの称号に関しましては、後日のバージョンアップで獲得ができなくなります。",
+          "confidence": 0.98,
+          "calendar_start": null,
+          "calendar_end": null
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "10/9(金)の不具合修正は記事公開日（2026-10-15）より前に実施済みのため、カレンダー登録対象から除外しました。"
+      ],
+      "review_reasons": [
+        "称号の獲得停止は「後日のバージョンアップ」とされているものの、具体的な開始日・時刻が本文から特定できません。",
+        "エントリ1: date_textの原文根拠を確認できません。",
+        "エントリ1: 開始日が不明です。"
+      ],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
+      "status": "needs_review",
       "provider": "openai",
       "model": "gpt-5.6-luna"
     },
