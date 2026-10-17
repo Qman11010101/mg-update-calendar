@@ -4176,91 +4176,12 @@
     {
       "source": {
         "game": "maimai",
-        "url": "https://info-maimai.sega.jp/9413/",
-        "date": "2026-07-16",
-        "title": "7/17(金) 新作リズムゲーム『In Falsus』より新曲追加！"
-      },
-      "content_hash": "15006668666295bf718be53d3dd9ebadf0e67e1248038c2d85a788657f865316",
-      "entries": [
-        {
-          "title": "「In Falsus」楽曲追加",
-          "type": "song_add",
-          "subject": "In Falsus",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-07-17",
-          "start_time": "10:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "Cryogenic",
-              "artist": "Camellia ft. Petra Gurin"
-            }
-          ],
-          "date_text": "2026年7月17日(金)より、\n「ゲーム＆バラエティ」に、\nlowiroによる新作リズムゲーム\n『In Falsus』の楽曲「Cryogenic」が追加されます！！",
-          "evidence": "2026年7月17日(金)より、\n「ゲーム＆バラエティ」に、\nlowiroによる新作リズムゲーム\n『In Falsus』の楽曲「Cryogenic」が追加されます！！\n詳しくはコチラ！\n新曲追加！！\nゲーム＆バラエティ\nCryogenic\nCamellia ft. Petra Gurin\n…\n※楽曲が追加されるのは当日の午前10時頃となります。",
-          "confidence": 0.99,
-          "calendar_start": "2026-07-17",
-          "calendar_end": null
-        }
-      ],
-      "cancellations": [],
-      "notes": [
-        "楽曲が『In Falsus』の楽曲として追加される旨が明記されているため、subjectをIn Falsusとした。本文の「当日の午前10時頃」から開始時刻を10:00とした。"
-      ],
-      "review_reasons": [
-        "エントリ1: evidenceの原文根拠を確認できません。"
-      ],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "needs_review",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "maimai",
         "url": "https://info-maimai.sega.jp/9118/",
         "date": "2026-07-16",
         "title": "7/17(金)「マサラダちほー」オープン！さらに、「niconico＆ボーカロイド™」に新曲追加！"
       },
       "content_hash": "96f64f1f073beaa29af47142206ba1b1e9ebc77a07b869eef92af0a41a154269",
       "entries": [
-        {
-          "title": "楽曲追加",
-          "type": "song_add",
-          "subject": null,
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-07-17",
-          "start_time": "10:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "2代目閻魔",
-              "artist": "読谷あかね"
-            },
-            {
-              "title": "シスターに懺悔を",
-              "artist": "廃原メモリ"
-            }
-          ],
-          "date_text": "2026年7\n月17日(金)より、",
-          "evidence": "さらに、「niconico＆ボーカロイド™」に新曲「2代目閻魔」「シスターに懺悔を」が追加されます！",
-          "confidence": 0.98,
-          "calendar_start": "2026-07-17",
-          "calendar_end": null
-        },
         {
           "title": "楽曲・宴譜面削除（3曲）",
           "type": "service_change",
@@ -5163,29 +5084,6 @@
       "attempts": 1,
       "prompt_version": "40",
       "status": "needs_review",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "ongeki",
-        "url": "https://info-ongeki.sega.jp/12159/",
-        "date": "2026-07-17",
-        "title": "7/23(木)シルバージュエルイベント「いよわ」開催！"
-      },
-      "content_hash": "63b86ba917cabfc022c7c0f2d63a7b5e20183d9ed904910c05dde237587c851f",
-      "entries": [],
-      "cancellations": [],
-      "notes": [
-        "年の記載がない日付は、記事の公開日が2026-07-17であり、記載された曜日（7/23(木)、9/16(水)）とも整合するため2026年として補完しました。",
-        "楽曲追加は「イベントに合わせて」と明記されているため、シルバージュエルイベント「いよわ」に所属付けし、イベントの開始日を楽曲追加の開始日として設定しました。"
-      ],
-      "review_reasons": [],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "extracted",
       "provider": "openai",
       "model": "gpt-5.6-luna"
     },
