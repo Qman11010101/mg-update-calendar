@@ -16,6 +16,9 @@
   複数ゲームを連続取得する場合もゲームをまたいで間隔を保つ。
 - 差分更新: 既存の news_all.json にある記事は詳細ページを取り直さず、前回の内容を使う。
   一覧1ページ分がすべて既知の記事なら次のページへ進まない。一覧から外れた記事も消さずに残す。
+- サイトの構造変更の検知: 一覧の1ページ目に記事がない、または今回取得した詳細ページが
+  2件以上あってすべて本文を取れなかったゲームは収集失敗とし、終了コード1を返す。
+  失敗したゲームは前回の記事を残し、他のゲームの収集結果は保存する。
 """
 
 from __future__ import annotations
@@ -42,8 +45,16 @@ HEADERS = {
     "Accept-Language": "ja-JP,ja;q=0.9",
 }
 
+# 今回取得した詳細ページがこの件数以上ですべて本文なしなら、本文のセレクタ切れとみなす。
+# JSリダイレクト記事は正常でも本文が空になるため、1件だけでは失敗にしない。
+EMPTY_BODY_FAILURE_MIN = 2
+
 # "2026.09.15 (火)" (CHUNITHM/maimai) / "2026.9.15 Tue / GAME" (オンゲキ) に対応
 DATE_RE = re.compile(r"(\d{4})\.(\d{1,2})\.(\d{1,2})")
+
+
+class ScrapeError(Exception):
+    """サイトの構造変更などで、そのゲームの記事を正しく取得できなかった。"""
 
 
 @dataclass(frozen=True)
@@ -404,6 +415,9 @@ def scrape(
         known: URLをキーにした既知の記事。詳細ページを取り直さずこの内容を使い、
             一覧1ページ分がすべて既知なら巡回を終える。
         refresh_since: この日 (YYYY-MM-DD) 以降に公開された既知の記事は詳細ページを取り直す。
+
+    Raises:
+        ScrapeError: 一覧の1ページ目に記事がない、または取得した詳細ページがすべて本文なし。
     """
     known = known or {}
     site = SITES[game]
@@ -411,6 +425,8 @@ def scrape(
         fetcher = Fetcher(interval=interval, verbose=verbose)
     results: list[dict] = []
     seen_urls: set[str] = set()
+    # 今回取得した詳細ページの件数と、そのうち本文を取れなかった件数
+    fetched = empty = 0
 
     page = 1
     while True:
@@ -428,6 +444,8 @@ def scrape(
             raise
 
         cards = parse_list_page(html, site)
+        if not cards and page == 1:
+            raise ScrapeError(f"[{site.game}] 一覧の1ページ目に記事が見つかりません。サイトの構造が変わった可能性があります。")
         if not cards:
             if verbose:
                 print(f"[{site.game}] page {page}: no articles, stop.", file=sys.stderr)
@@ -453,6 +471,10 @@ def scrape(
                         return results
                     continue
                 detail = parse_article_page(detail_html, card["url"], site)
+                fetched += 1
+                if not detail["body_text"] and not detail["body_markdown"]:
+                    empty += 1
+                    print(f"warn: [{site.game}] 本文が見つかりません: {card['url']}", file=sys.stderr)
                 # 詳細ページで取れなかった項目は一覧情報で補完
                 if not detail["title"]:
                     detail["title"] = card["title"]
@@ -480,6 +502,9 @@ def scrape(
             break
         page += 1
 
+    if fetched >= EMPTY_BODY_FAILURE_MIN and empty == fetched:
+        raise ScrapeError(f"[{site.game}] 取得した詳細ページ{fetched}件すべてで本文が見つかりません。"
+                          "サイトの構造が変わった可能性があります。")
     return results
 
 
@@ -546,18 +571,26 @@ def main(argv: list[str] | None = None) -> int:
     # Fetcherを共有し、ゲームまたぎでも1秒間隔を保つ
     fetcher = Fetcher(interval=REQUEST_INTERVAL_SEC, verbose=True)
     scraped: dict[str, list[dict]] = {}
+    failed: list[str] = []
     for game in games:
-        articles = scrape(
-            max_pages=args.max_pages,
-            fetch_detail=not args.dry_run,
-            interval=REQUEST_INTERVAL_SEC,
-            game=game,
-            fetcher=fetcher,
-            known={} if args.full else known_by_url,
-            refresh_since=refresh_since,
-        )
+        try:
+            articles = scrape(
+                max_pages=args.max_pages,
+                fetch_detail=not args.dry_run,
+                interval=REQUEST_INTERVAL_SEC,
+                game=game,
+                fetcher=fetcher,
+                known={} if args.full else known_by_url,
+                refresh_since=refresh_since,
+            )
+        except ScrapeError as exc:
+            # 失敗したゲームは前回の記事を残し、他のゲームの収集は続ける
+            print(f"error: {exc}", file=sys.stderr)
+            failed.append(game)
+            continue
         print(f"[{game}] {len(articles)} articles", file=sys.stderr)
         scraped[game] = articles
+    code = 1 if failed else 0
 
     fresh = [record for records in scraped.values() for record in records]
     if args.dry_run:
@@ -568,7 +601,7 @@ def main(argv: list[str] | None = None) -> int:
             for record in records:
                 print(f"{label}: [{record['game']}] {record.get('date') or '-'} {record['title']} {record['url']}")
         print(f"dry run: new={len(new)}, refetch={len(refetch)}")
-        return 0
+        return code
 
     all_articles = merge_articles(known, scraped)
     new = sum(record["url"] not in known_by_url for record in fresh)
@@ -581,7 +614,9 @@ def main(argv: list[str] | None = None) -> int:
     temporary.replace(output)
 
     print(f"{len(all_articles)} articles -> {output} (new={new}, updated={updated})")
-    return 0
+    if failed:
+        print(f"error: 収集に失敗したゲーム: {', '.join(failed)}", file=sys.stderr)
+    return code
 
 
 if __name__ == "__main__":

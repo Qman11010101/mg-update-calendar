@@ -8,7 +8,7 @@ import unittest
 from unittest.mock import patch
 
 from mg_update_calendar import main
-from mg_update_calendar.scraper import make_record, merge_articles, needs_refetch, scrape
+from mg_update_calendar.scraper import ScrapeError, make_record, merge_articles, needs_refetch, scrape
 
 
 GAMES = ['chunithm', 'maimai', 'ongeki']
@@ -29,7 +29,12 @@ class ScraperCLITests(unittest.TestCase):
         with patch('mg_update_calendar.scraper.scrape') as scrape, \
                 contextlib.redirect_stdout(io.StringIO()) as stdout, \
                 contextlib.redirect_stderr(io.StringIO()):
-            scrape.side_effect = lambda **kwargs: scraped[kwargs['game']]
+            def fake(**kwargs):
+                result = scraped[kwargs['game']]
+                if isinstance(result, Exception):
+                    raise result
+                return result
+            scrape.side_effect = fake
             self.assertEqual(main(args), code)
         self.stdout = stdout.getvalue()
         output = Path('news_all.json')
@@ -104,6 +109,20 @@ class ScraperCLITests(unittest.TestCase):
         self.assertIn('new: [chunithm]', self.stdout)
         self.assertIn('new=1, refetch=0', self.stdout)
 
+    def test_failed_game_keeps_known_articles_and_returns_1(self):
+        known = [record(game, 1, date='2026-09-01') for game in GAMES]
+        Path('news_all.json').write_text(json.dumps(known), encoding='utf-8')
+        scraped = {'chunithm': [record('chunithm', 2)], 'maimai': ScrapeError('broken'),
+                   'ongeki': [record('ongeki', 2)]}
+        calls, articles = self.run_cli([], scraped, code=1)
+        self.assertEqual([call.kwargs['game'] for call in calls], GAMES)
+        self.assertEqual(articles, [record('chunithm', 2), known[0], known[1], record('ongeki', 2), known[2]])
+
+    def test_failed_game_returns_1_in_dry_run(self):
+        scraped = {'chunithm': [], 'maimai': [], 'ongeki': ScrapeError('broken')}
+        _, articles = self.run_cli(['--dry-run'], scraped, code=1)
+        self.assertIsNone(articles)
+
     def test_unreadable_known_articles_are_not_overwritten(self):
         for raw in ['broken', '{"wrong": "shape"}', '[{"title": "no url"}]']:
             with self.subTest(raw=raw):
@@ -135,15 +154,18 @@ class Fetcher:
 
 
 class IncrementalScrapeTests(unittest.TestCase):
-    def scrape(self, pages, **kwargs):
-        """pagesは一覧ページごとの記事番号。詳細ページは本文「新」で返す。"""
+    def scrape(self, pages, bodies=None, **kwargs):
+        """pagesは一覧ページごとの記事番号。詳細ページはbodiesにある番号ならその本文、なければ「新」で返す。"""
+        bodies = bodies or {}
         fetcher = Fetcher()
         lists = {('https://info-chunithm.sega.jp/' if index == 0 else
                   f'https://info-chunithm.sega.jp/page/{index + 1}/'): [record('chunithm', n) for n in numbers]
                  for index, numbers in enumerate(pages)}
         with patch('mg_update_calendar.scraper.parse_list_page', side_effect=lambda html, site: lists.get(html, [])), \
              patch('mg_update_calendar.scraper.parse_article_page',
-                   side_effect=lambda html, url, site: record('chunithm', url.rsplit('/', 1)[1], body='新')):
+                   side_effect=lambda html, url, site: record('chunithm', url.rsplit('/', 1)[1],
+                                                              body=bodies.get(int(url.rsplit('/', 1)[1]), '新'))), \
+             contextlib.redirect_stderr(io.StringIO()):
             results = scrape(game='chunithm', fetcher=fetcher, verbose=False, **kwargs)
         return results, fetcher.urls
 
@@ -166,6 +188,34 @@ class IncrementalScrapeTests(unittest.TestCase):
         results, urls = self.scrape([[1, 2, 3]], known=known, refresh_since='2026-09-29')
         self.assertEqual(urls[1:], [record('chunithm', 1)['url'], record('chunithm', 3)['url']])
         self.assertEqual([item['body_text'] for item in results], ['新', '本文', '新'])
+
+    def test_empty_first_page_is_an_error(self):
+        with self.assertRaises(ScrapeError):
+            self.scrape([[]])
+        with self.assertRaises(ScrapeError):
+            self.scrape([[]], known={record('chunithm', 1)['url']: record('chunithm', 1)})
+
+    def test_empty_later_page_ends_paging(self):
+        results, urls = self.scrape([[1]], max_pages=0)
+        self.assertEqual(urls[-1], 'https://info-chunithm.sega.jp/page/2/')
+        self.assertEqual(len(results), 1)
+
+    def test_all_fetched_details_without_body_is_an_error(self):
+        with self.assertRaises(ScrapeError):
+            self.scrape([[1, 2]], bodies={1: '', 2: ''})
+
+    def test_some_details_without_body_are_allowed(self):
+        # JSリダイレクト記事は本文が空になるので、1件だけ、または一部だけなら失敗にしない
+        results, _ = self.scrape([[1]], bodies={1: ''})
+        self.assertEqual(results[0]['body_text'], '')
+        results, _ = self.scrape([[1, 2]], bodies={1: ''})
+        self.assertEqual([item['body_text'] for item in results], ['', '新'])
+
+    def test_known_articles_without_body_do_not_count_as_fetched(self):
+        known = {record('chunithm', n)['url']: record('chunithm', n) for n in (1, 2)}
+        results, urls = self.scrape([[1, 2, 3]], bodies={3: ''}, known=known)
+        self.assertEqual(urls, ['https://info-chunithm.sega.jp/', record('chunithm', 3)['url']])
+        self.assertEqual(len(results), 3)
 
     def test_needs_refetch(self):
         self.assertFalse(needs_refetch(record('chunithm', 1)))
