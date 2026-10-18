@@ -26,6 +26,7 @@ jobs:
       contents: write
     outputs:
       changed: ${{ steps.commit.outputs.changed }}
+      collect_failed: ${{ steps.collect.outputs.failed }}
     env:
       LLM_PROVIDER: ${{ vars.LLM_PROVIDER }}
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -52,9 +53,22 @@ jobs:
       - name: Restore previous entries
         run: cp docs/entries.json entries.json
 
-      # 一覧1ページ目のうち公開7日以内の記事は、公開後の修正を拾うため毎回取り直す
+      # 一覧1ページ目のうち公開7日以内の記事は、公開後の修正を拾うため毎回取り直す。
+      # 終了コード1（サイトの構造変更などで一部ゲームの収集に失敗）は、他のゲームの更新を止めないよう
+      # 最後まで進め、デプロイの後にcollect-failedジョブで失敗として表示する
       - name: Collect articles
-        run: uv run mg-update-calendar --refresh-days 7
+        id: collect
+        run: |
+          set +e
+          uv run mg-update-calendar --refresh-days 7
+          code=$?
+          set -e
+          if [ "$code" -eq 1 ]; then
+            echo "::error::一部のゲームで記事を収集できませんでした。公式サイトの構造が変わった可能性があります"
+            echo "failed=true" >> "$GITHUB_OUTPUT"
+          elif [ "$code" -ne 0 ]; then
+            exit "$code"
+          fi
 
       # 終了コード1（一部記事の抽出失敗）は前回の結果が残るため警告にとどめる
       - name: Extract entries
@@ -73,6 +87,7 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: 24
+          cache: npm
 
       - name: Prune finished entries
         run: node scripts/prune-entries.js
@@ -85,10 +100,16 @@ jobs:
           path: news_all.json
           key: news-all-${{ github.run_id }}
 
+      # 表示用データに変換できないentries.jsonをpushしないよう、コミット前にビルドを確認する
+      - name: Check build
+        run: |
+          cp entries.json docs/entries.json
+          npm ci
+          npm run build
+
       - name: Commit and push
         id: commit
         run: |
-          cp entries.json docs/entries.json
           if git diff --quiet -- docs/entries.json; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
@@ -109,3 +130,13 @@ jobs:
       pages: write
       id-token: write
     uses: ./.github/workflows/pages.yml
+
+  # 収集の失敗をワークフローの失敗として表示する。更新とデプロイは他のゲームの分を済ませてから失敗させる
+  collect-failed:
+    needs: [update, deploy]
+    if: ${{ !cancelled() && needs.update.outputs.collect_failed == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "::error::一部のゲームで記事を収集できませんでした。update ジョブのCollect articlesのログを確認してください"
+          exit 1
