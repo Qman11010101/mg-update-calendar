@@ -25,7 +25,8 @@ export default defineConfig({
   root: "docs",
   // GitHub Pagesはリポジトリ名のサブパスで公開されるため、相対パスで出力する。
   base: "./",
-  publicDir: false,
+  // docs/public/のOGP画像などは、ハッシュを付けずにそのままのパスで出力する。
+  publicDir: "public",
   plugins: [svelte({ configFile: false }), entriesJson()],
   build: { outDir: "../_site", emptyOutDir: true },
 });

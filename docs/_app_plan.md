@@ -4,7 +4,7 @@
 
 ## 目的
 
-- 手元で `mg-update-calendar` → `mg-extract-entries` → `Copy-Item` → push している運用を自動化する
+- ~~手元で `mg-update-calendar` → `mg-extract-entries` → `Copy-Item` → push している運用を自動化する~~ → GitHub Actions（`update.yml`）で自動化済み
 - 抽出結果を `docs/entries.json` 一枚ではなくDB（D1）で管理し、差分更新・履歴・手動修正をできるようにする
 - カレンダーをCloudflare Workers上で公開し、API経由でデータを返す
 
@@ -12,14 +12,15 @@
 
 | 段階 | 現在の実装 | 入出力 |
 | --- | --- | --- |
-| 記事収集 | Python（requests + BeautifulSoup + markdownify） | 公式サイト → `news_all.json` |
-| 告知抽出 | Python（openai SDK + Pydantic、OpenAI / DeepSeek） | `news_all.json` → `entries.json` |
-| 表示時の重複統合 | JavaScript（`calendar.js`） | 内容・日時等が完全一致する項目の出典を保持 |
-| 表示 | 静的HTML/JS（`docs/`）、GitHub Pagesで公開 | `docs/entries.json` を読む |
+| 記事収集 | Python（requests + BeautifulSoup + markdownify）。既知の記事は詳細を取り直さない差分更新 | 公式サイト → `news_all.json`（Actionsのキャッシュで引き継ぐ） |
+| 告知抽出 | Python（openai SDK + Pydantic、OpenAI / DeepSeek / Meta）。`content_hash` と `prompt_version` が同じ記事は前回の結果を使う | `news_all.json` → `entries.json` |
+| 掲載終了の整理 | JavaScript（`scripts/prune-entries.js`） | `entries.json` と `news_all.json` から掲載を終えたものを除く |
+| 表示時の重複統合・親イベント | JavaScript（`docs/lib/entries.js`） | 内容・日時等が完全一致する項目の出典を保持し、同じ対象名のエントリを親イベントにまとめる |
+| 表示 | Vite + Svelte（`docs/src/`）、GitHub Pagesで公開 | `docs/entries.json` を表示に必要な項目だけに詰めて配信 |
+| 定期実行 | GitHub Actions（`update.yml`、1日3回） | 収集 → 抽出 → 整理 → コミット → デプロイ |
 
 課題:
 
-- 毎回全記事を再抽出している（`content_hash` はあるが再利用していない）
 - 記事をまたぐ取り消し・延期の適用が手動確認頼み
 - `needs_review` の確認・修正を記録する場所がない
 
@@ -52,7 +53,7 @@
 - Actionsのスケジュール実行で、収集から差分抽出までを行う。`content_hash` と `prompt_version` が同じ記事はLLMを呼ばない
 - 抽出結果は上書きせず蓄積する。収集は一覧の1ページ目だけなので、上書きすると古い告知が消える
 - 手動修正は抽出結果とは別のファイル（例：`data/overrides/`）に持ち、再抽出しても消えないようにする。D1に移すときは `entry_overrides` に変換する
-- 全件 `extracted` なら `main` へ直接コミットし、`needs_review` か `failed` があればPRを作る
+- 全件 `extracted` なら `main` へ直接コミットし、`needs_review` か `failed` があればPRを作る（未実装。現在は `status` にかかわらず直接コミットしている）
 - `GITHUB_TOKEN` によるpushでは `pages.yml` のpushトリガーが起動しない。デプロイは同じワークフロー内で行うか、`workflow_call` で呼ぶ
 
 ### 収集・抽出をどこで動かすか

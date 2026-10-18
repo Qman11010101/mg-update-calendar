@@ -1,7 +1,7 @@
 [project]
 name = "mg-update-calendar"
 version = "0.1.0"
-description = "Add your description here"
+description = "CHUNITHM・maimai・オンゲキの公式お知らせを収集し、AIで告知を抽出してカレンダーに表示する"
 authors = [
     { name = "キューマン・エノビクト", email = "30486982+Qman11010101@users.noreply.github.com" }
 ]
