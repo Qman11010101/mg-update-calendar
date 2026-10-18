@@ -7,6 +7,8 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
+import requests
+
 from mg_update_calendar import main
 from mg_update_calendar.scraper import ScrapeError, make_record, merge_articles, needs_refetch, scrape
 
@@ -194,6 +196,31 @@ class IncrementalScrapeTests(unittest.TestCase):
             self.scrape([[]])
         with self.assertRaises(ScrapeError):
             self.scrape([[]], known={record('chunithm', 1)['url']: record('chunithm', 1)})
+
+    def test_missing_first_page_is_an_error(self):
+        fetcher = Fetcher()
+        response = requests.Response()
+        response.status_code = 404
+        fetcher.get = lambda url: (_ for _ in ()).throw(requests.HTTPError(response=response))
+        with self.assertRaises(ScrapeError):
+            scrape(game='chunithm', fetcher=fetcher, verbose=False)
+
+    def test_missing_later_page_ends_paging(self):
+        fetcher = Fetcher()
+        get = fetcher.get
+        response = requests.Response()
+        response.status_code = 404
+
+        def fake(url):
+            if url.endswith('/page/2/'):
+                raise requests.HTTPError(response=response)
+            return get(url)
+        fetcher.get = fake
+        with patch('mg_update_calendar.scraper.parse_list_page', return_value=[record('chunithm', 1)]), \
+             patch('mg_update_calendar.scraper.parse_article_page', return_value=record('chunithm', 1)), \
+             contextlib.redirect_stderr(io.StringIO()):
+            results = scrape(game='chunithm', fetcher=fetcher, verbose=False, max_pages=0)
+        self.assertEqual(results, [record('chunithm', 1)])
 
     def test_empty_later_page_ends_paging(self):
         results, urls = self.scrape([[1]], max_pages=0)

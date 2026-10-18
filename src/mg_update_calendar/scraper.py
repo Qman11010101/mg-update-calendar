@@ -417,7 +417,7 @@ def scrape(
         refresh_since: この日 (YYYY-MM-DD) 以降に公開された既知の記事は詳細ページを取り直す。
 
     Raises:
-        ScrapeError: 一覧の1ページ目に記事がない、または取得した詳細ページがすべて本文なし。
+        ScrapeError: 一覧の1ページ目が404か記事なし、または取得した詳細ページがすべて本文なし。
     """
     known = known or {}
     site = SITES[game]
@@ -436,8 +436,11 @@ def scrape(
         try:
             html = fetcher.get(list_url)
         except requests.HTTPError as e:
-            # 存在しないページ番号 (404) なら巡回終了
+            # 存在しないページ番号 (404) なら巡回終了。1ページ目の404は一覧のURLが変わったとみなす
             if e.response is not None and e.response.status_code == 404:
+                if page == 1:
+                    raise ScrapeError(f"[{site.game}] 一覧の1ページ目が見つかりません (404)。"
+                                      "サイトの構造が変わった可能性があります。") from e
                 if verbose:
                     print(f"[{site.game}] page {page} is 404, stop.", file=sys.stderr)
                 break
