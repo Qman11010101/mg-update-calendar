@@ -5064,32 +5064,6 @@
     {
       "source": {
         "game": "ongeki",
-        "url": "https://info-ongeki.sega.jp/12235/",
-        "date": "2026-07-18",
-        "title": "7/23(木)ジュエルイベント「温泉むすめ【第4弾】」開催！"
-      },
-      "content_hash": "e414f48957ff8b67abd0b1ff643ffa2511366a2cdba276d5ea920b7fba52510c",
-      "entries": [],
-      "cancellations": [],
-      "notes": [
-        "記事の公開日が2026-07-18で、本文の日付の曜日と整合するため、年が省略された日付を2026年として補完しました。",
-        "楽曲追加は「イベントに合わせて」と明記されているため、所属先を「温泉むすめ【第4弾】」とし、開始日をイベントの開始日にしました。イベント終了日は恒久的な楽曲追加には適用していません。",
-        "イベント報酬のカード・プレートは独立したエントリにしていません。"
-      ],
-      "review_reasons": [
-        "エントリ4: evidenceの原文根拠を確認できません。"
-      ],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "needs_review",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "ongeki",
         "url": "https://info-ongeki.sega.jp/12225/",
         "date": "2026-07-16",
         "title": "7/23(木)『オンゲキ Re:Fresh Act.2』稼働のお知らせ"
