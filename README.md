@@ -242,6 +242,8 @@ uv run python -m unittest discover -s tests -v
 npm test
 ```
 
+PRと`main`へのpushでは、GitHub Actions（`.github/workflows/test.yml`）が両方のテストとカレンダーのビルドを実行します。
+
 抽出テストはAPI通信をモックに置き換えます。表示側のテストは`docs/lib/`のモジュールを直接読み込み、日付配置・正式日時・重複統合・出典リンク・検索・親イベントのまとめ方を検証します。APIキーや外部通信は不要です。実モデルの抽出精度は、次の回帰テストで確認します。
 
 ### 実モデルの回帰テスト

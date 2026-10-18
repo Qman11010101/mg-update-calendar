@@ -1,0 +1,46 @@
+name: Test
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+    # 定期更新のデータコミットはupdate.ymlの中でビルドを確認するため、ここでは実行しない
+    paths-ignore:
+      - "docs/entries.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: test-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: astral-sh/setup-uv@v10.2.0
+
+      - run: uv sync --locked
+
+      - run: uv run python -m unittest discover -s tests -v
+
+  node:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm test
+
+      # docs/entries.jsonを表示用データに変換できることの確認を兼ねる
+      - run: npm run build
