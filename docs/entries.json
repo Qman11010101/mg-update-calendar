@@ -4,8 +4,102 @@
   "provider": "openai",
   "model": "gpt-5.6-luna",
   "mode": "extraction",
-  "updated_at": "2026-10-15T08:13:03+00:00",
+  "updated_at": "2026-10-19T08:45:27+00:00",
   "articles": [
+    {
+      "source": {
+        "game": "chunithm",
+        "url": "https://info-chunithm.sega.jp/12764/",
+        "date": "2026-10-19",
+        "title": "10/22(木)「P丸様。」コラボイベント開催！"
+      },
+      "content_hash": "3046a367c833083cfa5991997824b35502e3ad804e80d7386595d6daffb5e53a",
+      "entries": [
+        {
+          "title": "「P丸様。」コラボイベント",
+          "type": "event",
+          "subject": "P丸様。",
+          "label": "コラボイベント",
+          "official_name": null,
+          "service": "chunithm",
+          "start_is_deadline": false,
+          "start": "2026-10-22",
+          "start_time": null,
+          "end": "2026-12-09",
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2026年10月22日(木)～2026年12月9日(水)までの期間で",
+          "evidence": "2026年10月22日(木)～2026年12月9日(水)までの期間で\n「P丸様。」\nとのコラボイベントを開催！\n「P丸様。」マップが開放されます！",
+          "confidence": 1.0,
+          "calendar_start": "2026-10-22",
+          "calendar_end": "2026-12-09"
+        },
+        {
+          "title": "「P丸様。」楽曲追加",
+          "type": "song_add",
+          "subject": "P丸様。",
+          "label": "楽曲追加",
+          "official_name": null,
+          "service": "chunithm",
+          "start_is_deadline": false,
+          "start": "2026-10-22",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [
+            {
+              "title": "P-KATSU",
+              "artist": null
+            },
+            {
+              "title": "天天天国地獄国 (feat. ななひら & P丸様。)",
+              "artist": null
+            }
+          ],
+          "date_text": "2026年10月22日(木)～2026年12月9日(水)までの期間で",
+          "evidence": "イベント開催にあわせて、\n楽曲「P-KATSU」「天天天国地獄国 (feat. ななひら & P丸様。)」が追加！",
+          "confidence": 1.0,
+          "calendar_start": "2026-10-22",
+          "calendar_end": null
+        },
+        {
+          "title": "「P丸様。」チュウニズムクエスト",
+          "type": "quest",
+          "subject": "P丸様。",
+          "label": "チュウニズムクエスト",
+          "official_name": null,
+          "service": "chunithm",
+          "start_is_deadline": false,
+          "start": "2026-10-22",
+          "start_time": null,
+          "end": "2026-12-09",
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2026年10月22日(木)～2026年12月9日(水)までの期間で",
+          "evidence": "今回のコラボイベントと同時にチュウニズムクエストが発生！\nイベント期間中に、対象キャラクターのランクを上げると、称号がゲットできます！",
+          "confidence": 0.98,
+          "calendar_start": "2026-10-22",
+          "calendar_end": "2026-12-09"
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "「P丸様。」マップは同一内容・期間のコラボイベントに統合しました。",
+        "楽曲はコラボイベント開催にあわせた追加のため、イベント開始日を開始日としました。",
+        "チュウニズムクエストはコラボイベントとは別の独立告知として抽出し、イベント期間中に開催されるものとして期間を設定しました。"
+      ],
+      "review_reasons": [],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
+      "status": "extracted",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
     {
       "source": {
         "game": "chunithm",
