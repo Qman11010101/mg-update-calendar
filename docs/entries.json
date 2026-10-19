@@ -31,7 +31,7 @@
           "songs": [],
           "date_text": "2026年10月22日(木)～2026年12月9日(水)までの期間で",
           "evidence": "2026年10月22日(木)～2026年12月9日(水)までの期間で\n「P丸様。」\nとのコラボイベントを開催！\n「P丸様。」マップが開放されます！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-10-22",
           "calendar_end": "2026-12-09"
         },
@@ -60,7 +60,7 @@
           ],
           "date_text": "2026年10月22日(木)～2026年12月9日(水)までの期間で",
           "evidence": "イベント開催にあわせて、\n楽曲「P-KATSU」「天天天国地獄国 (feat. ななひら & P丸様。)」が追加！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-10-22",
           "calendar_end": null
         },
@@ -5033,51 +5033,6 @@
       "notes": [
         "記事は『オンゲキ Re:Fresh Act.2』の稼働そのものではなく、同バージョンで追加される楽曲の紹介記事であるため、version_launchは作成していません。",
         "追加楽曲の開始日は、本文の『2026/7/23(木)に稼働の『オンゲキ Re:Fresh Act.2』で追加される』という記述から判断しました。"
-      ],
-      "review_reasons": [],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "extracted",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "ongeki",
-        "url": "https://info-ongeki.sega.jp/12262/",
-        "date": "2026-07-19",
-        "title": "7/23(木)『オンゲキ Re:Fresh Act.2』新機能紹介②（プレイヤーネーム、レーティングカテゴリ、他）"
-      },
-      "content_hash": "aacdf02d8ac66eeb050d812751cdb7235f44147865b3df3e2e45897fbbee12cc",
-      "entries": [],
-      "cancellations": [],
-      "notes": [
-        "記事は『オンゲキ Re:Fresh Act.2』の新機能紹介であり、バージョン稼働そのものの告知ではないため、version_launchは作成しません。新機能には個別の日付がないため、独立したエントリも作成しません。"
-      ],
-      "review_reasons": [],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "extracted",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "ongeki",
-        "url": "https://info-ongeki.sega.jp/12264/",
-        "date": "2026-07-19",
-        "title": "7/23(木)リバイバルイベント「時々ボソッとロシア語でデレる隣のアーリャさん」開催！"
-      },
-      "content_hash": "62ae596052fcd0f89ae9fea6def7079f91774dc853c47e3764afaf2499220e91",
-      "entries": [],
-      "cancellations": [],
-      "notes": [
-        "年の記載がないため、記事公開日2026-07-19および曜日表記（7/23(木)、9/16(水)）に基づき2026年として補完しました。",
-        "本文でコラボ相手の作品名を冠したイベントとして告知され、リバイバルと明示されているため、collab=true・revival=trueとしました。"
       ],
       "review_reasons": [],
       "error": null,
