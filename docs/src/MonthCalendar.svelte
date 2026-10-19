@@ -1,6 +1,7 @@
 <script>
-  import { offsetDate, parseDate, today, weekdayNames } from "../lib/dates.js";
+  import { offsetDate, parseDate, weekdayNames } from "../lib/dates.js";
   import { endDate, games, isRange } from "../lib/entries.js";
+  import { today } from "./today.svelte.js";
   import { weekdayClass } from "./weekday.js";
 
   let { month, range, selected, dated, holidays, onselect } = $props();
@@ -25,7 +26,7 @@
       {@const begins = dated.filter((entry) => entry.start === key)}
       {@const ends = dated.filter((entry) => isRange(entry) && endDate(entry) === key)}
       <button
-        class="day{outside ? ' outside' : ''}{key === today ? ' today' : ''}{key === selected ? ' selected' : ''}{weekdayClass(key, parseDate(key).getUTCDay(), holidays)}"
+        class="day{outside ? ' outside' : ''}{key === today.date ? ' today' : ''}{key === selected ? ' selected' : ''}{weekdayClass(key, parseDate(key).getUTCDay(), holidays)}"
         type="button"
         data-date={key}
         style:grid-column={String(column + 1)}
@@ -33,7 +34,7 @@
         aria-pressed={key === selected}
         onclick={() => onselect(key, outside)}
       >
-        <time datetime={key} aria-current={key === today ? "date" : undefined}>{Number(key.slice(8))}</time>
+        <time datetime={key} aria-current={key === today.date ? "date" : undefined}>{Number(key.slice(8))}</time>
         <!-- 1日に数十件始まることがあるため、セルにはゲームごとの件数だけを置き、内容は日別パネルで見せる。 -->
         {#each Object.keys(games) as game (game)}
           {@const list = begins.filter((entry) => entry.source.game === game)}

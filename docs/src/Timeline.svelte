@@ -1,9 +1,10 @@
 <script>
   import ChevronDown from "@lucide/svelte/icons/chevron-down";
   import { SvelteSet } from "svelte/reactivity";
-  import { daysBetween, offsetDate, parseDate, shortDate, today, weekdayNames } from "../lib/dates.js";
+  import { daysBetween, offsetDate, parseDate, shortDate, weekdayNames } from "../lib/dates.js";
   import { endDate, games, period, typeLabel } from "../lib/entries.js";
   import { openItem } from "./detail.svelte.js";
+  import { today } from "./today.svelte.js";
   import { weekdayClass } from "./weekday.js";
 
   let { ranges, range, holidays } = $props();
@@ -69,7 +70,7 @@
     <div class="tl-corner" aria-hidden="true"></div>
     {#each dayKeys as key, day (key)}
       {@const weekday = parseDate(key).getUTCDay()}
-      <div class="tl-day{weekdayClass(key, weekday, holidays)}{key === today ? ' today' : ''}" style:grid-column={String(day + 2)}>
+      <div class="tl-day{weekdayClass(key, weekday, holidays)}{key === today.date ? ' today' : ''}" style:grid-column={String(day + 2)}>
         <b>{day + 1}</b><span>{weekdayNames[weekday]}</span>
       </div>
     {/each}
@@ -138,8 +139,8 @@
         style:grid-row="2 / {layout.lastRow}"
       ></div>
     {/each}
-    {#if today >= range.first && today <= range.last}
-      <div class="tl-today" style:grid-column={String(daysBetween(range.first, today) + 2)} style:grid-row="1 / {layout.lastRow}"></div>
+    {#if today.date >= range.first && today.date <= range.last}
+      <div class="tl-today" style:grid-column={String(daysBetween(range.first, today.date) + 2)} style:grid-row="1 / {layout.lastRow}"></div>
     {/if}
   {/if}
 </div>

@@ -1,6 +1,7 @@
 <script>
-  import { daysBetween, shortDate, today } from "../lib/dates.js";
+  import { daysBetween, shortDate } from "../lib/dates.js";
   import { endDate, games, isRange, itemTypes, nowLists } from "../lib/entries.js";
+  import { today } from "./today.svelte.js";
   import { openItem } from "./detail.svelte.js";
   import TypeTags from "./TypeTags.svelte";
 
@@ -9,7 +10,7 @@
   const views = [["current", "いま開催中"], ["upcoming", "今後開催"]];
   let view = $state("current");
   let expanded = $state(false);
-  const lists = $derived(nowLists(all));
+  const lists = $derived(nowLists(all, today.date));
   const shown = $derived(lists[view]);
 
   function select(next) {
@@ -47,7 +48,7 @@
       {/if}
       {#each shown as entry, index (entry)}
         {@const upcoming = view === "upcoming"}
-        {@const left = upcoming ? daysBetween(today, entry.start) : daysBetween(today, endDate(entry))}
+        {@const left = upcoming ? daysBetween(today.date, entry.start) : daysBetween(today.date, endDate(entry))}
         <button
           class="now-card {entry.source.game}"
           class:soon={!upcoming && left <= 3}
@@ -69,7 +70,7 @@
           {#if !upcoming}
             {@const total = daysBetween(entry.start, endDate(entry)) + 1}
             <span class="now-progress" aria-hidden="true">
-              <span style:width="{Math.round((daysBetween(entry.start, today) + 1) / total * 100)}%"></span>
+              <span style:width="{Math.round((daysBetween(entry.start, today.date) + 1) / total * 100)}%"></span>
             </span>
           {/if}
         </button>
