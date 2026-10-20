@@ -4,8 +4,105 @@
   "provider": "openai",
   "model": "gpt-5.6-luna",
   "mode": "extraction",
-  "updated_at": "2026-10-19T08:45:27+00:00",
+  "updated_at": "2026-10-20T08:26:01+00:00",
   "articles": [
+    {
+      "source": {
+        "game": "chunithm",
+        "url": "https://info-chunithm.sega.jp/12772/",
+        "date": "2026-10-20",
+        "title": "10/22(木)新曲追加！さらに、「ロシェの配信部屋」マップが追加！"
+      },
+      "content_hash": "19e12e4b420dc37e52332ede5c09f022c3c26af91ac1e06526ab12379b5266c9",
+      "entries": [
+        {
+          "title": "「東方Project」楽曲追加",
+          "type": "song_add",
+          "subject": "東方Project",
+          "label": "楽曲追加",
+          "official_name": null,
+          "service": "chunithm",
+          "start_is_deadline": false,
+          "start": "2026-10-22",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [
+            {
+              "title": "さっきゅんライト（2025）",
+              "artist": null
+            },
+            {
+              "title": "物凄い狂っとるフランちゃんが物凄いうた",
+              "artist": null
+            }
+          ],
+          "date_text": "2026年10月22日(木)より、",
+          "evidence": "「東方Project」に新曲「さっきゅんライト（2025）」「物凄い狂っとるフランちゃんが物凄いうた」が追加されるほか、",
+          "confidence": 1.0,
+          "calendar_start": "2026-10-22",
+          "calendar_end": null
+        },
+        {
+          "title": "ULTIMA譜面追加",
+          "type": "ultima_add",
+          "subject": null,
+          "label": "ULTIMA譜面追加",
+          "official_name": null,
+          "service": "chunithm",
+          "start_is_deadline": false,
+          "start": "2026-10-22",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [
+            {
+              "title": "シル・ヴ・プレジデント",
+              "artist": null
+            }
+          ],
+          "date_text": "2026年10月22日(木)より、",
+          "evidence": "「シル・ヴ・プレジデント」にULTIMA譜面が追加されます！",
+          "confidence": 1.0,
+          "calendar_start": "2026-10-22",
+          "calendar_end": null
+        },
+        {
+          "title": "「ロシェの配信部屋」マップ拡張",
+          "type": "map_add",
+          "subject": "ロシェの配信部屋",
+          "label": "マップ拡張",
+          "official_name": null,
+          "service": "chunithm",
+          "start_is_deadline": false,
+          "start": "2026-10-22",
+          "start_time": null,
+          "end": "2026-12-09",
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2026年10月22日(木)～2026年12月9日(水)の期間で、",
+          "evidence": "「ロシェの配信部屋」マップに新たなマップが追加されて再登場します！",
+          "confidence": 1.0,
+          "calendar_start": "2026-10-22",
+          "calendar_end": "2026-12-09"
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "「ロシェの配信部屋」マップは既存マップへの新たなマップ追加として、change=expandで分類しました。"
+      ],
+      "review_reasons": [],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
+      "status": "extracted",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
     {
       "source": {
         "game": "chunithm",
