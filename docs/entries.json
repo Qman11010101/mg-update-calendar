@@ -40,7 +40,7 @@
           ],
           "date_text": "2026年10月22日(木)より、",
           "evidence": "「東方Project」に新曲「さっきゅんライト（2025）」「物凄い狂っとるフランちゃんが物凄いうた」が追加されるほか、",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-10-22",
           "calendar_end": null
         },
@@ -65,7 +65,7 @@
           ],
           "date_text": "2026年10月22日(木)より、",
           "evidence": "「シル・ヴ・プレジデント」にULTIMA譜面が追加されます！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-10-22",
           "calendar_end": null
         },
@@ -85,7 +85,7 @@
           "songs": [],
           "date_text": "2026年10月22日(木)～2026年12月9日(水)の期間で、",
           "evidence": "「ロシェの配信部屋」マップに新たなマップが追加されて再登場します！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-10-22",
           "calendar_end": "2026-12-09"
         }
@@ -5029,30 +5029,6 @@
       "cancellations": [],
       "notes": [
         "実物のグッズをポイント交換で入手できるキャンペーンのため、goods_campaignとして抽出しました。本文の実施期間を使用しています。"
-      ],
-      "review_reasons": [],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "extracted",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "ongeki",
-        "url": "https://info-ongeki.sega.jp/12128/",
-        "date": "2026-07-20",
-        "title": "7/23(木)オリジナルランキングイベント「O.N.G.E.K.I. 8th Anniversary」開催！"
-      },
-      "content_hash": "4eada40f75eb634921232449a1015013dd1371d75121d4e3efde08eae4a4cc92",
-      "entries": [],
-      "cancellations": [],
-      "notes": [
-        "記事の日付が2026-07-20で、本文の日付に年がないため、記載された曜日と記事公開日の文脈から2026年として補完しました。",
-        "楽曲「poppin’ hoppin’ flappin’☆☆☆」は「イベントに合わせて」追加されるため、所属先をランキングイベントと同じ「O.N.G.E.K.I. 8th Anniversary」とし、開始日をイベント開始日にしました。",
-        "チャプターの開始日は、チャプターの終了告知と同じイベントの開始日（2026-07-23）から判断しました。"
       ],
       "review_reasons": [],
       "error": null,
