@@ -2572,51 +2572,6 @@
       "content_hash": "09563e497f82d80a1a2fb99be6b6951fd3ac52dc141b9fbb57bd622c20f8e002",
       "entries": [
         {
-          "title": "「クラッシュフィーバー 第二弾」コラボイベント",
-          "type": "event",
-          "subject": "クラッシュフィーバー 第二弾",
-          "label": "コラボイベント",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-09-17",
-          "start_time": null,
-          "end": "2026-10-21",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年9月17日(木)～2026年10月21日(水)までの期間で",
-          "evidence": "『クラッシュフィーバー』\nコラボイベント第二弾を開催！\n「クラッシュフィーバー 第二弾」マップが開放されます！",
-          "confidence": 0.99,
-          "calendar_start": "2026-09-17",
-          "calendar_end": "2026-10-21"
-        },
-        {
-          "title": "「クラッシュフィーバー 第二弾」楽曲追加",
-          "type": "song_add",
-          "subject": "クラッシュフィーバー 第二弾",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-09-17",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "Colossus",
-              "artist": null
-            }
-          ],
-          "date_text": "2026年9月17日(木)～2026年10月21日(水)までの期間で",
-          "evidence": "さらに、イベント開催にあわせて、\n楽曲「Colossus」が追加！",
-          "confidence": 0.98,
-          "calendar_start": "2026-09-17",
-          "calendar_end": null
-        },
-        {
           "title": "「クラッシュフィーバー」リバイバルイベント",
           "type": "event",
           "subject": "クラッシュフィーバー",
@@ -2635,26 +2590,6 @@
           "confidence": 0.96,
           "calendar_start": "2026-09-17",
           "calendar_end": null
-        },
-        {
-          "title": "「クラッシュフィーバー 第二弾」チュウニズムクエスト",
-          "type": "quest",
-          "subject": "クラッシュフィーバー 第二弾",
-          "label": "チュウニズムクエスト",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-09-17",
-          "start_time": null,
-          "end": "2026-10-21",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年9月17日(木)～2026年10月21日(水)までの期間で",
-          "evidence": "今回のコラボイベントと同時にチュウニズムクエストが発生！\nイベント期間中に、対象キャラクターのランクを上げると、称号がゲットできます！",
-          "confidence": 0.97,
-          "calendar_start": "2026-09-17",
-          "calendar_end": "2026-10-21"
         },
         {
           "title": "「クラッシュフィーバー」チュウニズムクエスト",
@@ -2722,48 +2657,7 @@
         "title": "9/3(木)『ストリートファイター 6』リバイバルイベント開催！"
       },
       "content_hash": "ef1306e995465a94f1083a5c771ac515aa99d065f49a1eb5f6fe9935f7c1d3fc",
-      "entries": [
-        {
-          "title": "「ストリートファイター 6」リバイバルイベント",
-          "type": "event",
-          "subject": "ストリートファイター 6",
-          "label": "リバイバルイベント",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-09-03",
-          "start_time": null,
-          "end": "2026-10-21",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年9月3日(木)～2026年10月21日(水)までの期間で",
-          "evidence": "『ストリートファイター 6』リバイバルイベントを開催！  \n「ストリートファイター 6」マップに新たなマップが追加されて再登場します！",
-          "confidence": 1,
-          "calendar_start": "2026-09-03",
-          "calendar_end": "2026-10-21"
-        },
-        {
-          "title": "「ストリートファイター 6」チュウニズムクエスト",
-          "type": "quest",
-          "subject": "ストリートファイター 6",
-          "label": "チュウニズムクエスト",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-09-03",
-          "start_time": null,
-          "end": "2026-10-21",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年9月3日(木)～2026年10月21日(水)までの期間で",
-          "evidence": "今回のコラボイベントと同時にチュウニズムクエストも再登場！  \nイベント期間中に、対象キャラクターのランクを上げると、称号がゲットできます！",
-          "confidence": 0.99,
-          "calendar_start": "2026-09-03",
-          "calendar_end": "2026-10-21"
-        }
-      ],
+      "entries": [],
       "cancellations": [],
       "notes": [
         "コラボイベントと同一内容・期間の新マップ追加はイベントに統合しました。チュウニズムクエストは独立した告知として分離しました。"
@@ -5007,28 +4901,6 @@
       "cancellations": [],
       "notes": [
         "記事は『オンゲキ Re:Fresh Act.2』の新機能紹介であり、バージョン稼働そのものを告知する記事ではないため、version_launchは作成しませんでした。新機能には個別の日付がないため、独立したエントリも作成していません。"
-      ],
-      "review_reasons": [],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "extracted",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "ongeki",
-        "url": "https://info-ongeki.sega.jp/12277/",
-        "date": "2026-07-21",
-        "title": "7/23(木)「オンゲキ Re:Fresh オリジナルグッズプレゼントキャンペーン　第14弾」開催！"
-      },
-      "content_hash": "8a680a6d31184a58c1066ec18a3d1db8a286a7af312f04cf942683b885b1cdc9",
-      "entries": [],
-      "cancellations": [],
-      "notes": [
-        "実物のグッズをポイント交換で入手できるキャンペーンのため、goods_campaignとして抽出しました。本文の実施期間を使用しています。"
       ],
       "review_reasons": [],
       "error": null,
