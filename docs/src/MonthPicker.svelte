@@ -2,7 +2,7 @@
   import CalendarIcon from "@lucide/svelte/icons/calendar";
   import ChevronLeft from "@lucide/svelte/icons/chevron-left";
   import ChevronRight from "@lucide/svelte/icons/chevron-right";
-  import { today } from "../lib/dates.js";
+  import { today } from "./today.svelte.js";
 
   let { month, bounds, onpick } = $props();
   let open = $state(false);
@@ -44,7 +44,7 @@
           {@const value = `${year}-${String(monthNumber).padStart(2, "0")}`}
           <button
             class:current={value === month}
-            class:this-month={value === today.slice(0, 7)}
+            class:this-month={value === today.date.slice(0, 7)}
             aria-current={value === month ? "date" : undefined}
             disabled={value < bounds.first || value > bounds.last}
             onclick={() => pick(monthNumber)}

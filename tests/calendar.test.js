@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
-import { formatDateTime, monthRange, shiftMonth } from "../docs/lib/dates.js";
+import { entriesMaxAge, entriesStale, formatDateTime, monthRange, shiftMonth, tokyoDate } from "../docs/lib/dates.js";
 import {
   buildEntries, calendarEntry, currentEntries, dayGroups, endDate, entrySources, filterEntries, games, isRange,
   lastUsableDay, mergeDuplicates, nowLists, period, siteData, upcomingEntries,
@@ -163,6 +163,17 @@ test("Month helpers and data loading", () => {
   assert.equal(shiftMonth("2026-01", -1), "2025-12");
   assert.ok(buildEntries(document).length > 0);
   assert.throws(() => buildEntries({ ...document, schema_version: 1 }), /Unsupported data/);
+});
+
+test("Tokyo today follows Asia/Tokyo and entries go stale after about an hour", () => {
+  // 日本時間の日付は UTC 15:00 で切り替わる。
+  assert.equal(tokyoDate(new Date("2026-10-18T14:59:59.999Z")), "2026-10-18");
+  assert.equal(tokyoDate(new Date("2026-10-18T15:00:00.000Z")), "2026-10-19");
+  assert.match(tokyoDate(), /^\d{4}-\d{2}-\d{2}$/);
+  const fetchedAt = Date.parse("2026-10-18T00:00:00Z");
+  assert.equal(entriesStale(0, fetchedAt), false);
+  assert.equal(entriesStale(fetchedAt, fetchedAt + entriesMaxAge - 1), false);
+  assert.equal(entriesStale(fetchedAt, fetchedAt + entriesMaxAge), true);
 });
 
 test("最終更新日時を日本時間で表示し、読めない値は表示しない", () => {
