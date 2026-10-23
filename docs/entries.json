@@ -5071,6 +5071,49 @@
       "status": "extracted",
       "provider": "openai",
       "model": "gpt-5.6-luna"
+    },
+    {
+      "source": {
+        "game": "maimai",
+        "url": "https://maimai.sega.jp/popularity-poll-2nd/",
+        "date": "2026-10-23",
+        "title": "第2回maimai でらっくす キャラクター人気投票"
+      },
+      "content_hash": null,
+      "entries": [
+        {
+          "title": "第2回キャラクター人気投票",
+          "type": "other",
+          "subject": null,
+          "label": "第2回キャラクター人気投票",
+          "official_name": "第2回maimai でらっくす キャラクター人気投票",
+          "service": "maimai",
+          "start_is_deadline": false,
+          "start": "2026-10-23",
+          "start_time": "10:00",
+          "end": "2026-11-12",
+          "end_time": "23:59",
+          "open_ended": false,
+          "songs": [],
+          "date_text": "投票期間 2026.10.23(金) 10:00 » 11.12(木) 23:59",
+          "evidence": "投票期間 2026.10.23(金) 10:00 » 11.12(木) 23:59（特設サイトの投票期間画像より）",
+          "confidence": 1,
+          "calendar_start": "2026-10-23",
+          "calendar_end": "2026-11-12"
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "公式お知らせに記事がないため、特設サイトの投票期間を手動で追加しました。"
+      ],
+      "review_reasons": [],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 0,
+      "prompt_version": null,
+      "status": "extracted",
+      "provider": "manual",
+      "model": null
     }
   ]
 }
