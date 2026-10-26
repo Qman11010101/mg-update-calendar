@@ -4,8 +4,109 @@
   "provider": "openai",
   "model": "gpt-5.6-luna",
   "mode": "extraction",
-  "updated_at": "2026-10-20T08:26:01+00:00",
+  "updated_at": "2026-10-26T08:47:53+00:00",
   "articles": [
+    {
+      "source": {
+        "game": "chunithm",
+        "url": "https://info-chunithm.sega.jp/13029/",
+        "date": "2026-10-26",
+        "title": "10/29(木)新曲追加！さらに、『Muse Dash』リバイバルイベント開催！"
+      },
+      "content_hash": "a7e59e59d42dc12f142b5f3e84eb1b596494e3cf09639c2a0a0f269140c4b00d",
+      "entries": [
+        {
+          "title": "「VARIETY」楽曲追加",
+          "type": "song_add",
+          "subject": "VARIETY",
+          "label": "楽曲追加",
+          "official_name": null,
+          "service": "chunithm",
+          "start_is_deadline": false,
+          "start": "2026-10-29",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [
+            {
+              "title": "ぴるぐライド!",
+              "artist": null
+            },
+            {
+              "title": "Dark Falchion",
+              "artist": null
+            },
+            {
+              "title": "Metaverse Do Be Like This",
+              "artist": null
+            },
+            {
+              "title": "HYPER SAMPLER",
+              "artist": null
+            }
+          ],
+          "date_text": "2026年10月29日(木)より、",
+          "evidence": "2026年10月29日(木)より、\n「VARIETY」に「ぴるぐライド!」「Dark Falchion」「Metaverse Do Be Like This」「HYPER SAMPLER」が追加！",
+          "confidence": 0.99,
+          "calendar_start": "2026-10-29",
+          "calendar_end": null
+        },
+        {
+          "title": "「Muse Dash」リバイバルイベント",
+          "type": "event",
+          "subject": "Muse Dash",
+          "label": "リバイバルイベント",
+          "official_name": null,
+          "service": "chunithm",
+          "start_is_deadline": false,
+          "start": "2026-10-29",
+          "start_time": null,
+          "end": "2026-12-09",
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "そして、2026年10月29日(木)～2026年12月9日(水)までの期間で  \n『Muse Dash』\nリバイバルイベントを開催！",
+          "evidence": "そして、2026年10月29日(木)～2026年12月9日(水)までの期間で  \n『Muse Dash』\nリバイバルイベントを開催！\n「Muse Dash」マップに新たなマップが追加されて再登場します！",
+          "confidence": 0.99,
+          "calendar_start": "2026-10-29",
+          "calendar_end": "2026-12-09"
+        },
+        {
+          "title": "「Muse Dash」チュウニズムクエスト",
+          "type": "quest",
+          "subject": "Muse Dash",
+          "label": "チュウニズムクエスト",
+          "official_name": null,
+          "service": "chunithm",
+          "start_is_deadline": false,
+          "start": "2026-10-29",
+          "start_time": null,
+          "end": "2026-12-09",
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "今回のコラボイベントと同時にチュウニズムクエストも再登場！",
+          "evidence": "今回のコラボイベントと同時にチュウニズムクエストも再登場！  \nイベント期間中に、対象キャラクターのランクを上げると、称号がゲットできます！",
+          "confidence": 0.95,
+          "calendar_start": "2026-10-29",
+          "calendar_end": "2026-12-09"
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "「Muse Dash」マップの新たなマップ追加は、同一内容・期間のコラボイベントに統合しました。",
+        "チュウニズムクエストはコラボイベントとは別の独立した告知として抽出し、イベント期間を適用しました。"
+      ],
+      "review_reasons": [],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
+      "status": "extracted",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
     {
       "source": {
         "game": "chunithm",
