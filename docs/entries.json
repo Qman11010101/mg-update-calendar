@@ -31,7 +31,7 @@
           "songs": [],
           "date_text": "2026年10月29日(木)～2026年12月9\n日(水)までの期間で",
           "evidence": "2026年10月29日(木)～2026年12月9\n日(水)までの期間で\n「ゲーセン少女と異文化交流」\nとのコラボイベントを開催！\n「ゲーセン少女と異文化交流」マップが開放されます！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-10-29",
           "calendar_end": "2026-12-09"
         },
@@ -60,7 +60,7 @@
           ],
           "date_text": "2026年10月29日(木)～2026年12月9\n日(水)までの期間で",
           "evidence": "イベント開催にあわせて、\n楽曲「ふたりのスタートボタン」「Amusing Flavor」が追加！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-10-29",
           "calendar_end": null
         },
@@ -80,7 +80,7 @@
           "songs": [],
           "date_text": "2026年10月29日(木)～2026年12月9\n日(水)までの期間で",
           "evidence": "今回のコラボイベントと同時にチュウニズムクエストが発生！\nイベント期間中に、対象キャラクターのランクを上げると、称号がゲットできます！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-10-29",
           "calendar_end": "2026-12-09"
         }
@@ -3538,28 +3538,6 @@
       "notes": [
         "デジタルアイテムをポイント交換で獲得するゲーム内キャンペーンのため、実物グッズを対象とするgoods_campaignではなくeventとして分類しました。",
         "開始時刻は明記されていないためnullとしました。開始日のAM7:00はポイント加算開始時刻であり、キャンペーン自体の開始時刻とは扱っていません。"
-      ],
-      "review_reasons": [],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "extracted",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "chunithm",
-        "url": "https://info-chunithm.sega.jp/12397/",
-        "date": "2026-07-27",
-        "title": "7/30(木)「銀河特急 ミルキー☆サブウェイ」コラボイベント開催！"
-      },
-      "content_hash": "86e5a12122a19a6c5b6c9fc4ab6e490b2b3704c58b5be392e74f712712eb3c81",
-      "entries": [],
-      "cancellations": [],
-      "notes": [
-        "イベントマップは同一内容・期間のコラボイベントに統合しました。楽曲追加は「イベント開催にあわせて」と明記されているため、イベントの開始日を開始日として設定し、終了日は設定していません。チュウニズムクエストはコラボイベントと同時に発生し、イベント期間中と明記されているため、イベントと同じ期間に設定しました。"
       ],
       "review_reasons": [],
       "error": null,
