@@ -4,8 +4,102 @@
   "provider": "openai",
   "model": "gpt-5.6-luna",
   "mode": "extraction",
-  "updated_at": "2026-10-26T08:47:53+00:00",
+  "updated_at": "2026-10-27T08:53:41+00:00",
   "articles": [
+    {
+      "source": {
+        "game": "chunithm",
+        "url": "https://info-chunithm.sega.jp/13037/",
+        "date": "2026-10-27",
+        "title": "10/29(木)「ゲーセン少女と異文化交流」コラボイベント開催！"
+      },
+      "content_hash": "dde4a5a95ab39a160469d7595405860ed6acbaf812b546a354ca11ace71a01e6",
+      "entries": [
+        {
+          "title": "「ゲーセン少女と異文化交流」コラボイベント",
+          "type": "event",
+          "subject": "ゲーセン少女と異文化交流",
+          "label": "コラボイベント",
+          "official_name": null,
+          "service": "chunithm",
+          "start_is_deadline": false,
+          "start": "2026-10-29",
+          "start_time": null,
+          "end": "2026-12-09",
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2026年10月29日(木)～2026年12月9\n日(水)までの期間で",
+          "evidence": "2026年10月29日(木)～2026年12月9\n日(水)までの期間で\n「ゲーセン少女と異文化交流」\nとのコラボイベントを開催！\n「ゲーセン少女と異文化交流」マップが開放されます！",
+          "confidence": 1.0,
+          "calendar_start": "2026-10-29",
+          "calendar_end": "2026-12-09"
+        },
+        {
+          "title": "「ゲーセン少女と異文化交流」楽曲追加",
+          "type": "song_add",
+          "subject": "ゲーセン少女と異文化交流",
+          "label": "楽曲追加",
+          "official_name": null,
+          "service": "chunithm",
+          "start_is_deadline": false,
+          "start": "2026-10-29",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [
+            {
+              "title": "ふたりのスタートボタン",
+              "artist": null
+            },
+            {
+              "title": "Amusing Flavor",
+              "artist": null
+            }
+          ],
+          "date_text": "2026年10月29日(木)～2026年12月9\n日(水)までの期間で",
+          "evidence": "イベント開催にあわせて、\n楽曲「ふたりのスタートボタン」「Amusing Flavor」が追加！",
+          "confidence": 1.0,
+          "calendar_start": "2026-10-29",
+          "calendar_end": null
+        },
+        {
+          "title": "「ゲーセン少女と異文化交流」チュウニズムクエスト",
+          "type": "quest",
+          "subject": "ゲーセン少女と異文化交流",
+          "label": "チュウニズムクエスト",
+          "official_name": null,
+          "service": "chunithm",
+          "start_is_deadline": false,
+          "start": "2026-10-29",
+          "start_time": null,
+          "end": "2026-12-09",
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2026年10月29日(木)～2026年12月9\n日(水)までの期間で",
+          "evidence": "今回のコラボイベントと同時にチュウニズムクエストが発生！\nイベント期間中に、対象キャラクターのランクを上げると、称号がゲットできます！",
+          "confidence": 1.0,
+          "calendar_start": "2026-10-29",
+          "calendar_end": "2026-12-09"
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "コラボイベントと同一内容・期間のイベントマップはイベントに統合しました。",
+        "楽曲追加は「イベント開催にあわせて」と明記されているため、イベントの開始日を追加開始日として設定し、イベント終了日は楽曲追加には流用していません。",
+        "チュウニズムクエストはイベントとは独立した告知として分割しました。"
+      ],
+      "review_reasons": [],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
+      "status": "extracted",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
     {
       "source": {
         "game": "chunithm",
@@ -1785,6 +1879,100 @@
       "attempts": 1,
       "prompt_version": "40",
       "status": "needs_review",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
+    {
+      "source": {
+        "game": "ongeki",
+        "url": "https://info-ongeki.sega.jp/13360/",
+        "date": "2026-10-27",
+        "title": "10/29(木)「Re:AcT」リバイバルイベントや「11月度 マンスリーミッション」開催も！"
+      },
+      "content_hash": "a7d51fc9b5634494a24e622f387360804a9a581dc606d56f09e797406d6c94bb",
+      "entries": [
+        {
+          "title": "「Re:AcT」リバイバルイベント",
+          "type": "event",
+          "subject": "Re:AcT",
+          "label": "リバイバルイベント",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-10-29",
+          "start_time": null,
+          "end": "2026-12-23",
+          "end_time": "23:59",
+          "open_ended": false,
+          "songs": [],
+          "date_text": "10/29(木)～12/23(水)23:59の期間で、",
+          "evidence": "シルバージュエルイベント「\nRe:AcT\n」のリバイバルイベントを開催します！",
+          "confidence": 0.99,
+          "calendar_start": "2026-10-29",
+          "calendar_end": "2026-12-23"
+        },
+        {
+          "title": "11月度 マンスリーミッション",
+          "type": "mission",
+          "subject": "11月度 マンスリーミッション",
+          "label": "ミッション",
+          "official_name": "11月度 マンスリーミッション",
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-10-29",
+          "start_time": null,
+          "end": "2026-11-25",
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "10/29(木)～11/25(水)の期間で、「11月度 マンスリーミッション」を開催します！",
+          "evidence": "10/29(木)～11/25(水)の期間で、「11月度 マンスリーミッション」を開催します！",
+          "confidence": 0.99,
+          "calendar_start": "2026-10-29",
+          "calendar_end": "2026-11-25"
+        },
+        {
+          "title": "楽曲追加",
+          "type": "song_add",
+          "subject": null,
+          "label": "楽曲追加",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-10-29",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [
+            {
+              "title": "Earthly Light -⊿TRiEDGE ver.-",
+              "artist": "曲：ヘリP／歌：⊿TRiEDGE [高瀬 梨緒(CV：久保 ユリカ)、結城 莉玖(CV：朝日奈 丸佳)、藍原 椿(CV：橋本 ちなみ)]"
+            },
+            {
+              "title": "Earthly Light -Trium Tone ver.-",
+              "artist": "曲：ヘリP／歌：Trium Tone [旭 日向(CV：和泉 風花)、佐倉 未雨(CV：齊藤 未莉依)、中野 りんか(CV：小宮山 あかり)]"
+            }
+          ],
+          "date_text": "10/29(木)より、以下のボーナストラック、カードがメダルショップに追加されます。",
+          "evidence": "10/29(木)より、以下のボーナストラック、カードがメダルショップに追加されます。",
+          "confidence": 0.99,
+          "calendar_start": "2026-10-29",
+          "calendar_end": null
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "記事公開日2026-10-27と本文の曜日に基づき、年のない日付を2026年として補完しました。",
+        "本文中で同じボーナストラックが表と個別紹介で重複しているため、楽曲追加エントリは2曲に統合しました。",
+        "ボーナストラックの追加はメダルショップへの追加として直接告知されているため、song_addとして抽出しました。"
+      ],
+      "review_reasons": [],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
+      "status": "extracted",
       "provider": "openai",
       "model": "gpt-5.6-luna"
     },
