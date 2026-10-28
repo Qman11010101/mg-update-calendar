@@ -1008,7 +1008,7 @@
           ],
           "date_text": "2026年10月29日(木)より、\n「niconico＆ボーカロイド™」に新曲「Happy Halloween」が追加されます！",
           "evidence": "2026年10月29日(木)より、\n「niconico＆ボーカロイド™」に新曲「Happy Halloween」が追加されます！\n詳しくはコチラ！\n新曲追加！！\nniconico＆ボーカロイド™\nHappy Halloween\nJunky feat. 鏡音リン\n※\n楽曲やコレクションが追加されるのは当日の午前7時頃に行われる再起動後となります。",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-10-29",
           "calendar_end": null
         }
@@ -1051,7 +1051,7 @@
           "songs": [],
           "date_text": "開催期間：2026年10月29日(木)7:00～2026年11月23日(月)23:59",
           "evidence": "2026年10月29日(木)から11月23日(月)までの間、\n「スコアアタック」\nイベントを開催します！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-10-29",
           "calendar_end": "2026-11-23"
         },
@@ -1076,7 +1076,7 @@
           ],
           "date_text": "開催期間：2026年10月29日(木)7:00～2026年11月23日(月)23:59",
           "evidence": "※楽曲「魔法仕掛けのファンタジア」は、スコアアタック開催期間中に「ATLAS RUSH」と「氷滅の135小節」をプレイすることで解禁されます。",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-10-29",
           "calendar_end": null
         }
@@ -2396,26 +2396,6 @@
           "confidence": 0.99,
           "calendar_start": "2026-10-01",
           "calendar_end": "2026-12-09"
-        },
-        {
-          "title": "10月度 マンスリーミッション",
-          "type": "mission",
-          "subject": "10月度 マンスリーミッション",
-          "label": "ミッション",
-          "official_name": "10月度 マンスリーミッション",
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-10-01",
-          "start_time": null,
-          "end": "2026-10-28",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "10/1(木)～10/28(水)の期間で、「10月度 マンスリーミッション」を開催します！",
-          "evidence": "「10月度 マンスリーミッション」開催\n10/1(木)～10/28(水)の期間で、「10月度 マンスリーミッション」を開催します！",
-          "confidence": 0.99,
-          "calendar_start": "2026-10-01",
-          "calendar_end": "2026-10-28"
         }
       ],
       "cancellations": [],
@@ -2678,73 +2658,7 @@
         "title": "9/3(木)シルバージュエルイベント「魔法少女ノ魔女裁判」開催！"
       },
       "content_hash": "b6d22035bc38a3dc902512db25857e7a737b005a6c219cfc3044f749d7c93588",
-      "entries": [
-        {
-          "title": "「魔法少女ノ魔女裁判」シルバージュエルイベント",
-          "type": "event",
-          "subject": "魔法少女ノ魔女裁判",
-          "label": "シルバージュエルイベント",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-09-03",
-          "start_time": null,
-          "end": "2026-10-28",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [],
-          "date_text": "9/3(木)～10/28(水)23:59の期間で、",
-          "evidence": "シルバージュエルイベント「魔法少女ノ魔女裁判」を開催します！",
-          "confidence": 0.99,
-          "calendar_start": "2026-09-03",
-          "calendar_end": "2026-10-28"
-        },
-        {
-          "title": "「魔法少女ノ魔女裁判」楽曲追加",
-          "type": "song_add",
-          "subject": "魔法少女ノ魔女裁判",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-09-03",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "LaVI-Bavellabion",
-              "artist": null
-            }
-          ],
-          "date_text": "9/3(木)～10/28(水)23:59の期間で、",
-          "evidence": "さらに、イベントに合わせて新曲「LaVI-Bavellabion」を追加！",
-          "confidence": 0.99,
-          "calendar_start": "2026-09-03",
-          "calendar_end": null
-        },
-        {
-          "title": "魔法少女ノ魔女裁判　イベント開催記念ログインボーナス",
-          "type": "login_bonus",
-          "subject": "魔法少女ノ魔女裁判",
-          "label": "ログインボーナス",
-          "official_name": "魔法少女ノ魔女裁判　イベント開催記念ログインボーナス",
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-09-03",
-          "start_time": null,
-          "end": "2026-10-28",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "9/3(木)～10/28(水)の期間で、",
-          "evidence": "「魔法少女ノ魔女裁判　イベント開催記念ログインボーナス」を開催します！",
-          "confidence": 0.99,
-          "calendar_start": "2026-09-03",
-          "calendar_end": "2026-10-28"
-        }
-      ],
+      "entries": [],
       "cancellations": [],
       "notes": [
         "年のない9/3、10/28は、記事公開日2026-09-01および本文・画像URLの2026年表記から2026年として補完した。",
@@ -3718,29 +3632,6 @@
       ],
       "cancellations": [],
       "notes": [],
-      "review_reasons": [],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "extracted",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "chunithm",
-        "url": "https://info-chunithm.sega.jp/12948/",
-        "date": "2026-07-28",
-        "title": "7/30(木) デジタルアイテムキャンペーン第3弾開催！"
-      },
-      "content_hash": "6dbe5a17b70bc52daba36179d6e18063440d31eabd102a6b3808a8bc32c35959",
-      "entries": [],
-      "cancellations": [],
-      "notes": [
-        "デジタルアイテムをポイント交換で獲得するゲーム内キャンペーンのため、実物グッズを対象とするgoods_campaignではなくeventとして分類しました。",
-        "開始時刻は明記されていないためnullとしました。開始日のAM7:00はポイント加算開始時刻であり、キャンペーン自体の開始時刻とは扱っていません。"
-      ],
       "review_reasons": [],
       "error": null,
       "validation_errors": [],
@@ -4749,86 +4640,7 @@
         "title": "9/3(木)ジュエルイベント「ゴシックは魔法乙女【第3弾】」開催！"
       },
       "content_hash": "17407250de2b2bf17d0f6291c55730963c89e2a7dadca5374ceb8fe174468e23",
-      "entries": [
-        {
-          "title": "「ゴシックは魔法乙女【第3弾】」ジュエルイベント",
-          "type": "event",
-          "subject": "ゴシックは魔法乙女【第3弾】",
-          "label": "ジュエルイベント",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-09-03",
-          "start_time": null,
-          "end": "2026-10-28",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [],
-          "date_text": "9/3(木)～10/28(水)23:59の期間で、",
-          "evidence": "ジュエルイベント「ゴシックは魔法乙女【第3弾】」\nを開催します！",
-          "confidence": 0.99,
-          "calendar_start": "2026-09-03",
-          "calendar_end": "2026-10-28"
-        },
-        {
-          "title": "「ゴシックは魔法乙女【第3弾】」楽曲追加",
-          "type": "song_add",
-          "subject": "ゴシックは魔法乙女【第3弾】",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-09-03",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "飛翔、戦いの空へ (Ryu☆Remix ft.佐伯伊織)",
-              "artist": "松本大輔「ゴシックは魔法乙女」"
-            }
-          ],
-          "date_text": "9/3(木)～10/28(水)23:59の期間で、",
-          "evidence": "さらに、イベントに合わせて新曲を追加！\n飛翔、戦いの空へ (Ryu☆Remix ft.佐伯伊織)\n松本大輔「ゴシックは魔法乙女」",
-          "confidence": 0.98,
-          "calendar_start": "2026-09-03",
-          "calendar_end": null
-        },
-        {
-          "title": "「ゴシックは魔法乙女【第3弾】」テクニカルチャレンジ",
-          "type": "technical_challenge",
-          "subject": "ゴシックは魔法乙女【第3弾】",
-          "label": "テクニカルチャレンジ",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-09-03",
-          "start_time": null,
-          "end": "2026-10-28",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "わたしたち魔法乙女です☆",
-              "artist": null
-            },
-            {
-              "title": "Fly to the Leaden Sky -O.N.G.E.K.I. MIX-",
-              "artist": null
-            },
-            {
-              "title": "MEGALOVANIA",
-              "artist": null
-            }
-          ],
-          "date_text": "9/3(木)～10/28(水)23:59の期間で、",
-          "evidence": "テクニカルチャレンジ「ゴシックは魔法乙女【第3弾】」を開催します！",
-          "confidence": 0.99,
-          "calendar_start": "2026-09-03",
-          "calendar_end": "2026-10-28"
-        }
-      ],
+      "entries": [],
       "cancellations": [],
       "notes": [
         "記事公開日が2026-08-31で、本文の日付の曜日とも整合するため、年が省略された9/3・10/28を2026年として補完しました。",
@@ -4972,114 +4784,7 @@
         "title": "8/6(木)ジュエルイベント「Muse Dash」開催！"
       },
       "content_hash": "251a33cc559faa58b657d726ca8118b2d0a0f2e3f099128461ea585682c33490",
-      "entries": [
-        {
-          "title": "「Muse Dash」ジュエルイベント",
-          "type": "event",
-          "subject": "Muse Dash",
-          "label": "ジュエルイベント",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-08-06",
-          "start_time": null,
-          "end": "2026-10-28",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [],
-          "date_text": "8/6(木)～10/28(水)23:59の期間で、\nジュエルイベント「Muse Dash」を開催します！",
-          "evidence": "ジュエルイベント開催！\n8/6(木)～10/28(水)23:59の期間で、\nジュエルイベント「Muse Dash」を開催します！",
-          "confidence": 1,
-          "calendar_start": "2026-08-06",
-          "calendar_end": "2026-10-28"
-        },
-        {
-          "title": "「Muse Dash」楽曲追加",
-          "type": "song_add",
-          "subject": "Muse Dash",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-08-06",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "それはもうらぶちゅ",
-              "artist": "タケノコ少年 feat. 周央サンゴ（にじさんじ）"
-            },
-            {
-              "title": "Cthugha",
-              "artist": "USAO"
-            },
-            {
-              "title": "アルメリアの鳥籠",
-              "artist": "a_hisa"
-            }
-          ],
-          "date_text": "8/6(木)～10/28(水)23:59の期間で、\nジュエルイベント「Muse Dash」を開催します！",
-          "evidence": "さらに、イベントに合わせて新曲を追加！\nそれはもうらぶちゅ\nタケノコ少年 feat. 周央サンゴ（にじさんじ）\nCthugha\nUSAO\nアルメリアの鳥籠\na_hisa",
-          "confidence": 1,
-          "calendar_start": "2026-08-06",
-          "calendar_end": null
-        },
-        {
-          "title": "Muse Dash　イベント開催記念ログインボーナス",
-          "type": "login_bonus",
-          "subject": "Muse Dash",
-          "label": "ログインボーナス",
-          "official_name": "Muse Dash　イベント開催記念ログインボーナス",
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-08-06",
-          "start_time": null,
-          "end": "2026-08-19",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "8/6(木)～\n8/19(水)の期間で、",
-          "evidence": "ログインボーナス開催！\n8/6(木)～\n8/19(水)の期間で、\n「Muse Dash　イベント開催記念ログインボーナス」を開催します！",
-          "confidence": 1,
-          "calendar_start": "2026-08-06",
-          "calendar_end": "2026-08-19"
-        },
-        {
-          "title": "「Muse Dash」テクニカルチャレンジ",
-          "type": "technical_challenge",
-          "subject": "Muse Dash",
-          "label": "テクニカルチャレンジ",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-08-06",
-          "start_time": null,
-          "end": "2026-10-28",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "アルメリアの鳥籠",
-              "artist": null
-            },
-            {
-              "title": "BATTLE NO.1",
-              "artist": null
-            },
-            {
-              "title": "竹",
-              "artist": null
-            }
-          ],
-          "date_text": "8/6(木)～10/28(水)23:59の期間で、\nテクニカルチャレンジ「Muse Dash」を開催します！",
-          "evidence": "テクニカルチャレンジ開催！\n8/6(木)～10/28(水)23:59の期間で、\nテクニカルチャレンジ「Muse Dash」を開催します！",
-          "confidence": 1,
-          "calendar_start": "2026-08-06",
-          "calendar_end": "2026-10-28"
-        }
-      ],
+      "entries": [],
       "cancellations": [],
       "notes": [
         "記事の公開日が2026-08-04で、本文の日付の曜日（8/6(木)、10/28(水)、8/19(水)）と整合するため、年を2026年として補完しました。",
