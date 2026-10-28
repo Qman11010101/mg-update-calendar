@@ -4,7 +4,7 @@
   "provider": "openai",
   "model": "gpt-5.6-luna",
   "mode": "extraction",
-  "updated_at": "2026-10-27T08:53:41+00:00",
+  "updated_at": "2026-10-28T09:33:51+00:00",
   "articles": [
     {
       "source": {
@@ -981,6 +981,122 @@
     {
       "source": {
         "game": "maimai",
+        "url": "https://info-maimai.sega.jp/9954/",
+        "date": "2026-10-28",
+        "title": "10/29(木) 「niconico＆ボーカロイド™」に新曲追加！"
+      },
+      "content_hash": "c74c4c5eb1ee0d00d8be24153f9800e9459faa4d108aecf6c9a38989bfd2e5f6",
+      "entries": [
+        {
+          "title": "「niconico＆ボーカロイド™」楽曲追加",
+          "type": "song_add",
+          "subject": "niconico＆ボーカロイド™",
+          "label": "楽曲追加",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": false,
+          "start": "2026-10-29",
+          "start_time": "07:00",
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [
+            {
+              "title": "Happy Halloween",
+              "artist": "Junky feat. 鏡音リン"
+            }
+          ],
+          "date_text": "2026年10月29日(木)より、\n「niconico＆ボーカロイド™」に新曲「Happy Halloween」が追加されます！",
+          "evidence": "2026年10月29日(木)より、\n「niconico＆ボーカロイド™」に新曲「Happy Halloween」が追加されます！\n詳しくはコチラ！\n新曲追加！！\nniconico＆ボーカロイド™\nHappy Halloween\nJunky feat. 鏡音リン\n※\n楽曲やコレクションが追加されるのは当日の午前7時頃に行われる再起動後となります。",
+          "confidence": 1.0,
+          "calendar_start": "2026-10-29",
+          "calendar_end": null
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "楽曲やコレクションの追加は当日の午前7時頃の再起動後と記載されているため、開始時刻を07:00とした。"
+      ],
+      "review_reasons": [],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
+      "status": "extracted",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
+    {
+      "source": {
+        "game": "maimai",
+        "url": "https://info-maimai.sega.jp/9863/",
+        "date": "2026-10-28",
+        "title": "10/29(木)「スコアアタック」イベント開催！"
+      },
+      "content_hash": "50672882a0e783cc610d8b19cd2cabce19635543a9f4dab9e3a4913e3319592b",
+      "entries": [
+        {
+          "title": "「スコアアタック」イベント",
+          "type": "event",
+          "subject": "スコアアタック",
+          "label": "イベント",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": false,
+          "start": "2026-10-29",
+          "start_time": "07:00",
+          "end": "2026-11-23",
+          "end_time": "23:59",
+          "open_ended": false,
+          "songs": [],
+          "date_text": "開催期間：2026年10月29日(木)7:00～2026年11月23日(月)23:59",
+          "evidence": "2026年10月29日(木)から11月23日(月)までの間、\n「スコアアタック」\nイベントを開催します！",
+          "confidence": 1.0,
+          "calendar_start": "2026-10-29",
+          "calendar_end": "2026-11-23"
+        },
+        {
+          "title": "「スコアアタック」楽曲追加",
+          "type": "song_add",
+          "subject": "スコアアタック",
+          "label": "楽曲追加",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": false,
+          "start": "2026-10-29",
+          "start_time": "07:00",
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [
+            {
+              "title": "魔法仕掛けのファンタジア",
+              "artist": "igel"
+            }
+          ],
+          "date_text": "開催期間：2026年10月29日(木)7:00～2026年11月23日(月)23:59",
+          "evidence": "※楽曲「魔法仕掛けのファンタジア」は、スコアアタック開催期間中に「ATLAS RUSH」と「氷滅の135小節」をプレイすることで解禁されます。",
+          "confidence": 1.0,
+          "calendar_start": "2026-10-29",
+          "calendar_end": null
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "「魔法仕掛けのファンタジア」は、スコアアタックイベント中の課題曲プレイで新たに解禁される楽曲のため、イベントに紐づく楽曲追加として抽出しました。楽曲追加自体の日時は明記されていないため、イベント開始日時を使用しています。"
+      ],
+      "review_reasons": [],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
+      "status": "extracted",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
+    {
+      "source": {
+        "game": "maimai",
         "url": "https://info-maimai.sega.jp/9634/",
         "date": "2026-10-15",
         "title": "10/16(金)「GRANRODEOちほー」オープン！"
@@ -1879,6 +1995,92 @@
       "attempts": 1,
       "prompt_version": "40",
       "status": "needs_review",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
+    {
+      "source": {
+        "game": "ongeki",
+        "url": "https://info-ongeki.sega.jp/13325/",
+        "date": "2026-10-28",
+        "title": "10/29(木)「KING of Performai The 8th」オンライン予選開始！"
+      },
+      "content_hash": "b9651f70fd3eceb0747b855216c6c4f9bcee89fbfe78f48b672352face4aac66",
+      "entries": [
+        {
+          "title": "「KING of Performai The 8th 予選ラウンド」楽曲追加",
+          "type": "song_add",
+          "subject": "KING of Performai The 8th 予選ラウンド",
+          "label": "楽曲追加",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-10-29",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [
+            {
+              "title": "Demonia",
+              "artist": "Juggernaut."
+            }
+          ],
+          "date_text": "10/29(木)より、イベント開催と同時に「オンゲキ」カテゴリに新曲を追加！",
+          "evidence": "課題曲の1つである新曲「Demonia」は「マイリスト」に追加され「課題」をクリアすると報酬を獲得できます。",
+          "confidence": 0.99,
+          "calendar_start": "2026-10-29",
+          "calendar_end": null
+        },
+        {
+          "title": "「KING of Performai The 8th 予選ラウンド」テクニカルチャレンジ",
+          "type": "technical_challenge",
+          "subject": "KING of Performai The 8th 予選ラウンド",
+          "label": "テクニカルチャレンジ",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-10-29",
+          "start_time": null,
+          "end": "2026-11-23",
+          "end_time": "23:59",
+          "open_ended": false,
+          "songs": [
+            {
+              "title": "Demonia",
+              "artist": "Juggernaut."
+            },
+            {
+              "title": "ω4",
+              "artist": null
+            },
+            {
+              "title": "Nýx",
+              "artist": null
+            },
+            {
+              "title": "Viyella’s Tears",
+              "artist": null
+            }
+          ],
+          "date_text": "10/29(木)～11/23(月)23:59の期間で、\nテクニカルチャレンジ「KING of Performai The 8th 予選ラウンド」\nを開催します！",
+          "evidence": "テクニカルチャレンジ「KING of Performai The 8th 予選ラウンド」の対象曲は下記の通りです。",
+          "confidence": 0.99,
+          "calendar_start": "2026-10-29",
+          "calendar_end": "2026-11-23"
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "記事公開日が2026-10-28で、記載された曜日（10/29(木)、11/23(月)）とも整合するため、年を2026年として補完しました。",
+        "新曲「Demonia」はイベント開催と同時に追加され、課題チャプターも「KING of Performai The 8th 予選ラウンド」と明記されているため、同じsubjectで関連付けました。"
+      ],
+      "review_reasons": [],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
+      "status": "extracted",
       "provider": "openai",
       "model": "gpt-5.6-luna"
     },
