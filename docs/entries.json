@@ -4,7 +4,7 @@
   "provider": "openai",
   "model": "gpt-5.6-luna",
   "mode": "extraction",
-  "updated_at": "2026-10-28T09:33:51+00:00",
+  "updated_at": "2026-10-29T09:50:56+00:00",
   "articles": [
     {
       "source": {
@@ -1995,6 +1995,70 @@
       "attempts": 1,
       "prompt_version": "40",
       "status": "needs_review",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
+    {
+      "source": {
+        "game": "ongeki",
+        "url": "https://info-ongeki.sega.jp/13402/",
+        "date": "2026-10-29",
+        "title": "カードテキストの修正について"
+      },
+      "content_hash": "e3403b80ca9d89032be2a5fa5a6097310449ffcad6a2422d057e47e13cdadf0b",
+      "entries": [
+        {
+          "title": "カード番号修正",
+          "type": "service_change",
+          "subject": null,
+          "label": "カード番号修正",
+          "official_name": null,
+          "service": "card_maker",
+          "start_is_deadline": false,
+          "start": "2026-10-29",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2026年10月29日(木)の更新におきまして、一部カードの\nカード番号\nを修正いたしました。",
+          "evidence": "2026年10月29日(木)の更新におきまして、一部カードの\nカード番号\nを修正いたしました。",
+          "confidence": 0.99,
+          "calendar_start": "2026-10-29",
+          "calendar_end": null
+        },
+        {
+          "title": "カード交換受付終了",
+          "type": "service_change",
+          "subject": null,
+          "label": "カード交換受付終了",
+          "official_name": null,
+          "service": "card_maker",
+          "start_is_deadline": true,
+          "start": "2026-12-31",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "・交換期限は\n2026年12月末\nまでとさせていただきます。",
+          "evidence": "・交換期限は\n2026年12月末\nまでとさせていただきます。",
+          "confidence": 0.98,
+          "calendar_start": "2026-12-31",
+          "calendar_end": null
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "「2026年12月末」はカレンダー登録用に2026-12-31として正規化しました。",
+        "カード番号の修正と、修正前カードの交換期限は別のサービス変更エントリとして分割しました。"
+      ],
+      "review_reasons": [],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
+      "status": "extracted",
       "provider": "openai",
       "model": "gpt-5.6-luna"
     },
