@@ -4950,6 +4950,49 @@
       "status": "extracted",
       "provider": "manual",
       "model": null
+    },
+    {
+      "source": {
+        "game": "ongeki",
+        "url": "https://rst-project.com/schedule/LDsnfc94VjU2GISskC_BC",
+        "date": "2026-10-29",
+        "title": "Re:ステージ!×オンゲキ PRISM☆FEVER!! vol.2 -Make My DayDRe:am-"
+      },
+      "content_hash": null,
+      "entries": [
+        {
+          "title": "「Re:ステージ!×オンゲキ PRISM☆FEVER!! vol.2」ライブ",
+          "type": "event",
+          "subject": "Re:ステージ!×オンゲキ PRISM☆FEVER!! vol.2",
+          "label": "ライブ",
+          "official_name": "Re:ステージ!×オンゲキ PRISM☆FEVER!! vol.2 -Make My DayDRe:am-",
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2027-01-23",
+          "start_time": "14:00",
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "日程：2027年1月23日(土)",
+          "evidence": "日程：2027年1月23日(土)\n1部：開場13:15／開演14:00(予定)\n2部：開場17:15／開演18:00(予定)\n会場：ニッショーホール",
+          "confidence": 1,
+          "calendar_start": "2027-01-23",
+          "calendar_end": null
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "Re:ステージ！公式ファンクラブのスケジュール（https://rst-project.com/schedule/LDsnfc94VjU2GISskC_BC）を元に手動で追加した。Re:ステージ！とオンゲキの合同ライブで、ニッショーホール（虎ノ門）で2部制。開始時刻は1部の開演時刻。"
+      ],
+      "review_reasons": [],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 0,
+      "prompt_version": null,
+      "status": "extracted",
+      "provider": "manual",
+      "model": null
     }
   ]
 }
