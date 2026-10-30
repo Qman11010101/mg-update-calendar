@@ -1,5 +1,5 @@
 // 抽出結果の読み込み・統合・分類など、DOMに依存しない処理。
-import { addMonths, daysBetween, shortDate, today, validDate } from "./dates.js";
+import { addMonths, daysBetween, shortDate, tokyoDate, validDate } from "./dates.js";
 
 export const games = {
   chunithm: { name: "CHUNITHM", short: "CHU" },
@@ -93,18 +93,18 @@ export function byGame(a, b) {
 }
 export function byGameAndTitle(a, b) { return byGame(a, b) || a.title.localeCompare(b.title, "ja"); }
 
-export function currentEntries(list, referenceDate = today) {
+export function currentEntries(list, referenceDate = tokyoDate()) {
   return list.filter((entry) => entry.start && isRange(entry) &&
     entry.start <= referenceDate && endDate(entry) >= referenceDate);
 }
 // 今後の一覧では、まだ始まっていない親イベントは親1件に、開催中の親に後から加わる告知は単独で並べる。
-export function upcomingEntries(list, referenceDate = today) {
+export function upcomingEntries(list, referenceDate = tokyoDate()) {
   const upcoming = list.filter((entry) => entry.start && entry.start > referenceDate)
     .map((entry) => entry.family && entry.family.start > referenceDate ? entry.family : entry);
   return [...new Set(upcoming)];
 }
 // 開催中は終了の近い順、今後は開始の近い順に並べる。
-export function nowLists(list, referenceDate = today) {
+export function nowLists(list, referenceDate = tokyoDate()) {
   return {
     current: currentEntries(withFamilies(currentEntries(list, referenceDate)), referenceDate)
       .sort((a, b) => endDate(a).localeCompare(endDate(b)) || byGame(a, b)),
@@ -268,7 +268,7 @@ export function keepUntil(entry) {
 // 抽出結果から、残す最終日を過ぎたエントリを除く。エントリが残らず、公開日から3か月を過ぎた記事は記事ごと除く。
 // 公開から間もない記事を残すのは、一覧に載っている間に新着として抽出し直さないため。
 // 戻り値の removed は記事ごと除いたURL。記事収集の結果からも外す。
-export function pruneData(data, referenceDate = today) {
+export function pruneData(data, referenceDate = tokyoDate()) {
   const items = data.articles.map((article) => ({
     article, entries: article.entries.map((entry) => calendarEntry(entry, article.source)),
   }));

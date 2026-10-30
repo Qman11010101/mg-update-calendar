@@ -1,5 +1,14 @@
 // 日付は "YYYY-MM-DD" の文字列で扱い、計算時だけUTCのDateに変換する。
-export const today = new Intl.DateTimeFormat("sv-SE", { timeZone: "Asia/Tokyo" }).format(new Date());
+const tokyoDateFormat = new Intl.DateTimeFormat("sv-SE", { timeZone: "Asia/Tokyo" });
+// 日本時間の今日。呼び出しのたびに計算する。表示側はこれを固定せず、タブが再び見えるたびに取り直す。
+export function tokyoDate(now = new Date()) {
+  return tokyoDateFormat.format(now);
+}
+// 前回の entries.json 取得から約1時間経っていれば、表示に戻ったときに取り直す。
+export const entriesMaxAge = 60 * 60 * 1000;
+export function entriesStale(fetchedAt, now = Date.now()) {
+  return fetchedAt > 0 && now - fetchedAt >= entriesMaxAge;
+}
 // ISO 8601の日時を日本時間の "YYYY/MM/DD HH:mm" にする。読めない値はnull。
 export function formatDateTime(value) {
   const date = new Date(value);
