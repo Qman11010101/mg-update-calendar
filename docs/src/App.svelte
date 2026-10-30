@@ -93,12 +93,17 @@
       loadingEntries = false;
     }
   }
-  // タブを開き直したとき、日本時間の日付と、古くなった掲載データを取り直す。
+  // タブを開き直したときと、表示中は1分ごとに、日本時間の日付と、古くなった掲載データを取り直す。
+  // 表示したまま日付をまたいだときや、端末のスリープから戻ったときは visibilitychange が届かないため。
   function onVisible() {
     if (document.visibilityState !== "visible") return;
     today.refresh();
     if (entriesStale(fetchedAt)) load({ refresh: true });
   }
+  $effect(() => {
+    const timer = setInterval(onVisible, 60 * 1000);
+    return () => clearInterval(timer);
+  });
   loadHolidays();
   load();
 </script>
