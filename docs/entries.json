@@ -2105,7 +2105,7 @@
           "songs": [],
           "date_text": "2026年11月1日(日) 15:00 ～ 終了時間未定",
           "evidence": "2026年11月1日（日）15:00より、ALL.NetおよびAimeの緊急メンテナンスを実施しております。\nメンテナンス中は、Aimeを使用したゲームプレイやオンラインコンテンツ、また公式サイトでは設置店舗情報をご利用いただけません。\n■メンテナンス期間\n2026年11月1日(日) 15:00 ～ 終了時間未定",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-11-01",
           "calendar_end": null
         }
@@ -4899,50 +4899,6 @@
         "記事の公開日が2026-08-04で、本文の日付の曜日（8/6(木)、10/28(水)、8/19(水)）と整合するため、年を2026年として補完しました。",
         "楽曲追加は「イベントに合わせて」と明記されているため、Muse Dashイベントの開始日を追加開始日として設定しました。楽曲自体の終了日は記載されていないため設定していません。",
         "イベント報酬のカード・プレートは独立したエントリにしていません。"
-      ],
-      "review_reasons": [],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "extracted",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "ongeki",
-        "url": "https://info-ongeki.sega.jp/12225/",
-        "date": "2026-07-16",
-        "title": "7/23(木)『オンゲキ Re:Fresh Act.2』稼働のお知らせ"
-      },
-      "content_hash": "621422951150c3f6c8a7aaf78dd40275ca51eb4a25fe6382806723adb365f7a0",
-      "entries": [
-        {
-          "title": "オンゲキ-NET月間ログインボーナス変更",
-          "type": "service_change",
-          "subject": null,
-          "label": "オンゲキ-NET月間ログインボーナス変更",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-08-01",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026/8/1(土)より、オンゲキ-NETのスタンダードコースおよびプレミアムコースの月間ログインボーナスを下記の通り変更いたします。",
-          "evidence": "2026/8/1(土)より、オンゲキ-NETのスタンダードコースおよびプレミアムコースの月間ログインボーナスを下記の通り変更いたします。",
-          "confidence": 1,
-          "calendar_start": "2026-08-01",
-          "calendar_end": null
-        }
-      ],
-      "cancellations": [],
-      "notes": [
-        "バージョンアップに伴う新機能・スペシャルプレート追加や称号取得条件変更は、個別の種類・日付を持つ独立告知としては抽出せず、バージョン稼働のお知らせに含まれる紹介として扱った。",
-        "一部楽曲の対象一覧はリンク先に委ねられているが、プレイ期限自体が本文で直接告知されているため、対象曲を特定せずサービス変更として抽出した。"
       ],
       "review_reasons": [],
       "error": null,
