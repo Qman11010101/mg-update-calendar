@@ -4,7 +4,7 @@
   "provider": "openai",
   "model": "gpt-5.6-luna",
   "mode": "extraction",
-  "updated_at": "2026-11-01T10:22:04+00:00",
+  "updated_at": "2026-11-01T14:32:57+00:00",
   "articles": [
     {
       "source": {
@@ -13,13 +13,13 @@
         "date": "2026-11-01",
         "title": "【重要】ALL.Net緊急メンテナンスのお知らせ"
       },
-      "content_hash": "f2137509780a452cd0b366155850bfdc4585d689fd161ebc4b9896c0f617dd83",
+      "content_hash": "0a0f478678824b0c14dec135bb34a30c47812a2e2dd4a76dce42619d4a0e22b7",
       "entries": [
         {
-          "title": "「ALL.NetおよびAime」ネットワークメンテナンス",
+          "title": "ALL.NetおよびAime緊急メンテナンス",
           "type": "maintenance",
           "subject": "ALL.NetおよびAime",
-          "label": "ネットワークメンテナンス",
+          "label": "ALL.NetおよびAime緊急メンテナンス",
           "official_name": null,
           "service": "chunithm",
           "start_is_deadline": false,
@@ -30,16 +30,14 @@
           "open_ended": true,
           "songs": [],
           "date_text": "2026年11月1日(日) 15:00 ～ 終了時間未定",
-          "evidence": "2026年11月1日 15:00 より、ALL.NetおよびAimeの緊急メンテナンスを実施しております。\nメンテナンス中は、Aimeを使用したゲームプレイやオンラインコンテンツ、また公式サイトでは設置店舗情報をご利用いただけません。",
+          "evidence": "2026年11月1日（日）15:00より、ALL.NetおよびAimeの緊急メンテナンスを実施しております。\nメンテナンス中は、Aimeを使用したゲームプレイやオンラインコンテンツ、また公式サイトでは設置店舗情報をご利用いただけません。\nメンテナンス期間\n2026年11月1日(日) 15:00 ～ 終了時間未定",
           "confidence": 0.99,
           "calendar_start": "2026-11-01",
           "calendar_end": null
         }
       ],
       "cancellations": [],
-      "notes": [
-        "ALL.NetおよびAimeのメンテナンスですが、CHUNITHMのAimeを使用したゲームプレイが利用不可となるため、対象サービスをchunithmとしました。終了時間未定のため、終了日時は設定していません。"
-      ],
+      "notes": [],
       "review_reasons": [],
       "error": null,
       "validation_errors": [],
@@ -1028,12 +1026,12 @@
         "date": "2026-11-01",
         "title": "【重要】ALL.Net緊急メンテナンスのお知らせ"
       },
-      "content_hash": "89eaeb8e0d28e2bab7425f14732b8b8f2a63ba5214c9092cd8bf0f4d33860ef4",
+      "content_hash": "70583a993184a6e78535b707d913cdf27935322dfcdff47b1317c8b456707472",
       "entries": [
         {
-          "title": "「maimai」ALL.NetおよびAime緊急メンテナンス",
+          "title": "ALL.NetおよびAime緊急メンテナンス",
           "type": "maintenance",
-          "subject": "maimai",
+          "subject": "ALL.NetおよびAime",
           "label": "ALL.NetおよびAime緊急メンテナンス",
           "official_name": null,
           "service": "maimai",
@@ -1045,7 +1043,7 @@
           "open_ended": false,
           "songs": [],
           "date_text": "2026年11月1日(日) 15:00 ～ 終了時間未定",
-          "evidence": "2026年11月1日 15:00 より、ALL.NetおよびAimeの緊急メンテナンスを実施しております。\nメンテナンス中は、Aimeを使用したゲームプレイやオンラインコンテンツ、また公式サイトでは設置店舗情報をご利用いただけません。\n\nメンテナンス期間\n2026年11月1日(日) 15:00 ～ 終了時間未定",
+          "evidence": "2026年11月1日（日）15:00より、ALL.NetおよびAimeの緊急メンテナンスを実施しております。\nメンテナンス中は、Aimeを使用したゲームプレイやオンラインコンテンツ、また公式サイトでは設置店舗情報をご利用いただけません。",
           "confidence": 0.99,
           "calendar_start": "2026-11-01",
           "calendar_end": null
@@ -2089,13 +2087,13 @@
         "date": "2026-11-01",
         "title": "【重要】ALL.Net緊急メンテナンスのお知らせ"
       },
-      "content_hash": "f22f3f34108119bb7966c6f9846432ac86bae3269cbff2ee212b5288a3b38168",
+      "content_hash": "4e170fdd7ec0996af86b905aebc1875ee41df8e629c91beb59096aa917d40166",
       "entries": [
         {
-          "title": "「ALL.NetおよびAime」ネットワークメンテナンス",
+          "title": "「ongeki」ALL.NetおよびAimeの緊急メンテナンス",
           "type": "maintenance",
-          "subject": "ALL.NetおよびAime",
-          "label": "ネットワークメンテナンス",
+          "subject": "ongeki",
+          "label": "ALL.NetおよびAimeの緊急メンテナンス",
           "official_name": null,
           "service": "ongeki",
           "start_is_deadline": false,
@@ -2103,11 +2101,11 @@
           "start_time": "15:00",
           "end": null,
           "end_time": null,
-          "open_ended": false,
+          "open_ended": true,
           "songs": [],
           "date_text": "2026年11月1日(日) 15:00 ～ 終了時間未定",
-          "evidence": "2026年11月1日 15:00 より、ALL.NetおよびAimeの緊急メンテナンスを実施しております。\nメンテナンス中は、Aimeを使用したゲームプレイやオンラインコンテンツ、また公式サイトでは設置店舗情報をご利用いただけません。\n■メンテナンス期間\n2026年11月1日(日) 15:00 ～ 終了時間未定",
-          "confidence": 0.99,
+          "evidence": "2026年11月1日（日）15:00より、ALL.NetおよびAimeの緊急メンテナンスを実施しております。\nメンテナンス中は、Aimeを使用したゲームプレイやオンラインコンテンツ、また公式サイトでは設置店舗情報をご利用いただけません。\n■メンテナンス期間\n2026年11月1日(日) 15:00 ～ 終了時間未定",
+          "confidence": 1.0,
           "calendar_start": "2026-11-01",
           "calendar_end": null
         }
