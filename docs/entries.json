@@ -4,8 +4,51 @@
   "provider": "openai",
   "model": "gpt-5.6-luna",
   "mode": "extraction",
-  "updated_at": "2026-10-30T09:55:19+00:00",
+  "updated_at": "2026-11-01T10:22:04+00:00",
   "articles": [
+    {
+      "source": {
+        "game": "chunithm",
+        "url": "https://info-chunithm.sega.jp/13408/",
+        "date": "2026-11-01",
+        "title": "【重要】ALL.Net緊急メンテナンスのお知らせ"
+      },
+      "content_hash": "f2137509780a452cd0b366155850bfdc4585d689fd161ebc4b9896c0f617dd83",
+      "entries": [
+        {
+          "title": "「ALL.NetおよびAime」ネットワークメンテナンス",
+          "type": "maintenance",
+          "subject": "ALL.NetおよびAime",
+          "label": "ネットワークメンテナンス",
+          "official_name": null,
+          "service": "chunithm",
+          "start_is_deadline": false,
+          "start": "2026-11-01",
+          "start_time": "15:00",
+          "end": null,
+          "end_time": null,
+          "open_ended": true,
+          "songs": [],
+          "date_text": "2026年11月1日(日) 15:00 ～ 終了時間未定",
+          "evidence": "2026年11月1日 15:00 より、ALL.NetおよびAimeの緊急メンテナンスを実施しております。\nメンテナンス中は、Aimeを使用したゲームプレイやオンラインコンテンツ、また公式サイトでは設置店舗情報をご利用いただけません。",
+          "confidence": 0.99,
+          "calendar_start": "2026-11-01",
+          "calendar_end": null
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "ALL.NetおよびAimeのメンテナンスですが、CHUNITHMのAimeを使用したゲームプレイが利用不可となるため、対象サービスをchunithmとしました。終了時間未定のため、終了日時は設定していません。"
+      ],
+      "review_reasons": [],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
+      "status": "extracted",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
     {
       "source": {
         "game": "chunithm",
@@ -974,6 +1017,47 @@
       "validation_errors": [],
       "attempts": 1,
       "prompt_version": "40",
+      "status": "extracted",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
+    {
+      "source": {
+        "game": "maimai",
+        "url": "https://info-maimai.sega.jp/10196/",
+        "date": "2026-11-01",
+        "title": "【重要】ALL.Net緊急メンテナンスのお知らせ"
+      },
+      "content_hash": "89eaeb8e0d28e2bab7425f14732b8b8f2a63ba5214c9092cd8bf0f4d33860ef4",
+      "entries": [
+        {
+          "title": "「maimai」ALL.NetおよびAime緊急メンテナンス",
+          "type": "maintenance",
+          "subject": "maimai",
+          "label": "ALL.NetおよびAime緊急メンテナンス",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": false,
+          "start": "2026-11-01",
+          "start_time": "15:00",
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2026年11月1日(日) 15:00 ～ 終了時間未定",
+          "evidence": "2026年11月1日 15:00 より、ALL.NetおよびAimeの緊急メンテナンスを実施しております。\nメンテナンス中は、Aimeを使用したゲームプレイやオンラインコンテンツ、また公式サイトでは設置店舗情報をご利用いただけません。\n\nメンテナンス期間\n2026年11月1日(日) 15:00 ～ 終了時間未定",
+          "confidence": 0.99,
+          "calendar_start": "2026-11-01",
+          "calendar_end": null
+        }
+      ],
+      "cancellations": [],
+      "notes": [],
+      "review_reasons": [],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
       "status": "extracted",
       "provider": "openai",
       "model": "gpt-5.6-luna"
@@ -1995,6 +2079,47 @@
       "attempts": 1,
       "prompt_version": "40",
       "status": "needs_review",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
+    {
+      "source": {
+        "game": "ongeki",
+        "url": "https://info-ongeki.sega.jp/13606/",
+        "date": "2026-11-01",
+        "title": "【重要】ALL.Net緊急メンテナンスのお知らせ"
+      },
+      "content_hash": "f22f3f34108119bb7966c6f9846432ac86bae3269cbff2ee212b5288a3b38168",
+      "entries": [
+        {
+          "title": "「ALL.NetおよびAime」ネットワークメンテナンス",
+          "type": "maintenance",
+          "subject": "ALL.NetおよびAime",
+          "label": "ネットワークメンテナンス",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-11-01",
+          "start_time": "15:00",
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2026年11月1日(日) 15:00 ～ 終了時間未定",
+          "evidence": "2026年11月1日 15:00 より、ALL.NetおよびAimeの緊急メンテナンスを実施しております。\nメンテナンス中は、Aimeを使用したゲームプレイやオンラインコンテンツ、また公式サイトでは設置店舗情報をご利用いただけません。\n■メンテナンス期間\n2026年11月1日(日) 15:00 ～ 終了時間未定",
+          "confidence": 0.99,
+          "calendar_start": "2026-11-01",
+          "calendar_end": null
+        }
+      ],
+      "cancellations": [],
+      "notes": [],
+      "review_reasons": [],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
+      "status": "extracted",
       "provider": "openai",
       "model": "gpt-5.6-luna"
     },
