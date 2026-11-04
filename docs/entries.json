@@ -4632,59 +4632,6 @@
     {
       "source": {
         "game": "maimai",
-        "url": "https://info-maimai.sega.jp/9143/",
-        "date": "2026-08-03",
-        "title": "8/4(火)「ぼくわたチャンネルちほー」オープン！さらに、オトモダチ対戦 シーズン28や宴譜面の追加も！"
-      },
-      "content_hash": "c4050cd2e7cee2f50d6cdc12a72a26f392bf6635aadd15df757d4930df9933aa",
-      "entries": [
-        {
-          "title": "「オトモダチ対戦 シーズン25」楽曲一般開放",
-          "type": "song_unlock",
-          "subject": "オトモダチ対戦 シーズン25",
-          "label": "楽曲一般開放",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-08-04",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": true,
-          "songs": [
-            {
-              "title": "怪盗Rのテーマ",
-              "artist": null
-            }
-          ],
-          "date_text": "また、シーズン25ポイント報酬の楽曲「怪盗Rのテーマ」でらっくす譜面は、8/4(火)よりどなたでもプレイできるようになります。",
-          "evidence": "また、シーズン25ポイント報酬の楽曲「怪盗Rのテーマ」でらっくす譜面は、8/4(火)よりどなたでもプレイできるようになります。",
-          "confidence": 1,
-          "calendar_start": "2026-08-04",
-          "calendar_end": null
-        }
-      ],
-      "cancellations": [],
-      "notes": [
-        "「ボックスワンターバ〜ン」は「ぼくわたチャンネルちほー」に伴う楽曲追加と明示されているため、ちほーと同じsubjectに統一しました。",
-        "「ボックスワンターバ〜ン」および「Ignite Infinity」は、当日の楽曲・コレクション追加時刻が午前10時頃と記載されているため、start_timeを10:00としました。",
-        "「Ignite Infinity」はシーズン28の報酬として追加される新規でらっくす譜面です。イベント終了日は報酬期間であり、譜面追加の終了日として流用していません。",
-        "以前のシーズン報酬として記載された「Paranoia」スタンダード譜面および「バッド・ダンス・ホール」でらっくす譜面は、既存追加のため抽出対象外としました。"
-      ],
-      "review_reasons": [
-        "「宴会場」に追加される新たな宴譜面の曲名が画像内にしか記載されていないため、utage_addのエントリを作成できません。"
-      ],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "needs_review",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "maimai",
         "url": "https://info-maimai.sega.jp/9118/",
         "date": "2026-07-16",
         "title": "7/17(金)「マサラダちほー」オープン！さらに、「niconico＆ボーカロイド™」に新曲追加！"
@@ -4875,30 +4822,6 @@
       "notes": [
         "年が省略された日付は、記事公開日が2026-08-05であり、記載された曜日（8/6(木)、10/14(水)、9/2(水)）とも一致するため2026年として補完しました。",
         "同一記事内で告知された2件のリバイバルイベントは対象名が異なるため、別エントリに分割しました。イベント報酬カードは各イベントの内容に含め、独立エントリにはしていません。"
-      ],
-      "review_reasons": [],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "extracted",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "ongeki",
-        "url": "https://info-ongeki.sega.jp/12533/",
-        "date": "2026-08-04",
-        "title": "8/6(木)ジュエルイベント「Muse Dash」開催！"
-      },
-      "content_hash": "251a33cc559faa58b657d726ca8118b2d0a0f2e3f099128461ea585682c33490",
-      "entries": [],
-      "cancellations": [],
-      "notes": [
-        "記事の公開日が2026-08-04で、本文の日付の曜日（8/6(木)、10/28(水)、8/19(水)）と整合するため、年を2026年として補完しました。",
-        "楽曲追加は「イベントに合わせて」と明記されているため、Muse Dashイベントの開始日を追加開始日として設定しました。楽曲自体の終了日は記載されていないため設定していません。",
-        "イベント報酬のカード・プレートは独立したエントリにしていません。"
       ],
       "review_reasons": [],
       "error": null,
