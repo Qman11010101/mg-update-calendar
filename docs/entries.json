@@ -4207,86 +4207,7 @@
         "title": "8/21(金)「Rotaenoちほー」オープン！"
       },
       "content_hash": "52254cc0025ada40e2e560674b1d14b76913058ba0ca6d396a81dde2385a1550",
-      "entries": [
-        {
-          "title": "Rotaenoちほー",
-          "type": "area_add",
-          "subject": "Rotaenoちほー",
-          "label": "ちほー追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-08-21",
-          "start_time": "10:00",
-          "end": "2026-11-05",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年8月21日(金)より、\n「Rotaenoちほー」\nがオープンします！！",
-          "evidence": "「Rotaenoちほー」オープン！\n(2026/8/21～2026/11/5)",
-          "confidence": 1,
-          "calendar_start": "2026-08-21",
-          "calendar_end": "2026-11-05"
-        },
-        {
-          "title": "「Rotaenoちほー」楽曲追加",
-          "type": "song_add",
-          "subject": "Rotaenoちほー",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-08-21",
-          "start_time": "10:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "Broomstick adventure!",
-              "artist": "しーけー"
-            },
-            {
-              "title": "無彩色のディストピア",
-              "artist": "HyuN feat. ウォルピスカーター"
-            }
-          ],
-          "date_text": "2026年8月21日(金)より、",
-          "evidence": "イベント開催にあわせて\n「ゲーム＆バラエティ」に新曲「Broomstick adventure!」「無彩色のディストピア」が追加されます！",
-          "confidence": 1,
-          "calendar_start": "2026-08-21",
-          "calendar_end": null
-        },
-        {
-          "title": "「Rotaenoちほー」楽曲追加",
-          "type": "song_add",
-          "subject": "Rotaenoちほー",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-08-21",
-          "start_time": "10:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "Manifold Hypothesis",
-              "artist": "cybermiso feat. tigerlily"
-            },
-            {
-              "title": "Inverted World",
-              "artist": "ARForest"
-            }
-          ],
-          "date_text": "2026年8月21日(金)より、",
-          "evidence": "さらに、ちほーを進めることで楽曲「\nManifold Hypothesis\n」「Inverted World」がプレイできるほか、",
-          "confidence": 1,
-          "calendar_start": "2026-08-21",
-          "calendar_end": null
-        }
-      ],
+      "entries": [],
       "cancellations": [],
       "notes": [
         "「楽曲やコレクションが追加されるのは当日の午前10時頃」とあるため、開始時刻を10:00として記録しました。"
@@ -4799,29 +4720,6 @@
         "年が省略されている日付は、記事公開日が2026-08-18であり、8/20(木)、9/2(水)、9/9(水)が2026年の曜日と整合するため2026年として補完した。",
         "楽曲追加は「イベントに合わせて」と明記されているため、ランキングイベントの開始日を開始日として設定した。終了日は恒久的な楽曲追加のため設定していない。",
         "イベントストーリー追加は、同記事で告知されたイベントの開始日を開始日として設定した。"
-      ],
-      "review_reasons": [],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "extracted",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "ongeki",
-        "url": "https://info-ongeki.sega.jp/12568/",
-        "date": "2026-08-05",
-        "title": "8/6(木)「ブルーアーカイブ」リバイバルイベント ＆ 8月度マンスリーミッション開催！"
-      },
-      "content_hash": "56fc6c2c7b1391dc6c29e904aed9eb46a6c26d4d82b7517210aca42447148f78",
-      "entries": [],
-      "cancellations": [],
-      "notes": [
-        "年が省略された日付は、記事公開日が2026-08-05であり、記載された曜日（8/6(木)、10/14(水)、9/2(水)）とも一致するため2026年として補完しました。",
-        "同一記事内で告知された2件のリバイバルイベントは対象名が異なるため、別エントリに分割しました。イベント報酬カードは各イベントの内容に含め、独立エントリにはしていません。"
       ],
       "review_reasons": [],
       "error": null,
