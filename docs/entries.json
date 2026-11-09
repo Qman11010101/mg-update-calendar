@@ -4,8 +4,30 @@
   "provider": "openai",
   "model": "gpt-5.6-luna",
   "mode": "extraction",
-  "updated_at": "2026-11-01T14:32:57+00:00",
+  "updated_at": "2026-11-09T11:22:16+00:00",
   "articles": [
+    {
+      "source": {
+        "game": "chunithm",
+        "url": "https://info-chunithm.sega.jp/13456/",
+        "date": "2026-11-09",
+        "title": "【重要】業務委託企業への不正アクセスによる個人情報流出に関するお詫びとお知らせ"
+      },
+      "content_hash": "f40c9d437384d694941de8b4339852ca7c867ab3beee1e4298edbf0175169fa7",
+      "entries": [],
+      "cancellations": [],
+      "notes": [
+        "個人情報流出に関するお詫び・お知らせであり、CHUNITHMの開催、追加、変更、メンテナンス等のカレンダー登録対象となる直接告知はありません。詳細は外部リンクへの誘導であるため抽出していません。"
+      ],
+      "review_reasons": [],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
+      "status": "extracted",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
     {
       "source": {
         "game": "chunithm",
@@ -1015,6 +1037,28 @@
       "validation_errors": [],
       "attempts": 1,
       "prompt_version": "40",
+      "status": "extracted",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
+    {
+      "source": {
+        "game": "maimai",
+        "url": "https://info-maimai.sega.jp/10212/",
+        "date": "2026-11-09",
+        "title": "【重要】業務委託企業への不正アクセスによる個人情報流出に関するお詫びとお知らせ"
+      },
+      "content_hash": "d6c10a62081ce2e1c00f14ebf0b184615826290f2a4c1bd2069f068b9804dcae",
+      "entries": [],
+      "cancellations": [],
+      "notes": [
+        "セガの業務委託企業における個人情報流出に関するお詫び・注意喚起であり、maimaiのイベント、楽曲追加、メンテナンス、サービス変更などカレンダー登録対象となる直接の告知はありません。"
+      ],
+      "review_reasons": [],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
       "status": "extracted",
       "provider": "openai",
       "model": "gpt-5.6-luna"
@@ -2077,6 +2121,26 @@
       "attempts": 1,
       "prompt_version": "40",
       "status": "needs_review",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
+    {
+      "source": {
+        "game": "ongeki",
+        "url": "https://info-ongeki.sega.jp/13625/",
+        "date": "2026-11-09",
+        "title": "【重要】業務委託企業への不正アクセスによる個人情報流出に関するお詫びとお知らせ"
+      },
+      "content_hash": "48ff0284e2db3312e9204a8c42a9307b9dbb9486b8f24a7a6adc2642235871e0",
+      "entries": [],
+      "cancellations": [],
+      "notes": [],
+      "review_reasons": [],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
+      "status": "extracted",
       "provider": "openai",
       "model": "gpt-5.6-luna"
     },
