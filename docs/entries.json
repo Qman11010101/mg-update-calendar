@@ -4,7 +4,7 @@
   "provider": "openai",
   "model": "gpt-5.6-luna",
   "mode": "extraction",
-  "updated_at": "2026-11-09T11:22:16+00:00",
+  "updated_at": "2026-11-15T10:43:14+00:00",
   "articles": [
     {
       "source": {
@@ -1970,6 +1970,109 @@
       "validation_errors": [],
       "attempts": 1,
       "prompt_version": "40",
+      "status": "needs_review",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
+    {
+      "source": {
+        "game": "ongeki",
+        "url": "https://info-ongeki.sega.jp/13631/",
+        "date": "2026-11-15",
+        "title": "【重要】Aimeを使用してのプレイを試験的に再開"
+      },
+      "content_hash": "55e2edbd7317c3b04d54a512e812424bd3510d9f668559befe47147dde7b0976",
+      "entries": [
+        {
+          "title": "Aime使用プレイ再開",
+          "type": "service_change",
+          "subject": null,
+          "label": "Aime使用プレイ再開",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-11-15",
+          "start_time": "07:00",
+          "end": null,
+          "end_time": null,
+          "open_ended": true,
+          "songs": [],
+          "date_text": "11/15(日)7:00に一部復旧いたしました。『オンゲキ』ではAimeを使用してのプレイを試験的に再開いたしました。",
+          "evidence": "11/15(日)7:00に一部復旧いたしました。『オンゲキ』ではAimeを使用してのプレイを試験的に再開いたしました。",
+          "confidence": 0.99,
+          "calendar_start": "2026-11-15",
+          "calendar_end": null
+        },
+        {
+          "title": "「オンゲキ-NET」メンテナンス",
+          "type": "maintenance",
+          "subject": "オンゲキ-NET",
+          "label": "メンテナンス",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": null,
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": true,
+          "songs": [],
+          "date_text": "",
+          "evidence": "オンゲキ-NETにつきましては、引き続きメンテナンスを実施しております。",
+          "confidence": 0.98,
+          "calendar_start": null,
+          "calendar_end": null
+        }
+      ],
+      "cancellations": [
+        {
+          "title": "「KING of Performai The 8th 予選ラウンド」イベント",
+          "target_type": "event",
+          "subject": "KING of Performai The 8th 予選ラウンド",
+          "label": "イベント",
+          "official_name": null,
+          "songs": [],
+          "evidence": "オンゲキの「KING of Performai The 8th」オンライン予選を一時中止とさせていただきます。",
+          "confidence": 0.99
+        },
+        {
+          "title": "「KING of Performai The 8th 予選ラウンド」チャプター追加",
+          "target_type": "chapter_add",
+          "subject": "KING of Performai The 8th 予選ラウンド",
+          "label": "チャプター追加",
+          "official_name": null,
+          "songs": [],
+          "evidence": "中止期間中は、「KING of Performai The 8th 予選ラウンド」のチャプターとテクニカルチャレンジが非開催状態となります。",
+          "confidence": 0.97
+        },
+        {
+          "title": "「KING of Performai The 8th 予選ラウンド」テクニカルチャレンジ",
+          "target_type": "technical_challenge",
+          "subject": "KING of Performai The 8th 予選ラウンド",
+          "label": "テクニカルチャレンジ",
+          "official_name": null,
+          "songs": [],
+          "evidence": "中止期間中は、「KING of Performai The 8th 予選ラウンド」のチャプターとテクニカルチャレンジが非開催状態となります。",
+          "confidence": 0.97
+        }
+      ],
+      "notes": [
+        "記事公開日が2026-11-15で、本文の日付「11/15(日)」と曜日が一致するため、年を2026年として補完しました。",
+        "Aimeを使用したプレイの再開は、本文の「一部復旧」と「試験的に再開」をサービス変更として抽出しました。",
+        "オンゲキ-NETのメンテナンスは継続中と明記されていますが、開始日時は本文から特定できないため、継続中のメンテナンスとして抽出しました。"
+      ],
+      "review_reasons": [
+        "オンゲキ-NETのメンテナンス開始日時が本文から特定できません。",
+        "エントリ2: date_textの原文根拠を確認できません。",
+        "エントリ2: 開始日が不明です。",
+        "取り消し1: 元エントリとの照合が必要です。",
+        "取り消し2: 元エントリとの照合が必要です。",
+        "取り消し3: 元エントリとの照合が必要です。"
+      ],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
       "status": "needs_review",
       "provider": "openai",
       "model": "gpt-5.6-luna"
