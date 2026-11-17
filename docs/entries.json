@@ -4,7 +4,7 @@
   "provider": "openai",
   "model": "gpt-5.6-luna",
   "mode": "extraction",
-  "updated_at": "2026-11-15T10:43:14+00:00",
+  "updated_at": "2026-11-17T11:43:02+00:00",
   "articles": [
     {
       "source": {
@@ -1970,6 +1970,287 @@
       "validation_errors": [],
       "attempts": 1,
       "prompt_version": "40",
+      "status": "needs_review",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
+    {
+      "source": {
+        "game": "ongeki",
+        "url": "https://info-ongeki.sega.jp/13559/",
+        "date": "2026-11-17",
+        "title": "11/19(木)シルバージュエルイベント「CHUNITHM」開催！"
+      },
+      "content_hash": "0e2d2749298568b940aaaa5401ae3df0adfb1027139e26ed6fb51b15a1ba54e7",
+      "entries": [
+        {
+          "title": "「CHUNITHM」シルバージュエルイベント",
+          "type": "event",
+          "subject": "CHUNITHM",
+          "label": "シルバージュエルイベント",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-11-19",
+          "start_time": null,
+          "end": "2027-02-10",
+          "end_time": "23:59",
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2026/11/19(木)～2027/2/10(水)23:59の期間で、  \nシルバージュエルイベント「CHUNITHM」を開催します！",
+          "evidence": "## シルバージュエルイベント開催！\n\n2026/11/19(木)～2027/2/10(水)23:59の期間で、  \nシルバージュエルイベント「CHUNITHM」を開催します！",
+          "confidence": 1.0,
+          "calendar_start": "2026-11-19",
+          "calendar_end": "2027-02-10"
+        },
+        {
+          "title": "「CHUNITHM」楽曲追加",
+          "type": "song_add",
+          "subject": "CHUNITHM",
+          "label": "楽曲追加",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-11-19",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [
+            {
+              "title": "メッちゅう殴打",
+              "artist": "STEAKA feat.山田じぇみ子"
+            },
+            {
+              "title": "インパアフェクシオン・ホワイトガアル",
+              "artist": "ツミキ feat.月乃"
+            }
+          ],
+          "date_text": "2026/11/19(木)～2027/2/10(水)23:59の期間で、  \nシルバージュエルイベント「CHUNITHM」を開催します！",
+          "evidence": "さらに、イベントに合わせて新曲「**メッちゅう殴打**」「**インパアフェクシオン・ホワイトガアル**」「**うたかたのせかいで**」を追加！",
+          "confidence": 1.0,
+          "calendar_start": "2026-11-19",
+          "calendar_end": null
+        },
+        {
+          "title": "「CHUNITHM」楽曲追加",
+          "type": "song_add",
+          "subject": "CHUNITHM",
+          "label": "楽曲追加",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-11-19",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [
+            {
+              "title": "うたかたのせかいで",
+              "artist": "DJ Raisei vs. Setca. feat.nayuta"
+            }
+          ],
+          "date_text": "2026/11/19(木)～2027/2/10(水)23:59の期間で、  \nシルバージュエルイベント「CHUNITHM」を開催します！",
+          "evidence": "| 累計イベントポイントで解禁できる楽曲 | | |\n| --- | --- | --- |\n| 必要累計ポイント数 | 曲名 | アーティスト名 |\n| 240ポイント | うたかたのせかいで | DJ Raisei vs. Setca. feat.nayuta |",
+          "confidence": 1.0,
+          "calendar_start": "2026-11-19",
+          "calendar_end": null
+        },
+        {
+          "title": "CHUNITHM　イベント開催記念ログインボーナス",
+          "type": "login_bonus",
+          "subject": "CHUNITHM",
+          "label": "ログインボーナス",
+          "official_name": "CHUNITHM　イベント開催記念ログインボーナス",
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-11-19",
+          "start_time": null,
+          "end": "2027-01-13",
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2026/11/19(木)～2027/1/13(水)の期間で、  \n「CHUNITHM　イベント開催記念ログインボーナス」を開催します！",
+          "evidence": "## ログインボーナス開催！\n\n2026/11/19(木)～2027/1/13(水)の期間で、  \n「CHUNITHM　イベント開催記念ログインボーナス」を開催します！",
+          "confidence": 1.0,
+          "calendar_start": "2026-11-19",
+          "calendar_end": "2027-01-13"
+        },
+        {
+          "title": "「CHUNITHM」テクニカルチャレンジ",
+          "type": "technical_challenge",
+          "subject": "CHUNITHM",
+          "label": "テクニカルチャレンジ",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-11-19",
+          "start_time": null,
+          "end": "2027-02-10",
+          "end_time": "23:59",
+          "open_ended": false,
+          "songs": [
+            {
+              "title": "怒槌",
+              "artist": null
+            },
+            {
+              "title": "World Vanquisher",
+              "artist": null
+            },
+            {
+              "title": "混沌を越えし我らが神聖なる調律主を讃えよ",
+              "artist": null
+            }
+          ],
+          "date_text": "2026/11/19(木)～2027/2/10(水)23:59の期間で、  \nテクニカルチャレンジ「CHUNITHM」を開催します！",
+          "evidence": "## テクニカルチャレンジ開催！\n\n2026/11/19(木)～2027/2/10(水)23:59の期間で、  \nテクニカルチャレンジ「CHUNITHM」を開催します！",
+          "confidence": 1.0,
+          "calendar_start": "2026-11-19",
+          "calendar_end": "2027-02-10"
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "「メッちゅう殴打」「インパアフェクシオン・ホワイトガアル」はマイリスト追加、「うたかたのせかいで」は累計イベントポイントでの解禁で、取得条件が異なるため楽曲追加エントリを分割した。",
+        "楽曲追加は「イベントに合わせて」と明記されているため、シルバージュエルイベントの開始日を開始日として設定した。"
+      ],
+      "review_reasons": [],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
+      "status": "extracted",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
+    {
+      "source": {
+        "game": "ongeki",
+        "url": "https://info-ongeki.sega.jp/13735/",
+        "date": "2026-11-17",
+        "title": "ALL.Net緊急メンテナンスに伴う一部イベント期間の変更につきまして"
+      },
+      "content_hash": "22128b86b0be2f4b8c6d0366a1136fffc59a58d6018e658c6b2592b302edf3b7",
+      "entries": [
+        {
+          "title": "11月度 マンスリーミッション",
+          "type": "mission",
+          "subject": "11月度 マンスリーミッション",
+          "label": "ミッション",
+          "official_name": "11月度 マンスリーミッション",
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-10-29",
+          "start_time": null,
+          "end": "2026-12-09",
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "10/29(木)より開催しておりました「11月度 マンスリーミッション」につきまして、開催期間を**2026/12/9(水)**まで延長させていただきます。",
+          "evidence": "10/29(木)より開催しておりました「11月度 マンスリーミッション」につきまして、開催期間を\n2026/12/9(水)\nまで延長させていただきます。",
+          "confidence": 0.99,
+          "calendar_start": "2026-10-29",
+          "calendar_end": "2026-12-09"
+        },
+        {
+          "title": "涼宮ハルヒシリーズ報酬受け取り期間延長",
+          "type": "other",
+          "subject": null,
+          "label": "涼宮ハルヒシリーズ報酬受け取り期間延長",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-11-17",
+          "start_time": "12:00",
+          "end": "2026-12-02",
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2026/11/17(火) 12時頃より順次～2026/12/2(水)まで",
+          "evidence": "テクニカルチャレンジ\n涼宮ハルヒシリーズ\n2026/3/5(木)～2026/5/13(水)",
+          "confidence": 0.98,
+          "calendar_start": "2026-11-17",
+          "calendar_end": "2026-12-02"
+        },
+        {
+          "title": "デコミク報酬受け取り期間延長",
+          "type": "other",
+          "subject": null,
+          "label": "デコミク報酬受け取り期間延長",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-11-17",
+          "start_time": "12:00",
+          "end": "2026-12-02",
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2026/11/17(火) 12時頃より順次～2026/12/2(水)まで",
+          "evidence": "テクニカルチャレンジ\nデコミク\n2026/3/19(木)～2026/5/13(水)",
+          "confidence": 0.98,
+          "calendar_start": "2026-11-17",
+          "calendar_end": "2026-12-02"
+        },
+        {
+          "title": "Shooter’s Dream 《ASTERISM》報酬受け取り期間延長（テクニカルチャレンジ）",
+          "type": "other",
+          "subject": null,
+          "label": "Shooter’s Dream 《ASTERISM》報酬受け取り期間延長（テクニカルチャレンジ）",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-11-17",
+          "start_time": "12:00",
+          "end": "2026-12-02",
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2026/11/17(火) 12時頃より順次～2026/12/2(水)まで",
+          "evidence": "テクニカルチャレンジ\nShooter’s Dream 《ASTERISM》\n2026/4/23(木)～2026/5/13(水)",
+          "confidence": 0.98,
+          "calendar_start": "2026-11-17",
+          "calendar_end": "2026-12-02"
+        },
+        {
+          "title": "Shooter’s Dream 《ASTERISM》報酬受け取り期間延長（ランキングイベント）",
+          "type": "other",
+          "subject": null,
+          "label": "Shooter’s Dream 《ASTERISM》報酬受け取り期間延長（ランキングイベント）",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-11-17",
+          "start_time": "12:00",
+          "end": "2026-12-02",
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2026/11/17(火) 12時頃より順次～2026/12/2(水)まで",
+          "evidence": "ランキングイベント\nShooter’s Dream 《ASTERISM》\n2026/4/23(木)～2026/5/6(水)",
+          "confidence": 0.98,
+          "calendar_start": "2026-11-17",
+          "calendar_end": "2026-12-02"
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "「11月度 マンスリーミッション」の開始年は、記事の公開日および延長後の日付が2026年であることから2026年として補完しました。",
+        "イベント報酬の受け取り延長は、元のイベント開催期間ではなく、共通の報酬受け取り延長期間（2026/11/17 12時頃から2026/12/2まで）で登録しました。",
+        "報酬受け取り期間延長は許可されたイベント種別に該当しないため、各対象をotherとして分割しました。"
+      ],
+      "review_reasons": [
+        "エントリ2: 種類がotherです。",
+        "エントリ3: 種類がotherです。",
+        "エントリ4: 種類がotherです。",
+        "エントリ5: 種類がotherです。"
+      ],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
       "status": "needs_review",
       "provider": "openai",
       "model": "gpt-5.6-luna"
