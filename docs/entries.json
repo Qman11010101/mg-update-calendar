@@ -1624,46 +1624,6 @@
           "calendar_end": null
         },
         {
-          "title": "野原ひろし 昼メシの流儀 ちほー",
-          "type": "area_add",
-          "subject": "野原ひろし 昼メシの流儀 ちほー",
-          "label": "ちほー追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-09-17",
-          "start_time": null,
-          "end": "2026-11-19",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "「野原ひろし 昼メシの流儀 ちほー」オープン！ (9/17～11/19)",
-          "evidence": "「野原ひろし 昼メシの流儀 ちほー」オープン！\n(9/17～11/19)",
-          "confidence": 1,
-          "calendar_start": "2026-09-17",
-          "calendar_end": "2026-11-19"
-        },
-        {
-          "title": "超かぐや姫！ちほー",
-          "type": "area_add",
-          "subject": "超かぐや姫！ちほー",
-          "label": "ちほー追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-09-17",
-          "start_time": null,
-          "end": "2026-11-19",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "「超かぐや姫！ちほー」オープン！ (9/17～11/19)",
-          "evidence": "「超かぐや姫！ちほー」オープン！\n(9/17～11/19)",
-          "confidence": 1,
-          "calendar_start": "2026-09-17",
-          "calendar_end": "2026-11-19"
-        },
-        {
           "title": "魔法おうこくちほー",
           "type": "area_add",
           "subject": "魔法おうこくちほー",
@@ -1900,61 +1860,7 @@
         "title": "9/17(木)「超かぐや姫！ちほー」オープン！"
       },
       "content_hash": "67b40d9f4dc39dcc43f4a9f1b7cc0749041438c77a37c9c81c3aa23c731da61a",
-      "entries": [
-        {
-          "title": "「超かぐや姫！」コラボイベント",
-          "type": "event",
-          "subject": "超かぐや姫！",
-          "label": "コラボイベント",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-09-17",
-          "start_time": null,
-          "end": "2026-11-19",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "# 「超かぐや姫！ちほー」オープン！ (9/17～11/19)",
-          "evidence": "9/17(木)、新バージョン『maimai でらっくす MAGiCAL』稼働と同時に、  \n「超かぐや姫！」とのコラボイベントが開催決定！\n\n# 「超かぐや姫！ちほー」オープン！ (9/17～11/19)\n\n「ちほー」を進むことで、「つあーメンバー」「ネームプレート」「フレーム」を獲得できます。",
-          "confidence": 0.99,
-          "calendar_start": "2026-09-17",
-          "calendar_end": "2026-11-19"
-        },
-        {
-          "title": "「超かぐや姫！」楽曲追加",
-          "type": "song_add",
-          "subject": "超かぐや姫！",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-09-17",
-          "start_time": "10:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "Ex-Otogibanashi (Anime ver.)",
-              "artist": "ryo (supercell), 月見ヤチヨ (cv.早見沙織)"
-            },
-            {
-              "title": "私は、わたしの事が好き。(Short ver.)",
-              "artist": "HoneyWorks, かぐや(cv.夏吉ゆうこ)"
-            },
-            {
-              "title": "ワールドイズマイン CPK! Remix (Anime ver.)",
-              "artist": "ryo (supercell), かぐや (cv.夏吉ゆうこ), 月見ヤチヨ (cv.早見沙織)"
-            }
-          ],
-          "date_text": "9/17(木)、新バージョン『maimai でらっくす MAGiCAL』稼働と同時に、",
-          "evidence": "「Ex-Otogibanashi (Anime ver.)」「私は、わたしの事が好き。(Short ver.)」  \n「ワールドイズマイン CPK! Remix (Anime ver.)」が、新バージョン稼働後すぐにプレイできます！  \n\n※楽曲やコレクションが追加されるのは当日の午前10時頃となります。",
-          "confidence": 0.98,
-          "calendar_start": "2026-09-17",
-          "calendar_end": null
-        }
-      ],
+      "entries": [],
       "cancellations": [],
       "notes": [
         "記事公開日が2026-09-10で、本文の日付に年がないため2026年として補完した。",
@@ -1999,7 +1905,7 @@
           "songs": [],
           "date_text": "2026/11/19(木)～2027/2/10(水)23:59の期間で、  \nシルバージュエルイベント「CHUNITHM」を開催します！",
           "evidence": "## シルバージュエルイベント開催！\n\n2026/11/19(木)～2027/2/10(水)23:59の期間で、  \nシルバージュエルイベント「CHUNITHM」を開催します！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-11-19",
           "calendar_end": "2027-02-10"
         },
@@ -2028,7 +1934,7 @@
           ],
           "date_text": "2026/11/19(木)～2027/2/10(水)23:59の期間で、  \nシルバージュエルイベント「CHUNITHM」を開催します！",
           "evidence": "さらに、イベントに合わせて新曲「**メッちゅう殴打**」「**インパアフェクシオン・ホワイトガアル**」「**うたかたのせかいで**」を追加！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-11-19",
           "calendar_end": null
         },
@@ -2053,7 +1959,7 @@
           ],
           "date_text": "2026/11/19(木)～2027/2/10(水)23:59の期間で、  \nシルバージュエルイベント「CHUNITHM」を開催します！",
           "evidence": "| 累計イベントポイントで解禁できる楽曲 | | |\n| --- | --- | --- |\n| 必要累計ポイント数 | 曲名 | アーティスト名 |\n| 240ポイント | うたかたのせかいで | DJ Raisei vs. Setca. feat.nayuta |",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-11-19",
           "calendar_end": null
         },
@@ -2073,7 +1979,7 @@
           "songs": [],
           "date_text": "2026/11/19(木)～2027/1/13(水)の期間で、  \n「CHUNITHM　イベント開催記念ログインボーナス」を開催します！",
           "evidence": "## ログインボーナス開催！\n\n2026/11/19(木)～2027/1/13(水)の期間で、  \n「CHUNITHM　イベント開催記念ログインボーナス」を開催します！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-11-19",
           "calendar_end": "2027-01-13"
         },
@@ -2106,7 +2012,7 @@
           ],
           "date_text": "2026/11/19(木)～2027/2/10(水)23:59の期間で、  \nテクニカルチャレンジ「CHUNITHM」を開催します！",
           "evidence": "## テクニカルチャレンジ開催！\n\n2026/11/19(木)～2027/2/10(水)23:59の期間で、  \nテクニカルチャレンジ「CHUNITHM」を開催します！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-11-19",
           "calendar_end": "2027-02-10"
         }
@@ -3874,53 +3780,7 @@
         "title": "9/17(木)「野原ひろし 昼メシの流儀 ちほー」オープン！"
       },
       "content_hash": "ce6daf072eda9213031c217c743a0c104ff6f9bec6eae27d6a3aaf4bda40b2f6",
-      "entries": [
-        {
-          "title": "「野原ひろし 昼メシの流儀」コラボイベント",
-          "type": "event",
-          "subject": "野原ひろし 昼メシの流儀",
-          "label": "コラボイベント",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-09-17",
-          "start_time": null,
-          "end": "2026-11-19",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "(9/17～11/19)",
-          "evidence": "9/17(木)、新バージョン『maimai でらっくす MAGiCAL』稼働と同時に、\n「野原ひろし 昼メシの流儀」\nとのコラボイベントが開催決定！\nさらに、ちほーを進めることで、\n「野原ひろし 昼メシの流儀」に登場するさまざまなキャラクターが「つあーメンバー」としてゲットできます！\n…\n「野原ひろし 昼メシの流儀 ちほー」オープン！\n(9/17～11/19)",
-          "confidence": 0.99,
-          "calendar_start": "2026-09-17",
-          "calendar_end": "2026-11-19"
-        },
-        {
-          "title": "「野原ひろし 昼メシの流儀」楽曲追加",
-          "type": "song_add",
-          "subject": "野原ひろし 昼メシの流儀",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-09-17",
-          "start_time": "10:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "ごはん食べヨ",
-              "artist": "Mega Shinnosuke"
-            }
-          ],
-          "date_text": "9/17(木)、新バージョン『maimai でらっくす MAGiCAL』稼働と同時に、",
-          "evidence": "「ごはん食べヨ」が、新バージョン稼働後すぐにプレイできます！\n…\n※楽曲やコレクションが追加されるのは当日の午前10時頃となります。",
-          "confidence": 0.98,
-          "calendar_start": "2026-09-17",
-          "calendar_end": null
-        }
-      ],
+      "entries": [],
       "cancellations": [],
       "notes": [
         "記事の公開日が2026-09-09で、本文の9/17(木)および9/17～11/19を2026年の日付として補完しました。",
