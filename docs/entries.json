@@ -3580,116 +3580,6 @@
     {
       "source": {
         "game": "chunithm",
-        "url": "https://info-chunithm.sega.jp/12497/",
-        "date": "2026-08-18",
-        "title": "8/20(木)新マップ「Mate ep. II」登場！さらに、アバター追加も！"
-      },
-      "content_hash": "946d9608ccd69dac17d4dd9e610f012f3450ac82048427346c2f6e15d4b21b70",
-      "entries": [
-        {
-          "title": "「Mate ep. II」マップ",
-          "type": "map_add",
-          "subject": "Mate ep. II",
-          "label": "マップ追加",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-08-20",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年8月20日(木)より、\n新マップ\n「Mate ep. II」\nが登場！",
-          "evidence": "新マップ「Mate ep. II」登場！\n2026年8月20日(木)より、\n新マップ\n「Mate ep. II」\nが登場！",
-          "confidence": 0.99,
-          "calendar_start": "2026-08-20",
-          "calendar_end": null
-        },
-        {
-          "title": "「Mate ep. II」楽曲追加",
-          "type": "song_add",
-          "subject": "Mate ep. II",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-08-20",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "ふわパチ星雲PTL-3",
-              "artist": "海茶、多良レイト feat. 桃寝ちのい"
-            },
-            {
-              "title": "Fox Hunt",
-              "artist": "よしぶる feat.街風めい"
-            },
-            {
-              "title": "命スクリプト",
-              "artist": "原口沙輔 feat.ななひら"
-            },
-            {
-              "title": "コトバノ廃都",
-              "artist": "ぽりふぉ(PolyphonicBranch) feat. 松下"
-            }
-          ],
-          "date_text": "2026年8月20日(木)より、\n新マップ\n「Mate ep. II」\nが登場！",
-          "evidence": "「Mate ep. II」では、こちらの楽曲が課題曲としてプレイできます。\n楽曲とアーティスト様はコチラ！\nORIGINAL\nふわパチ星雲PTL-3\n海茶、多良レイト feat. 桃寝ちのい\nFox Hunt\nよしぶる feat.街風めい\n命スクリプト\n原口沙輔 feat.ななひら\nコトバノ廃都\nぽりふぉ(PolyphonicBranch) feat. 松下",
-          "confidence": 0.98,
-          "calendar_start": "2026-08-20",
-          "calendar_end": null
-        },
-        {
-          "title": "楽曲一般開放",
-          "type": "song_unlock",
-          "subject": null,
-          "label": "楽曲一般開放",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-08-20",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "ちゅ、お注射。",
-              "artist": "なみぐる feat.をとは somunia"
-            },
-            {
-              "title": "チュウニペンギンのテーマ～左下より愛をこめて～",
-              "artist": "cosMo＠暴走P"
-            }
-          ],
-          "date_text": "2026年8月20日(木)より、\n以下の楽曲を通常開放します。",
-          "evidence": "楽曲通常開放！\n2026年8月20日(木)より、\n以下の楽曲を通常開放します。\n曲　名\nアーティスト名\nちゅ、お注射。\nなみぐる feat.をとは somunia\nチュウニペンギンのテーマ～左下より愛をこめて～\ncosMo＠暴走P",
-          "confidence": 0.99,
-          "calendar_start": "2026-08-20",
-          "calendar_end": null
-        }
-      ],
-      "cancellations": [],
-      "notes": [
-        "「Mate ep. II」の課題曲は、新マップの進行に伴う楽曲追加としてマップとは別エントリにした。",
-        "アバターコスチュームは期間限定の追加であり、マップや楽曲追加とは別エントリにした。"
-      ],
-      "review_reasons": [],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "extracted",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "chunithm",
         "url": "https://info-chunithm.sega.jp/12972/",
         "date": "2026-08-05",
         "title": "『カードメイカー』の『CHUNITHM』ガチャ機能の提供終了につきまして"
@@ -4178,30 +4068,6 @@
     {
       "source": {
         "game": "maimai",
-        "url": "https://info-maimai.sega.jp/9303/",
-        "date": "2026-08-20",
-        "title": "8/21(金)「Rotaenoちほー」オープン！"
-      },
-      "content_hash": "52254cc0025ada40e2e560674b1d14b76913058ba0ca6d396a81dde2385a1550",
-      "entries": [],
-      "cancellations": [],
-      "notes": [
-        "「楽曲やコレクションが追加されるのは当日の午前10時頃」とあるため、開始時刻を10:00として記録しました。"
-      ],
-      "review_reasons": [
-        "エントリ4: 種類がotherです。"
-      ],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "needs_review",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "maimai",
         "url": "https://info-maimai.sega.jp/9285/",
         "date": "2026-08-06",
         "title": "8/7(金)「天界ちほー9」オープン！"
@@ -4488,56 +4354,6 @@
       "attempts": 1,
       "prompt_version": "40",
       "status": "needs_review",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "ongeki",
-        "url": "https://info-ongeki.sega.jp/12920/",
-        "date": "2026-08-18",
-        "title": "8/20(木)オリジナルランキングイベント「Shooter’s Dream《⊿TRiEDGE》」開催！"
-      },
-      "content_hash": "38991d474fb7da47eea7f43493c7f676f3dbad6da85d803d26966eb32feb9029",
-      "entries": [
-        {
-          "title": "楽曲一般開放",
-          "type": "song_unlock",
-          "subject": null,
-          "label": "楽曲一般開放",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-08-20",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "poppin’ hoppin’ flappin’☆☆☆",
-              "artist": "曲：宮崎まゆ・賀佐泰洋 (SUPA LOVE)／歌：星咲 あかり(CV：赤尾 ひかる)、藤沢 柚子(CV：保科 李沙)、三角 葵(CV：春野 杏)"
-            }
-          ],
-          "date_text": "8/20(木)より、以下の楽曲を通常開放します！",
-          "evidence": "通常開放された楽曲は「マイリスト」に入り、誰でも解禁不要でプレイできるようになります。",
-          "confidence": 1,
-          "calendar_start": "2026-08-20",
-          "calendar_end": null
-        }
-      ],
-      "cancellations": [],
-      "notes": [
-        "年が省略されている日付は、記事公開日が2026-08-18であり、8/20(木)、9/2(水)、9/9(水)が2026年の曜日と整合するため2026年として補完した。",
-        "楽曲追加は「イベントに合わせて」と明記されているため、ランキングイベントの開始日を開始日として設定した。終了日は恒久的な楽曲追加のため設定していない。",
-        "イベントストーリー追加は、同記事で告知されたイベントの開始日を開始日として設定した。"
-      ],
-      "review_reasons": [],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "extracted",
       "provider": "openai",
       "model": "gpt-5.6-luna"
     },
