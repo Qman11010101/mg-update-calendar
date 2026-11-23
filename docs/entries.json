@@ -1151,53 +1151,7 @@
         "title": "10/29(木)「スコアアタック」イベント開催！"
       },
       "content_hash": "50672882a0e783cc610d8b19cd2cabce19635543a9f4dab9e3a4913e3319592b",
-      "entries": [
-        {
-          "title": "「スコアアタック」イベント",
-          "type": "event",
-          "subject": "スコアアタック",
-          "label": "イベント",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-10-29",
-          "start_time": "07:00",
-          "end": "2026-11-23",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [],
-          "date_text": "開催期間：2026年10月29日(木)7:00～2026年11月23日(月)23:59",
-          "evidence": "2026年10月29日(木)から11月23日(月)までの間、\n「スコアアタック」\nイベントを開催します！",
-          "confidence": 1,
-          "calendar_start": "2026-10-29",
-          "calendar_end": "2026-11-23"
-        },
-        {
-          "title": "「スコアアタック」楽曲追加",
-          "type": "song_add",
-          "subject": "スコアアタック",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-10-29",
-          "start_time": "07:00",
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "魔法仕掛けのファンタジア",
-              "artist": "igel"
-            }
-          ],
-          "date_text": "開催期間：2026年10月29日(木)7:00～2026年11月23日(月)23:59",
-          "evidence": "※楽曲「魔法仕掛けのファンタジア」は、スコアアタック開催期間中に「ATLAS RUSH」と「氷滅の135小節」をプレイすることで解禁されます。",
-          "confidence": 1,
-          "calendar_start": "2026-10-29",
-          "calendar_end": null
-        }
-      ],
+      "entries": [],
       "cancellations": [],
       "notes": [
         "「魔法仕掛けのファンタジア」は、スコアアタックイベント中の課題曲プレイで新たに解禁される楽曲のため、イベントに紐づく楽曲追加として抽出しました。楽曲追加自体の日時は明記されていないため、イベント開始日時を使用しています。"
@@ -2538,70 +2492,7 @@
         "title": "10/29(木)「KING of Performai The 8th」オンライン予選開始！"
       },
       "content_hash": "edba29a52e7f41442c5b40c994f95a46fb9ccabc2bc7ac242d22c05007779161",
-      "entries": [
-        {
-          "title": "「KING of Performai The 8th 予選ラウンド」楽曲追加",
-          "type": "song_add",
-          "subject": "KING of Performai The 8th 予選ラウンド",
-          "label": "楽曲追加",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-10-29",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "Demonia",
-              "artist": "Juggernaut."
-            }
-          ],
-          "date_text": "10/29(木)より、イベント開催と同時に「オンゲキ」カテゴリに新曲を追加！",
-          "evidence": "10/29(木)より、イベント開催と同時に「オンゲキ」カテゴリに新曲を追加！\n課題曲の1つである新曲「Demonia」は「マイリスト」に追加され「課題」をクリアすると報酬を獲得できます。",
-          "confidence": 0.99,
-          "calendar_start": "2026-10-29",
-          "calendar_end": null
-        },
-        {
-          "title": "「KING of Performai The 8th 予選ラウンド」テクニカルチャレンジ",
-          "type": "technical_challenge",
-          "subject": "KING of Performai The 8th 予選ラウンド",
-          "label": "テクニカルチャレンジ",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-10-29",
-          "start_time": null,
-          "end": "2026-11-23",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [
-            {
-              "title": "Demonia",
-              "artist": null
-            },
-            {
-              "title": "ω4",
-              "artist": null
-            },
-            {
-              "title": "Nýx",
-              "artist": null
-            },
-            {
-              "title": "Viyella’s Tears",
-              "artist": null
-            }
-          ],
-          "date_text": "10/29(木)～11/23(月)23:59の期間で、\nテクニカルチャレンジ「KING of Performai The 8th 予選ラウンド」\nを開催します！",
-          "evidence": "テクニカルチャレンジ「KING of Performai The 8th 予選ラウンド」開催！\n10/29(木)～11/23(月)23:59の期間で、\nテクニカルチャレンジ「KING of Performai The 8th 予選ラウンド」\nを開催します！",
-          "confidence": 0.99,
-          "calendar_start": "2026-10-29",
-          "calendar_end": "2026-11-23"
-        }
-      ],
+      "entries": [],
       "cancellations": [],
       "notes": [
         "記事公開日が2026-10-28で、本文の追記にも2026年の日付があるため、年のない10/29および11/23は2026年として補完しました。",
@@ -3216,26 +3107,6 @@
       "content_hash": null,
       "entries": [
         {
-          "title": "「KING of Performai The 8th」オンライン予選",
-          "type": "event",
-          "subject": "KING of Performai The 8th",
-          "label": "オンライン予選",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-10-29",
-          "start_time": "07:00",
-          "end": "2026-11-23",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年10月29日（木）7:00～11月23日（月祝）23:59",
-          "evidence": "SCHEDULE\nオンライン予選\n2026年10月29日（木）7:00～11月23日（月祝）23:59",
-          "confidence": 1,
-          "calendar_start": "2026-10-29",
-          "calendar_end": "2026-11-23"
-        },
-        {
           "title": "「KING of Performai The 8th」LCQ（最終予選）",
           "type": "event",
           "subject": "KING of Performai The 8th",
@@ -3299,26 +3170,6 @@
       "content_hash": null,
       "entries": [
         {
-          "title": "「KING of Performai The 8th」オンライン予選",
-          "type": "event",
-          "subject": "KING of Performai The 8th",
-          "label": "オンライン予選",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-10-29",
-          "start_time": "07:00",
-          "end": "2026-11-23",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年10月29日（木）7:00～11月23日（月祝）23:59",
-          "evidence": "SCHEDULE\nオンライン予選\n2026年10月29日（木）7:00～11月23日（月祝）23:59",
-          "confidence": 1,
-          "calendar_start": "2026-10-29",
-          "calendar_end": "2026-11-23"
-        },
-        {
           "title": "「KING of Performai The 8th」LCQ（最終予選）",
           "type": "event",
           "subject": "KING of Performai The 8th",
@@ -3381,26 +3232,6 @@
       },
       "content_hash": null,
       "entries": [
-        {
-          "title": "「KING of Performai The 8th」オンライン予選",
-          "type": "event",
-          "subject": "KING of Performai The 8th",
-          "label": "オンライン予選",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-10-29",
-          "start_time": "07:00",
-          "end": "2026-11-23",
-          "end_time": "23:59",
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年10月29日（木）7:00～11月23日（月祝）23:59",
-          "evidence": "SCHEDULE\nオンライン予選\n2026年10月29日（木）7:00～11月23日（月祝）23:59",
-          "confidence": 1,
-          "calendar_start": "2026-10-29",
-          "calendar_end": "2026-11-23"
-        },
         {
           "title": "「KING of Performai The 8th」LCQ（最終予選）",
           "type": "event",
