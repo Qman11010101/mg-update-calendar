@@ -4,8 +4,146 @@
   "provider": "openai",
   "model": "gpt-5.6-luna",
   "mode": "extraction",
-  "updated_at": "2026-11-21T10:54:22+00:00",
+  "updated_at": "2026-11-24T13:33:51+00:00",
   "articles": [
+    {
+      "source": {
+        "game": "chunithm",
+        "url": "https://info-chunithm.sega.jp/13541/",
+        "date": "2026-11-24",
+        "title": "メンテナンスの補填とお詫びの配布について"
+      },
+      "content_hash": "e6f02ec075a92525f87615d32235ebac551cd8550b915b6d207bf8ca359c78d4",
+      "entries": [
+        {
+          "title": "CHUNITHM-NETメンテナンス補償配布",
+          "type": "other",
+          "subject": null,
+          "label": "CHUNITHM-NETメンテナンス補償配布",
+          "official_name": null,
+          "service": "chunithm",
+          "start_is_deadline": false,
+          "start": null,
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "",
+          "evidence": "今回のメンテナンスの補填として、ゲキチュウマイ-NET スタンダードコース会員の皆様に下記の通りアイテムを配布させていただきます。\n\nCHUNITHM-NETメンテナンスに対する補償\n配布対象ユーザー\n配布アイテム\n10/21(水)22:00～11/21(土)6:59の期間にゲキチュウマイ-NET スタンダードコースへ加入したことがあるユーザー\n「マップ進行×3倍チケット」×3枚",
+          "confidence": 0.95,
+          "calendar_start": null,
+          "calendar_end": null
+        },
+        {
+          "title": "ALL․Netメンテナンスお詫び配布",
+          "type": "other",
+          "subject": null,
+          "label": "ALL․Netメンテナンスお詫び配布",
+          "official_name": null,
+          "service": "chunithm",
+          "start_is_deadline": false,
+          "start": "2026-11-25",
+          "start_time": "07:00",
+          "end": null,
+          "end_time": null,
+          "open_ended": true,
+          "songs": [],
+          "date_text": "なお、お詫びの配布につきましては11/25(水)7:00以降、CHUNITHMにログインしていただくことでお受け取りいただけるようになります。",
+          "evidence": "ALL․Netメンテナンスに対するお詫び\n配布対象ユーザー\n配布アイテム\n2026/7/2(木)7:00～11/25(水)1:59の期間にCHUNITHMをプレイしているユーザー\n「マップ進行×3倍チケット」×1枚\n「キャラクターEXPブースト×9.0倍」×1枚",
+          "confidence": 0.99,
+          "calendar_start": "2026-11-25",
+          "calendar_end": null
+        },
+        {
+          "title": "2026年11月のログインボーナス",
+          "type": "login_bonus",
+          "subject": "2026年11月",
+          "label": "ログインボーナス",
+          "official_name": "2026年11月のログインボーナス",
+          "service": "chunithm",
+          "start_is_deadline": false,
+          "start": "2026-11-01",
+          "start_time": null,
+          "end": "2026-12-31",
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2026年11月のログインボーナスは、開催期間を2026/11/1(日)～12/31(木)に延長いたします。",
+          "evidence": "■ログインボーナス\n\n2026年11月のログインボーナスは、開催期間を2026/11/1(日)～12/31(木)に延長いたします。（12月以降のログインボーナスは、2027年1月以降の開催になります。）",
+          "confidence": 0.99,
+          "calendar_start": "2026-11-01",
+          "calendar_end": "2026-12-31"
+        },
+        {
+          "title": "デイリーログインボーナス23日分加算",
+          "type": "other",
+          "subject": null,
+          "label": "デイリーログインボーナス23日分加算",
+          "official_name": null,
+          "service": "chunithm",
+          "start_is_deadline": false,
+          "start": null,
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "また、デイリーログインボーナスにつきましては、11/1(日)までに「CHUNITHM Mate」をプレイされたデータに対し、11/1(日)～11/23(月)の期間中のプレイ状況にかかわらず23日分を加算いたします。",
+          "evidence": "また、デイリーログインボーナスにつきましては、11/1(日)までに「CHUNITHM Mate」をプレイされたデータに対し、11/1(日)～11/23(月)の期間中のプレイ状況にかかわらず23日分を加算いたします。",
+          "confidence": 0.96,
+          "calendar_start": null,
+          "calendar_end": null
+        },
+        {
+          "title": "累計ログイン日数称号配布",
+          "type": "other",
+          "subject": null,
+          "label": "累計ログイン日数称号配布",
+          "official_name": null,
+          "service": "chunithm",
+          "start_is_deadline": false,
+          "start": null,
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "",
+          "evidence": "加算の結果、累計ログイン日数が50日または100日以上となったお客様には、後日称号を配布いたします。",
+          "confidence": 0.98,
+          "calendar_start": null,
+          "calendar_end": null
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "本文中の年が省略された11/25、11/1～11/23などの日付は、記事および周辺の明記された日付が2026年であるため2026年として補完しました。",
+        "CHUNITHM-NETメンテナンス補償の配布日時は本文から特定できないため、補償対象期間は配布日時として扱っていません。",
+        "ログインボーナスの延長は、本文に記載された開催期間をそのままエントリ化しました。"
+      ],
+      "review_reasons": [
+        "CHUNITHM-NETメンテナンス補償の配布開始日時が本文に記載されていません。",
+        "デイリーログインボーナス23日分の加算実施日時が本文から特定できません。",
+        "累計ログイン日数に応じた称号の配布日は「後日」とのみ記載されています。",
+        "エントリ1: date_textの原文根拠を確認できません。",
+        "エントリ1: 開始日が不明です。",
+        "エントリ1: 種類がotherです。",
+        "エントリ2: 種類がotherです。",
+        "エントリ4: 開始日が不明です。",
+        "エントリ4: 種類がotherです。",
+        "エントリ5: date_textの原文根拠を確認できません。",
+        "エントリ5: 開始日が不明です。",
+        "エントリ5: 種類がotherです。"
+      ],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
+      "status": "needs_review",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
     {
       "source": {
         "game": "chunithm",
@@ -1035,6 +1173,74 @@
     {
       "source": {
         "game": "maimai",
+        "url": "https://info-maimai.sega.jp/10249/",
+        "date": "2026-11-24",
+        "title": "メンテナンスの補填とお詫びの配布について"
+      },
+      "content_hash": "776de0951e119c2cfe3ae7e992179dc984c2907bd1876768ae7cc23a4856d2a9",
+      "entries": [
+        {
+          "title": "maimaiでらっくすNETメンテナンス補償配布",
+          "type": "other",
+          "subject": null,
+          "label": "maimaiでらっくすNETメンテナンス補償配布",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": false,
+          "start": "2026-11-25",
+          "start_time": "07:00",
+          "end": null,
+          "end_time": null,
+          "open_ended": true,
+          "songs": [],
+          "date_text": "なお、配布アイテムにつきましては11月25日(水)7:00以降、『maimai でらっくす』にログインすることでお受け取りいただけます。",
+          "evidence": "今回のメンテナンスの補填として、ゲキチュウマイ-NET スタンダードコース会員の皆様に下記アイテムを配布させていただきます。",
+          "confidence": 0.98,
+          "calendar_start": "2026-11-25",
+          "calendar_end": null
+        },
+        {
+          "title": "ALL․Netメンテナンスお詫び配布",
+          "type": "other",
+          "subject": null,
+          "label": "ALL․Netメンテナンスお詫び配布",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": false,
+          "start": "2026-11-25",
+          "start_time": "07:00",
+          "end": null,
+          "end_time": null,
+          "open_ended": true,
+          "songs": [],
+          "date_text": "なお、配布アイテムにつきましては11月25日(水)7:00以降、『maimai でらっくす』にログインすることでお受け取りいただけます。",
+          "evidence": "また、長期間にわたりAimeを使用したゲームプレイができなかったお詫びとして、プレイヤーの皆様に下記アイテムを配布させていただきます。",
+          "confidence": 0.98,
+          "calendar_start": "2026-11-25",
+          "calendar_end": null
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "メンテナンス自体は過去の発生事象に関する背景説明のため、独立したメンテナンス告知としては抽出していません。",
+        "アイテム配布は許可された専用種別に該当しないため、otherとして補償・お詫び配布ごとに分割しました。",
+        "受け取り開始日時は本文の「11月25日(水)7:00以降」から取得し、記事の日付が2026年11月24日であることと曜日が整合するため2026年として補完しました。"
+      ],
+      "review_reasons": [
+        "エントリ1: 種類がotherです。",
+        "エントリ2: 種類がotherです。"
+      ],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
+      "status": "needs_review",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
+    {
+      "source": {
+        "game": "maimai",
         "url": "https://info-maimai.sega.jp/10212/",
         "date": "2026-11-09",
         "title": "【重要】業務委託企業への不正アクセスによる個人情報流出に関するお詫びとお知らせ"
@@ -1971,6 +2177,206 @@
       "validation_errors": [],
       "attempts": 1,
       "prompt_version": "40",
+      "status": "needs_review",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
+    {
+      "source": {
+        "game": "ongeki",
+        "url": "https://info-ongeki.sega.jp/13423/",
+        "date": "2026-11-24",
+        "title": "11/26(木)シルバージュエルイベント「ワールドダイスター 夢のステラリウム【第3弾】」開催！"
+      },
+      "content_hash": "7dffd84844bd65d7c2950945f0c9da1876ea2ae76cca7784d069397d5cc73cd8",
+      "entries": [
+        {
+          "title": "「ワールドダイスター 夢のステラリウム【第3弾】」シルバージュエルイベント",
+          "type": "event",
+          "subject": "ワールドダイスター 夢のステラリウム【第3弾】",
+          "label": "シルバージュエルイベント",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-11-26",
+          "start_time": null,
+          "end": "2027-01-20",
+          "end_time": "23:59",
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2026/11/26(木)～2027/1/20(水)23:59の期間で、",
+          "evidence": "シルバージュエルイベント「ワールドダイスター 夢のステラリウム【第3弾】」を開催します！",
+          "confidence": 1.0,
+          "calendar_start": "2026-11-26",
+          "calendar_end": "2027-01-20"
+        },
+        {
+          "title": "「ワールドダイスター 夢のステラリウム【第3弾】」楽曲追加",
+          "type": "song_add",
+          "subject": "ワールドダイスター 夢のステラリウム【第3弾】",
+          "label": "楽曲追加",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-11-26",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [
+            {
+              "title": "不可逆的運命ディストピア",
+              "artist": null
+            },
+            {
+              "title": "電脳スペクタクル",
+              "artist": null
+            },
+            {
+              "title": "絶対！ニーデリッヒ宣言♡",
+              "artist": null
+            }
+          ],
+          "date_text": "2026/11/26(木)～2027/1/20(水)23:59の期間で、",
+          "evidence": "さらに、イベントに合わせて新曲\n不可逆的運命ディストピア\n電脳スペクタクル\n絶対！ニーデリッヒ宣言♡\nを追加！",
+          "confidence": 1.0,
+          "calendar_start": "2026-11-26",
+          "calendar_end": null
+        },
+        {
+          "title": "「ワールドダイスター 夢のステラリウム【第3弾】」テクニカルチャレンジ",
+          "type": "technical_challenge",
+          "subject": "ワールドダイスター 夢のステラリウム【第3弾】",
+          "label": "テクニカルチャレンジ",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-11-26",
+          "start_time": null,
+          "end": "2027-01-20",
+          "end_time": "23:59",
+          "open_ended": false,
+          "songs": [
+            {
+              "title": "フォニイ",
+              "artist": null
+            },
+            {
+              "title": "ヴァンパイア",
+              "artist": null
+            },
+            {
+              "title": "DAYBREAK FRONTLINE",
+              "artist": null
+            },
+            {
+              "title": "春を告げる",
+              "artist": null
+            }
+          ],
+          "date_text": "2026/11/26(木)～2027/1/20(水)23:59の期間で、",
+          "evidence": "テクニカルチャレンジ「ワールドダイスター 夢のステラリウム【第3弾】」を開催します！",
+          "confidence": 1.0,
+          "calendar_start": "2026-11-26",
+          "calendar_end": "2027-01-20"
+        },
+        {
+          "title": "ワールドダイスター 夢のステラリウム【第3弾】　イベント開催記念ログインボーナス",
+          "type": "login_bonus",
+          "subject": "ワールドダイスター 夢のステラリウム【第3弾】",
+          "label": "ログインボーナス",
+          "official_name": "ワールドダイスター 夢のステラリウム【第3弾】　イベント開催記念ログインボーナス",
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-11-26",
+          "start_time": null,
+          "end": "2026-12-09",
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "11/26(木)～12/9(水)の期間で、",
+          "evidence": "「ワールドダイスター 夢のステラリウム【第3弾】　イベント開催記念ログインボーナス」を開催します！",
+          "confidence": 0.98,
+          "calendar_start": "2026-11-26",
+          "calendar_end": "2026-12-09"
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "ログインボーナスの日付に年の記載がないため、記事公開日2026-11-24および同記事内のイベント開始日2026-11-26から2026年として補完しました。",
+        "新曲は「イベントに合わせて」と明記されているため、イベントと同じ2026-11-26開始として抽出しました。イベント終了日は恒久的な楽曲追加には流用していません。"
+      ],
+      "review_reasons": [],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
+      "status": "extracted",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
+    {
+      "source": {
+        "game": "ongeki",
+        "url": "https://info-ongeki.sega.jp/13781/",
+        "date": "2026-11-24",
+        "title": "メンテナンスの補填とお詫びの配布について"
+      },
+      "content_hash": "30ef95f1ee3642f5272740ebf30502aa7865f0315c40c52796d36debb1df9a08",
+      "entries": [
+        {
+          "title": "オンゲキ-NETメンテナンス補填配布",
+          "type": "other",
+          "subject": null,
+          "label": "オンゲキ-NETメンテナンス補填配布",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-11-26",
+          "start_time": "07:00",
+          "end": null,
+          "end_time": null,
+          "open_ended": true,
+          "songs": [],
+          "date_text": "11/26(木)7:00以降、",
+          "evidence": "2026/10/21(水)より発生しておりました「オンゲキ-NETメンテナンス」の補填と、\n2026/11/1(日)より発生しておりました「ALL․Netメンテナンス」のお詫びについて\n下記の通りアイテムを配布させていただきます。",
+          "confidence": 0.99,
+          "calendar_start": "2026-11-26",
+          "calendar_end": null
+        },
+        {
+          "title": "ALL․Netメンテナンスお詫び配布",
+          "type": "other",
+          "subject": null,
+          "label": "ALL․Netメンテナンスお詫び配布",
+          "official_name": null,
+          "service": "ongeki",
+          "start_is_deadline": false,
+          "start": "2026-11-26",
+          "start_time": "07:00",
+          "end": null,
+          "end_time": null,
+          "open_ended": true,
+          "songs": [],
+          "date_text": "11/26(木)7:00以降、",
+          "evidence": "2026/10/21(水)より発生しておりました「オンゲキ-NETメンテナンス」の補填と、\n2026/11/1(日)より発生しておりました「ALL․Netメンテナンス」のお詫びについて\n下記の通りアイテムを配布させていただきます。",
+          "confidence": 0.99,
+          "calendar_start": "2026-11-26",
+          "calendar_end": null
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "2種類の補填・お詫びは対象となるメンテナンスと配布内容が異なるため、別エントリに分割しました。いずれもオンゲキへのログインで受け取るアイテム配布で、11/26(木)7:00以降と記載されているため、終了日は設定していません。"
+      ],
+      "review_reasons": [
+        "エントリ1: 種類がotherです。",
+        "エントリ2: 種類がotherです。"
+      ],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
       "status": "needs_review",
       "provider": "openai",
       "model": "gpt-5.6-luna"
