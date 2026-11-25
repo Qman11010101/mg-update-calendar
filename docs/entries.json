@@ -31,7 +31,7 @@
           "songs": [],
           "date_text": "2026年11月26日(木)より、\n新マップ\n「Mate ep. SHADE」\nが登場！",
           "evidence": "新マップ「Mate ep. SHADE」登場！\n2026年11月26日(木)より、\n新マップ\n「Mate ep. SHADE」\nが登場！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-11-26",
           "calendar_end": null
         },
@@ -60,7 +60,7 @@
           ],
           "date_text": "2026年11月26日(木)より、",
           "evidence": "「Mate ep. SHADE」では、こちらの楽曲が課題曲としてプレイできます。\n楽曲とアーティスト様はコチラ！\nORIGINAL\nBlur ℃ircuit\nRyo Fukuda\nEVERYTHING I CAN LAYER\nAlicemetix",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-11-26",
           "calendar_end": null
         },
@@ -80,7 +80,7 @@
           "songs": [],
           "date_text": "2026年11月26日(木)～2026年12月9日(水)の期間で「Mate 5th」ミッションが出現します！",
           "evidence": "「Mate 5th」ミッションが出現！\n2026年11月26日(木)～2026年12月9日(水)の期間で「Mate 5th」ミッションが出現します！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-11-26",
           "calendar_end": "2026-12-09"
         },
@@ -113,7 +113,7 @@
           ],
           "date_text": "2026年11月26日(木)より、\n以下の楽曲を通常開放します。",
           "evidence": "楽曲通常開放！\n2026年11月26日(木)より、\n以下の楽曲を通常開放します。\n曲　名\nアーティスト名\nhyperreality\ntn-shi\nDeep Blue\ntechnoplanet feat. Tamako Kinoshita\nDEvourER\nZxNX + Redsign",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-11-26",
           "calendar_end": null
         }
@@ -290,7 +290,7 @@
           ],
           "date_text": "2026年11月26日(木)より、",
           "evidence": "「VARIETY」に新曲「PEACE BREAKER」が追加されます！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-11-26",
           "calendar_end": null
         },
@@ -323,7 +323,7 @@
           ],
           "date_text": "2026年11月26日(木)より、",
           "evidence": "新たなWORLD’S END楽曲が追加されます！\nWORLD’S END追加楽曲\nアージェントシンメトリー\n【両】\nAleph-0\n【両】\nサドマミホリック\n【両】",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-11-26",
           "calendar_end": null
         },
@@ -343,7 +343,7 @@
           "songs": [],
           "date_text": "2026年11月26日(木)より、",
           "evidence": "「Linked Gate CRYSTAL」の発見条件が緩和され、マップの完走が不要になります。",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-11-26",
           "calendar_end": null
         }
@@ -2561,7 +2561,7 @@
           "songs": [],
           "date_text": "2026/11/26(木)～2027/1/20(水)23:59の期間で、",
           "evidence": "シルバージュエルイベント「ワールドダイスター 夢のステラリウム【第3弾】」を開催します！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-11-26",
           "calendar_end": "2027-01-20"
         },
@@ -2594,7 +2594,7 @@
           ],
           "date_text": "2026/11/26(木)～2027/1/20(水)23:59の期間で、",
           "evidence": "さらに、イベントに合わせて新曲\n不可逆的運命ディストピア\n電脳スペクタクル\n絶対！ニーデリッヒ宣言♡\nを追加！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-11-26",
           "calendar_end": null
         },
@@ -2631,7 +2631,7 @@
           ],
           "date_text": "2026/11/26(木)～2027/1/20(水)23:59の期間で、",
           "evidence": "テクニカルチャレンジ「ワールドダイスター 夢のステラリウム【第3弾】」を開催します！",
-          "confidence": 1.0,
+          "confidence": 1,
           "calendar_start": "2026-11-26",
           "calendar_end": "2027-01-20"
         },
@@ -3297,26 +3297,6 @@
           "confidence": 0.99,
           "calendar_start": "2026-10-29",
           "calendar_end": "2026-12-23"
-        },
-        {
-          "title": "11月度 マンスリーミッション",
-          "type": "mission",
-          "subject": "11月度 マンスリーミッション",
-          "label": "ミッション",
-          "official_name": "11月度 マンスリーミッション",
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-10-29",
-          "start_time": null,
-          "end": "2026-11-25",
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "10/29(木)～11/25(水)の期間で、「11月度 マンスリーミッション」を開催します！",
-          "evidence": "10/29(木)～11/25(水)の期間で、「11月度 マンスリーミッション」を開催します！",
-          "confidence": 0.99,
-          "calendar_start": "2026-10-29",
-          "calendar_end": "2026-11-25"
         },
         {
           "title": "楽曲追加",
@@ -4241,54 +4221,6 @@
     {
       "source": {
         "game": "chunithm",
-        "url": "https://info-chunithm.sega.jp/13084/",
-        "date": "2026-08-25",
-        "title": "【重要】「おサイフケータイ」のAime新規登録機能終了のお知らせ"
-      },
-      "content_hash": "096d2a8639da6648e795a931f23370acef60b455adf5aa647aea727769dd6827",
-      "entries": [
-        {
-          "title": "Aime新規登録機能終了",
-          "type": "service_change",
-          "subject": null,
-          "label": "Aime新規登録機能終了",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": true,
-          "start": null,
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "",
-          "evidence": "【重要】「おサイフケータイ」のAime新規登録機能終了のお知らせ",
-          "confidence": 0.92,
-          "calendar_start": null,
-          "calendar_end": null
-        }
-      ],
-      "cancellations": [],
-      "notes": [
-        "本文が空のため、タイトルから「おサイフケータイ」のAime新規登録機能終了をサービス変更として抽出しました。"
-      ],
-      "review_reasons": [
-        "機能終了日がタイトルから特定できません。本文が空のため、開始日・最終利用日を確認してください。",
-        "本文がありません。タイトルのみの抽出です。",
-        "エントリ1: date_textの原文根拠を確認できません。",
-        "エントリ1: 開始日が不明です。"
-      ],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "needs_review",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "chunithm",
         "url": "https://info-chunithm.sega.jp/12972/",
         "date": "2026-08-05",
         "title": "『カードメイカー』の『CHUNITHM』ガチャ機能の提供終了につきまして"
@@ -4729,54 +4661,6 @@
     {
       "source": {
         "game": "maimai",
-        "url": "https://info-maimai.sega.jp/9919/",
-        "date": "2026-08-25",
-        "title": "【重要】「おサイフケータイ」のAime新規登録機能終了のお知らせ"
-      },
-      "content_hash": "bdc0c97d5ccaa74095d6ced0a7045652a079131af1efc482d4e7dcbadeb6596c",
-      "entries": [
-        {
-          "title": "Aime新規登録機能終了",
-          "type": "service_change",
-          "subject": null,
-          "label": "Aime新規登録機能終了",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": true,
-          "start": null,
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "",
-          "evidence": "【重要】「おサイフケータイ」のAime新規登録機能終了のお知らせ",
-          "confidence": 0.91,
-          "calendar_start": null,
-          "calendar_end": null
-        }
-      ],
-      "cancellations": [],
-      "notes": [
-        "本文が空のため、タイトルのみを根拠に判断しました。"
-      ],
-      "review_reasons": [
-        "Aime新規登録機能の終了日がタイトルから特定できません。",
-        "本文がありません。タイトルのみの抽出です。",
-        "エントリ1: date_textの原文根拠を確認できません。",
-        "エントリ1: 開始日が不明です。"
-      ],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "needs_review",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "maimai",
         "url": "https://info-maimai.sega.jp/9285/",
         "date": "2026-08-06",
         "title": "8/7(金)「天界ちほー9」オープン！"
@@ -5015,54 +4899,6 @@
       "attempts": 1,
       "prompt_version": "40",
       "status": "extracted",
-      "provider": "openai",
-      "model": "gpt-5.6-luna"
-    },
-    {
-      "source": {
-        "game": "ongeki",
-        "url": "https://info-ongeki.sega.jp/13224/",
-        "date": "2026-08-25",
-        "title": "【重要】「おサイフケータイ」のAime新規登録機能終了のお知らせ"
-      },
-      "content_hash": "e7fab83c24ab109ca2c9e94b209665a3dec3657df0fc792f5654001e445aca2a",
-      "entries": [
-        {
-          "title": "おサイフケータイのAime新規登録機能終了",
-          "type": "service_change",
-          "subject": null,
-          "label": "おサイフケータイのAime新規登録機能終了",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": true,
-          "start": null,
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "",
-          "evidence": "【重要】「おサイフケータイ」のAime新規登録機能終了のお知らせ",
-          "confidence": 0.82,
-          "calendar_start": null,
-          "calendar_end": null
-        }
-      ],
-      "cancellations": [],
-      "notes": [
-        "本文が空のため、タイトルからサービス変更として抽出しました。"
-      ],
-      "review_reasons": [
-        "Aime新規登録機能の終了日時がタイトルから特定できません。",
-        "本文がありません。タイトルのみの抽出です。",
-        "エントリ1: date_textの原文根拠を確認できません。",
-        "エントリ1: 開始日が不明です。"
-      ],
-      "error": null,
-      "validation_errors": [],
-      "attempts": 1,
-      "prompt_version": "40",
-      "status": "needs_review",
       "provider": "openai",
       "model": "gpt-5.6-luna"
     },
