@@ -3513,26 +3513,6 @@
       "content_hash": null,
       "entries": [
         {
-          "title": "「KING of Performai The 8th」LCQ（最終予選）",
-          "type": "event",
-          "subject": "KING of Performai The 8th",
-          "label": "LCQ（最終予選）",
-          "official_name": null,
-          "service": "maimai",
-          "start_is_deadline": false,
-          "start": "2026-12-09",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年12月9日（水）",
-          "evidence": "LCQ(Last Chance Qualifier、最終予選)\n2026年12月9日（水）\n都内某所",
-          "confidence": 1,
-          "calendar_start": "2026-12-09",
-          "calendar_end": null
-        },
-        {
           "title": "「KING of Performai The 8th」全国決勝大会",
           "type": "event",
           "subject": "KING of Performai The 8th",
@@ -3553,9 +3533,21 @@
           "calendar_end": null
         }
       ],
-      "cancellations": [],
+      "cancellations": [
+        {
+          "title": "「KING of Performai The 8th」LCQ（最終予選）",
+          "target_type": "event",
+          "subject": "KING of Performai The 8th",
+          "label": "LCQ（最終予選）",
+          "official_name": null,
+          "songs": [],
+          "evidence": "12月9日（水）に予定しておりましたLCQ（最終予選）につきまして、これ以上の日程調整が困難であると判断し、誠に残念ではございますが、全部門の開催を中止とさせていただきます。",
+          "confidence": 1
+        }
+      ],
       "notes": [
-        "大会サイト（https://maimai.sega.jp/kop8th/）を元に手動で追加した。オンゲキ・CHUNITHM・maimai でらっくすの3タイトル合同大会。"
+        "大会サイト（https://maimai.sega.jp/kop8th/）を元に手動で追加した。オンゲキ・CHUNITHM・maimai でらっくすの3タイトル合同大会。",
+        "2026/11/24にKOP公式X（@kop_sega）が、ALL.Net緊急メンテナンスの影響で12/9（水）のLCQ（最終予選）を全部門中止すると発表したため、LCQのエントリを手動で取り消しに移した。全国決勝大会（2027/2/14）は予定どおり有観客での開催に向けて調整中。オンライン予選のルール変更は詳細未定。"
       ],
       "review_reasons": [],
       "error": null,
@@ -3576,26 +3568,6 @@
       "content_hash": null,
       "entries": [
         {
-          "title": "「KING of Performai The 8th」LCQ（最終予選）",
-          "type": "event",
-          "subject": "KING of Performai The 8th",
-          "label": "LCQ（最終予選）",
-          "official_name": null,
-          "service": "chunithm",
-          "start_is_deadline": false,
-          "start": "2026-12-09",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年12月9日（水）",
-          "evidence": "LCQ(Last Chance Qualifier、最終予選)\n2026年12月9日（水）\n都内某所",
-          "confidence": 1,
-          "calendar_start": "2026-12-09",
-          "calendar_end": null
-        },
-        {
           "title": "「KING of Performai The 8th」全国決勝大会",
           "type": "event",
           "subject": "KING of Performai The 8th",
@@ -3616,9 +3588,21 @@
           "calendar_end": null
         }
       ],
-      "cancellations": [],
+      "cancellations": [
+        {
+          "title": "「KING of Performai The 8th」LCQ（最終予選）",
+          "target_type": "event",
+          "subject": "KING of Performai The 8th",
+          "label": "LCQ（最終予選）",
+          "official_name": null,
+          "songs": [],
+          "evidence": "12月9日（水）に予定しておりましたLCQ（最終予選）につきまして、これ以上の日程調整が困難であると判断し、誠に残念ではございますが、全部門の開催を中止とさせていただきます。",
+          "confidence": 1
+        }
+      ],
       "notes": [
-        "大会サイト（https://maimai.sega.jp/kop8th/）を元に手動で追加した。オンゲキ・CHUNITHM・maimai でらっくすの3タイトル合同大会。"
+        "大会サイト（https://maimai.sega.jp/kop8th/）を元に手動で追加した。オンゲキ・CHUNITHM・maimai でらっくすの3タイトル合同大会。",
+        "2026/11/24にKOP公式X（@kop_sega）が、ALL.Net緊急メンテナンスの影響で12/9（水）のLCQ（最終予選）を全部門中止すると発表したため、LCQのエントリを手動で取り消しに移した。全国決勝大会（2027/2/14）は予定どおり有観客での開催に向けて調整中。オンライン予選のルール変更は詳細未定。"
       ],
       "review_reasons": [],
       "error": null,
@@ -3639,26 +3623,6 @@
       "content_hash": null,
       "entries": [
         {
-          "title": "「KING of Performai The 8th」LCQ（最終予選）",
-          "type": "event",
-          "subject": "KING of Performai The 8th",
-          "label": "LCQ（最終予選）",
-          "official_name": null,
-          "service": "ongeki",
-          "start_is_deadline": false,
-          "start": "2026-12-09",
-          "start_time": null,
-          "end": null,
-          "end_time": null,
-          "open_ended": false,
-          "songs": [],
-          "date_text": "2026年12月9日（水）",
-          "evidence": "LCQ(Last Chance Qualifier、最終予選)\n2026年12月9日（水）\n都内某所",
-          "confidence": 1,
-          "calendar_start": "2026-12-09",
-          "calendar_end": null
-        },
-        {
           "title": "「KING of Performai The 8th」全国決勝大会",
           "type": "event",
           "subject": "KING of Performai The 8th",
@@ -3679,9 +3643,21 @@
           "calendar_end": null
         }
       ],
-      "cancellations": [],
+      "cancellations": [
+        {
+          "title": "「KING of Performai The 8th」LCQ（最終予選）",
+          "target_type": "event",
+          "subject": "KING of Performai The 8th",
+          "label": "LCQ（最終予選）",
+          "official_name": null,
+          "songs": [],
+          "evidence": "12月9日（水）に予定しておりましたLCQ（最終予選）につきまして、これ以上の日程調整が困難であると判断し、誠に残念ではございますが、全部門の開催を中止とさせていただきます。",
+          "confidence": 1
+        }
+      ],
       "notes": [
-        "大会サイト（https://maimai.sega.jp/kop8th/）を元に手動で追加した。オンゲキ・CHUNITHM・maimai でらっくすの3タイトル合同大会。"
+        "大会サイト（https://maimai.sega.jp/kop8th/）を元に手動で追加した。オンゲキ・CHUNITHM・maimai でらっくすの3タイトル合同大会。",
+        "2026/11/24にKOP公式X（@kop_sega）が、ALL.Net緊急メンテナンスの影響で12/9（水）のLCQ（最終予選）を全部門中止すると発表したため、LCQのエントリを手動で取り消しに移した。全国決勝大会（2027/2/14）は予定どおり有観客での開催に向けて調整中。オンライン予選のルール変更は詳細未定。"
       ],
       "review_reasons": [],
       "error": null,
