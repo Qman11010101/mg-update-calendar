@@ -4,7 +4,7 @@
   "provider": "openai",
   "model": "gpt-5.6-luna",
   "mode": "extraction",
-  "updated_at": "2026-11-25T12:42:33+00:00",
+  "updated_at": "2026-11-26T12:16:55+00:00",
   "articles": [
     {
       "source": {
@@ -1521,6 +1521,358 @@
       "validation_errors": [],
       "attempts": 1,
       "prompt_version": "40",
+      "status": "extracted",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
+    {
+      "source": {
+        "game": "maimai",
+        "url": "https://info-maimai.sega.jp/9651/",
+        "date": "2026-11-26",
+        "title": "11/27(金)「メトロポリスちほー11」オープン！"
+      },
+      "content_hash": "a86a5cbb805cd4abbe8071215f2838820ce45d13105a88f6d4a0a16a937e617c",
+      "entries": [
+        {
+          "title": "メトロポリスちほー11",
+          "type": "area_add",
+          "subject": "メトロポリスちほー11",
+          "label": "ちほー追加",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": false,
+          "start": "2026-11-27",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": true,
+          "songs": [],
+          "date_text": "2026年11\n月27日(金)より、\n「メトロポリスちほー11」\nがオープンします！！",
+          "evidence": "「メトロポリスちほー11」オープン！\n(11/27～)",
+          "confidence": 0.99,
+          "calendar_start": "2026-11-27",
+          "calendar_end": null
+        },
+        {
+          "title": "「メトロポリスちほー11」楽曲追加",
+          "type": "song_add",
+          "subject": "メトロポリスちほー11",
+          "label": "楽曲追加",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": false,
+          "start": "2026-11-27",
+          "start_time": "10:00",
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [
+            {
+              "title": "ルミネイシヨン",
+              "artist": "Room97 feat.藍来いあ."
+            },
+            {
+              "title": "Flare",
+              "artist": "Aut0＆ILusMin feat.羊羊"
+            },
+            {
+              "title": "Asthenosphere",
+              "artist": "溝口ゆうま（Yuma.Mizo） feat. 大瀬良あい"
+            },
+            {
+              "title": "Unfollow",
+              "artist": "Maozon feat. MOMONADY"
+            }
+          ],
+          "date_text": "「メトロポリスちほー11」\nがオープンします！！",
+          "evidence": "「メトロポリスちほー11」では、「課題曲」と「パーフェクトチャレンジ楽曲」が出現します！\n「課題曲」と「パーフェクトチャレンジ」はクリアすることで楽曲をゲットできます！",
+          "confidence": 0.99,
+          "calendar_start": "2026-11-27",
+          "calendar_end": null
+        },
+        {
+          "title": "キャラクター追加",
+          "type": "other",
+          "subject": null,
+          "label": "キャラクター追加",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": false,
+          "start": "2026-11-27",
+          "start_time": "10:00",
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "11月27日(金)より、まじかるパスのイラストが追加されます！",
+          "evidence": "「まじかるパス」キャラクター追加！\n11月27日(金)より、まじかるパスのイラストが追加されます！",
+          "confidence": 0.98,
+          "calendar_start": "2026-11-27",
+          "calendar_end": null
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "記事の公開日が2026-11-26で、本文に年付きの「2026年11月27日(金)」があるため、開始日は2026年として抽出しました。",
+        "課題曲・パーフェクトチャレンジ楽曲は「メトロポリスちほー11」で獲得できると明記されているため、楽曲追加のsubjectを同ちほー名にしました。",
+        "楽曲およびコレクションの追加時刻として本文に「当日の午前10時頃」とあるため、楽曲追加とまじかるパスのキャラクター追加は10:00としました。"
+      ],
+      "review_reasons": [
+        "エントリ3: 種類がotherです。"
+      ],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
+      "status": "needs_review",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
+    {
+      "source": {
+        "game": "maimai",
+        "url": "https://info-maimai.sega.jp/9667/",
+        "date": "2026-11-26",
+        "title": "11/27(金)「FEAT CONTESTちほー2」オープン！さらに、宴譜面の追加も！"
+      },
+      "content_hash": "0bda138f6ced2fd3cf8b1f9ac9090f14109cdc2ebb954d46ba13aafb75aaedd4",
+      "entries": [
+        {
+          "title": "FEAT CONTESTちほー2",
+          "type": "area_add",
+          "subject": "FEAT CONTESTちほー2",
+          "label": "ちほー追加",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": false,
+          "start": "2026-11-27",
+          "start_time": null,
+          "end": "2027-01-21",
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "「FEAT CONTESTちほー2」オープン！\n(2026/11/27～2027/1/21)",
+          "evidence": "2026年11月27日(金)より、\n「FEAT CONTESTちほー2」\nがオープンします！！",
+          "confidence": 0.99,
+          "calendar_start": "2026-11-27",
+          "calendar_end": "2027-01-21"
+        },
+        {
+          "title": "「FEAT CONTESTちほー2」楽曲追加",
+          "type": "song_add",
+          "subject": "FEAT CONTESTちほー2",
+          "label": "楽曲追加",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": false,
+          "start": "2026-11-27",
+          "start_time": "10:00",
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [
+            {
+              "title": "物語たる迄",
+              "artist": "Mono. feat. るる"
+            },
+            {
+              "title": "Nefilim",
+              "artist": "MokoP"
+            },
+            {
+              "title": "Light year (feat.Sea otter club)",
+              "artist": "N"
+            },
+            {
+              "title": "＼ﾕｰﾓｱ／ feat. 結月ゆかり",
+              "artist": "背面８回宙返り"
+            }
+          ],
+          "date_text": "2026年11月27日(金)より、",
+          "evidence": "イベント開催にあわせて\n「niconico＆ボーカロイド™」に新曲「物語たる迄」「Nefilim」「Light year (feat.Sea otter club)」「＼ﾕｰﾓｱ／ feat. 結月ゆかり」が追加されます！",
+          "confidence": 0.98,
+          "calendar_start": "2026-11-27",
+          "calendar_end": null
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "「FEAT CONTESTちほー2」を進めることで楽曲を獲得できるため、楽曲追加のsubjectをちほー名に統一した。",
+        "楽曲追加の開始時刻は、本文の「楽曲やコレクションが追加されるのは当日の午前10時頃となります」に基づき10:00とした。"
+      ],
+      "review_reasons": [
+        "宴譜面の追加が告知されているが、具体的な対象曲名が画像内にしかなく、曲名を取得できないためutage_addエントリを作成できない。"
+      ],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
+      "status": "needs_review",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
+    {
+      "source": {
+        "game": "maimai",
+        "url": "https://info-maimai.sega.jp/10231/",
+        "date": "2026-11-26",
+        "title": "一部イベント期間の延長、および楽曲の削除につきまして"
+      },
+      "content_hash": "0907b131960af9b2dbb086ee2533534c3f202b281255f7554c7966c9f200e136",
+      "entries": [
+        {
+          "title": "Rotaenoちほー ちほー開催期間延長",
+          "type": "service_change",
+          "subject": "Rotaenoちほー",
+          "label": "ちほー開催期間延長",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": true,
+          "start": "2026-12-03",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2026/12/3(木)終了",
+          "evidence": "| Rotaenoちほー | 2026/11/5(木)終了 | ****2026/12/3(木)終了**** |",
+          "confidence": 0.99,
+          "calendar_start": "2026-12-03",
+          "calendar_end": null
+        },
+        {
+          "title": "野原ひろし 昼メシの流儀 ちほー ちほー開催期間延長",
+          "type": "service_change",
+          "subject": "野原ひろし 昼メシの流儀 ちほー",
+          "label": "ちほー開催期間延長",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": true,
+          "start": "2026-12-03",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2026/12/3(木)終了",
+          "evidence": "| 野原ひろし 昼メシの流儀 ちほー | 2026/11/19(木)終了 | ****2026/12/3(木)終了**** |",
+          "confidence": 0.99,
+          "calendar_start": "2026-12-03",
+          "calendar_end": null
+        },
+        {
+          "title": "超かぐや姫！ちほー ちほー開催期間延長",
+          "type": "service_change",
+          "subject": "超かぐや姫！ちほー",
+          "label": "ちほー開催期間延長",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": true,
+          "start": "2026-12-03",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2026/12/3(木)終了",
+          "evidence": "| 超かぐや姫！ちほー | 2026/11/19(木)終了 | ****2026/12/3(木)終了**** |",
+          "confidence": 0.99,
+          "calendar_start": "2026-12-03",
+          "calendar_end": null
+        },
+        {
+          "title": "k4sen ＆ Diverse Systemちほー2 ちほー開催期間延長",
+          "type": "service_change",
+          "subject": "k4sen ＆ Diverse Systemちほー2",
+          "label": "ちほー開催期間延長",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": true,
+          "start": "2027-01-07",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2027/1/7(木)終了",
+          "evidence": "| k4sen ＆ Diverse Systemちほー2 | 2026/12/9(水)終了 | ****2027/1/7(木)終了**** |",
+          "confidence": 0.99,
+          "calendar_start": "2027-01-07",
+          "calendar_end": null
+        },
+        {
+          "title": "Diverse Systemちほー（復刻） ちほー開催期間延長",
+          "type": "service_change",
+          "subject": "Diverse Systemちほー（復刻）",
+          "label": "ちほー開催期間延長",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": true,
+          "start": "2027-01-07",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2027/1/7(木)終了",
+          "evidence": "| Diverse Systemちほー（復刻） | 2026/12/9(水)終了 | ****2027/1/7(木)終了**** |",
+          "confidence": 0.99,
+          "calendar_start": "2027-01-07",
+          "calendar_end": null
+        },
+        {
+          "title": "楽曲削除（5曲）",
+          "type": "service_change",
+          "subject": null,
+          "label": "楽曲削除",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": true,
+          "start": "2026-12-10",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [
+            {
+              "title": "好き！雪！本気マジック",
+              "artist": null
+            },
+            {
+              "title": "共感覚おばけ",
+              "artist": null
+            },
+            {
+              "title": "劣等上等",
+              "artist": null
+            },
+            {
+              "title": "自傷無色",
+              "artist": null
+            },
+            {
+              "title": "ディカディズム",
+              "artist": null
+            }
+          ],
+          "date_text": "12月10日(木)より、一部の楽曲がプレイすることができなくなります。",
+          "evidence": "12月10日(木)より、一部の楽曲がプレイすることができなくなります。",
+          "confidence": 0.98,
+          "calendar_start": "2026-12-10",
+          "calendar_end": null
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "楽曲削除の「12月10日(木)」は、記事公開日が2026-11-26であり、曜日も一致するため2026-12-10として補完しました。",
+        "ちほーの延長後の終了日と楽曲削除日は、利用可能期間の終了日としてservice_changeに整理しました。"
+      ],
+      "review_reasons": [],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
       "status": "extracted",
       "provider": "openai",
       "model": "gpt-5.6-luna"
