@@ -4,8 +4,377 @@
   "provider": "openai",
   "model": "gpt-5.6-luna",
   "mode": "extraction",
-  "updated_at": "2026-11-26T12:16:55+00:00",
+  "updated_at": "2026-11-27T12:03:21+00:00",
   "articles": [
+    {
+      "source": {
+        "game": "chunithm",
+        "url": "https://info-chunithm.sega.jp/13218/",
+        "date": "2026-11-27",
+        "title": "12/10(木) CHUNITHMのバージョンアップにともなうお知らせ"
+      },
+      "content_hash": "2a8dd7bef7d37b590129b8a7eb61468a3144ddb5c779f274e2a80f0b6c9a38db",
+      "entries": [
+        {
+          "title": "CHUNITHM Mate PLUS 稼働",
+          "type": "version_launch",
+          "subject": "CHUNITHM Mate PLUS",
+          "label": "稼働",
+          "official_name": "CHUNITHM Mate PLUS",
+          "service": "chunithm",
+          "start_is_deadline": false,
+          "start": "2026-12-10",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "2026年12月10日(木)より、CHUNITHMがバージョンアップいたします。",
+          "evidence": "2026年12月10日(木)より、CHUNITHMがバージョンアップいたします。\nその名も\n『CHUNITHM Mate PLUS\n(チュウニズム メイト プラス)』！！",
+          "confidence": 1.0,
+          "calendar_start": "2026-12-10",
+          "calendar_end": null
+        },
+        {
+          "title": "2026年11月の月間ログインボーナス",
+          "type": "login_bonus",
+          "subject": "2026年11月",
+          "label": "ログインボーナス",
+          "official_name": "2026年11月の月間ログインボーナス",
+          "service": "chunithm",
+          "start_is_deadline": false,
+          "start": "2026-11-01",
+          "start_time": null,
+          "end": "2026-12-31",
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "「2026年11月の月間ログインボーナス」: 2026年11月1日(日)~12月31日(木)",
+          "evidence": "「2026年11月の月間ログインボーナス」に関しては、「CHUNITHM\nMate\n」でログインした日数が引き継がれた状態で2026/12/31(木)まで利用できます。\n「2026年11月の月間ログインボーナス」: 2026年11月1日(日)~12月31日(木)",
+          "confidence": 0.99,
+          "calendar_start": "2026-11-01",
+          "calendar_end": "2026-12-31"
+        },
+        {
+          "title": "2026年12月の月間ログインボーナス",
+          "type": "login_bonus",
+          "subject": "2026年12月",
+          "label": "ログインボーナス",
+          "official_name": "2026年12月の月間ログインボーナス",
+          "service": "chunithm",
+          "start_is_deadline": false,
+          "start": "2027-01-01",
+          "start_time": null,
+          "end": "2027-01-31",
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "「2026年12月の月間ログインボーナス」: 2027年1月1日(金)~1月31日(日)",
+          "evidence": "「月間ログインボーナス」は2027年1月に開催する「2026年12月の月間ログインボーナス」をもって提供を終了いたします。\n「2026年12月の月間ログインボーナス」: 2027年1月1日(金)~1月31日(日)",
+          "confidence": 0.99,
+          "calendar_start": "2027-01-01",
+          "calendar_end": "2027-01-31"
+        },
+        {
+          "title": "楽曲削除（25曲）",
+          "type": "service_change",
+          "subject": null,
+          "label": "楽曲削除",
+          "official_name": null,
+          "service": "chunithm",
+          "start_is_deadline": false,
+          "start": "2026-12-10",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [
+            {
+              "title": "ReCoda",
+              "artist": null
+            },
+            {
+              "title": "トゥッティ！",
+              "artist": null
+            },
+            {
+              "title": "勇者",
+              "artist": null
+            },
+            {
+              "title": "カオスが極まる",
+              "artist": null
+            },
+            {
+              "title": "唱",
+              "artist": null
+            },
+            {
+              "title": "美少女無罪♡パイレーツ",
+              "artist": null
+            },
+            {
+              "title": "Burn it All",
+              "artist": null
+            },
+            {
+              "title": "Stronghold LandEater",
+              "artist": null
+            },
+            {
+              "title": "とまどい→レシピ",
+              "artist": null
+            },
+            {
+              "title": "アイデン貞貞メルトダウン",
+              "artist": null
+            },
+            {
+              "title": "ひめごと＊クライシスターズ",
+              "artist": null
+            },
+            {
+              "title": "Stellar Stellar",
+              "artist": null
+            },
+            {
+              "title": "さくゆいたいそう",
+              "artist": null
+            },
+            {
+              "title": "ALIVE",
+              "artist": null
+            },
+            {
+              "title": "可愛くてごめん",
+              "artist": null
+            },
+            {
+              "title": "トウキョウ・シャンディ・ランデヴ feat. 花譜, ツミキ",
+              "artist": null
+            },
+            {
+              "title": "アイドル",
+              "artist": null
+            },
+            {
+              "title": "STORM",
+              "artist": null
+            },
+            {
+              "title": "未来イマジネーション！",
+              "artist": null
+            },
+            {
+              "title": "純情-SAKURA-",
+              "artist": null
+            },
+            {
+              "title": "匿名M",
+              "artist": null
+            },
+            {
+              "title": "リレイアウター",
+              "artist": null
+            },
+            {
+              "title": "ベノム",
+              "artist": null
+            },
+            {
+              "title": "ヒビカセ",
+              "artist": null
+            },
+            {
+              "title": "頓珍漢の宴",
+              "artist": null
+            }
+          ],
+          "date_text": "「CHUNITHM\nMate\nPLUS\n」の稼働に伴い、",
+          "evidence": "「CHUNITHM\nMate\nPLUS\n」の稼働に伴い、\n一部の楽曲、一部の「WORLD’S END」をプレイすることができなくなります。",
+          "confidence": 0.99,
+          "calendar_start": "2026-12-10",
+          "calendar_end": null
+        },
+        {
+          "title": "WORLD’S END譜面削除（9曲）",
+          "type": "service_change",
+          "subject": null,
+          "label": "WORLD’S END譜面削除",
+          "official_name": null,
+          "service": "chunithm",
+          "start_is_deadline": false,
+          "start": "2026-12-10",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [
+            {
+              "title": "可愛くてごめん[狂]",
+              "artist": null
+            },
+            {
+              "title": "Sunlight Starlight[蔵]",
+              "artist": null
+            },
+            {
+              "title": "Blue Noise[敷]",
+              "artist": null
+            },
+            {
+              "title": "BRAND NEW STARS!! (ALKALOID ver.)[招]",
+              "artist": null
+            },
+            {
+              "title": "カオスが極まる[両]",
+              "artist": null
+            },
+            {
+              "title": "Ever green Never end[翔]",
+              "artist": null
+            },
+            {
+              "title": "花と、雪と、ドラムンベース。[撃]",
+              "artist": null
+            },
+            {
+              "title": "Trackless wilderness[狂]",
+              "artist": null
+            },
+            {
+              "title": "ロキ[割]",
+              "artist": null
+            }
+          ],
+          "date_text": "「CHUNITHM\nMate\nPLUS\n」の稼働に伴い、",
+          "evidence": "「CHUNITHM\nMate\nPLUS\n」の稼働に伴い、\n一部の楽曲、一部の「WORLD’S END」をプレイすることができなくなります。\n対象「WORLD’S END」譜面\n可愛くてごめん[狂]\nSunlight Starlight[蔵]\nBlue Noise[敷]\nBRAND NEW STARS!! (ALKALOID ver.)[招]\nカオスが極まる[両]\nEver green Never end[翔]\n花と、雪と、ドラムンベース。[撃]\nTrackless wilderness[狂]\nロキ[割]",
+          "confidence": 0.99,
+          "calendar_start": "2026-12-10",
+          "calendar_end": null
+        },
+        {
+          "title": "マップ削除",
+          "type": "service_change",
+          "subject": null,
+          "label": "マップ削除",
+          "official_name": null,
+          "service": "chunithm",
+          "start_is_deadline": false,
+          "start": "2026-12-10",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "「CHUNITHM\nMate\nPLUS\n」の稼働に伴い、",
+          "evidence": "「CHUNITHM\nMate\nPLUS\n」の稼働に伴い、\n一部のマップをプレイすることができなくなります。\n対象マップについてはこちらをご覧ください。\nプレイできなくなるマップ\nMystic Rainbow of\nMate",
+          "confidence": 0.99,
+          "calendar_start": "2026-12-10",
+          "calendar_end": null
+        },
+        {
+          "title": "楽曲一般開放",
+          "type": "song_unlock",
+          "subject": null,
+          "label": "楽曲一般開放",
+          "official_name": null,
+          "service": "chunithm",
+          "start_is_deadline": false,
+          "start": "2026-12-10",
+          "start_time": "07:00",
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [
+            {
+              "title": "WakeUP MakeUP FEVER!",
+              "artist": null
+            },
+            {
+              "title": "狂命",
+              "artist": null
+            },
+            {
+              "title": "魔法に照らされたアンコール",
+              "artist": null
+            },
+            {
+              "title": "ジナ",
+              "artist": null
+            },
+            {
+              "title": "Road to Aventura",
+              "artist": null
+            },
+            {
+              "title": "☆をつなぐシュトラール",
+              "artist": null
+            },
+            {
+              "title": "MOMOCO68000",
+              "artist": null
+            },
+            {
+              "title": "〚回帰〛 ～Scherzo\n~フォルトゥーナの悪戯~",
+              "artist": null
+            },
+            {
+              "title": "tHE uNcontRollaBle ciNdeRella",
+              "artist": null
+            },
+            {
+              "title": "星界のプレアデス",
+              "artist": null
+            }
+          ],
+          "date_text": "2026年12月10日(木)より、CHUNITHMがバージョンアップいたします。",
+          "evidence": "「CHUNITHM\nMate\nPLUS\n」の稼働に伴い、\n以下の楽曲(ULTIMA譜面含む全難易度)を通常開放いたします！\n対象楽曲\nWakeUP MakeUP FEVER!\n狂命\n魔法に照らされたアンコール\nジナ\nRoad to Aventura\n☆をつなぐシュトラール\nMOMOCO68000\n〚回帰〛 ～Scherzo\n~フォルトゥーナの悪戯~\ntHE uNcontRollaBle ciNdeRella\n星界のプレアデス",
+          "confidence": 0.99,
+          "calendar_start": "2026-12-10",
+          "calendar_end": null
+        },
+        {
+          "title": "月間ログインボーナス提供終了",
+          "type": "service_change",
+          "subject": null,
+          "label": "月間ログインボーナス提供終了",
+          "official_name": null,
+          "service": "chunithm",
+          "start_is_deadline": true,
+          "start": "2027-01-31",
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "「月間ログインボーナス」は2027年1月に開催する「2026年12月の月間ログインボーナス」をもって提供を終了いたします。",
+          "evidence": "なお、\n「月間ログインボーナス」は2027年1月に開催する「2026年12月の月間ログインボーナス」をもって提供を終了いたします。",
+          "confidence": 0.9,
+          "calendar_start": "2027-01-31",
+          "calendar_end": null
+        }
+      ],
+      "cancellations": [],
+      "notes": [
+        "バージョン稼働に伴う楽曲追加・イベントの開始時刻は「当日の午前7時頃」と明記されているため、通常開放楽曲の開始時刻に07:00を設定した。",
+        "通常開放楽曲は「楽曲通常開放」の告知であり、イベント・マップ等への所属は本文から特定できないためsubjectをnullとした。",
+        "一部楽曲・WORLD’S END譜面・マップのプレイ終了は、予定されていた追加や開催の取り消しではなく、サービス変更として分離した。",
+        "月間ログインボーナス提供終了日は、明記された2026年12月分の期間末である2027年1月31日として整理した。"
+      ],
+      "review_reasons": [
+        "エントリ2: evidenceの原文根拠を確認できません。",
+        "エントリ3: evidenceの原文根拠を確認できません。",
+        "エントリ5: evidenceの原文根拠を確認できません。"
+      ],
+      "error": null,
+      "validation_errors": [],
+      "attempts": 1,
+      "prompt_version": "41",
+      "status": "needs_review",
+      "provider": "openai",
+      "model": "gpt-5.6-luna"
+    },
     {
       "source": {
         "game": "chunithm",
@@ -1882,9 +2251,9 @@
         "game": "maimai",
         "url": "https://info-maimai.sega.jp/10249/",
         "date": "2026-11-24",
-        "title": "メンテナンスの補填とお詫びの配布について"
+        "title": "メンテナンスの補填とお詫びの配布について【11/27更新】"
       },
-      "content_hash": "776de0951e119c2cfe3ae7e992179dc984c2907bd1876768ae7cc23a4856d2a9",
+      "content_hash": "c51290aac7d4095525d79dfe06d42e79e18c080af81863b0ba3c31c1bb138671",
       "entries": [
         {
           "title": "maimaiでらっくすNETメンテナンス補償配布",
@@ -1894,16 +2263,16 @@
           "official_name": null,
           "service": "maimai",
           "start_is_deadline": false,
-          "start": "2026-11-25",
-          "start_time": "07:00",
+          "start": null,
+          "start_time": null,
           "end": null,
           "end_time": null,
-          "open_ended": true,
+          "open_ended": false,
           "songs": [],
-          "date_text": "なお、配布アイテムにつきましては11月25日(水)7:00以降、『maimai でらっくす』にログインすることでお受け取りいただけます。",
+          "date_text": "",
           "evidence": "今回のメンテナンスの補填として、ゲキチュウマイ-NET スタンダードコース会員の皆様に下記アイテムを配布させていただきます。",
-          "confidence": 0.98,
-          "calendar_start": "2026-11-25",
+          "confidence": 0.85,
+          "calendar_start": null,
           "calendar_end": null
         },
         {
@@ -1918,24 +2287,92 @@
           "start_time": "07:00",
           "end": null,
           "end_time": null,
-          "open_ended": true,
+          "open_ended": false,
           "songs": [],
-          "date_text": "なお、配布アイテムにつきましては11月25日(水)7:00以降、『maimai でらっくす』にログインすることでお受け取りいただけます。",
-          "evidence": "また、長期間にわたりAimeを使用したゲームプレイができなかったお詫びとして、プレイヤーの皆様に下記アイテムを配布させていただきます。",
+          "date_text": "なお、配布アイテムにつきましては、11月25日(水) 7:00以降『maimai でらっくす』にログインすることでお受け取りいただけます。",
+          "evidence": "また、長期間にわたりAimeを使用したゲームプレイができなかったお詫びとして、プレイヤーの皆様に下記アイテムを配布させていただきます。\nなお、配布アイテムにつきましては、11月25日(水) 7:00以降『maimai でらっくす』にログインすることでお受け取りいただけます。",
           "confidence": 0.98,
           "calendar_start": "2026-11-25",
+          "calendar_end": null
+        },
+        {
+          "title": "ALL․Netメンテナンスお詫び配布",
+          "type": "other",
+          "subject": null,
+          "label": "ALL․Netメンテナンスお詫び配布",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": false,
+          "start": "2026-11-27",
+          "start_time": "07:00",
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "配布アイテムにつきましては、11月27日(金) 7:00以降『maimai でらっくす』にログインすることで、ゲームプレイごとに順次お受け取りいただけます。",
+          "evidence": "ALL․Netメンテナンスに対するお詫びとして、期間内にまじかるパスを購入された皆様への「+1トラックチケット」の配布を行いました。\n\n配布アイテムにつきましては、11月27日(金) 7:00以降『maimai でらっくす』にログインすることで、ゲームプレイごとに順次お受け取りいただけます。",
+          "confidence": 0.98,
+          "calendar_start": "2026-11-27",
+          "calendar_end": null
+        },
+        {
+          "title": "+1トラックチケット使用期限",
+          "type": "service_change",
+          "subject": null,
+          "label": "+1トラックチケット使用期限",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": true,
+          "start": "2026-12-12",
+          "start_time": "03:59",
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "※「+1トラックチケット」の使用期限は、2026年12月12日(土) 3:59までとなります。",
+          "evidence": "※「+1トラックチケット」の使用期限は、2026年12月12日(土) 3:59までとなります。期限までに受け取り・使用できなかったチケットは破棄されますので、あらかじめご了承ください。",
+          "confidence": 1.0,
+          "calendar_start": "2026-12-11",
+          "calendar_end": null
+        },
+        {
+          "title": "サークルポイント付与",
+          "type": "other",
+          "subject": null,
+          "label": "サークルポイント付与",
+          "official_name": null,
+          "service": "maimai",
+          "start_is_deadline": false,
+          "start": null,
+          "start_time": null,
+          "end": null,
+          "end_time": null,
+          "open_ended": false,
+          "songs": [],
+          "date_text": "",
+          "evidence": "また、11月度のサークルポイントにつきまして、すべてのユーザーサークルを対象にポイントの付与を行いました。",
+          "confidence": 0.9,
+          "calendar_start": null,
           "calendar_end": null
         }
       ],
       "cancellations": [],
       "notes": [
-        "メンテナンス自体は過去の発生事象に関する背景説明のため、独立したメンテナンス告知としては抽出していません。",
-        "アイテム配布は許可された専用種別に該当しないため、otherとして補償・お詫び配布ごとに分割しました。",
-        "受け取り開始日時は本文の「11月25日(水)7:00以降」から取得し、記事の日付が2026年11月24日であることと曜日が整合するため2026年として補完しました。"
+        "11月25日(水)・11月27日(金)は、本文中の2026年の日付および記事の更新内容から2026年として補完しました。",
+        "メンテナンスの発生期間は補填対象期間の背景説明であり、独立したメンテナンス告知としては抽出していません。",
+        "補填対象期間は配布の実施期間ではないため、配布エントリの開始日時には使用していません。"
       ],
       "review_reasons": [
+        "maimaiでらっくすNETメンテナンス補償の配布開始日時が本文から特定できません。",
+        "サークルポイントの付与日時が本文から特定できません。",
+        "エントリ1: date_textの原文根拠を確認できません。",
+        "エントリ1: 開始日が不明です。",
         "エントリ1: 種類がotherです。",
-        "エントリ2: 種類がotherです。"
+        "エントリ2: 種類がotherです。",
+        "エントリ3: 種類がotherです。",
+        "エントリ5: date_textの原文根拠を確認できません。",
+        "エントリ5: 開始日が不明です。",
+        "エントリ5: 種類がotherです。"
       ],
       "error": null,
       "validation_errors": [],
